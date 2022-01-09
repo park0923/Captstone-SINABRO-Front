@@ -131,13 +131,14 @@ function MemberHomeMyPage(){
                                         <th className="p-2 text-xl text-gray-500 font-sebang-gothic tracking-wide text-left">제목</th>
                                         <th className="p-2 text-xl text-gray-500 font-sebang-gothic tracking-wide text-left">등 록 일</th>
                                         <th className="p-2 text-xl text-gray-500 font-sebang-gothic tracking-wide text-left">마 감 일</th>
-                                    </thead>
-                                    <tr className="bg-white">
-                                        <tb className="p-2 text-sm font-sebang-gothic ">7</tb>
-                                        <td className="p-2 text-sm font-sebang-gothic">[도서] 달러구트 꿈 백화점 전자화 요청</td>
-                                        <td className="p-2 text-sm font-sebang-gothic">2022.01.05</td>
-                                        <td className="p-2 text-sm font-sebang-gothic">2022.01.15</td>
-                                    </tr>
+                                    </thead>                                    
+                                        <tr className="bg-white">                                        
+                                                <tb className="p-2 text-sm font-sebang-gothic ">7</tb>                                            
+                                                <td className="p-2 text-sm font-sebang-gothic">[도서] 달러구트 꿈 백화점 전자화 요청</td>                                                
+                                                <td className="p-2 text-sm font-sebang-gothic">2022.01.05</td>
+                                                <td className="p-2 text-sm font-sebang-gothic">2022.01.15</td>                                            
+                                        </tr>
+                                    
                                     <tr className="bg-gray-100" >
                                         <tb className="p-2 text-sm font-sebang-gothic ">6</tb>
                                         <td className="p-2 text-sm font-sebang-gothic">동영상 자막 작업 부탁드립니다.</td>

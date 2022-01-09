@@ -54,7 +54,7 @@ const Notification = () => {
                                     <td className="p-2 text-sm font-sebang-gothic">봉사 활동시 유의 사항 안내</td>
                                     <td className="p-2 text-sm font-sebang-gothic">2022.01.04</td>
                                 </tr>
-                                <tr>
+                                <tr className="bg-white">
                                     <tb className="p-2 text-sm font-sebang-gothic">5</tb>
                                     <td className="p-2 text-sm font-sebang-gothic">봉사 작업 확인 서비스 시스템 개선 작업</td>
                                     <td className="p-2 text-sm font-sebang-gothic">2022.01.03</td>
@@ -64,7 +64,7 @@ const Notification = () => {
                                     <td className="p-2 text-sm font-sebang-gothic">필수 시청 자료 안내</td>
                                     <td className="p-2 text-sm font-sebang-gothic">2022.01.02</td>
                                 </tr>
-                                <tr>
+                                <tr className="bg-white">
                                     <tb className="p-2 text-sm font-sebang-gothic">3</tb>
                                     <td className="p-2 text-sm font-sebang-gothic">시나브로 회원약관 개정 안내</td>
                                     <td className="p-2 text-sm font-sebang-gothic">2022.01.01</td>
