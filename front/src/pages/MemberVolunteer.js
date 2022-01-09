@@ -3,18 +3,20 @@ import { Link } from 'react-router-dom';
 
 function MemberVolunteer() {
     return(
-        <div className="min-h-screen flex item-center justify-between  py-12 px-4 sm:px-6 lg:px-8">            
+        <div className="min-h-screen flex item-center justify-between bg-gray-yellow py-12 px-4 sm:px-6 lg:px-8">            
             <div className="min-h-screen p-12 boder border-2 shadow-md rounded-none item-center justify-center bg-gray-50 max-w-max space-y-20">
                 <div>
                     <img className="mx-auto h-20 w-auto" src="/img/Logo.svg" alt="Logo"/>
-                    <div className="mt-14 shadow-md rounded-full bg-green-600">
-                        <p className="text-center text-xl font-sebang-gothic text-white">
-                            마이페이지
-                        </p>    
-                    </div>                    
+                    <Link to="MemberHomeMyPage">
+                        <div className="mt-14 shadow-md rounded-full bg-green-600">
+                            <p className="text-center text-xl font-sebang-gothic text-white">
+                                마이페이지
+                            </p>    
+                        </div>    
+                    </Link>                        
                 </div>                
                 <div className="flex flex-col space-y-4">
-                    <Link to="">
+                    <Link to="/MemberHomeDashboard">
                         <div className="flex flex-row space-x-8">
                             <img className="w-10 h-10" src="/img/Asset 11.png" alt="dashboard" />
                             <p className="pt-1 text-justify text-2xl font-sebang-gothic front-bold text-gray-400 hover:text-gray-600">
@@ -70,7 +72,7 @@ function MemberVolunteer() {
                 <div className="min-w-full flex flex-col space-y-8">
                         <div className="flex">
                         <div className="text-sm font-sebang-gothic  text-gray-600">
-                        <a href='/'>SINABRO > &nbsp;</a>
+                        <a href='/'>SINABRO {'>'} &nbsp;</a>
                         </div>
                         <div className="text-sm font-sebang-gothic text-green-700">
                         <a href='/MemberVolunteer'> 봉사 활동</a>     

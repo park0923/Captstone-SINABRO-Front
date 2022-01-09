@@ -17,6 +17,8 @@ import Member_Home_WorkHistory from 'pages/Member_Home_WorkHistory';
 import MemberHomeDashboard from 'pages/MemberHomeDashboard';
 import Calendar from 'pages/Calendar';
 import MemberHomeMyPage from 'pages/MemberHomeMyPage';
+import MemberHomeEducation from 'pages/MemberHomeEducation';
+import MyChart from 'pages/MyChart';
 class App extends Component {
   render() {
     return (
@@ -38,6 +40,8 @@ class App extends Component {
         <Route path="/MemberHomeDashboard" component={MemberHomeDashboard} />
         <Route path="/Calendar" component={Calendar} />
         <Route path="/MemberHomeMyPage" component={MemberHomeMyPage} />
+        <Route path="/MemberHomeEducation" component={MemberHomeEducation} />
+        <Route path="/MyChart" component={MyChart} />
       </div>
     );
   }
