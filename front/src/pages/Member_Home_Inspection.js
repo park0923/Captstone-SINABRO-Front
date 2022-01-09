@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-function MemberVolunteer() {
+function Member_Home_Inspection() {
     return(
         <div className="min-h-screen flex item-center justify-between  py-12 px-4 sm:px-6 lg:px-8">            
             <div className="min-h-screen p-12 boder border-2 shadow-md rounded-none item-center justify-center bg-gray-50 max-w-max space-y-20">
@@ -41,15 +41,15 @@ function MemberVolunteer() {
                     <Link to="/MemberVolunteer">
                         <div className="flex flex-row space-x-8">
                             <img className="w-10 h-10" src="/img/Asset 20.png" alt="volunteer" />
-                            <p className="pt-1 text-justify text-2xl font-sebang-gothic front-bold text-black hover:text-gray-600">
+                            <p className="pt-1 text-justify text-2xl font-sebang-gothic front-bold text-gray-400 hover:text-gray-600">
                                 봉사활동
                             </p>
                         </div>        
                     </Link>
-                    <Link to="/Member_Home_Inspection">
+                    <Link to="Member_Home_Inspection">
                         <div className="flex flex-row space-x-8">
                             <img className="w-10 h-10" src="/img/Asset 12.png" alt="inspection" />
-                            <p className="pt-1 text-justify text-2xl font-sebang-gothic front-bold text-gray-400 hover:text-gray-600">
+                            <p className="pt-1 text-justify text-2xl font-sebang-gothic front-bold text-black hover:text-gray-600">
                                 검&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;수
                             </p>
                         </div>       
@@ -73,11 +73,11 @@ function MemberVolunteer() {
                         <a href='/'>SINABRO > &nbsp;</a>
                         </div>
                         <div className="text-sm font-sebang-gothic text-green-700">
-                        <a href='/MemberVolunteer'> 봉사 활동</a>     
+                        <a href='/Member_Home_Inspection'> 검 수</a>     
                         </div>
                         </div>    
                     <h1 className="text text-left text-2xl font font-sebang-gothic front-bold text-black">
-                        봉사 활동 관련 공지사항을 안내해드립니다.
+                        진행할 수 있는 검수 작업을 확인할 수 있습니다.
                     </h1>
                     <div>
                     <form className="my-2 flex justify-between appearance-none  relative block w-full font-sebang-gothic px-2 py-2 border-2 border-black">
@@ -239,4 +239,4 @@ function MemberVolunteer() {
     )
 }
 
-export default MemberVolunteer;
+export default Member_Home_Inspection;

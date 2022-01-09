@@ -1,9 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-function MemberVolunteer() {
+function Member_Home_WorkHistory () {
     return(
-        <div className="min-h-screen flex item-center justify-between  py-12 px-4 sm:px-6 lg:px-8">            
+        <div className="min-h-screen flex item-center justify-self-auto  py-12 px-4 sm:px-6 lg:px-20">            
             <div className="min-h-screen p-12 boder border-2 shadow-md rounded-none item-center justify-center bg-gray-50 max-w-max space-y-20">
                 <div>
                     <img className="mx-auto h-20 w-auto" src="/img/Logo.svg" alt="Logo"/>
@@ -22,7 +22,7 @@ function MemberVolunteer() {
                             </p>
                         </div>                  
                     </Link>
-                    <Link to="/Member_Home_Introduction">
+                    <Link to="Member_Home_Introduction">
                         <div className="flex flex-row space-x-8">
                             <img className="w-10 h-10" src="/img/Asset 17.png" alt="introduce" />
                             <p className="pt-1 text-justify text-2xl font-sebang-gothic front-bold text-gray-400 hover:text-gray-600">
@@ -41,7 +41,7 @@ function MemberVolunteer() {
                     <Link to="/MemberVolunteer">
                         <div className="flex flex-row space-x-8">
                             <img className="w-10 h-10" src="/img/Asset 20.png" alt="volunteer" />
-                            <p className="pt-1 text-justify text-2xl font-sebang-gothic front-bold text-black hover:text-gray-600">
+                            <p className="pt-1 text-justify text-2xl font-sebang-gothic front-bold text-gray-400 hover:text-gray-600">
                                 봉사활동
                             </p>
                         </div>        
@@ -65,19 +65,22 @@ function MemberVolunteer() {
                 </div>
             </div>          
           
-            <div className="flex flex-grow p-12 border border-2 shadow-md rounded-none item-center justify-start bg-gray-50 max-w-screen-lg space-y-4">
+            <div className="flex flex-grow p-12 border  shadow-md rounded-none item-center justify-start bg-gray-50 max-w-screen-lg space-y-2">
                     
                 <div className="min-w-full flex flex-col space-y-8">
                         <div className="flex">
                         <div className="text-sm font-sebang-gothic  text-gray-600">
                         <a href='/'>SINABRO > &nbsp;</a>
                         </div>
+                        <div className="text-sm font-sebang-gothic  text-gray-600">
+                        <a href='/'>마이페이지 > &nbsp;</a>
+                        </div>
                         <div className="text-sm font-sebang-gothic text-green-700">
-                        <a href='/MemberVolunteer'> 봉사 활동</a>     
+                        <a href='/Member_Home_workhistory'> 진행 작업</a>     
                         </div>
                         </div>    
                     <h1 className="text text-left text-2xl font font-sebang-gothic front-bold text-black">
-                        봉사 활동 관련 공지사항을 안내해드립니다.
+                        진행 중인 작업 목록을 확인할 수 있습니다.
                     </h1>
                     <div>
                     <form className="my-2 flex justify-between appearance-none  relative block w-full font-sebang-gothic px-2 py-2 border-2 border-black">
@@ -96,48 +99,40 @@ function MemberVolunteer() {
                         </button>
                     </form>
                     </div>
-                    <div className="table w-full px-2 p-2 ">
+                    <div className="table w-full px-3 p-2 ">
                                 <thead className="bg-gray-100 border-b-2  ">
-                                   <th className="p-1 text-xl text-gray-500 font-sebang-gothic tracking-wide text-left">NO</th>
-                                   <th className="p-2 text-xl text-gray-500 font-sebang-gothic tracking-wide text-left">제목</th>
-                                   <th className="p-2 text-xl text-gray-500 font-sebang-gothic tracking-wide text-left">등 록 일</th>
-                                   <th className="p-2 text-xl text-gray-500 font-sebang-gothic tracking-wide text-left">마 감 일</th>
-                                   
+                                   <th className="p-2 text-xl text-gray-500 font-sebang-gothic tracking-wide text-left">NO</th>
+                                   <th className="p-2 text-xl text-gray-500 font-sebang-gothic tracking-wide text-left">제 목</th>
+                                   <th className="p-2 text-xl text-gray-500 font-sebang-gothic tracking-wide text-left">완 료 일</th>
                                 </thead>
                                 <tr className="bg-white">
                                     <tb className="p-2 text-sm font-sebang-gothic ">7</tb>
                                     <td className="p-2 text-sm font-sebang-gothic">봉사 활동시 유의 사항 안내</td>
                                     <td className="p-2 text-sm font-sebang-gothic">2022.01.05</td>
-                                    <td className="p-2 text-sm font-sebang-gothic">2022.01.15</td>
                                 </tr>
                                 <tr className="bg-gray-100" >
                                     <tb className="p-2 text-sm font-sebang-gothic ">6</tb>
                                     <td className="p-2 text-sm font-sebang-gothic">봉사 활동시 유의 사항 안내</td>
-                                    <td className="p-2 text-sm font-sebang-gothic">2022.01.03</td>
                                     <td className="p-2 text-sm font-sebang-gothic">2022.01.04</td>
                                 </tr>
                                 <tr>
                                     <tb className="p-2 text-sm font-sebang-gothic">5</tb>
                                     <td className="p-2 text-sm font-sebang-gothic">봉사 작업 확인 서비스 시스템 개선 작업</td>
-                                    <td className="p-2 text-sm font-sebang-gothic">2021.11.11</td>
                                     <td className="p-2 text-sm font-sebang-gothic">2022.01.03</td>
                                 </tr>
                                 <tr  className="bg-gray-100">
                                     <tb className="p-2 text-sm font-sebang-gothic">4</tb>
                                     <td className="p-2 text-sm font-sebang-gothic">필수 시청 자료 안내</td>
-                                    <td className="p-2 text-sm font-sebang-gothic">2022.01.01</td>
                                     <td className="p-2 text-sm font-sebang-gothic">2022.01.02</td>
                                 </tr>
                                 <tr>
                                     <tb className="p-2 text-sm font-sebang-gothic">3</tb>
                                     <td className="p-2 text-sm font-sebang-gothic">시나브로 회원약관 개정 안내</td>
-                                    <td className="p-2 text-sm font-sebang-gothic">2021.11.11</td>
                                     <td className="p-2 text-sm font-sebang-gothic">2022.01.01</td>
                                 </tr>
                                 <tr  className="bg-gray-100">
                                     <tb className="p-2 text-sm font-sebang-gothic">2</tb>
                                     <td className="p-2 text-sm font-sebang-gothic">시나브로 시스템 긴급 점검 안내</td>
-                                    <td className="p-2 text-sm font-sebang-gothic">2021.11.11</td>
                                     <td className="p-2 text-sm font-sebang-gothic">2022.01.01</td>
                                 </tr>  
                             </div>
@@ -155,88 +150,12 @@ function MemberVolunteer() {
                             </svg></button>
                         </div>   
                 </div> 
-                
-            </div>  
-
-            <div className="p-12 boder border-2 shadow-md rounded-none item-center justify-center bg-gray-50 max-w-max max-h-max space-y-4">
-                <div className="flex flex-row space-x-4">
-                    <img className="w-10 h-10 boder boder-2 runded-md" src="/img/Asset 17.png" alt="user" />
-                    <div>
-                        <p className="text-center text-xl font-sebang-gothic font-bold ">
-                            봉사자 이름
-                        </p>                        
-                        <Link to="" className="text-center text-sm font-sebang-gothic text-gray-500 hover:text-gray-700">
-                            로그아웃
-                        </Link>
-                    </div>
-                </div>
-                <div className=' space-y-4'>
-                    <p className="mt-14 text-left text-base font-sebang-gothic font-bold">
-                        진&nbsp;행&nbsp;작&nbsp;업
-                    </p>
-                    <div className="flex flex-row justify-center space-x-4 ">
-                        <img className="w-10 h-10 boder boder-2 rounded-md " src="/img/Asset 17.png " alt="user" />
-                        <div className="">
-                            <p className="left-0 text-center text-base font-sebang-gothic font-bold">
-                                진행 중인 작업 1
-                            </p>
-                            <div className="mx-auto h-3 w-auto rounded-full border border-2 border-black bg-white-200">      
-                                <div className="justify-start min-h-full w-12 rounded-full bg-green-600" />
-                                <p className="text-center text-sm font-sebang-gothic font-bold">20%</p>
-                            </div>                                            
-                        </div> 
-                    </div>
-                    <div className="pt-4 flex flex-row justify-center space-x-4">
-                        <img className="w-10 h-10 boder boder-2 rounded-md" src="/img/Asset 17.png" alt="user" />
-                        <div>
-                            <p className="text-center text-base font-sebang-gothic font-bold">
-                                진행 중인 작업 2
-                            </p>
-                            
-                            <div className="mx-auto h-3 w-auto rounded-full border border-2 border-black bg-white-200">      
-                                <div className="justify-start min-h-full w-20 rounded-full bg-red-600" />
-                                <p className="text-center text-sm font-sebang-gothic font-bold">60%</p>
-                            </div>                                           
-                        </div>                        
-                    </div>
-                </div>
-                <div className='space-y-4'>
-                    <p className="mt-14 text-left text-base font-sebang-gothic font-bold">
-                        대기중인 작업
-                    </p>
-                    <div className="flex flex-row justify-center space-x-4">
-                        <img className="w-10 h-10 boder boder-2 rounded-md" src="/img/Asset 17.png" alt="user" />
-                        <div>
-                            <p className=" text-base font-sebang-gothic font-bold">
-                                대기중인 작업 1
-                            </p>
-                            <p className="text-left text-sm font-sebang-gothic text-gray-400">2022년 2월 21일 까지</p>                                         
-                        </div>                        
-                    </div>
-                    <div className="pt-4 flex flex-row justify-center space-x-4">
-                        <img className="w-10 h-10 boder boder-2 rounded-md" src="/img/Asset 17.png" alt="user" />
-                        <div>
-                            <p className=" text-base font-sebang-gothic font-bold">
-                                대기중인 작업 2
-                            </p>
-                            <p className="text-left text-sm font-sebang-gothic text-gray-400">2022년 2월 22일 까지</p>
-                        </div>                        
-                    </div>
-                    <div className="pt-4 flex flex-row justify-start space-x-4">
-                        <img className="w-10 h-10 boder boder-2 rounded-md" src="/img/Asset 17.png" alt="user" />
-                        <div>
-                            <p className=" text-base font-sebang-gothic font-bold">
-                                대기중인 작업 3
-                            </p>
-                            <p className="text-left text-sm font-sebang-gothic text-gray-400 ">2022년 2월 23일 까지</p>                                        
-                        </div>                        
-                    </div>
-                </div>
-            </div>
             
+            </div>  
+           
         </div>
         
     )
 }
 
-export default MemberVolunteer;
+export default Member_Home_WorkHistory;
