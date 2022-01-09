@@ -178,28 +178,32 @@ function MemberVolunteer() {
                     </p>
                     <div className="flex flex-row justify-center space-x-4 ">
                         <img className="w-10 h-10 boder boder-2 rounded-md " src="/img/Asset 17.png " alt="user" />
-                        <div className="">
-                            <p className="left-0 text-center text-base font-sebang-gothic font-bold">
-                                진행 중인 작업 1
-                            </p>
-                            <div className="mx-auto h-3 w-auto rounded-full border border-2 border-black bg-white-200">      
-                                <div className="justify-start min-h-full w-12 rounded-full bg-green-600" />
-                                <p className="text-center text-sm font-sebang-gothic font-bold">20%</p>
-                            </div>                                            
-                        </div> 
+                        <Link to="/MemberHomeEducation">
+                            <div className="">
+                                <p className="left-0 text-center text-base font-sebang-gothic font-bold">
+                                    진행 중인 작업 1
+                                </p>
+                                <div className="mx-auto h-3 w-auto rounded-full border border-2 border-black bg-white-200">      
+                                    <div className="justify-start min-h-full w-12 rounded-full bg-green-600" />
+                                    <p className="text-center text-sm font-sebang-gothic font-bold">20%</p>
+                                </div>                                            
+                            </div> 
+                        </Link>
                     </div>
                     <div className="pt-4 flex flex-row justify-center space-x-4">
                         <img className="w-10 h-10 boder boder-2 rounded-md" src="/img/Asset 17.png" alt="user" />
-                        <div>
-                            <p className="text-center text-base font-sebang-gothic font-bold">
-                                진행 중인 작업 2
-                            </p>
-                            
-                            <div className="mx-auto h-3 w-auto rounded-full border border-2 border-black bg-white-200">      
-                                <div className="justify-start min-h-full w-20 rounded-full bg-red-600" />
-                                <p className="text-center text-sm font-sebang-gothic font-bold">60%</p>
-                            </div>                                           
-                        </div>                        
+                        <Link to="/MemberHomeEducation">
+                            <div>
+                                <p className="text-center text-base font-sebang-gothic font-bold">
+                                    진행 중인 작업 2
+                                </p>
+                                
+                                <div className="mx-auto h-3 w-auto rounded-full border border-2 border-black bg-white-200">      
+                                    <div className="justify-start min-h-full w-20 rounded-full bg-red-600" />
+                                    <p className="text-center text-sm font-sebang-gothic font-bold">60%</p>
+                                </div>                                           
+                            </div>                        
+                        </Link>                        
                     </div>
                 </div>
                 <div className='space-y-4'>

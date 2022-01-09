@@ -18,13 +18,13 @@ const HomeHeader = () => {
                 <div className="flex items-center justify-center mt-6">
                     {/* Navigation */}
                     <nav className="text-xl tracking-widest font-sebang-gothic text-green-600"> 
-                        <Link to="/MemberVolunteer" className="m-5">
+                        <Link to="/Member_Home_Introduction" className="m-5">
                             소 &nbsp; 개
                         </Link>
-                        <Link to="/" className="m-5">
+                        <Link to="/Notification" className="m-5">
                             알 &nbsp; 림
                         </Link>
-                        <Link to="/" className="m-5">
+                        <Link to="/Home_Education" className="m-5">
                             교 &nbsp; 육
                         </Link>
                     </nav>
