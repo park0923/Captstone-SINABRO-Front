@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom';
 
 function Member_Home_WorkHistory () {
     return(
-        <div className="min-h-screen flex item-center justify-self-auto  py-12 px-4 sm:px-6 lg:px-20">            
+        
+        <div className="min-h-screen flex item-center justify-self-end  py-12 px-4 sm:px-6 lg:px-20 bg-gray-yellow">            
             <div className="min-h-screen p-12 boder border-2 shadow-md rounded-none item-center justify-center bg-gray-50 max-w-max space-y-20">
                 <div>
                     <img className="mx-auto h-20 w-auto" src="/img/Logo.svg" alt="Logo"/>
@@ -64,8 +65,7 @@ function Member_Home_WorkHistory () {
                     </Link>                                    
                 </div>
             </div>          
-          
-            <div className="flex flex-grow p-12 border  shadow-md rounded-none item-center justify-start bg-gray-50 max-w-screen-lg space-y-2">
+            <div className="flex flex-grow p-12 border  shadow-md rounded-none item-center sm:py-6 justify-start bg-gray-50  max-w-screen-lg space-y-2">
                     
                 <div className="min-w-full flex flex-col space-y-8">
                         <div className="flex">
@@ -152,8 +152,9 @@ function Member_Home_WorkHistory () {
                 </div> 
             
             </div>  
-           
-        </div>
+            </div>
+       
+
         
     )
 }

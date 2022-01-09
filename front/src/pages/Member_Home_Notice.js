@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom';
 
 function Member_Home_Notice() {
     return(
-        <div className="min-h-screen flex item-center justify-between  py-12 px-4 sm:px-6 lg:px-8">            
+    
+        <div className="min-h-screen flex item-center justify-between bg-gray-yellow py-8 px-4 sm:px-6 lg:px-8"> 
             <div className="min-h-screen p-12 boder border-2 shadow-md rounded-none item-center justify-center bg-gray-50 max-w-max space-y-20">
                 <div>
                     <img className="mx-auto h-20 w-auto" src="/img/Logo.svg" alt="Logo"/>
@@ -64,8 +65,9 @@ function Member_Home_Notice() {
                     </Link>                                    
                 </div>
             </div>          
-          
-            <div className="flex flex-grow p-12 border border-2 shadow-md rounded-none item-center justify-start bg-gray-50 max-w-screen-lg space-y-4">
+            
+            <div className="flex flex-grow p-12 border border-2 shadow-md rounded-none item-center justify-start bg-gray-50 max-w-screen-lg space-y-4
+              ">
                     
                 <div className="min-w-full flex flex-col space-y-8">
                         <div className="flex">
@@ -146,8 +148,8 @@ function Member_Home_Notice() {
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 5l7 7-7 7M5 5l7 7-7 7" />
                             </svg></button>
                         </div>   
-                </div> 
-                
+                 
+                </div>
             </div>  
 
             <div className="p-12 boder border-2 shadow-md rounded-none item-center justify-center bg-gray-50 max-w-max max-h-max space-y-4">
@@ -191,6 +193,7 @@ function Member_Home_Notice() {
                             </div>                                           
                         </div>                        
                     </div>
+                    
                 </div>
                 <div className='space-y-4'>
                     <p className="mt-14 text-left text-base font-sebang-gothic font-bold">
@@ -227,7 +230,6 @@ function Member_Home_Notice() {
             </div>
             
         </div>
-        
     )
 }
 

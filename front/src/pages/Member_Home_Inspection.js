@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 function Member_Home_Inspection() {
     return(
-        <div className="min-h-screen flex item-center justify-between  py-12 px-4 sm:px-6 lg:px-8">            
+        <div className="min-h-screen flex item-center justify-between  py-12 px-4 sm:px-6 lg:px-8  bg-gray-yellow ">            
             <div className="min-h-screen p-12 boder border-2 shadow-md rounded-none item-center justify-center bg-gray-50 max-w-max space-y-20">
                 <div>
                     <img className="mx-auto h-20 w-auto" src="/img/Logo.svg" alt="Logo"/>
