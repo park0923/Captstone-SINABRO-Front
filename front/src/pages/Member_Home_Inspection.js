@@ -3,18 +3,24 @@ import { Link } from 'react-router-dom';
 
 function Member_Home_Inspection() {
     return(
+<<<<<<< HEAD
         <div className="min-h-screen flex item-center justify-between  py-12 px-4 sm:px-6 lg:px-8  bg-gray-yellow ">            
+=======
+        <div className="min-h-screen flex item-center justify-between bg-gray-yellow py-12 px-4 sm:px-6 lg:px-8">            
+>>>>>>> 86faa5aa1bb57569cd69a4f2672afd3f10a5bfce
             <div className="min-h-screen p-12 boder border-2 shadow-md rounded-none item-center justify-center bg-gray-50 max-w-max space-y-20">
                 <div>
                     <img className="mx-auto h-20 w-auto" src="/img/Logo.svg" alt="Logo"/>
-                    <div className="mt-14 shadow-md rounded-full bg-green-600">
-                        <p className="text-center text-xl font-sebang-gothic text-white">
-                            마이페이지
-                        </p>    
-                    </div>                    
+                    <Link to="MemberHomeMyPage">
+                        <div className="mt-14 shadow-md rounded-full bg-green-600">
+                            <p className="text-center text-xl font-sebang-gothic text-white">
+                                마이페이지
+                            </p>    
+                        </div>    
+                    </Link>                      
                 </div>                
                 <div className="flex flex-col space-y-4">
-                    <Link to="">
+                    <Link to="/MemberHomeDashboard">
                         <div className="flex flex-row space-x-8">
                             <img className="w-10 h-10" src="/img/Asset 11.png" alt="dashboard" />
                             <p className="pt-1 text-justify text-2xl font-sebang-gothic front-bold text-gray-400 hover:text-gray-600">
@@ -40,7 +46,7 @@ function Member_Home_Inspection() {
                     </Link>
                     <Link to="/MemberVolunteer">
                         <div className="flex flex-row space-x-8">
-                            <img className="w-10 h-10" src="/img/Asset 20.png" alt="volunteer" />
+                            <img className="w-10 h-10" src="/img/Asset 13.png" alt="volunteer" />
                             <p className="pt-1 text-justify text-2xl font-sebang-gothic front-bold text-gray-400 hover:text-gray-600">
                                 봉사활동
                             </p>
@@ -48,7 +54,7 @@ function Member_Home_Inspection() {
                     </Link>
                     <Link to="Member_Home_Inspection">
                         <div className="flex flex-row space-x-8">
-                            <img className="w-10 h-10" src="/img/Asset 12.png" alt="inspection" />
+                            <img className="w-10 h-10" src="/img/Asset 19.png" alt="inspection" />
                             <p className="pt-1 text-justify text-2xl font-sebang-gothic front-bold text-black hover:text-gray-600">
                                 검&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;수
                             </p>
@@ -70,7 +76,7 @@ function Member_Home_Inspection() {
                 <div className="min-w-full flex flex-col space-y-8">
                         <div className="flex">
                         <div className="text-sm font-sebang-gothic  text-gray-600">
-                        <a href='/'>SINABRO > &nbsp;</a>
+                        <a href='/'>SINABRO {'>'} &nbsp;</a>
                         </div>
                         <div className="text-sm font-sebang-gothic text-green-700">
                         <a href='/Member_Home_Inspection'> 검 수</a>     

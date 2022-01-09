@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from 'react-router-dom';
 import Calendar from "./Calendar";
+import MyChart from "./MyChart";
 
 function MemberHomeDashboard(){
     return(
@@ -75,7 +76,7 @@ function MemberHomeDashboard(){
                         {'>'}더보기
                     </Link>                
                 </div>     
-                <div className="flex flex-row space-x-4">
+                <div className="ml-8 flex flex-row space-x-4">
                     <div className="p-4 boder border-2 shadow-md rounded-xl item-center justify-center w-40 h-36 bg-gray-50 space-y-1">
                         <img className="mx-10 w-10 h-10" src="/img/Asset 17.png" alt="introduce" />
                         <h3 className="text-center text-lg font-sebang-gothic front-bold text-black">작업 제목</h3>
@@ -104,30 +105,15 @@ function MemberHomeDashboard(){
                 <div className="flex flex-row space-x-12 justify-between" >
                     <div className="flex flex-col mt-16">
                         <h1 className="text-2xl font-sebang-gothic front-bold text-black">일주일 진행 현황</h1>
-                        <div className="p-4 border-2 shadow-md rounded-xl item-center justify-center h-auto bg-gray-50 space-y-1">
-                            <ul class="y-axis">
-                                <li><span>35</span></li>
-                                <hr className=""></hr>
-                                <li><span>30</span></li>
-                                <hr className=""></hr>
-                                <li><span>25</span></li>
-                                <hr className=""></hr>
-                                <li><span>20</span></li>
-                                <hr className=""></hr>
-                                <li><span>15</span></li>
-                                <hr className=""></hr>
-                                <li><span>10</span></li>
-                                <hr className=""></hr>
-                                <li><span>5</span></li>
-                                <hr className=""></hr>
-                                <li><span>0</span></li>
-                                <hr className=""></hr>
-                            </ul>                            
+                        <div className="border-2 shadow-md rounded-xl min-w-full h-80 bg-gray-50 space-y-1">
+                            <div className="mt-4 mr-8 justify-start">
+                                <MyChart />                 
+                            </div>                            
                         </div>
                     </div>
                     <div className="flex flex-col mt-16">
                         <h1 className="text-2xl font-sebang-gothic front-bold text-black">마감 일자</h1>
-                        <div className="p-4 border-2 shadow-md rounded-xl item-center justify-center h-auto bg-gray-50 space-y-1">
+                        <div className="p-4 border-2 shadow-md rounded-xl item-center justify-center w-65 h-80  bg-gray-50 space-y-1">
                             <Calendar />
                         </div>                        
                     </div>
