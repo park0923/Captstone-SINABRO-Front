@@ -19,6 +19,7 @@ import Calendar from 'pages/Calendar';
 import MemberHomeMyPage from 'pages/MemberHomeMyPage';
 import MemberHomeEducation from 'pages/MemberHomeEducation';
 import MyChart from 'pages/MyChart';
+import MyPieChart from 'pages/MyPieChart';
 class App extends Component {
   render() {
     return (
@@ -42,6 +43,7 @@ class App extends Component {
         <Route path="/MemberHomeMyPage" component={MemberHomeMyPage} />
         <Route path="/MemberHomeEducation" component={MemberHomeEducation} />
         <Route path="/MyChart" component={MyChart} />
+        <Route path="/MyPieChart" component={MyPieChart} />
       </div>
     );
   }
