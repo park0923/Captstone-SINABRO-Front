@@ -18,7 +18,7 @@ const HomeHeader = () => {
                 <div className="flex items-center justify-center mt-6">
                     {/* Navigation */}
                     <nav className="text-xl tracking-widest font-sebang-gothic text-green-600"> 
-                        <Link to="/Member_Home_Introduction" className="m-5">
+                        <Link to="/Introduction" className="m-5">
                             소 &nbsp; 개
                         </Link>
                         <Link to="/Notification" className="m-5">

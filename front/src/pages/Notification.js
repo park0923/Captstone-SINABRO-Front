@@ -1,7 +1,18 @@
 import React from 'react';
 import HomeHeader from './HomeHeader';
 
-const Notification = () => {
+async function getBoardList(credentials) {
+    return fetch('http://localhost:8080/members/signin',{
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(credentials)
+    }).then(response => response.json());
+}
+
+
+function Notification() {
     
 
     return (

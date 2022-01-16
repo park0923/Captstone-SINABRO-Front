@@ -3,7 +3,7 @@ import { usePassWordValidation, makeErrMsg } from "pages/usePasswordValidation";
 
 async function signUpUser(credentials) {
     console.log(JSON.stringify(credentials))
-    return fetch('http://localhost:8080/signin',{
+    return fetch('http://localhost:8080/members',{
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -17,12 +17,12 @@ function SignUp() {
         userId: "",
         password: "",
         passwordAgain: "", 
-        userEmail: "",
-        userName: ""
+        email: "",
+        username: ""
     })
 
     const {
-        userId, password, passwordAgain, userEmail, userName
+        userId, password, passwordAgain, email, username
     } = inputs;
 
     const onChange = e => {
@@ -34,6 +34,17 @@ function SignUp() {
 
     const handleSubmit = async e => {
         e.preventDefault();
+
+        const response = await signUpUser({
+            email,
+            password,
+            username
+        });
+
+        console.log(response.email)
+        if (response.email === email) {
+            document.location.href = '/'
+        } 
     }
 
     useEffect(() => {
@@ -55,7 +66,7 @@ function SignUp() {
                             {/* User name Input Box*/}
                             <div>
                                 <label htmlFor="username" className="text-gray-900 font-sans text-sm font-semibold">Username</label>
-                                <input type="text" required name="userName" placeholder="닉네임" value={userName} onChange={onChange} className="my-1 appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded focus:outline-none focus:ring-green-500 focus:border-green-500 focus:z-10 sm:text-sm"/>
+                                <input type="text" required name="username" placeholder="닉네임" value={username} onChange={onChange} className="my-1 appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded focus:outline-none focus:ring-green-500 focus:border-green-500 focus:z-10 sm:text-sm"/>
                             </div>
                             {/* User ID Input Box*/}
                             <div>
@@ -73,7 +84,7 @@ function SignUp() {
                             {/* Re-entering Password Input Box*/}
                             <div>
                                 <label htmlFor="email" className="text-gray-900 font-sans text-sm font-semibold">Email</label>
-                                <input type="email" required name="userEmail" placeholder="이메일" value={userEmail} onChange={onChange} className="my-1 appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded focus:outline-none focus:ring-green-500 focus:border-green-500 focus:z-10 sm:text-sm"/>
+                                <input type="email" required name="email" placeholder="이메일" value={email} onChange={onChange} className="my-1 appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded focus:outline-none focus:ring-green-500 focus:border-green-500 focus:z-10 sm:text-sm"/>
                             </div>
                         </div>
 
