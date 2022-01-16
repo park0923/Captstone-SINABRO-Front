@@ -36,6 +36,7 @@ function SignUp() {
         e.preventDefault();
 
         const response = await signUpUser({
+            userId,
             email,
             password,
             username
@@ -43,7 +44,7 @@ function SignUp() {
 
         console.log(response.email)
         if (response.email === email) {
-            document.location.href = '/'
+            document.location.href = '/user/signin'
         } 
     }
 

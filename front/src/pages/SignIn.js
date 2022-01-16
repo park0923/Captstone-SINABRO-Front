@@ -8,17 +8,26 @@ async function signInUser(credentials) {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify(credentials)
-    }).then(response => response.json());
+    }).then(response => {
+        if(response.status !== 200) {
+            if(response.status === 401) {
+                alert("Wrong ID or Password");
+            } else {
+                alert(response.status)
+            }
+        }
+        return response.status;
+    });
 }
 
 function Signin() {
     
-    const [email, setInputEmail] = useState('')
+    const [userId, setInputUserId] = useState('')
     const [password, setInputPwd] = useState('')
  
 	// input data 의 변화가 있을 때마다 value 값을 변경해서 useState 해준다
-    const handleInputEmail = (e) => {
-        setInputEmail(e.target.value)
+    const handleInputUserId = (e) => {
+        setInputUserId(e.target.value)
     }
  
     const handleInputPwd = (e) => {
@@ -29,14 +38,16 @@ function Signin() {
     const handleSubmit = async e => {
         e.preventDefault();
 
-
         const response = await signInUser({
-            email,
+            userId,
             password
         });
 
-        if (response.idx !== null) {
-            document.location.href = '/MemberHomeDashboard'
+        if (response === 200) {
+            window.location.href = '/MemberHomeDashboard'
+        } else {
+            setInputUserId('');
+            setInputPwd('');
         }
     }
  
@@ -58,7 +69,7 @@ function Signin() {
                     <div className="rounded-md shadow-sm -space-y-px">
                         <div>
                             <label htmlFor="username" className="text-gray-900 font-sans text-sm font-semibold">ID</label>
-                            <input id="username" name="username" type="text" required className="my-1 appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded focus:outline-none focus:ring-green-500 focus:border-green-500 focus:z-10 sm:text-sm" placeholder="아이디" value={email} onChange={handleInputEmail}/>
+                            <input id="username" name="username" type="text" required className="my-1 appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded focus:outline-none focus:ring-green-500 focus:border-green-500 focus:z-10 sm:text-sm" placeholder="아이디" value={userId} onChange={handleInputUserId}/>
                         </div>
                         <div>
                             <label htmlfo="password" className="text-gray-900 font-sans text-sm font-semibold">Password</label>
@@ -66,7 +77,7 @@ function Signin() {
                         </div>
                     </div>
                     <div className="flex items-center justify-between">
-                        {/* Email & Password Information Remember CheckBox*/}
+                        {/* Username & Password Information Remember CheckBox*/}
                         <div className="flex items-center">
                             <input id="remember-me" name="remember-me" type="checkbox" className="h-4 w-4 text-green-500 focus:ring-green-500 border-gray-300 rounded"/>
                             <label htmlfo="remember-me" className="ml-2 font-noto-sans block text-sm text-gray-900">

@@ -1,55 +1,55 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import moment from 'moment';
+
 
 function Home_Class_List() {
-    const data = [
-        {
-            id : '1',
-            title : 'asdasd',
-            date : '2022.01.15'
-        },
-        {
-            id : '2',
-            title : 'asdasd',
-            date : '2022.01.15'
-        },
-        {
-            id : '3',
-            title : 'asdasd',
-            date : '2022.01.15'
-        },
-        {
-            id : '4',
-            title : 'asdasd',
-            date : '2022.01.15'
-        },
-        {
-            id : '5',
-            title : 'asdasd',
-            date : '2022.01.15'
-        },
-        {
-            id : '6',
-            title : 'asdasd',
-            date : '2022.01.15'
-        },
-        {
-            id : '7',
-            title : 'asdasd',
-            date : '2022.01.15'
-        },
-        {
-            id : '8',
-            title : 'asdasd',
-            date : '2022.01.15'
-        },
-        {
-            id : '9',
-            title : 'asdasd',
-            date : '2022.01.15'
-        },
+    const [data, setData] = useState([{
+        "user_id": null,
+        "title": null,
+        "description" : null,
+        "workProcess" : null,
+        "createdDate" : null,
+        "updatedDate" : null,
+        "endedDate" : null,
+        "_links" : {
+            "self" : {
+            "href" : "null"
+            },
+            "education" : {
+            "href" : "null"
+            }
+        }
+    }]);
+    const [loading, setLoading] = useState(null);
+    const [error, setError] = useState(null);
+    const ChangeDate = (date) => {
+        return moment(date).format('YYYY-MM-DD');
+    }
 
-    ];
+    useEffect(() => {
+        fetch('http://localhost:8080/educations')
+        .then(response => {
+            if(response.ok) {
+                return response.json();
+            }
+            throw response;
+        })
+        .then(data => {setData(data._embedded.educations);})
+        .catch(error => {
+            console.error("Error fetching data: ", error);
+            setError(error);
+        })
+        .finally(() => {
+            setLoading(false);
+        });
+    }, [])
+
+    if (loading) return "Loading...";
+    if (error) return "Error!";
+
+    console.log(data[0])
+
     return(                   
         <div className="min-h-screen flex item-center justify-between bg-gray-yellow py-12 px-4 sm:px-6 lg:px-8">            
             <div className="min-h-screen p-12 boder border-2 shadow-md rounded-none item-center justify-center bg-gray-50 max-w-max space-y-20">
@@ -147,53 +147,51 @@ function Home_Class_List() {
                     </form>
                     </div>
                     <div className="table w-full px-3 p-2 ">
-                                <thead className="bg-gray-100 border-b-2  ">
+                                <thead className="bg-white">
                                    <th className="p-2 text-xl text-gray-500 font-sebang-gothic tracking-wide text-left">NO</th>
                                    <th className="p-2 text-xl text-gray-500 font-sebang-gothic tracking-wide text-left">제목</th>
                                    <th className="p-2 text-xl text-gray-500 font-sebang-gothic tracking-wide text-left">작성일</th>
                                 </thead>
+                                <thead>
+                                    <th>
+                                        <hr width="100%"
+                                            style={{
+                                                color: "#A1A0A0",
+                                                backgroundColor: "#A1A0A0",
+                                                height: 3
+                                            }}
+                                        />
+                                    </th>
+                                    <th>
+                                        <hr width="100%"
+                                            style={{
+                                                color: "#A1A0A0",
+                                                backgroundColor: "#A1A0A0",
+                                                height: 3
+                                            }}
+                                        />
+                                    </th>
+                                    <th>
+                                        <hr width="100%"
+                                            style={{
+                                                color: "#A1A0A0",
+                                                backgroundColor: "#A1A0A0",
+                                                height: 3
+                                            }}
+                                        />
+                                    </th>
+                                </thead>
                                 <tbody>
-                                    {data.map( ({id, title, date}) => (
-                                        
-                                            <tr className="bg-gray-100" key={id} >
-                                                <tb className="p-2 text-sm font-sebang-gothic ">{id}</tb>
-                                                <td className="p-2 text-sm font-sebang-gothic">{title}</td>                                            
-                                                <td className="p-2 text-sm font-sebang-gothic">{date}</td>                                            
-                                            </tr>
-                                          
-                                    ))
+                                    {   
+                                        data.slice(0).reverse().map( ({title, createdDate}, index) => (
+                                        <tr className="bg-white" >
+                                            <td style={{borderBottom: "1px solid #A1A0A0"}} className="p-2 text-sm font-sebang-gothic">{data.length-index}</td>  
+                                            <td style={{borderBottom: "1px solid #A1A0A0"}} className="p-2 text-sm font-sebang-gothic">{title}</td>   
+                                            <td style={{borderBottom: "1px solid #A1A0A0"}} className="p-2 text-sm font-sebang-gothic">{ChangeDate(createdDate)}</td>                                                  
+                                        </tr>
+                                        ))
                                     }
                                 </tbody>
-                                {/* <tr className="bg-white">
-                                    <tb className="p-2 text-sm font-sebang-gothic ">7</tb>
-                                    <td className="p-2 text-sm font-sebang-gothic">봉사 활동시 유의 사항 안내</td>
-                                    <td className="p-2 text-sm font-sebang-gothic">2022.01.05</td>
-                                </tr>
-                                <tr className="bg-gray-100" >
-                                    <tb className="p-2 text-sm font-sebang-gothic ">6</tb>
-                                    <td className="p-2 text-sm font-sebang-gothic">봉사 활동시 유의 사항 안내</td>
-                                    <td className="p-2 text-sm font-sebang-gothic">2022.01.04</td>
-                                </tr>
-                                <tr>
-                                    <tb className="p-2 text-sm font-sebang-gothic">5</tb>
-                                    <td className="p-2 text-sm font-sebang-gothic">봉사 작업 확인 서비스 시스템 개선 작업</td>
-                                    <td className="p-2 text-sm font-sebang-gothic">2022.01.03</td>
-                                </tr>
-                                <tr  className="bg-gray-100">
-                                    <tb className="p-2 text-sm font-sebang-gothic">4</tb>
-                                    <td className="p-2 text-sm font-sebang-gothic">필수 시청 자료 안내</td>
-                                    <td className="p-2 text-sm font-sebang-gothic">2022.01.02</td>
-                                </tr>
-                                <tr>
-                                    <tb className="p-2 text-sm font-sebang-gothic">3</tb>
-                                    <td className="p-2 text-sm font-sebang-gothic">시나브로 회원약관 개정 안내</td>
-                                    <td className="p-2 text-sm font-sebang-gothic">2022.01.01</td>
-                                </tr>
-                                <tr  className="bg-gray-100">
-                                    <tb className="p-2 text-sm font-sebang-gothic">2</tb>
-                                    <td className="p-2 text-sm font-sebang-gothic">시나브로 시스템 긴급 점검 안내</td>
-                                    <td className="p-2 text-sm font-sebang-gothic">2022.01.01</td>
-                                </tr>   */}
                             </div>
                             <div className="flex px-80">
                             <button className="h-8 w-8 p-1 hover:bg-gray-300 rounded ">

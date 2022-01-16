@@ -1,57 +1,53 @@
-import React, {useState, useEffect} from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
+import moment from 'moment';
 
 function Member_Home_Notice() {
+    const [data, setData] = useState([{
+        "userid": null,
+        "title": null,
+        "contents": null,
+        "boardType": "notice",
+        "created_date": null,
+        "updated_date": null,
+        "_links": {
+            "self": {
+                "href": null
+            },
+            "boardEntity": {
+                "href": null
+            }
+        }
+    }]);
     
-    const data = [
-        {
-            id : '1',
-            title : 'asdasd',
-            date : '2022.01.15'
-        },
-        {
-            id : '2',
-            title : 'asdasd',
-            date : '2022.01.15'
-        },
-        {
-            id : '3',
-            title : 'asdasd',
-            date : '2022.01.15'
-        },
-        {
-            id : '4',
-            title : 'asdasd',
-            date : '2022.01.15'
-        },
-        {
-            id : '5',
-            title : 'asdasd',
-            date : '2022.01.15'
-        },
-        {
-            id : '6',
-            title : 'asdasd',
-            date : '2022.01.15'
-        },
-        {
-            id : '7',
-            title : 'asdasd',
-            date : '2022.01.15'
-        },
-        {
-            id : '8',
-            title : 'asdasd',
-            date : '2022.01.15'
-        },
-        {
-            id : '9',
-            title : 'asdasd',
-            date : '2022.01.15'
-        },
+    const [loading, setLoading] = useState(null);
+    const [error, setError] = useState(null);
+    const ChangeDate = (date) => {
+        return moment(date).format('YYYY-MM-DD');
+    }
 
-    ];
+    useEffect(() => {
+        fetch('http://localhost:8080/boardEntities/search/findByBoardType?boardType=notice')
+        .then(response => {
+            if(response.ok) {
+                return response.json();
+            }
+            throw response;
+        })
+        .then(data => {setData(data._embedded.boardEntities);})
+        .catch(error => {
+            console.error("Error fetching data: ", error);
+            setError(error);
+        })
+        .finally(() => {
+            setLoading(false);
+        });
+    }, [])
+
+    if (loading) return "Loading...";
+    if (error) return "Error!";
+
+    console.log(data[0])
 
     return(               
         <div className="min-h-screen flex item-center justify-between bg-gray-yellow py-12 px-4 sm:px-6 lg:px-8">            
@@ -151,21 +147,31 @@ function Member_Home_Notice() {
                     </form>
                     </div>
                     <div className="table w-full px-3 p-2 ">
-                                <thead className="bg-gray-100 border-b-2  ">
+                                <thead className="bg-white">
                                    <th className="p-2 text-xl text-gray-500 font-sebang-gothic tracking-wide text-left">NO</th>
                                    <th className="p-2 text-xl text-gray-500 font-sebang-gothic tracking-wide text-left">제목</th>
                                    <th className="p-2 text-xl text-gray-500 font-sebang-gothic tracking-wide text-left">작성일</th>
-                                </thead>                                
+                                </thead>
+                                <thead>
+                                    <th>
+                                        <hr width="100%" style={{ color: "#A1A0A0", backgroundColor: "#A1A0A0", height: 3 }} />
+                                    </th>
+                                    <th>
+                                        <hr width="100%" style={{ color: "#A1A0A0", backgroundColor: "#A1A0A0", height: 3 }} />
+                                    </th>
+                                    <th>
+                                        <hr width="100%" style={{ color: "#A1A0A0", backgroundColor: "#A1A0A0", height: 3 }} />
+                                    </th>
+                                </thead>
                                 <tbody>
-                                    {data.map( ({id, title, date}) => (
-                                        
-                                            <tr className="bg-gray-100" key={id} >
-                                                <tb className="p-2 text-sm font-sebang-gothic ">{id}</tb>
-                                                <td className="p-2 text-sm font-sebang-gothic">{title}</td>                                            
-                                                <td className="p-2 text-sm font-sebang-gothic">{date}</td>                                            
-                                            </tr>
-                                          
-                                    ))
+                                    {   
+                                        data.slice(0).reverse().map( ({title, created_date}, index) => (
+                                        <tr className="bg-white shadow-md" >
+                                            <td style={{borderBottom: "1px solid #A1A0A0"}} className="p-2 text-sm font-sebang-gothic">{data.length-index}</td>  
+                                            <td style={{borderBottom: "1px solid #A1A0A0"}} className="p-2 text-sm font-sebang-gothic">{title}</td>   
+                                            <td style={{borderBottom: "1px solid #A1A0A0"}} className="p-2 text-sm font-sebang-gothic">{ChangeDate(created_date)}</td>
+                                        </tr>
+                                        ))
                                     }
                                 </tbody>
                                 
