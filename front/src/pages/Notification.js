@@ -23,7 +23,7 @@ function Notification() {
                 <div className="m-8 px-2">
                         <div className="flex">
                         <div className="text-sm font-sebang-gothic  text-gray-600">
-                        <a href='/'>SINABRO > &nbsp;</a>
+                        <a href='/'>SINABRO {'>'} &nbsp;</a>
                         </div>
                     
                         <div className="text-sm font-sebang-gothic text-green-700">
