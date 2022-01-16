@@ -2,6 +2,54 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 function Member_Home_Inspection() {
+    const data = [
+        {
+            id : '1',
+            title : 'asdasd',
+            date : '2022.01.15'
+        },
+        {
+            id : '2',
+            title : 'asdasd',
+            date : '2022.01.15'
+        },
+        {
+            id : '3',
+            title : 'asdasd',
+            date : '2022.01.15'
+        },
+        {
+            id : '4',
+            title : 'asdasd',
+            date : '2022.01.15'
+        },
+        {
+            id : '5',
+            title : 'asdasd',
+            date : '2022.01.15'
+        },
+        {
+            id : '6',
+            title : 'asdasd',
+            date : '2022.01.15'
+        },
+        {
+            id : '7',
+            title : 'asdasd',
+            date : '2022.01.15'
+        },
+        {
+            id : '8',
+            title : 'asdasd',
+            date : '2022.01.15'
+        },
+        {
+            id : '9',
+            title : 'asdasd',
+            date : '2022.01.15'
+        },
+
+    ];
     return(
         <div className="min-h-screen flex item-center justify-between bg-gray-yellow py-12 px-4 sm:px-6 lg:px-8">            
             <div className="min-h-screen p-12 boder border-2 shadow-md rounded-none item-center justify-center bg-gray-50 max-w-max space-y-20">
@@ -106,7 +154,20 @@ function Member_Home_Inspection() {
                                    <th className="p-2 text-xl text-gray-500 font-sebang-gothic tracking-wide text-left">마 감 일</th>
                                    
                                 </thead>
-                                <tr className="bg-white">
+                                <tbody>
+                                    {data.map( ({id, title, date}) => (
+                                        
+                                            <tr className="bg-gray-100" key={id} >
+                                                <tb className="p-2 text-sm font-sebang-gothic ">{id}</tb>
+                                                <td className="p-2 text-sm font-sebang-gothic">{title}</td>                                            
+                                                <td className="p-2 text-sm font-sebang-gothic">{date}</td>                                            
+                                                <td className="p-2 text-sm font-sebang-gothic">{date}</td>
+                                            </tr>
+                                          
+                                    ))
+                                    }
+                                </tbody>
+                                {/* <tr className="bg-white">
                                     <tb className="p-2 text-sm font-sebang-gothic ">7</tb>
                                     <td className="p-2 text-sm font-sebang-gothic">봉사 활동시 유의 사항 안내</td>
                                     <td className="p-2 text-sm font-sebang-gothic">2022.01.05</td>
@@ -141,7 +202,7 @@ function Member_Home_Inspection() {
                                     <td className="p-2 text-sm font-sebang-gothic">시나브로 시스템 긴급 점검 안내</td>
                                     <td className="p-2 text-sm font-sebang-gothic">2021.11.11</td>
                                     <td className="p-2 text-sm font-sebang-gothic">2022.01.01</td>
-                                </tr>  
+                                </tr>   */}
                             </div>
                             <div className="flex px-80">
                             <button className="h-8 w-8 p-1 hover:bg-gray-300 rounded ">
