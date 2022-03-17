@@ -1,16 +1,59 @@
-import React, { useEffect, useState } from "react";
+/* eslint-disable react-hooks/rules-of-hooks */
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import Calendar from "./Calendar";
-import MyChart from "./MyChart";
+import moment from 'moment';
+import DatePicker from 'react-datepicker';
+import "react-datepicker/dist/react-datepicker.css";
 
+function testpg() {
+    // const [data, setData] = useState([{
+    //     "user_id": null,
+    //     "title": null,
+    //     "description" : null,
+    //     "createdDate" : null,
+    //     "updatedDate" : null,
+    //     "endedDate" : null,
+    //     "_links" : {
+    //         "self": {
+    //             "href": "null"
+    //         },
+    //         "volunteer": {
+    //             "href": "null"
+    //         }
+    //     }
+    // }]);
+    // const [loading, setLoading] = useState(null);
+    // const [error, setError] = useState(null);
+    // const ChangeDate = (date) => {
+    //     return moment(date).format('YYYY-MM-DD');
+    // }
 
-function MemberHomeDashboard(){
-    const [value, setValue] = useState(60);
-    const [max, setMax] = useState(100);
+    // useEffect(() => {
+    //     fetch('http://localhost:8080/volunteers')
+    //     .then(response => {
+    //         if(response.ok) {
+    //             return response.json();
+    //         }
+    //         throw response;
+    //     })
+    //     .then(data => {setData(data._embedded.volunteers);})
+    //     .catch(error => {
+    //         console.error("Error fetching data: ", error);
+    //         setError(error);
+    //     })
+    //     .finally(() => {
+    //         setLoading(false);
+    //     });
+    // }, [])
 
-    
+    // if (loading) return "Loading...";
+    // if (error) return "Error!";
 
+    // console.log(data[0])
+    const [dateRange, setDateRange] = useState([null, null]);
+    const [startDate, endDate] = dateRange;
     return(
+
         <div className="min-h-screen flex item-center justify-between bg-gray-yellow py-12 px-4 sm:px-6 lg:px-8">            
             <div className="min-h-screen p-12 boder border-2 shadow-md rounded-none item-center justify-center bg-gray-50 max-w-max space-y-20">
                 <div>
@@ -21,13 +64,13 @@ function MemberHomeDashboard(){
                                 마이페이지
                             </p>    
                         </div>    
-                    </Link>                    
+                    </Link>                        
                 </div>                
                 <div className="flex flex-col space-y-4">
-                    <Link to="MemberHomeDashboard">
+                    <Link to="/MemberHomeDashboard">
                         <div className="flex flex-row space-x-8">
-                            <img className="w-10 h-10" src="/img/Asset 18.png" alt="dashboard" />
-                            <p className="pt-1 text-justify text-2xl font-sebang-gothic front-bold text-black hover:text-gray-600">
+                            <img className="w-10 h-10" src="/img/Asset 11.png" alt="dashboard" />
+                            <p className="pt-1 text-justify text-2xl font-sebang-gothic front-bold text-gray-400 hover:text-gray-600">
                                 대시보드
                             </p>
                         </div>                  
@@ -50,8 +93,8 @@ function MemberHomeDashboard(){
                     </Link>
                     <Link to="/MemberVolunteer">
                         <div className="flex flex-row space-x-8">
-                            <img className="w-10 h-10" src="/img/Asset 13.png" alt="volunteer" />
-                            <p className="pt-1 text-justify text-2xl font-sebang-gothic front-bold text-gray-400 hover:text-gray-600">
+                            <img className="w-10 h-10" src="/img/Asset 20.png" alt="volunteer" />
+                            <p className="pt-1 text-justify text-2xl font-sebang-gothic front-bold text-black hover:text-gray-600">
                                 봉사활동
                             </p>
                         </div>        
@@ -74,58 +117,49 @@ function MemberHomeDashboard(){
                     </Link>                                    
                 </div>
             </div>          
-            
-            <div className="p-12 item-center justify-center max-w-screen-lg space-y-4">
-                <div className="flex flex-row justify-between">
-                    <h1 className="text-2xl font-sebang-gothic front-bold text-black">최근 진행 작업</h1>
-                    <Link to="" className="mt-2 text-center text-sm font-sebang-gothic text-gray-500 hover:text-gray-700">
-                        {'>'}더보기
-                    </Link>                
-                </div>     
-                <div className="ml-8 flex flex-row space-x-4">
-                    <div className="p-4 boder border-2 shadow-lg rounded-xl item-center justify-center w-40 h-36 bg-gray-50 space-y-1">
-                        <img className="mx-10 w-10 h-10" src="/img/Asset 17.png" alt="introduce" />
-                        <h3 className="text-center text-lg font-sebang-gothic front-bold text-black">작업 제목</h3>
-                        <p className="text-center text-sm font-sebang-gothic front-normal text-black">[ 영상 자막 ]</p>
-                        <p className="text-center text-sm font-sebang-gothic front-normal text-black">진행중</p>
-                    </div>           
-                    <div className="p-4 boder border-2 shadow-lg rounded-xl item-center justify-center w-40 h-36 bg-gray-50 space-y-1">
-                        <img className="mx-10 w-10 h-10" src="/img/Asset 17.png" alt="introduce" />
-                        <h3 className="text-center text-lg font-sebang-gothic front-bold text-black">작업 제목</h3>
-                        <p className="text-center text-sm font-sebang-gothic front-normal text-black">[ 도서 전자화 ]</p>
-                        <p className="text-center text-sm font-sebang-gothic front-normal text-black">진행중</p>
-                    </div>
-                    <div className="p-4 boder border-2 shadow-lg rounded-xl item-center justify-center w-40 h-36 bg-gray-50 space-y-1">
-                        <img className="mx-10 w-10 h-10" src="/img/Asset 17.png" alt="introduce" />
-                        <h3 className="text-center text-lg font-sebang-gothic front-bold text-black">작업 제목</h3>
-                        <p className="text-center text-sm font-sebang-gothic front-normal text-black">[ 도서 전자화 ]</p>
-                        <p className="text-center text-sm font-sebang-gothic front-normal text-black">진행중</p>
-                    </div>
-                    <div className="p-4 boder border-2 shadow-lg rounded-xl item-center justify-center w-40 h-36 bg-gray-50 space-y-1">
-                        <img className="mx-10 w-10 h-10" src="/img/Asset 17.png" alt="introduce" />
-                        <h3 className="text-center text-lg font-sebang-gothic front-bold text-black">작업 제목</h3>
-                        <p className="text-center text-sm font-sebang-gothic front-normal text-black">[ 문서 전자화 ]</p>
-                        <p className="text-center text-sm font-sebang-gothic front-normal text-black">진행중</p>
-                    </div>
-                </div>
-                <div className="flex flex-row space-x-12 justify-between" >
-                    <div className="flex flex-col mt-16">
-                        <h1 className="text-2xl font-sebang-gothic front-bold text-black">일주일 진행 현황</h1>
-                        <div className="border-2 shadow-md rounded-xl min-w-full h-80 bg-gray-50 space-y-1">
-                            <div className="mt-4 mr-8 justify-start">
-                                <MyChart />                 
-                            </div>                            
+          
+            <div className="flex flex-grow p-12 border border-2 shadow-md rounded-none item-center justify-start bg-gray-50 max-w-screen-lg space-y-4">
+                    
+                <div className="min-w-full flex flex-col space-y-8">
+                    <div className="flex">
+                        <div className="text-sm font-sebang-gothic  text-gray-600">
+                            <a href='/'>SINABRO {'>'} &nbsp;</a>
+                        </div>
+                        <div className="text-sm font-sebang-gothic text-green-700">
+                            <a href='/MemberVolunteer'> 봉사 신청</a>     
+                        </div>
+                    </div>    
+                    <div>
+                        <div>
+                            <label htmlFor="title" className="text-gray-900 font-sans text-sm font-semibold">제목</label>
+                            <input id="title" name="titlename" type="text" required className="my-1 appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded focus:outline-none focus:ring-green-500 focus:border-green-500 focus:z-10 sm:text-sm" placeholder="제목" />
+                        </div>
+                        <div>
+                            <label htmlfo="date" className="text-gray-900 font-sans text-sm font-semibold">봉사 기간</label>
+                            <DatePicker
+                                className="my-1 appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded focus:outline-none focus:ring-green-500 focus:border-green-500 focus:z-10 sm:text-sm"
+                                selectsRange={true}
+                                startDate={startDate}
+                                endDate={endDate}
+                                onChange={(update) => {
+                                    setDateRange(update);
+                                }}
+                                withPortal
+                            />
+                        </div>
+                        <div>
+                            <label htmlfo="date" className="text-gray-900 font-sans text-sm font-semibold">수행 내용</label>   
+                            <textarea id="body" name="body" type="text" required className="my-1 appearance-none rounded-none relative block  w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded focus:outline-none focus:ring-green-500 focus:border-green-500 focus:z-10 sm:text-sm" placeholder="내용" />
+                        </div>
+                        <div className="py-4 flex flex-row space-x-4 justify-center">
+                            <button className="group relative w-52 flex justify-center py-2 px-4 border border-transparent text-sm font-noto-snas font-bold rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">신청하기</button>
+                            <button className="group relative w-52 flex justify-center py-2 px-4 border border-transparent text-sm font-noto-snas font-bold rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">취소</button>
                         </div>
                     </div>
-                    <div className="flex flex-col mt-16">
-                        <h1 className="text-2xl font-sebang-gothic front-bold text-black">마감 일자</h1>
-                        <div className="p-4 border-2 shadow-md rounded-xl item-center justify-center w-65 h-80  bg-gray-50 space-y-1">
-                            <Calendar />
-                        </div>                        
-                    </div>
-                </div>
+                </div> 
+                
             </div>  
-            
+
             <div className="p-12 boder border-2 shadow-md rounded-none item-center justify-center bg-gray-50 max-w-max max-h-max space-y-4">
                 <div className="flex flex-row space-x-4">
                     <img className="w-10 h-10 boder boder-2 runded-md" src="/img/Asset 17.png" alt="user" />
@@ -145,15 +179,13 @@ function MemberHomeDashboard(){
                     <div className="flex flex-row justify-center space-x-4 ">
                         <img className="w-10 h-10 boder boder-2 rounded-md " src="/img/Asset 17.png " alt="user" />
                         <Link to="/MemberHomeEducation">
-                            <div>
+                            <div className="">
                                 <p className="left-0 text-center text-base font-sebang-gothic font-bold">
                                     진행 중인 작업 1
                                 </p>
-                                <div>                                                                              
-                                    <progress className="w-28 h-3 rounded-lg" value={20} max={100}></progress>
-                                    <p className="text-center text-sm font-sebang-gothic font-bold">{20}%</p>
-                                    {/* <div className="justify-start min-h-full w-12 rounded-full bg-green-600" />
-                                    <p className="text-center text-sm font-sebang-gothic font-bold">20%</p> */}
+                                <div className="mx-auto h-3 w-auto rounded-full border border-2 border-black bg-white-200">      
+                                    <div className="justify-start min-h-full w-12 rounded-full bg-green-600" />
+                                    <p className="text-center text-sm font-sebang-gothic font-bold">20%</p>
                                 </div>                                            
                             </div> 
                         </Link>
@@ -166,11 +198,9 @@ function MemberHomeDashboard(){
                                     진행 중인 작업 2
                                 </p>
                                 
-                                <div className="mx-auto h-3 w-auto ">      
-                                    <progress className="w-28 h-3 rounded-lg" value={60} max={100}></progress>
-                                    <p className="text-center text-sm font-sebang-gothic font-bold">{60}%</p>
-                                    {/* <div className="justify-start min-h-full w-20 border-r rounded-full translate-x-0 bg-red-600" />
-                                    <p className="text-center text-sm font-sebang-gothic font-bold">60%</p> */}
+                                <div className="mx-auto h-3 w-auto rounded-full border border-2 border-black bg-white-200">      
+                                    <div className="justify-start min-h-full w-20 rounded-full bg-red-600" />
+                                    <p className="text-center text-sm font-sebang-gothic font-bold">60%</p>
                                 </div>                                           
                             </div>                        
                         </Link>                        
@@ -211,7 +241,8 @@ function MemberHomeDashboard(){
             </div>
             
         </div>
+        
     )
 }
 
-export default MemberHomeDashboard;
+export default testpg;

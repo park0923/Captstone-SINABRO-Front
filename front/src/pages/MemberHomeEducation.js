@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import MyPieChart from "./MyPieChart";
 function MemberHomeEducation(){
+    const [data, setData] = useState(60);
     return(
         <div className="min-h-screen flex item-center justify-between bg-gray-yellow py-12 px-4 sm:px-6 lg:px-8">            
             <div className="min-h-screen p-12 boder border-2 shadow-md rounded-none item-center justify-center bg-gray-50 max-w-max space-y-20">
@@ -100,7 +101,7 @@ function MemberHomeEducation(){
                         <h1 className="text-2xl font-sebang-gothic front-bold text-black">교육 진행 현황</h1>
                         <div className="border-2 shadow-md rounded-xl min-w-full h-80 bg-gray-50 space-y-1">
                             <div className="mt-4 ml-6 justify-center">
-                                <MyPieChart />
+                                <MyPieChart data={60} />
                                 <p className="mr-2 text-center text-sm font-sebang-gothic front-bold text-black">
                                     단위 : 백분율 (%)
                                 </p>

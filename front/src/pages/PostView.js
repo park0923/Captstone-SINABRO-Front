@@ -1,78 +1,32 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import Pagination from './Pagination';
-import Posts from './Post';
 
-function MemberVolunteer() {
+const PostView = ({history, location, match}) =>{
+    // console.log(history);
+    // console.log(location);
+    // console.log(match.params);
+    
+    const [id, setId] = useState(match.params.id);    
+    
     const [data, setData] = useState([{
-      "boards": {
-        "content": [
-          {
-            "board_type": null,
-            "contents": null,
-            "created_date": null,
-            "id": null,
-            "title": null,
-            "updated_date": null
-          }
-        ],
-        "links": {
-          "ref": null,
-          "href": null
-        },
-        "page": {
-          "number": null,
-          "size": null,
-          "totalElements": null,
-          "totalPages": null
-        }
-      }
+      "userId": null,
+      "id": null,
+      "title": null,
+      "body": null
     }]);
-    
-    // const [data, setData] = useState([{
-    //     "user_id": null,
-    //     "title": null,
-    //     "description" : null,
-    //     "createdDate" : null,
-    //     "updatedDate" : null,
-    //     "endedDate" : null,
-    //     "_links" : {
-    //         "self": {
-    //             "href": "null"
-    //         },
-    //         "volunteer": {
-    //             "href": "null"
-    //         }
-    //     }
-    // }]);
-    const [datas, setDatas] = useState([{
-        "userid": null,
-        "id": null,
-        "title": null,
-        "body": null
-    }]);
-    const [currentPage, setCurrentPage] = useState(1);
-    const [postsPerPage, setPostsPerPage] = useState(10);
-    //'https://jsonplaceholder.typicode.com/posts'
-    //http://18.119.9.164:8080/api/boards
-    
+
     useEffect(() => {
-        axios.get('http://18.119.9.164:8080/api/boards')
+      axios.get('https://jsonplaceholder.typicode.com/posts', {
+        params:{
+          id: id
+        }
+      })
         .then(function (response) {
-            // handle success
+            // handle success                                  
             console.log(response.data);
-            setData(response.data);            
-            console.log(data);
-            // setPostsPerPage(response.data.boards.page.totalElements);
+            setData(response.data);
             
-            // console.log(response.data);
-            
-            // setDatas(response.data);
-            // console.log(response.data);
-            
-            // setDatas(response.data);
-            // console.log(datas);
           })
           .catch(function (error) {
             // handle error
@@ -81,18 +35,12 @@ function MemberVolunteer() {
           .then(function () {
             // always executed
           });        
-    },[])
-    // console.log(data);
-    const indexOfLast = currentPage * postsPerPage;
-    const indexOfFirst = indexOfLast - postsPerPage;
-    function currentPosts(tmp) {
-        let currentPosts = 0;
-        currentPosts = tmp.slice(indexOfFirst, indexOfLast);
-        return currentPosts;
-    }
+    },[]);
 
-    return (
-      <div className="min-h-screen flex item-center justify-between bg-gray-yellow py-12 px-4 sm:px-6 lg:px-8">
+    
+
+    return(
+        <div className="min-h-screen flex item-center justify-between bg-gray-yellow py-12 px-4 sm:px-6 lg:px-8">
         <div className="min-h-screen p-12 boder border-2 shadow-md rounded-none item-center justify-center bg-gray-50 max-w-max space-y-20">
           <div>
             <img
@@ -149,10 +97,10 @@ function MemberVolunteer() {
               <div className="flex flex-row space-x-8">
                 <img
                   className="w-10 h-10"
-                  src="/img/Asset 20.png"
+                  src="/img/Asset 13.png"
                   alt="volunteer"
                 />
-                <p className="pt-1 text-justify text-2xl font-sebang-gothic front-bold text-black hover:text-gray-600">
+                <p className="pt-1 text-justify text-2xl font-sebang-gothic front-bold text-gray-400 hover:text-gray-600">
                   봉사활동
                 </p>
               </div>
@@ -191,51 +139,14 @@ function MemberVolunteer() {
                 <a href="/">SINABRO {">"} &nbsp;</a>
               </div>
               <div className="text-sm font-sebang-gothic text-green-700">
-                <a href="/MemberVolunteer"> 봉사 활동</a>
+                <button onClick={() => history.goBack()}>돌아가기</button>
               </div>
             </div>
-            <h1 className="text text-left text-2xl font font-sebang-gothic front-bold text-black">
-              봉사 활동 관련 공지사항을 안내해드립니다.
-            </h1>
             <div>
-              <form className="my-2 flex justify-between appearance-none  relative block w-full font-sebang-gothic px-2 py-2 border-2 border-black">
-                <div className="text-xl px-1 py-2 font-sebang-gothic my-2 pt-1 text-justify font font-sebang-gothic front-bold text-black">
-                  검색 구분
-                </div>
-                <div className="select-text py-3 px-5 border-gray-500">
-                  <select>
-                    <option>전체</option>
-                    <option>1. 첫번째 옵션</option>
-                    <option>2. 두번째 옵션</option>
-                    <option>3. 세번째 옵션</option>
-                  </select>
-                </div>
-                <input
-                  type="text"
-                  placeholder="검색어를 입력해주세요"
-                  className="mx-5 w-80 border-gray-500 px-2 py-1 bg-gray-300 "
-                />
-                <button
-                  type="submit"
-                  className=" w-36 h-12 whitespace-nowrap inline-flex items-center justify-center rounded-lg shadow-sm text-sm font-sebang-gothic text-white bg-green-600 hover:bg-green-700"
-                >
-                  조 회
-                </button>
-              </form>
+                <h1 className="text-sm font-sebang-gothic  text-black">{data[0].title}</h1>
             </div>
-            <div className="space-y-2">              
-              {/* <Posts posts={data.boards.content}></Posts> */}
-              {/* <Pagination
-                postsPerPage={data.boards.page.size}
-                totalPosts={data.boards.page.totalElements}
-                paginate={setCurrentPage}
-              ></Pagination> */}
-              <Posts posts={currentPosts(datas)}></Posts>
-              <Pagination
-                postsPerPage={postsPerPage}
-                totalPosts={datas.length}
-                paginate={setCurrentPage}
-              ></Pagination>
+            <div>
+                <h1 className="text-sm font-sebang-gothic  text-black">{data[0].body}</h1>
             </div>
           </div>
         </div>
@@ -368,7 +279,7 @@ function MemberVolunteer() {
           </div>
         </div>
       </div>
-    );
+    )
 }
 
-export default MemberVolunteer;
+export default PostView;

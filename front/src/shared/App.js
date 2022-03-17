@@ -20,6 +20,10 @@ import MemberHomeMyPage from 'pages/MemberHomeMyPage';
 import MemberHomeEducation from 'pages/MemberHomeEducation';
 import MyChart from 'pages/MyChart';
 import MyPieChart from 'pages/MyPieChart';
+import testpg from 'pages/testpg';
+import Pagination from 'pages/Pagination';
+import Posts from 'pages/Post';
+import PostView from 'pages/PostView';
 class App extends Component {
   render() {
     return (
@@ -44,6 +48,10 @@ class App extends Component {
         <Route path="/MemberHomeEducation" component={MemberHomeEducation} />
         <Route path="/MyChart" component={MyChart} />
         <Route path="/MyPieChart" component={MyPieChart} />
+        <Route path="/testpg" component={testpg} />       
+        <Route path="/Pagination"  component={Pagination} />
+        <Route path="/Posts"  component={Posts} />
+        <Route path="/PostView/:id" component={PostView} />
       </div>
     );
   }
