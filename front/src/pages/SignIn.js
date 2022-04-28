@@ -1,33 +1,69 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-
-async function signInUser(credentials) {
-    return fetch('http://localhost:8080/members/signin',{
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(credentials)
-    }).then(response => {
-        if(response.status !== 200) {
-            if(response.status === 401) {
-                alert("Wrong ID or Password");
-            } else {
-                alert(response.status)
-            }
-        }
-        return response.status;
-    });
-}
+import axios from 'axios';
+import cookie from 'react-cookies';
+// async function signInUser(credentials) {
+//     return fetch('http://localhost:8080/members/signin',{
+//         method: 'POST',
+//         headers: {
+//             'Content-Type': 'application/json'
+//         },
+//         body: JSON.stringify(credentials)
+//     }).then(response => {
+//         if(response.status !== 200) {
+//             if(response.status === 401) {
+//                 alert("Wrong ID or Password");
+//             } else {
+//                 alert(response.status)
+//             }
+//         }
+//         return response.status;
+//     });
+// }
 
 function Signin() {
-    
-    const [userId, setInputUserId] = useState('')
+    useEffect(() => {        
+    },[])    
+    const signInUser = ({email, password}) =>{
+        return axios.post('http://18.117.247.55:8080/api/members/signin', {
+            email: email,
+            password: password
+        })
+        .then(function (response) {
+            console.log(response);
+            if(response.status === 200){                
+                console.log(response.data);                
+                const accesToken = response.data.token;    
+                cookie.save("login_token",accesToken,{path:"/"});                
+                
+                window.location.href = '/MemberHomeDashboard'
+            }
+            // else if(response.status !== 200) {    
+            //     alert(response.status)
+            //     console.log(response.status);
+            //     setInputEmail('');
+            //     setInputPwd('');            
+            //     if(response.status === 401) {
+            //         alert("Wrong ID or Password");
+            //     } else {
+            //         alert(response.status)
+            //     }
+            // }        
+            return response.status;
+          })
+          .catch(function (error) {
+            setInputEmail('');
+            setInputPwd('');  
+            alert("Wrong ID or Password");                        
+          });
+        
+    }
+    const [email, setInputEmail] = useState('')
     const [password, setInputPwd] = useState('')
  
 	// input data 의 변화가 있을 때마다 value 값을 변경해서 useState 해준다
-    const handleInputUserId = (e) => {
-        setInputUserId(e.target.value)
+    const handleInputEmail = (e) => {
+        setInputEmail(e.target.value)
     }
  
     const handleInputPwd = (e) => {
@@ -37,18 +73,22 @@ function Signin() {
 	// login 버튼 클릭 이벤트
     const handleSubmit = async e => {
         e.preventDefault();
-
-        const response = await signInUser({
-            userId,
+        signInUser({
+            email,
             password
         });
-
-        if (response === 200) {
-            window.location.href = '/MemberHomeDashboard'
-        } else {
-            setInputUserId('');
-            setInputPwd('');
-        }
+        // const response = signInUser({
+        //     email,
+        //     password
+        // });
+        // console.log(response);
+        // console.log(response.Result);
+        // if (response === 200) {
+        //     window.location.href = '/MemberHomeDashboard'
+        // } else {
+        //     setInputEmail('');
+        //     setInputPwd('');
+        // }
     }
  
     return(
@@ -68,8 +108,8 @@ function Signin() {
                     {/* User ID & Password Input Box*/}
                     <div className="rounded-md shadow-sm -space-y-px">
                         <div>
-                            <label htmlFor="username" className="text-gray-900 font-sans text-sm font-semibold">ID</label>
-                            <input id="username" name="username" type="text" required className="my-1 appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded focus:outline-none focus:ring-green-500 focus:border-green-500 focus:z-10 sm:text-sm" placeholder="아이디" value={userId} onChange={handleInputUserId}/>
+                            <label htmlFor="email" className="text-gray-900 font-sans text-sm font-semibold">ID</label>
+                            <input id="email" name="email" type="email" required className="my-1 appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded focus:outline-none focus:ring-green-500 focus:border-green-500 focus:z-10 sm:text-sm" placeholder="아이디" value={email} onChange={handleInputEmail}/>
                         </div>
                         <div>
                             <label htmlfo="password" className="text-gray-900 font-sans text-sm font-semibold">Password</label>

@@ -13,16 +13,15 @@ async function signUpUser(credentials) {
 }
 
 function SignUp() {
-    const [inputs, setInputs] = useState({
-        userId: "",
-        password: "",
-        passwordAgain: "", 
+    const [inputs, setInputs] = useState({        
         email: "",
+        password: "",
+        passwordAgain: "",         
         username: ""
     })
 
     const {
-        userId, password, passwordAgain, email, username
+        email, password, passwordAgain, username
     } = inputs;
 
     const onChange = e => {
@@ -35,8 +34,7 @@ function SignUp() {
     const handleSubmit = async e => {
         e.preventDefault();
 
-        const response = await signUpUser({
-            userId,
+        const response = await signUpUser({            
             email,
             password,
             username
@@ -69,10 +67,10 @@ function SignUp() {
                                 <label htmlFor="username" className="text-gray-900 font-sans text-sm font-semibold">Username</label>
                                 <input type="text" required name="username" placeholder="닉네임" value={username} onChange={onChange} className="my-1 appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded focus:outline-none focus:ring-green-500 focus:border-green-500 focus:z-10 sm:text-sm"/>
                             </div>
-                            {/* User ID Input Box*/}
+                            {/* Email Input Box*/}
                             <div>
-                                <label htmlFor="userID" className="text-gray-900 font-sans text-sm font-semibold">ID</label>
-                                <input type="text" required name="userId" placeholder="아이디" value={userId.value} onChange={onChange} className="my-1 appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded focus:outline-none focus:ring-green-500 focus:border-green-500 focus:z-10 sm:text-sm"/>
+                                <label htmlFor="email" className="text-gray-900 font-sans text-sm font-semibold">Email</label>
+                                <input type="email" required name="email" placeholder="이메일" value={email} onChange={onChange} className="my-1 appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded focus:outline-none focus:ring-green-500 focus:border-green-500 focus:z-10 sm:text-sm"/>
                             </div>
                             <div>
                                 {/* Password Input Box*/}
@@ -81,12 +79,7 @@ function SignUp() {
                                 {/* Re-entering Password Input Box*/}
                                 <label htmlFor="re-entering password" className="text-gray-900 font-sans text-sm font-semibold">Reconfirm Password</label>
                                 <input type="password" required name="passwordAgain" placeholder="비밀번호 재확인" value={passwordAgain} onChange={onChange} className="my-1 appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded focus:outline-none focus:ring-green-500 focus:border-green-500 focus:z-10 sm:text-sm"/>
-                            </div>
-                            {/* Re-entering Password Input Box*/}
-                            <div>
-                                <label htmlFor="email" className="text-gray-900 font-sans text-sm font-semibold">Email</label>
-                                <input type="email" required name="email" placeholder="이메일" value={email} onChange={onChange} className="my-1 appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded focus:outline-none focus:ring-green-500 focus:border-green-500 focus:z-10 sm:text-sm"/>
-                            </div>
+                            </div>                            
                         </div>
 
                         {/* Submit Button */}

@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import moment from 'moment';
-
+import axios from 'axios';
+import cookie from 'react-cookies';
+import UserTask from './UserTask';
 
 function Home_Class_List() {
     const [data, setData] = useState([{
@@ -26,29 +28,24 @@ function Home_Class_List() {
     const ChangeDate = (date) => {
         return moment(date).format('YYYY-MM-DD');
     }
+    const cookies = cookie.load("login_token");
+    useEffect(() => {        
+        console.log(cookies);        
+        axios({
+            method: 'get',
+            url: 'http://18.117.247.55:8080/api/works/',            
+            headers: {                
+                "Authorization": 'Bearer ' + cookies
+            }            
+          })
+            .then(function (response) {
+              console.log(response);
+            });
 
-    useEffect(() => {
-        fetch('http://localhost:8080/educations')
-        .then(response => {
-            if(response.ok) {
-                return response.json();
-            }
-            throw response;
-        })
-        .then(data => {setData(data._embedded.educations);})
-        .catch(error => {
-            console.error("Error fetching data: ", error);
-            setError(error);
-        })
-        .finally(() => {
-            setLoading(false);
-        });
     }, [])
 
     if (loading) return "Loading...";
     if (error) return "Error!";
-
-    console.log(data[0])
 
     return(                   
         <div className="min-h-screen flex item-center justify-between bg-gray-yellow py-12 px-4 sm:px-6 lg:px-8">            
@@ -115,7 +112,7 @@ function Home_Class_List() {
                 </div>
             </div>          
           
-            <div className="flex flex-grow p-12 border border-2 shadow-md rounded-none item-center justify-start bg-gray-50 max-w-screen-lg space-y-4">
+            <div className="flex flex-grow p-12 border border-2 shadow-md rounded-none item-center justify-start bg-gray-50 w-40 mx-4 space-y-4">
                     
                 <div className="min-w-full flex flex-col space-y-8">
                         <div className="flex">
@@ -211,83 +208,7 @@ function Home_Class_List() {
             </div>  
 
             <div className="p-12 boder border-2 shadow-md rounded-none item-center justify-center bg-gray-50 max-w-max max-h-max space-y-4">
-                <div className="flex flex-row space-x-4">
-                    <img className="w-10 h-10 boder boder-2 runded-md" src="/img/Asset 17.png" alt="user" />
-                    <div>
-                        <p className="text-center text-xl font-sebang-gothic font-bold ">
-                            봉사자 이름
-                        </p>                        
-                        <Link to="" className="text-center text-sm font-sebang-gothic text-gray-500 hover:text-gray-700">
-                            로그아웃
-                        </Link>
-                    </div>
-                </div>
-                <div className=' space-y-4'>
-                    <p className="mt-14 text-left text-base font-sebang-gothic font-bold">
-                        진&nbsp;행&nbsp;작&nbsp;업
-                    </p>
-                    <div className="flex flex-row justify-center space-x-4 ">
-                        <img className="w-10 h-10 boder boder-2 rounded-md " src="/img/Asset 17.png " alt="user" />
-                        <Link to="/MemberHomeEducation">
-                            <div className="">
-                                <p className="left-0 text-center text-base font-sebang-gothic font-bold">
-                                    진행 중인 작업 1
-                                </p>
-                                <div className="mx-auto h-3 w-auto rounded-full border border-2 border-black bg-white-200">      
-                                    <div className="justify-start min-h-full w-12 rounded-full bg-green-600" />
-                                    <p className="text-center text-sm font-sebang-gothic font-bold">20%</p>
-                                </div>                                            
-                            </div> 
-                        </Link>
-                    </div>
-                    <div className="pt-4 flex flex-row justify-center space-x-4">
-                        <img className="w-10 h-10 boder boder-2 rounded-md" src="/img/Asset 17.png" alt="user" />
-                        <Link to="/MemberHomeEducation">
-                            <div>
-                                <p className="text-center text-base font-sebang-gothic font-bold">
-                                    진행 중인 작업 2
-                                </p>
-                                
-                                <div className="mx-auto h-3 w-auto rounded-full border border-2 border-black bg-white-200">      
-                                    <div className="justify-start min-h-full w-20 rounded-full bg-red-600" />
-                                    <p className="text-center text-sm font-sebang-gothic font-bold">60%</p>
-                                </div>                                           
-                            </div>                        
-                        </Link>                        
-                    </div>
-                </div>
-                <div className='space-y-4'>
-                    <p className="mt-14 text-left text-base font-sebang-gothic font-bold">
-                        대기중인 작업
-                    </p>
-                    <div className="flex flex-row justify-center space-x-4">
-                        <img className="w-10 h-10 boder boder-2 rounded-md" src="/img/Asset 17.png" alt="user" />
-                        <div>
-                            <p className=" text-base font-sebang-gothic font-bold">
-                                대기중인 작업 1
-                            </p>
-                            <p className="text-left text-sm font-sebang-gothic text-gray-400">2022년 2월 21일 까지</p>                                         
-                        </div>                        
-                    </div>
-                    <div className="pt-4 flex flex-row justify-center space-x-4">
-                        <img className="w-10 h-10 boder boder-2 rounded-md" src="/img/Asset 17.png" alt="user" />
-                        <div>
-                            <p className=" text-base font-sebang-gothic font-bold">
-                                대기중인 작업 2
-                            </p>
-                            <p className="text-left text-sm font-sebang-gothic text-gray-400">2022년 2월 22일 까지</p>
-                        </div>                        
-                    </div>
-                    <div className="pt-4 flex flex-row justify-start space-x-4">
-                        <img className="w-10 h-10 boder boder-2 rounded-md" src="/img/Asset 17.png" alt="user" />
-                        <div>
-                            <p className=" text-base font-sebang-gothic font-bold">
-                                대기중인 작업 3
-                            </p>
-                            <p className="text-left text-sm font-sebang-gothic text-gray-400 ">2022년 2월 23일 까지</p>                                        
-                        </div>                        
-                    </div>
-                </div>
+                <UserTask></UserTask>
             </div>
             
         </div>
