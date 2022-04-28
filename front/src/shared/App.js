@@ -21,9 +21,10 @@ import MemberHomeEducation from 'pages/MemberHomeEducation';
 import MyChart from 'pages/MyChart';
 import MyPieChart from 'pages/MyPieChart';
 import testpg from 'pages/testpg';
-import Pagination from 'pages/Pagination';
-import Posts from 'pages/Post';
+import NotificationPaginations from 'pages/NotificationPaginations';
+import NoticePost from 'pages/NoticePost';
 import PostView from 'pages/PostView';
+import NonmemberPostView from 'pages/NonmemberPostView';
 class App extends Component {
   render() {
     return (
@@ -49,9 +50,10 @@ class App extends Component {
         <Route path="/MyChart" component={MyChart} />
         <Route path="/MyPieChart" component={MyPieChart} />
         <Route path="/testpg" component={testpg} />       
-        <Route path="/Pagination"  component={Pagination} />
-        <Route path="/Posts"  component={Posts} />
+        <Route path="/NotificationPaginations"  component={NotificationPaginations} />
+        <Route path="/NoticePost"  component={NoticePost} />
         <Route path="/PostView/:id" component={PostView} />
+        <Route path="/NonmemberPostView/:id" component={NonmemberPostView} />
       </div>
     );
   }

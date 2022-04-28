@@ -1,30 +1,36 @@
 import React, { useEffect, useState } from "react";
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import qs from "qs";
 
 const PostView = ({history, location, match}) =>{
     // console.log(history);
     // console.log(location);
     // console.log(match.params);
-    
+    axios.default.paramsSerializer = params => {
+      return qs.stringify(params);
+    }
+
     const [id, setId] = useState(match.params.id);    
     
     const [data, setData] = useState([{
-      "userId": null,
-      "id": null,
-      "title": null,
-      "body": null
-    }]);
-
+        "board_type": null,
+        "contents": null,
+        "created_date": null,
+        "id": null,
+        "title": null,
+        "updated_date": null
+      }]      
+    );
+    React.useEffect(() => {
+      // console.log(id);
+      // console.log(data[0].title);
+    }, [data])
     useEffect(() => {
-      axios.get('https://jsonplaceholder.typicode.com/posts', {
-        params:{
-          id: id
-        }
-      })
+      axios.get('http://18.117.247.55:8080/api/boards/' + id,)
         .then(function (response) {
             // handle success                                  
-            console.log(response.data);
+            // console.log(response.data);
             setData(response.data);
             
           })
@@ -146,7 +152,7 @@ const PostView = ({history, location, match}) =>{
                 <h1 className="text-sm font-sebang-gothic  text-black">{data[0].title}</h1>
             </div>
             <div>
-                <h1 className="text-sm font-sebang-gothic  text-black">{data[0].body}</h1>
+                <h1 className="text-sm font-sebang-gothic  text-black">{data[0].contents}</h1>
             </div>
           </div>
         </div>
