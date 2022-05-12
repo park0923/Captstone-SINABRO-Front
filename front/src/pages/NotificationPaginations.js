@@ -41,7 +41,7 @@ const NotificationPaginations = (props) => {
         axios.get('http://18.117.247.55:8080/api/boards')
         .then(function (response) {
             // handle success
-            setData(response.data);
+            setData(response.data);            
           })
           .catch(function (error) {
             // handle error

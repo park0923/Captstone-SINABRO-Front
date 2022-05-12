@@ -1,54 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import moment from 'moment';
+import NotificationPaginations from './NotificationPaginations';
+import UserTask from './UserTask';
 
 function Member_Home_Notice() {
-    const [data, setData] = useState([{
-        "userid": null,
-        "title": null,
-        "contents": null,
-        "boardType": "notice",
-        "created_date": null,
-        "updated_date": null,
-        "_links": {
-            "self": {
-                "href": null
-            },
-            "boardEntity": {
-                "href": null
-            }
-        }
-    }]);
     
-    const [loading, setLoading] = useState(null);
-    const [error, setError] = useState(null);
-    const ChangeDate = (date) => {
-        return moment(date).format('YYYY-MM-DD');
-    }
-
-    // useEffect(() => {
-    //     fetch('http://localhost:8080/boardEntities/search/findByBoardType?boardType=notice')
-    //     .then(response => {
-    //         if(response.ok) {
-    //             return response.json();
-    //         }
-    //         throw response;
-    //     })
-    //     .then(data => {setData(data._embedded.boardEntities);})
-    //     .catch(error => {
-    //         console.error("Error fetching data: ", error);
-    //         setError(error);
-    //     })
-    //     .finally(() => {
-    //         setLoading(false);
-    //     });
-    // }, [])
-
-    if (loading) return "Loading...";
-    if (error) return "Error!";
-
-    console.log(data[0])
-
     return (
       <div className="min-h-screen flex item-center justify-between bg-gray-yellow py-12 px-4 sm:px-6 lg:px-8">
         <div className="min-h-screen p-12 boder border-2 shadow-md rounded-none item-center justify-center bg-gray-50 max-w-max space-y-20">
@@ -142,311 +99,29 @@ function Member_Home_Notice() {
           </div>
         </div>
 
-        <div
-          className="flex flex-grow p-12 border border-2 shadow-md rounded-none item-center justify-start bg-gray-50 max-w-screen-lg space-y-4
-              "
-        >
+        <div className="flex flex-grow p-12 border border-2 shadow-md rounded-none item-center justify-start bg-gray-50 w-40 mx-4 space-y-4">
           <div className="min-w-full flex flex-col space-y-8">
             <div className="flex">
               <div className="text-sm font-sebang-gothic  text-gray-600">
                 <a href="/">SINABRO {">"} &nbsp;</a>
               </div>
               <div className="text-sm font-sebang-gothic text-green-700">
-                <a href="/Member_Home_Notice"> 공지 사항</a>
+                <a href="/MemberVolunteer"> 봉사 활동</a>
               </div>
             </div>
             <h1 className="text text-left text-2xl font font-sebang-gothic front-bold text-black">
               봉사 활동 관련 공지사항을 안내해드립니다.
-            </h1>
-            <div>
-              <form className="my-2 flex justify-between appearance-none  relative block w-full font-sebang-gothic px-2 py-2 border-2 border-black">
-                <div className="text-xl px-1 py-2 font-sebang-gothic my-2 pt-1 text-justify font font-sebang-gothic front-bold text-black">
-                  검색 구분
-                </div>
-                <div className="select-text py-3 px-5 border-gray-500">
-                  <select>
-                    <option>전체</option>
-                    <option>1. 첫번째 옵션</option>
-                    <option>2. 두번째 옵션</option>
-                    <option>3. 세번째 옵션</option>
-                  </select>
-                </div>
-                <input
-                  type="text"
-                  placeholder="검색어를 입력해주세요"
-                  className="mx-5 w-80 border-gray-500 px-2 py-1 bg-gray-300 "
-                />
-                <button
-                  type="submit"
-                  className=" w-36 h-12 whitespace-nowrap inline-flex items-center justify-center rounded-lg shadow-sm text-sm font-sebang-gothic text-white bg-green-600 hover:bg-green-700"
-                >
-                  조 회
-                </button>
-              </form>
-            </div>
-            <div className="table w-full px-3 p-2 ">
-              <thead className="bg-white">
-                <th className="p-2 text-xl text-gray-500 font-sebang-gothic tracking-wide text-left">
-                  NO
-                </th>
-                <th className="p-2 text-xl text-gray-500 font-sebang-gothic tracking-wide text-left">
-                  제목
-                </th>
-                <th className="p-2 text-xl text-gray-500 font-sebang-gothic tracking-wide text-left">
-                  작성일
-                </th>
-              </thead>
-              <thead>
-                <th>
-                  <hr
-                    width="100%"
-                    style={{
-                      color: "#A1A0A0",
-                      backgroundColor: "#A1A0A0",
-                      height: 3,
-                    }}
-                  />
-                </th>
-                <th>
-                  <hr
-                    width="100%"
-                    style={{
-                      color: "#A1A0A0",
-                      backgroundColor: "#A1A0A0",
-                      height: 3,
-                    }}
-                  />
-                </th>
-                <th>
-                  <hr
-                    width="100%"
-                    style={{
-                      color: "#A1A0A0",
-                      backgroundColor: "#A1A0A0",
-                      height: 3,
-                    }}
-                  />
-                </th>
-              </thead>
-              <tbody>
-                {data
-                  .slice(0)
-                  .reverse()
-                  .map(({ title, created_date }, index) => (
-                    <tr className="bg-white shadow-md">
-                      <td
-                        style={{ borderBottom: "1px solid #A1A0A0" }}
-                        className="p-2 text-sm font-sebang-gothic"
-                      >
-                        {data.length - index}
-                      </td>
-                      <td
-                        style={{ borderBottom: "1px solid #A1A0A0" }}
-                        className="p-2 text-sm font-sebang-gothic"
-                      >
-                        {title}
-                      </td>
-                      <td
-                        style={{ borderBottom: "1px solid #A1A0A0" }}
-                        className="p-2 text-sm font-sebang-gothic"
-                      >
-                        {ChangeDate(created_date)}
-                      </td>
-                    </tr>
-                  ))}
-              </tbody>
-
-              {/* <tr className="bg-white">
-                                    <tb className="p-2 text-sm font-sebang-gothic ">7</tb>
-                                    <td className="p-2 text-sm font-sebang-gothic">봉사 활동시 유의 사항 안내</td>
-                                    <td className="p-2 text-sm font-sebang-gothic">2022.01.05</td>
-                                </tr>
-                                <tr className="bg-gray-100" >
-                                    <tb className="p-2 text-sm font-sebang-gothic ">6</tb>
-                                    <td className="p-2 text-sm font-sebang-gothic">봉사 활동시 유의 사항 안내</td>
-                                    <td className="p-2 text-sm font-sebang-gothic">2022.01.04</td>
-                                </tr>
-                                <tr>
-                                    <tb className="p-2 text-sm font-sebang-gothic">5</tb>
-                                    <td className="p-2 text-sm font-sebang-gothic">봉사 작업 확인 서비스 시스템 개선 작업</td>
-                                    <td className="p-2 text-sm font-sebang-gothic">2022.01.03</td>
-                                </tr>
-                                <tr  className="bg-gray-100">
-                                    <tb className="p-2 text-sm font-sebang-gothic">4</tb>
-                                    <td className="p-2 text-sm font-sebang-gothic">필수 시청 자료 안내</td>
-                                    <td className="p-2 text-sm font-sebang-gothic">2022.01.02</td>
-                                </tr>
-                                <tr>
-                                    <tb className="p-2 text-sm font-sebang-gothic">3</tb>
-                                    <td className="p-2 text-sm font-sebang-gothic">시나브로 회원약관 개정 안내</td>
-                                    <td className="p-2 text-sm font-sebang-gothic">2022.01.01</td>
-                                </tr>
-                                <tr  className="bg-gray-100">
-                                    <tb className="p-2 text-sm font-sebang-gothic">2</tb>
-                                    <td className="p-2 text-sm font-sebang-gothic">시나브로 시스템 긴급 점검 안내</td>
-                                    <td className="p-2 text-sm font-sebang-gothic">2022.01.01</td>
-                                </tr>   */}
-            </div>
-            <div className="flex px-80">
-              <button className="h-8 w-8 p-1 hover:bg-gray-300 rounded ">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-6 w-6"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M11 19l-7-7 7-7m8 14l-7-7 7-7"
-                  />
-                </svg>
-              </button>
-              <div className="flex">
-                <button className="h-8 w-8 p-1 hover:bg-gray-300 rounded font-sebang-gothic">
-                  1
-                </button>
-                <button className="h-8 w-8 p-1 hover:bg-gray-300 rounded font-sebang-gothic">
-                  2
-                </button>
-              </div>
-              <button className="h-8 w-8 p-1 hover:bg-gray-300 rounded">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  class="h-6 w-6"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M13 5l7 7-7 7M5 5l7 7-7 7"
-                  />
-                </svg>
-              </button>
+            </h1>            
+            <div>             
+            {/* <Posts posts={data.boards.content}></Posts>                */}
+              <NotificationPaginations                
+              ></NotificationPaginations>              
             </div>
           </div>
         </div>
 
         <div className="p-12 boder border-2 shadow-md rounded-none item-center justify-center bg-gray-50 max-w-max max-h-max space-y-4">
-          <div className="flex flex-row space-x-4">
-            <img
-              className="w-10 h-10 boder boder-2 runded-md"
-              src="/img/Asset 17.png"
-              alt="user"
-            />
-            <div>
-              <p className="text-center text-xl font-sebang-gothic font-bold ">
-                봉사자 이름
-              </p>
-              <Link
-                to=""
-                className="text-center text-sm font-sebang-gothic text-gray-500 hover:text-gray-700"
-              >
-                로그아웃
-              </Link>
-            </div>
-          </div>
-          <div className=" space-y-4">
-            <p className="mt-14 text-left text-base font-sebang-gothic font-bold">
-              진&nbsp;행&nbsp;작&nbsp;업
-            </p>
-            <div className="flex flex-row justify-center space-x-4 ">
-              <img
-                className="w-10 h-10 boder boder-2 rounded-md "
-                src="/img/Asset 17.png "
-                alt="user"
-              />
-              <Link to="/MemberHomeEducation">
-                <div className="">
-                  <p className="left-0 text-center text-base font-sebang-gothic font-bold">
-                    진행 중인 작업 1
-                  </p>
-                  <div className="mx-auto h-3 w-auto rounded-full border border-2 border-black bg-white-200">
-                    <div className="justify-start min-h-full w-12 rounded-full bg-green-600" />
-                    <p className="text-center text-sm font-sebang-gothic font-bold">
-                      20%
-                    </p>
-                  </div>
-                </div>
-              </Link>
-            </div>
-            <div className="pt-4 flex flex-row justify-center space-x-4">
-              <img
-                className="w-10 h-10 boder boder-2 rounded-md"
-                src="/img/Asset 17.png"
-                alt="user"
-              />
-              <Link to="/MemberHomeEducation">
-                <div>
-                  <p className="text-center text-base font-sebang-gothic font-bold">
-                    진행 중인 작업 2
-                  </p>
-
-                  <div className="mx-auto h-3 w-auto rounded-full border border-2 border-black bg-white-200">
-                    <div className="justify-start min-h-full w-20 rounded-full bg-red-600" />
-                    <p className="text-center text-sm font-sebang-gothic font-bold">
-                      60%
-                    </p>
-                  </div>
-                </div>
-              </Link>
-            </div>
-          </div>
-          <div className="space-y-4">
-            <p className="mt-14 text-left text-base font-sebang-gothic font-bold">
-              대기중인 작업
-            </p>
-            <div className="flex flex-row justify-center space-x-4">
-              <img
-                className="w-10 h-10 boder boder-2 rounded-md"
-                src="/img/Asset 17.png"
-                alt="user"
-              />
-              <div>
-                <p className=" text-base font-sebang-gothic font-bold">
-                  대기중인 작업 1
-                </p>
-                <p className="text-left text-sm font-sebang-gothic text-gray-400">
-                  2022년 2월 21일 까지
-                </p>
-              </div>
-            </div>
-            <div className="pt-4 flex flex-row justify-center space-x-4">
-              <img
-                className="w-10 h-10 boder boder-2 rounded-md"
-                src="/img/Asset 17.png"
-                alt="user"
-              />
-              <div>
-                <p className=" text-base font-sebang-gothic font-bold">
-                  대기중인 작업 2
-                </p>
-                <p className="text-left text-sm font-sebang-gothic text-gray-400">
-                  2022년 2월 22일 까지
-                </p>
-              </div>
-            </div>
-            <div className="pt-4 flex flex-row justify-start space-x-4">
-              <img
-                className="w-10 h-10 boder boder-2 rounded-md"
-                src="/img/Asset 17.png"
-                alt="user"
-              />
-              <div>
-                <p className=" text-base font-sebang-gothic font-bold">
-                  대기중인 작업 3
-                </p>
-                <p className="text-left text-sm font-sebang-gothic text-gray-400 ">
-                  2022년 2월 23일 까지
-                </p>
-              </div>
-            </div>
-          </div>
+          <UserTask></UserTask>
         </div>
       </div>
     );

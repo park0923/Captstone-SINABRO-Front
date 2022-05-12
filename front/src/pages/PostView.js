@@ -2,37 +2,62 @@ import React, { useEffect, useState } from "react";
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import qs from "qs";
+import cookie from 'react-cookies';
 
 const PostView = ({history, location, match}) =>{
-    // console.log(history);
-    // console.log(location);
+    //console.log(history);
+    // console.log(location.state.type);
     // console.log(match.params);
     axios.default.paramsSerializer = params => {
       return qs.stringify(params);
     }
 
     const [id, setId] = useState(match.params.id);    
-    
+    const [type, setType] = useState(location.state.type);
+    const cookies = cookie.load("login_token");
     const [data, setData] = useState([{
-        "board_type": null,
+        // "board_type": null,
+        // "contents": null,
+        // "created_date": null,
+        // "id": null,
+        // "title": null,
+        // "updated_date": null
         "contents": null,
-        "created_date": null,
-        "id": null,
-        "title": null,
-        "updated_date": null
+      "created_date": null,
+      "ended_date": null,
+      "id": null,
+      "title": null,
+      "updated_date": null,
+      "user_id": null,
+      "volunteer_time": null
       }]      
     );
-    React.useEffect(() => {
-      // console.log(id);
-      // console.log(data[0].title);
+    const [Vdata, setVdata] = useState([{
+      "contents": null,
+      "created_date": null,
+      "ended_date": null,
+      "id": null,
+      "title": null,
+      "updated_date": null,
+      "user_id": null,
+      "volunteer_time": null
+    }]      
+  );
+    React.useEffect(() => {     
+      console.log(data);
+      console.log(data.title);
     }, [data])
     useEffect(() => {
-      axios.get('http://18.117.247.55:8080/api/boards/' + id,)
+      console.log(type);      
+      if(type === "notice"){
+        axios({
+          method: 'get',
+          url: 'http://18.117.247.55:8080/api/boards/' +id      
+        })
         .then(function (response) {
             // handle success                                  
             // console.log(response.data);
-            setData(response.data);
-            
+            setData(response.data);            
           })
           .catch(function (error) {
             // handle error
@@ -40,7 +65,31 @@ const PostView = ({history, location, match}) =>{
           })
           .then(function () {
             // always executed
-          });        
+          });   
+      }
+      else if(type === "work"){
+        axios({
+          method: 'get',
+          url: 'http://18.117.247.55:8080/api/works/' +id,            
+          headers: {                
+              "Authorization": 'Bearer ' + cookies
+          }            
+        })
+        .then(function (response) {
+            // handle success
+            setData(response.data);
+            console.log(response.data);
+            console.log(data);
+          })
+          .catch(function (error) {
+            // handle error
+            console.log(error);
+          })
+          .then(function () {
+            // always executed
+          }); 
+      }
+           
     },[]);
 
     
@@ -149,10 +198,10 @@ const PostView = ({history, location, match}) =>{
               </div>
             </div>
             <div>
-                <h1 className="text-sm font-sebang-gothic  text-black">{data[0].title}</h1>
+                <h1 className="text-sm font-sebang-gothic  text-black">{data.title}</h1>
             </div>
             <div>
-                <h1 className="text-sm font-sebang-gothic  text-black">{data[0].contents}</h1>
+                <h1 className="text-sm font-sebang-gothic  text-black">{data.contents}</h1>
             </div>
           </div>
         </div>

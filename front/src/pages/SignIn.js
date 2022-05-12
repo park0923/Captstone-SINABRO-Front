@@ -34,7 +34,7 @@ function Signin() {
             if(response.status === 200){                
                 console.log(response.data);                
                 const accesToken = response.data.token;    
-                cookie.save("login_token",accesToken,{path:"/"});                
+                cookie.save("login_token",accesToken,{path:"/"});               
                 
                 window.location.href = '/MemberHomeDashboard'
             }
