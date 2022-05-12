@@ -25,6 +25,9 @@ import NotificationPaginations from 'pages/NotificationPaginations';
 import NoticePost from 'pages/NoticePost';
 import PostView from 'pages/PostView';
 import NonmemberPostView from 'pages/NonmemberPostView';
+import VolunteerPaginations from 'pages/VolunteerPaginations';
+import VolunteerPost from 'pages/VolunteerPost';
+
 class App extends Component {
   render() {
     return (
@@ -54,6 +57,8 @@ class App extends Component {
         <Route path="/NoticePost"  component={NoticePost} />
         <Route path="/PostView/:id" component={PostView} />
         <Route path="/NonmemberPostView/:id" component={NonmemberPostView} />
+        <Route path="/VolunteerPaginations" component={VolunteerPaginations} />
+        <Route path="/VolunteerPost" component={VolunteerPost} />
       </div>
     );
   }

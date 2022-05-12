@@ -23,7 +23,7 @@ const UserTask = () => {
                     </div>
                 </div>
                 <div className=' space-y-4'>
-                    <p className="mt-14 text-left text-base font-sebang-gothic font-bold">
+                    {/* <p className="mt-14 text-left text-base font-sebang-gothic font-bold">
                         진&nbsp;행&nbsp;작&nbsp;업
                     </p>
                     <div className="flex flex-row justify-center space-x-4 ">
@@ -36,8 +36,7 @@ const UserTask = () => {
                                 <div>                                                                              
                                     <progress className="w-28 h-3 rounded-lg" value={20} max={100}></progress>
                                     <p className="text-center text-sm font-sebang-gothic font-bold">{20}%</p>
-                                    {/* <div className="justify-start min-h-full w-12 rounded-full bg-green-600" />
-                                    <p className="text-center text-sm font-sebang-gothic font-bold">20%</p> */}
+                                    
                                 </div>                                            
                             </div> 
                         </Link>
@@ -53,12 +52,11 @@ const UserTask = () => {
                                 <div className="mx-auto h-3 w-auto ">      
                                     <progress className="w-28 h-3 rounded-lg" value={60} max={100}></progress>
                                     <p className="text-center text-sm font-sebang-gothic font-bold">{60}%</p>
-                                    {/* <div className="justify-start min-h-full w-20 border-r rounded-full translate-x-0 bg-red-600" />
-                                    <p className="text-center text-sm font-sebang-gothic font-bold">60%</p> */}
+                                    
                                 </div>                                           
                             </div>                        
                         </Link>                        
-                    </div>
+                    </div> */}
                 </div>
                 <div className='space-y-4'>
                     <p className="mt-14 text-left text-base font-sebang-gothic font-bold">
