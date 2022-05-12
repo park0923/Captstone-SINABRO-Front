@@ -28,6 +28,15 @@ import NonmemberPostView from 'pages/NonmemberPostView';
 import VolunteerPaginations from 'pages/VolunteerPaginations';
 import VolunteerPost from 'pages/VolunteerPost';
 
+import Disabled from 'pages/Disabled';
+
+import Disabled_file from 'pages/Disabled_file';
+
+import Disabled_MyPage from 'pages/Disabled_MyPage';
+
+import Disabled_write from 'pages/Disabled_write';
+
+
 class App extends Component {
   render() {
     return (
@@ -59,6 +68,12 @@ class App extends Component {
         <Route path="/NonmemberPostView/:id" component={NonmemberPostView} />
         <Route path="/VolunteerPaginations" component={VolunteerPaginations} />
         <Route path="/VolunteerPost" component={VolunteerPost} />
+      
+        <Route path="/Disabled" component={Disabled} />
+        <Route path="/Disabled_file" component={Disabled_file} />
+        <Route path="/Disabled_MyPage" component={Disabled_MyPage} />
+        <Route path="/Disabled_write" component={Disabled_write} />
+      
       </div>
     );
   }
