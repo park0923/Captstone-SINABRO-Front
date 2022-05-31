@@ -31,12 +31,14 @@ import VolunteerPaginations from "pages/VolunteerPaginations";
 import VolunteerPost from "pages/VolunteerPost";
 import MemberEducation from "pages/MemberEducation";
 import Disabled from "pages/Disabled";
-
 import Disabled_file from "pages/Disabled_file";
-
 import Disabled_MyPage from "pages/Disabled_MyPage";
-
 import Disabled_write from "pages/Disabled_write";
+import MemberHomeInspectionWorkPage from "pages/MemberHomeInspectionWorkPage"; /*검수 페이지*/ 
+import MemberHomeNoticePage from "pages/MemberHomeNoticePage";    /*공지 상세 내용*/
+import MemberHomeTrainingScreen from "pages/MemberHomeTrainingScreen";    /*교육*/
+import MemberHomeVolunteerWorkPage from "pages/MemberHomeVolunteerWorkPage"; /*봉사자 작업 페이지*/
+import MemberHomeWorkInformation from "pages/MemberHomeWorkInformation";  /**/
 
 class App extends Component {
   render() {
@@ -45,34 +47,19 @@ class App extends Component {
         <Route exact path="/" component={Home} />
         <Route path="/user/signin" component={SignIn} />
         <Route path="/user/signup" component={SignUp} />
-        <Route path="/ResetPassword" component={ResetPassword} />
+        <Route path="/resetPassword" component={resetPassword} />
         <Route path="/about" component={About} />
         <Route path="/Introduction" component={Introduction} />
-        <Route
-          path="/InspectionPaginations"
-          component={InspectionPaginations}
-        />
+        <Route path="/InspectionPaginations"component={InspectionPaginations}/>
         <Route path="/Home_Education" component={Home_Education} />
         <Route path="/Notification" component={Notification} />
         <Route path="/Home_Class_List" component={Home_Class_List} />
-        <Route
-          path="/Home_Class_Paginations"
-          component={Home_Class_Paginations}
-        />
+        <Route path="/Home_Class_Paginations" component={Home_Class_Paginations} />
         <Route path="/Member_Home_Notice" component={Member_Home_Notice} />
         <Route path="/MemberVolunteer" component={MemberVolunteer} />
-        <Route
-          path="/Member_Home_Introduction"
-          component={Member_Home_Introduction}
-        />
-        <Route
-          path="/Member_Home_Inspection"
-          component={Member_Home_Inspection}
-        />
-        <Route
-          path="/Member_Home_WorkHistory"
-          component={Member_Home_WorkHistory}
-        />
+        <Route path="/Member_Home_Introduction"component={Member_Home_Introduction} />
+        <Route path="/Member_Home_Inspection"component={Member_Home_Inspection} />
+        <Route path="/Member_Home_WorkHistory"component={Member_Home_WorkHistory} />
         <Route path="/MemberHomeDashboard" component={MemberHomeDashboard} />
         <Route path="/Calendar" component={Calendar} />
         <Route path="/MemberHomeMyPage" component={MemberHomeMyPage} />
@@ -80,24 +67,22 @@ class App extends Component {
         <Route path="/MyChart" component={MyChart} />
         <Route path="/MyPieChart" component={MyPieChart} />
         <Route path="/testpg" component={testpg} />
-        <Route
-          path="/NotificationPaginations"
-          component={NotificationPaginations}
-        />
+        <Route path="/NotificationPaginations"component={NotificationPaginations}/>
         <Route path="/NoticePost" component={NoticePost} />
         <Route path="/PostView/:id" component={PostView} />
         <Route path="/NonmemberPostView/:id" component={NonmemberPostView} />
         <Route path="/VolunteerPaginations" component={VolunteerPaginations} />
         <Route path="/VolunteerPost" component={VolunteerPost} />
-
         <Route path="/MemberEducation" component={MemberEducation} />
-
         <Route path="/Disabled" component={Disabled} />
         <Route path="/Disabled_file" component={Disabled_file} />
         <Route path="/Disabled_MyPage" component={Disabled_MyPage} />
         <Route path="/Disabled_write" component={Disabled_write} />
-
-        <Route path="/resetPassword" component={resetPassword} />
+        <Route path="/MemberHomeInspectionWorkPage" component={MemberHomeInspectionWorkPage}/> 
+        <Route path="/MemberHomeNoticePage" component={MemberHomeNoticePage}/>
+        <Route path="/MemberHomeTrainingScreen" component={MemberHomeTrainingScreen}/>
+        <Route path="/MemberHomeVolunteerWorkPage" component={MemberHomeVolunteerWorkPage}/>
+        <Route path="/MemberHomeWorkInformation" component={MemberHomeWorkInformation}/>
       </div>
     );
   }
