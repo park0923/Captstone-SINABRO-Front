@@ -1,11 +1,54 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import MyPieChart from "./MyPieChart";
-function MemberHomeEducation(){
-    const [data, setData] = useState(60);
+import UserTask from "./UserTask"
+import axios from "axios";
+import cookie from 'react-cookies';
+
+const  MemberHomeEducation = () => {    
+    const [data, setData] = useState({
+        "board": [
+            {
+              "id": null,
+              "title": null
+            }
+          ],
+          "education": [
+            {
+              "id": null,
+              "status": null,
+              "title": null
+            }
+          ],
+          "progress": null
+    });
+    const cookies = cookie.load("login_token");
+    useEffect(() => {      
+          axios({
+            method: 'get',
+            url: 'http://18.117.173.151:8080/api/educations/home',            
+            headers: {                
+                "Authorization": 'Bearer ' + cookies
+            }            
+          })
+          .then(function (response) {
+              // handle success            
+              setData(response.data);
+              if(response.data.progress >= 100){
+                window.location.href = '/Home_Class_List'
+              }
+            })
+            .catch(function (error) {
+              // handle error
+              console.log(error);
+            })
+            .then(function () {
+              // always executed
+            });             
+    },[]);
     return(
         <div className="min-h-screen flex item-center justify-between bg-gray-yellow py-12 px-4 sm:px-6 lg:px-8">            
-            <div className="min-h-screen p-12 boder border-2 shadow-md rounded-none item-center justify-center bg-gray-50 max-w-max space-y-20">
+             <div className="min-h-screen p-12 boder border-2 shadow-md rounded-none item-center justify-center bg-gray-50 max-w-max space-y-20">
                 <div>
                     <img className="mx-auto h-20 w-auto" src="/img/Logo.svg" alt="Logo"/>
                     <Link to="MemberHomeMyPage">
@@ -35,8 +78,8 @@ function MemberHomeEducation(){
                     </Link>
                     <Link to="/Home_Class_List">
                         <div className="flex flex-row space-x-8">
-                            <img className="w-10 h-10" src="/img/Asset 15.png" alt="education" />
-                            <p className="pt-1 text-justify text-2xl font-sebang-gothic front-bold text-gray-400 hover:text-gray-600">
+                            <img className="w-10 h-10" src="/img/Asset 23.png" alt="education" />
+                            <p className="pt-1 text-justify text-2xl font-sebang-gothic front-bold text-black hover:text-gray-600">
                                 교&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;육
                             </p>
                         </div>     
@@ -68,162 +111,68 @@ function MemberHomeEducation(){
                 </div>
             </div>          
           
-            <div className="p-12 item-center justify-start max-w-screen-lg space-y-4">
-                <div className="flex flex-row justify-start">
-                    <h1 className="ml-8 text-2xl font-sebang-gothic front-bold text-black">공지사항</h1>                                  
-                </div>     
-                <div className="ml-8 flex flex-row space-x-4">
-                    <div className="p-4 boder border-2 shadow-md rounded-xl item-center justify-center w-screen h-50 bg-gray-50 space-y-1">
-                        <div>
-                            <ul className="space-y-2">
-                                <li className="text-xl font-sebang-gothic front-bold text-black">    
-                                    [필 독] 교육 첫 시작시 주의사항                                
-                                    <hr className="h-1 bg-gray-300" />                                                                                                                  
-                                </li>
-                                <li className="text-xl font-sebang-gothic front-bold text-black">    
-                                    봉사 활동을 하기 위한 교육 진행 방법                                
-                                    <hr className="h-1 bg-gray-300" />                                                                                                            
-                                </li>
-                                <li className="text-xl font-sebang-gothic front-bold text-black">    
-                                    글 작성 규칙 안내
-                                    <hr className="h-1 bg-gray-300" />                                                                                                               
-                                </li>
-                                <li className="text-xl font-sebang-gothic front-bold text-black">    
-                                    교육 완료 후 진행 방법 안내
-                                    <hr className="h-1 bg-gray-300" />                                                                                                                
-                                </li>
-                            </ul>                           
+            <div className="flex flex-grow p-12 border border-2 item-center justify-start bg-transparent  mx-4 h-auto space-y-4">
+                <div className="flex flex-col w-full">
+                    <div className="flex flex-col justify-start">
+                        <h1 className="ml-8 text-2xl font-sebang-gothic front-bold text-black">공지사항</h1>                                  
+                    </div>     
+                    <div className="ml-8 flex flex-col space-x-4">
+                        <div className="p-4 boder border-2 shadow-md rounded-xl item-center justify-center w-full h-auto bg-gray-50 space-y-1">
+                            <div>                                
+                                {data.board.map(({id, title}) => (
+                                    <ul className="space-y-2">
+                                        <li className="text-xl font-sebang-gothic front-bold text-black">    
+                                            <Link to={{pathname: `/PostView/${id}`, state: {type: "notice"} }}>
+                                                {title}
+                                            </Link>                                            
+                                            <hr className="h-1 bg-gray-300" />                                                                                                                  
+                                        </li>
+                                    </ul>   
+                                ))}                                                                   
+                            </div>
                         </div>
-                    </div>
-                </div>
+                    </div>                
                 <div className="flex flex-row space-x-12 justify-around" >
-                    <div className="flex flex-col mt-16 ml-8">
+                    <div className="flex flex-col mt-16 ml-8 w-1/2 h-auto justify-center">
                         <h1 className="text-2xl font-sebang-gothic front-bold text-black">교육 진행 현황</h1>
-                        <div className="border-2 shadow-md rounded-xl min-w-full h-80 bg-gray-50 space-y-1">
-                            <div className="mt-4 ml-6 justify-center">
-                                <MyPieChart data={60} />
-                                <p className="mr-2 text-center text-sm font-sebang-gothic front-bold text-black">
-                                    단위 : 백분율 (%)
-                                </p>
-                            </div>                            
+                        <div className="border-2 shadow-md rounded-xl justify-center bg-gray-50 space-y-1">
+                            <div className="">
+                                <MyPieChart data={data.progress} />                                
+                            </div>                           
+                            <p className="mr-2 text-center text-lg font-sebang-gothic front-bold text-black">
+                                달성도 : {data.progress}
+                            </p>
+                            <p className="mr-2 text-center text-sm font-sebang-gothic front-bold text-black">
+                                단위 : 백분율 (%)
+                            </p>
                         </div>
                     </div>
-                    <div className="flex flex-col mt-16">
+                    <div className="flex flex-col mt-16 w-1/2 h-auto">
                         <h1 className="text-2xl font-sebang-gothic front-bold text-black">교육 진행 예정 목록</h1>
-                        <div className="p-4 border-2 shadow-md rounded-xl item-center justify-center w-72 h-80  bg-gray-50 space-y-1">
+                        <div className="p-4 border-2 shadow-md rounded-xl item-center justify-center bg-gray-50 space-y-1">
                             <div>
-                                <ul className="space-y-2">
-                                    <li className="text-xl font-sebang-gothic front-bold text-black">    
-                                        제목글, 바닥글 적기                               
-                                        <hr className="h-1 bg-gray-300" />                                                                                                                  
-                                    </li>
-                                    <li className="text-xl font-sebang-gothic front-bold text-black">    
-                                        인용문 작성하기
-                                        <hr className="h-1 bg-gray-300" />                                                                                                            
-                                    </li>
-                                    <li className="text-xl font-sebang-gothic front-bold text-black">    
-                                        지문 작성하기
-                                        <hr className="h-1 bg-gray-300" />                                                                                                               
-                                    </li>
-                                    <li className="text-xl font-sebang-gothic front-bold text-black">    
-                                        동영상 자막 작성하기
-                                        <hr className="h-1 bg-gray-300" />                                                                                                                
-                                    </li>
-                                    <li className="text-xl font-sebang-gothic front-bold text-black">    
-                                        도서 자료 전자화하기
-                                        <hr className="h-1 bg-gray-300" />                                                                                                                
-                                    </li>
-                                    <li className="text-xl font-sebang-gothic front-bold text-black">    
-                                        문서 자료 전자화하기
-                                        <hr className="h-1 bg-gray-300" />                                                                                                                
-                                    </li>
-                                </ul>                           
+                                {data.education.map(({id, status, title}) => (
+                                    <ul className="space-y-2">
+                                    <li className="flex flex-col text-xl font-sebang-gothic front-bold text-black">    
+                                        <div className="flex flex-row justify-between">
+                                            {title}                                            
+                                            <div className="board boarder-2 rounded-xl item-center w-20 text-center font-medium bg-green-500">{status}</div>          
+                                        </div>                 
+                                        <hr className="h-1 bg-gray-300" />
+                                    </li>                                    
+                                </ul>        
+                                ))}                                                      
                             </div>
                         </div>                        
                     </div>
+                </div> 
                 </div>
             </div>  
 
             <div className="p-12 boder border-2 shadow-md rounded-none item-center justify-center bg-gray-50 max-w-max max-h-max space-y-4">
-                <div className="flex flex-row space-x-4">
-                    <img className="w-10 h-10 boder boder-2 runded-md" src="/img/Asset 17.png" alt="user" />
-                    <div>
-                        <p className="text-center text-xl font-sebang-gothic font-bold ">
-                            봉사자 이름
-                        </p>                        
-                        <Link to="" className="text-center text-sm font-sebang-gothic text-gray-500 hover:text-gray-700">
-                            로그아웃
-                        </Link>
-                    </div>
-                </div>
-                <div className=' space-y-4'>
-                    <p className="mt-14 text-left text-base font-sebang-gothic font-bold">
-                        진&nbsp;행&nbsp;작&nbsp;업
-                    </p>
-                    <div className="flex flex-row justify-center space-x-4 ">
-                        <img className="w-10 h-10 boder boder-2 rounded-md " src="/img/Asset 17.png " alt="user" />
-                        <Link to="/MemberHomeEducation">
-                            <div className="">
-                                <p className="left-0 text-center text-base font-sebang-gothic font-bold">
-                                    진행 중인 작업 1
-                                </p>
-                                <div className="mx-auto h-3 w-auto rounded-full border border-2 border-black bg-white-200">      
-                                    <div className="justify-start min-h-full w-12 rounded-full bg-green-600" />
-                                    <p className="text-center text-sm font-sebang-gothic font-bold">20%</p>
-                                </div>                                            
-                            </div> 
-                        </Link>
-                    </div>
-                    <div className="pt-4 flex flex-row justify-center space-x-4">
-                        <img className="w-10 h-10 boder boder-2 rounded-md" src="/img/Asset 17.png" alt="user" />
-                        <Link to="/MemberHomeEducation">
-                            <div>
-                                <p className="text-center text-base font-sebang-gothic font-bold">
-                                    진행 중인 작업 2
-                                </p>
-                                
-                                <div className="mx-auto h-3 w-auto rounded-full border border-2 border-black bg-white-200">      
-                                    <div className="justify-start min-h-full w-20 rounded-full bg-red-600" />
-                                    <p className="text-center text-sm font-sebang-gothic font-bold">60%</p>
-                                </div>                                           
-                            </div>                        
-                        </Link>                        
-                    </div>
-                </div>
-                <div className='space-y-4'>
-                    <p className="mt-14 text-left text-base font-sebang-gothic font-bold">
-                        대기중인 작업
-                    </p>
-                    <div className="flex flex-row justify-center space-x-4">
-                        <img className="w-10 h-10 boder boder-2 rounded-md" src="/img/Asset 17.png" alt="user" />
-                        <div>
-                            <p className=" text-base font-sebang-gothic font-bold">
-                                대기중인 작업 1
-                            </p>
-                            <p className="text-left text-sm font-sebang-gothic text-gray-400">2022년 2월 21일 까지</p>                                         
-                        </div>                        
-                    </div>
-                    <div className="pt-4 flex flex-row justify-center space-x-4">
-                        <img className="w-10 h-10 boder boder-2 rounded-md" src="/img/Asset 17.png" alt="user" />
-                        <div>
-                            <p className=" text-base font-sebang-gothic font-bold">
-                                대기중인 작업 2
-                            </p>
-                            <p className="text-left text-sm font-sebang-gothic text-gray-400">2022년 2월 22일 까지</p>
-                        </div>                        
-                    </div>
-                    <div className="pt-4 flex flex-row justify-start space-x-4">
-                        <img className="w-10 h-10 boder boder-2 rounded-md" src="/img/Asset 17.png" alt="user" />
-                        <div>
-                            <p className=" text-base font-sebang-gothic font-bold">
-                                대기중인 작업 3
-                            </p>
-                            <p className="text-left text-sm font-sebang-gothic text-gray-400 ">2022년 2월 23일 까지</p>                                        
-                        </div>                        
-                    </div>
-                </div>
+                <UserTask></UserTask>
             </div>
-            
+             
         </div>
     )
 }

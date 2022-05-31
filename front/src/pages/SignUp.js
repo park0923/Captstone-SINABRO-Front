@@ -1,15 +1,24 @@
 import React, { useState, useEffect } from 'react';
 import { usePassWordValidation, makeErrMsg } from "pages/usePasswordValidation";
+import axios from 'axios';
 
 async function signUpUser(credentials) {
-    console.log(JSON.stringify(credentials))
-    return fetch('http://localhost:8080/members',{
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(credentials)
-    }).then(response => response.json());
+    axios.post('http://18.117.173.151:8080/api/members/signup', {
+        username: credentials.username,
+        email: credentials.email,
+        password: credentials.password
+      })
+      .then(function (response) {
+        console.log(response.status);
+        if(response.status === 200){
+            alert("회원가입되엇습니다.");
+            document.location.href = '/user/signin'
+        }
+        
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
 }
 
 function SignUp() {
@@ -39,11 +48,6 @@ function SignUp() {
             password,
             username
         });
-
-        console.log(response.email)
-        if (response.email === email) {
-            document.location.href = '/user/signin'
-        } 
     }
 
     useEffect(() => {
