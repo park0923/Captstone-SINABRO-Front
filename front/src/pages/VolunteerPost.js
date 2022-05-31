@@ -8,13 +8,13 @@ const VolunteerPost = ({posts}) => {
         <th className="w-1/12 text-xl text-gray-500 font-sebang-gothic tracking-wide text-left">
           NO
         </th>
-        <th className="w-9/12 text-xl text-gray-500 font-sebang-gothic tracking-wide text-left">
+        <th className="w-8/12 text-xl text-gray-500 font-sebang-gothic tracking-wide text-left">
           제목
         </th>
-        <th className="w-1/12   text-xl text-gray-500 font-sebang-gothic tracking-wide text-center">
+        <th className="w-2/12   text-xl text-gray-500 font-sebang-gothic tracking-wide text-center">
           등 록 일
         </th>      
-        <th className="w-1/12   text-xl text-gray-500 font-sebang-gothic tracking-wide text-center">
+        <th className="w-2/12   text-xl text-gray-500 font-sebang-gothic tracking-wide text-center">
           마 감 일
         </th>    
       </thead>
@@ -45,7 +45,7 @@ const VolunteerPost = ({posts}) => {
         </th>     
       </thead>
       <tbody>
-        {posts.slice(0).map(({ idx, title, created_date, end_date }, index) => (
+        {posts.slice(0).map(({ idx, title, created_date, ended_date }, index) => (
             <tr className="bg-white">
               <td
                 style={{ borderBottom: "1px solid #A1A0A0" }}
@@ -72,7 +72,7 @@ const VolunteerPost = ({posts}) => {
                 style={{ borderBottom: "1px solid #A1A0A0" }}
                 className="p-2 text-sm font-sebang-gothic text-center"
               >
-                {end_date}
+                {ended_date}
               </td>                                
             </tr>
           ))}

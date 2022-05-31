@@ -46,7 +46,7 @@ function MemberHomeDashboard() {
               </p>
             </div>
           </Link>
-          <Link to="/Home_Class_List">
+          <Link to="/MemberHomeEducation">
             <div className="flex flex-row space-x-8">
               <img
                 className="w-10 h-10"
@@ -93,8 +93,8 @@ function MemberHomeDashboard() {
         </div>
       </div>
 
-      <div className="p-12 item-center justify-center max-w-screen-lg space-y-4">
-        <div className=" justify-between flex flex-col space-y-6">
+      <div className="flex flex-grow flex-col p-12 border border-2 item-center justify-start bg-transparent mx-4 h-auto space-y-4">
+        <div className="flex flex-row justify-between">
           <h1 className="text-2xl font-sebang-gothic front-bold text-black">
             최근 진행 작업
           </h1>
@@ -106,7 +106,7 @@ function MemberHomeDashboard() {
           </Link>
         </div>
         <div className="ml-8 flex flex-row space-x-4">
-          <div className="p-4 boder border-2 shadow-lg rounded-xl item-center justify-center w-52 h-52 bg-gray-50 space-y-1">
+          <div className="p-4 boder border-2 shadow-lg rounded-xl item-center justify-center w-40 h-36 bg-gray-50 space-y-1">
             <img
               className="mx-10 w-10 h-10"
               src="/img/Asset 17.png"
@@ -170,8 +170,40 @@ function MemberHomeDashboard() {
               진행중
             </p>
           </div>
+          <div className="p-4 boder border-2 shadow-lg rounded-xl item-center justify-center w-40 h-36 bg-gray-50 space-y-1">
+            <img
+              className="mx-10 w-10 h-10"
+              src="/img/Asset 17.png"
+              alt="introduce"
+            />
+            <h3 className="text-center text-lg font-sebang-gothic front-bold text-black">
+              작업 제목
+            </h3>
+            <p className="text-center text-sm font-sebang-gothic front-normal text-black">
+              [ 영상 자막 ]
+            </p>
+            <p className="text-center text-sm font-sebang-gothic front-normal text-black">
+              진행중
+            </p>
+          </div>
+          <div className="p-4 boder border-2 shadow-lg rounded-xl item-center justify-center w-40 h-36 bg-gray-50 space-y-1">
+            <img
+              className="mx-10 w-10 h-10"
+              src="/img/Asset 17.png"
+              alt="introduce"
+            />
+            <h3 className="text-center text-lg font-sebang-gothic front-bold text-black">
+              작업 제목
+            </h3>
+            <p className="text-center text-sm font-sebang-gothic front-normal text-black">
+              [ 영상 자막 ]
+            </p>
+            <p className="text-center text-sm font-sebang-gothic front-normal text-black">
+              진행중
+            </p>
+          </div>
         </div>
-        <div className="flex flex-row space-x-12 justify-between">
+        <div className="flex flex-row space-x-12 justify-around">
           <div className="flex flex-col mt-16">
             <h1 className="text-2xl font-sebang-gothic front-bold text-black">
               일주일 진행 현황
@@ -199,5 +231,4 @@ function MemberHomeDashboard() {
     </div>
   );
 }
-
 export default MemberHomeDashboard;

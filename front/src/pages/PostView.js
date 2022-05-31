@@ -52,7 +52,7 @@ const PostView = ({history, location, match}) =>{
       if(type === "notice"){
         axios({
           method: 'get',
-          url: 'http://18.117.247.55:8080/api/boards/' +id      
+          url: 'http://18.117.173.151:8080/api/boards/' +id      
         })
         .then(function (response) {
             // handle success                                  
@@ -70,7 +70,7 @@ const PostView = ({history, location, match}) =>{
       else if(type === "work"){
         axios({
           method: 'get',
-          url: 'http://18.117.247.55:8080/api/works/' +id,            
+          url: 'http://18.117.173.151:8080/api/works/' +id,            
           headers: {                
               "Authorization": 'Bearer ' + cookies
           }            
@@ -87,7 +87,7 @@ const PostView = ({history, location, match}) =>{
           })
           .then(function () {
             // always executed
-          }); 
+          });           
       }
            
     },[]);
@@ -136,7 +136,7 @@ const PostView = ({history, location, match}) =>{
                 </p>
               </div>
             </Link>
-            <Link to="/Home_Class_List">
+            <Link to="/MemberEducation">
               <div className="flex flex-row space-x-8">
                 <img
                   className="w-10 h-10"

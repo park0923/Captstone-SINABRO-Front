@@ -3,12 +3,14 @@ import { Route } from "react-router-dom";
 import Home from "pages/Home";
 import About from "pages/About";
 import SignIn from "pages/SignIn";
-import ResetPassword from "pages/ResetPassword";
+import resetPassword from "pages/resetPassword";
 import SignUp from "pages/SignUp";
 import Introduction from "pages/Introduction";
+import InspectionPaginations from "pages/InspectionPaginations";
 import Home_Education from "pages/Home_Education";
 import Notification from "pages/Notification";
 import Home_Class_List from "pages/Home_Class_List";
+import Home_Class_Paginations from "pages/Home_Class_Paginations";
 import Member_Home_Notice from "pages/Member_Home_Notice";
 import MemberVolunteer from "pages/MemberVolunteer";
 import Member_Home_Introduction from "pages/Member_Home_Introduction";
@@ -27,7 +29,7 @@ import PostView from "pages/PostView";
 import NonmemberPostView from "pages/NonmemberPostView";
 import VolunteerPaginations from "pages/VolunteerPaginations";
 import VolunteerPost from "pages/VolunteerPost";
-
+import MemberEducation from "pages/MemberEducation";
 import Disabled from "pages/Disabled";
 
 import Disabled_file from "pages/Disabled_file";
@@ -46,9 +48,17 @@ class App extends Component {
         <Route path="/ResetPassword" component={ResetPassword} />
         <Route path="/about" component={About} />
         <Route path="/Introduction" component={Introduction} />
+        <Route
+          path="/InspectionPaginations"
+          component={InspectionPaginations}
+        />
         <Route path="/Home_Education" component={Home_Education} />
         <Route path="/Notification" component={Notification} />
         <Route path="/Home_Class_List" component={Home_Class_List} />
+        <Route
+          path="/Home_Class_Paginations"
+          component={Home_Class_Paginations}
+        />
         <Route path="/Member_Home_Notice" component={Member_Home_Notice} />
         <Route path="/MemberVolunteer" component={MemberVolunteer} />
         <Route
@@ -80,10 +90,14 @@ class App extends Component {
         <Route path="/VolunteerPaginations" component={VolunteerPaginations} />
         <Route path="/VolunteerPost" component={VolunteerPost} />
 
+        <Route path="/MemberEducation" component={MemberEducation} />
+
         <Route path="/Disabled" component={Disabled} />
         <Route path="/Disabled_file" component={Disabled_file} />
         <Route path="/Disabled_MyPage" component={Disabled_MyPage} />
         <Route path="/Disabled_write" component={Disabled_write} />
+
+        <Route path="/resetPassword" component={resetPassword} />
       </div>
     );
   }

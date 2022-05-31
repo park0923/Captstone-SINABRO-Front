@@ -48,7 +48,7 @@ function MemberVolunteer() {
                 </p>
               </div>
             </Link>
-            <Link to="/Home_Class_List">
+            <Link to="/MemberHomeEducation">
               <div className="flex flex-row space-x-8">
                 <img
                   className="w-10 h-10"
@@ -110,7 +110,7 @@ function MemberVolunteer() {
               </div>
             </div>
             <h1 className="text text-left text-2xl font font-sebang-gothic front-bold text-black">
-              봉사 활동 관련 공지사항을 안내해드립니다.
+              봉사 활동 관련 봉사신청 목록을 안내해드립니다.
             </h1>            
             <div>             
             {/* <Posts posts={data.boards.content}></Posts>                */}
