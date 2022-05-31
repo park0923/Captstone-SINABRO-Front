@@ -57,8 +57,8 @@ const Disabled_write = () => {
                     <input
                       className="px-32"
                       type="text"
-                      value={title}
-                      onChange={onChange}
+                      // value={title}
+                      // onChange={onChange}
                       placeholder="제목 입력"
                     />
                   </dt>
@@ -69,8 +69,8 @@ const Disabled_write = () => {
                     <input
                       className="px-32"
                       type="text"
-                      value={contents}
-                      onChange={onChange}
+                      // value={contents}
+                      // onChange={onChange}
                       placeholder="EX) 1시간"
                     />
                   </dt>
@@ -97,7 +97,7 @@ const Disabled_write = () => {
           <center>
             <button
               class="px-2 py-1 border border-black "
-              onSubmit={handleSubmit}
+              // onSubmit={handleSubmit}
             >
               등 록
             </button>

@@ -45,7 +45,7 @@ class App extends Component {
         <Route exact path="/" component={Home} />
         <Route path="/user/signin" component={SignIn} />
         <Route path="/user/signup" component={SignUp} />
-        <Route path="/ResetPassword" component={ResetPassword} />
+        <Route path="/resetPassword" component={resetPassword} />
         <Route path="/about" component={About} />
         <Route path="/Introduction" component={Introduction} />
         <Route
