@@ -34,6 +34,7 @@ const  MemberHomeEducation = () => {
           .then(function (response) {
               // handle success            
               setData(response.data);
+              console.log(response.data);
               if(response.data.progress >= 100){
                 window.location.href = '/Home_Class_List'
               }
