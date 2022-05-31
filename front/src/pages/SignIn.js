@@ -2,30 +2,12 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import cookie from 'react-cookies';
-// async function signInUser(credentials) {
-//     return fetch('http://localhost:8080/members/signin',{
-//         method: 'POST',
-//         headers: {
-//             'Content-Type': 'application/json'
-//         },
-//         body: JSON.stringify(credentials)
-//     }).then(response => {
-//         if(response.status !== 200) {
-//             if(response.status === 401) {
-//                 alert("Wrong ID or Password");
-//             } else {
-//                 alert(response.status)
-//             }
-//         }
-//         return response.status;
-//     });
-// }
 
 function Signin() {
     useEffect(() => {        
     },[])    
     const signInUser = ({email, password}) =>{
-        return axios.post('http://18.117.247.55:8080/api/members/signin', {
+        return axios.post('http://18.117.173.151:8080/api/members/signin', {
             email: email,
             password: password
         })
@@ -33,6 +15,7 @@ function Signin() {
             console.log(response);
             if(response.status === 200){                
                 console.log(response.data);                
+                
                 const accesToken = response.data.token;    
                 cookie.save("login_token",accesToken,{path:"/"});               
                 
@@ -77,18 +60,6 @@ function Signin() {
             email,
             password
         });
-        // const response = signInUser({
-        //     email,
-        //     password
-        // });
-        // console.log(response);
-        // console.log(response.Result);
-        // if (response === 200) {
-        //     window.location.href = '/MemberHomeDashboard'
-        // } else {
-        //     setInputEmail('');
-        //     setInputPwd('');
-        // }
     }
  
     return(

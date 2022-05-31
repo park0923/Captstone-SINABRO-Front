@@ -48,7 +48,7 @@ function Member_Home_Notice() {
                 </p>
               </div>
             </Link>
-            <Link to="/Home_Class_List">
+            <Link to="/MemberHomeEducation">
               <div className="flex flex-row space-x-8">
                 <img
                   className="w-10 h-10"
@@ -106,7 +106,7 @@ function Member_Home_Notice() {
                 <a href="/">SINABRO {">"} &nbsp;</a>
               </div>
               <div className="text-sm font-sebang-gothic text-green-700">
-                <a href="/MemberVolunteer"> 봉사 활동</a>
+                <a href="/Member_Home_Notice"> 공지사항</a>
               </div>
             </div>
             <h1 className="text text-left text-2xl font font-sebang-gothic front-bold text-black">

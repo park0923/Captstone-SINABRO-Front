@@ -34,12 +34,12 @@ const Disabled  = () => {
                                                     <div className=' font font-sebang-gothic front-bold text-lg '>
                                                         글씨크기조절
                                                         &nbsp;
-                                                        <Rartio>
+                                                        
                                                       <button class="px-2 py-1 border border-black bg-white text-yellow-400">+</button>
                                                     &nbsp;
                                                     <button  class="px-2 py-1 border border-black  bg-white text-yellow-400">-</button>
                                                     &nbsp;
-                                                    </Rartio>
+                                                    
                                                     글씨색선택
                                                     &nbsp;
                                                     <select className='text-black "text-color"'>
