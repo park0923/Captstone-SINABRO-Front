@@ -109,9 +109,14 @@ function Member_Home_Notice() {
                 <a href="/Member_Home_Notice"> 공지사항</a>
               </div>
             </div>
-            <h1 className="text text-left text-2xl font font-sebang-gothic front-bold text-black">
-              봉사 활동 관련 공지사항을 안내해드립니다.
-            </h1>            
+            <div className='justify-between flex flex-row'>
+              <h1 className="text text-left text-2xl font font-sebang-gothic front-bold text-black">
+                봉사 활동 관련 공지사항을 안내해드립니다.
+              </h1> 
+              <div className="border border-2 w-2/12 self-center text-center text-base font-sebang-gothic rounded-md text-white bg-green-600 hover:bg-green-700">
+                <a href="/MemberNoticeWrite">글쓰기</a>
+              </div>
+            </div>           
             <div>             
             {/* <Posts posts={data.boards.content}></Posts>                */}
               <NotificationPaginations                

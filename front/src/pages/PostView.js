@@ -16,23 +16,6 @@ const PostView = ({history, location, match}) =>{
     const [type, setType] = useState(location.state.type);
     const cookies = cookie.load("login_token");
     const [data, setData] = useState([{
-        // "board_type": null,
-        // "contents": null,
-        // "created_date": null,
-        // "id": null,
-        // "title": null,
-        // "updated_date": null
-        "contents": null,
-      "created_date": null,
-      "ended_date": null,
-      "id": null,
-      "title": null,
-      "updated_date": null,
-      "user_id": null,
-      "volunteer_time": null
-      }]      
-    );
-    const [Vdata, setVdata] = useState([{
       "contents": null,
       "created_date": null,
       "ended_date": null,
@@ -41,8 +24,9 @@ const PostView = ({history, location, match}) =>{
       "updated_date": null,
       "user_id": null,
       "volunteer_time": null
-    }]      
-  );
+      }]      
+    );          
+  
     React.useEffect(() => {     
       console.log(data);
       console.log(data.title);

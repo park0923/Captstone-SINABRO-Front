@@ -50,7 +50,7 @@ const NoticePost = ({ posts }) => {
                 style={{ borderBottom: "1px solid #A1A0A0" }}
                 className="p-2 text-sm font-sebang-gothic"
               >
-                <Link to={{pathname: `/PostView/${idx}`, state: {type: "notice"}}} >
+                <Link to={{pathname: `/MemberHomeNoticePage/${idx}`, state: {type: "notice"}}} >
                   {title}
                 </Link> 
               </td>  

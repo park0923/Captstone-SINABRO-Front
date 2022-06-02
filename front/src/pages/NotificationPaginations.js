@@ -51,7 +51,7 @@ const NotificationPaginations = (props) => {
             // always executed
           });        
     },[])
-  
+    
     const handlePaging = (number) =>{     
       if(states === ""){
         axios.get('http://18.117.173.151:8080/api/boards?page='+ number + '&size=10')

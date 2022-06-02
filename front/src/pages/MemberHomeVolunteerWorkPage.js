@@ -40,7 +40,7 @@ function MemberHomeVolunteerWorkPage(){
                             </p>
                         </div>  
                     </Link>
-                    <Link to="/Home_Class_List">
+                    <Link to="/MemberHomeEducation">
                         <div className="flex flex-row space-x-8">
                             <img className="w-10 h-10" src="/img/Asset 15.png" alt="education" />
                             <p className="pt-1 text-justify text-2xl font-sebang-gothic front-bold text-gray-400 hover:text-gray-600">
