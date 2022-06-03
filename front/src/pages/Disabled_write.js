@@ -43,39 +43,32 @@ const Disabled_write = () => {
     setFile(e.target.files);
   };
 
-  const handleSubmit = () => {
-    const form = new FormData();
+=======
+  const handleSubmit = () =>{           
+      const form = new FormData()
 
-    form.append(
-      "file",
-      new Blob([JSON.stringify(file)], { type: "application/json" })
-    );
-    form.append(
-      "contentsRequest",
-      new Blob(
-        [
-          JSON.stringify({
-            title: title,
-            contents: contents,
-            volunteer_time: volunteer_time,
-            ended_date: end_date + "T12:34:56.000Z",
-          }),
-        ],
-        { type: "application/json" }
+      form.append("file", new Blob([JSON.stringify(file)], { type: "application/json" }));      
+      form.append("contentsRequest", new Blob([JSON.stringify({
+        'title' : title,
+        'contents' : contents,
+        'volunteer_time' : volunteer_time,
+        'ended_date' : end_date +"T12:34:56.000Z"
+      })], {type: "application/json"}));
+
+      for (const [key, value] of form) {
+        console.log(key, value)
+      }
+
+      axios.post(
+        'http://18.117.173.151:8080/api/works/', 
+        form,
+        {
+          headers: {                
+            'Authorization': 'Bearer ' + cookies,          
+            'Content-Type': 'multipart/form-data' 
+          }
+        }                        
       )
-    );
-
-    for (const [key, value] of form) {
-      console.log(key, value);
-    }
-
-    axios
-      .post("http://18.117.173.151:8080/api/works/", form, {
-        headers: {
-          Authorization: "Bearer " + cookies,
-          "Content-Type": "multipart/form-data",
-        },
-      })
       .then(function (response) {
         // handle success
         console.log(response);

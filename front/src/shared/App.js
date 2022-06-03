@@ -24,13 +24,9 @@ import MyChart from "pages/MyChart";
 import MyPieChart from "pages/MyPieChart";
 import testpg from "pages/testpg";
 import NotificationPaginations from "pages/NotificationPaginations";
-
 import None_NotificationPaginations from "pages/None_NotificationPaginations";
-
 import NoticePost from "pages/NoticePost";
-
 import None_NoticePost from "pages/None_NoticePost";
-
 import PostView from "pages/PostView";
 import NonmemberPostView from "pages/NonmemberPostView";
 import VolunteerPaginations from "pages/VolunteerPaginations";
@@ -46,8 +42,9 @@ import MemberHomeTrainingScreen from "pages/MemberHomeTrainingScreen"; /*교육*
 import MemberHomeVolunteerWorkPage from "pages/MemberHomeVolunteerWorkPage"; /*봉사자 작업 페이지*/
 import MemberHomeWorkInformation from "pages/MemberHomeWorkInformation"; /**/
 import MemberNoticeWrite from "pages/MemberNoticeWrite";
-
 import Notification_page from "pages/Notification_page";
+import MemberHomeWorkView from "pages/MemberHomeWorkView";
+import WorkHistoryPost from "pages/WorkHistoryPost";
 
 class App extends Component {
   render() {
@@ -136,6 +133,14 @@ class App extends Component {
         />
         <Route path="/MemberNoticeWrite" component={MemberNoticeWrite} />
         <Route path="/Notification_page/:id" component={Notification_page} />
+        <Route path="/MemberHomeInspectionWorkPage" component={MemberHomeInspectionWorkPage}/> 
+        <Route path="/MemberHomeNoticePage/:id" component={MemberHomeNoticePage}/>
+        <Route path="/MemberHomeTrainingScreen" component={MemberHomeTrainingScreen}/>
+        <Route path="/MemberHomeVolunteerWorkPage/:id" component={MemberHomeVolunteerWorkPage}/>
+        <Route path="/MemberHomeWorkInformation" component={MemberHomeWorkInformation}/>
+        <Route path="/MemberNoticeWrite" component={MemberNoticeWrite} />
+        <Route path="/MemberHomeWorkView/:id" component={MemberHomeWorkView} />
+        <Route path="/WorkHistoryPost" component={WorkHistoryPost} />
       </div>
     );
   }
