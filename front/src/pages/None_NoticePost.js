@@ -51,7 +51,7 @@ const NoticePost = ({ posts }) => {
             >
               <Link
                 to={{
-                  pathname: `/MemberHomeNoticePage/${idx}`,
+                  pathname: `/Notification_page/${idx}`,
                   state: { type: "notice" },
                 }}
               >

@@ -12,7 +12,7 @@ async function signUpUser(credentials) {
     .then(function (response) {
       console.log(response.status);
       if (response.status === 200) {
-        alert("회원가입되엇습니다.");
+        alert("회원가입 되었습니다.");
         document.location.href = "/user/signin";
       }
     })
