@@ -35,7 +35,7 @@ function MemberHomeNoticePage({ history, location, match }) {
     if (type === "notice") {
       axios({
         method: "get",
-        url: "http://18.117.173.151:8080/api/boards/" + id,
+        url: "http://52.14.229.32:8080/api/boards/" + id,
       })
         .then(function (response) {
           // handle success
@@ -52,7 +52,7 @@ function MemberHomeNoticePage({ history, location, match }) {
     } else if (type === "work") {
       axios({
         method: "get",
-        url: "http://18.117.173.151:8080/api/boards/" + id,
+        url: "http://52.14.229.32:8080/api/boards/" + id,
         headers: {
           Authorization: "Bearer " + cookies,
         },
@@ -78,7 +78,7 @@ function MemberHomeNoticePage({ history, location, match }) {
       <div className="min-h-screen p-12 boder border-2 shadow-md rounded-none item-center justify-center bg-gray-50 max-w-max space-y-20">
         <div>
           <img className="mx-auto h-20 w-auto" src="/img/Logo.svg" alt="Logo" />
-          <Link to="MemberHomeMyPage">
+          <Link to="/MemberHomeMyPage">
             <div className="mt-14 shadow-md rounded-full bg-green-600">
               <p className="text-center text-xl font-sebang-gothic text-white">
                 마이페이지
@@ -87,7 +87,7 @@ function MemberHomeNoticePage({ history, location, match }) {
           </Link>
         </div>
         <div className="flex flex-col space-y-4">
-          <Link to="MemberHomeDashboard">
+          <Link to="/MemberHomeDashboard">
             <div className="flex flex-row space-x-8">
               <img
                 className="w-10 h-10"

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const WorkHistoryPost = ({posts}) => {
+const WorkHistoryPost = ({posts}) => {  
     return(
         <table class="table-fixed w-full">
           <thead className=" bg-white">

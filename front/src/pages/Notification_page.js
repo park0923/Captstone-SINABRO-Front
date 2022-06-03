@@ -35,7 +35,7 @@ function Notification_page({ history, location, match }) {
     if (type === "notice") {
       axios({
         method: "get",
-        url: "http://18.117.173.151:8080/api/boards/" + id,
+        url: "http://52.14.229.32:8080/api/boards/" + id,
       })
         .then(function (response) {
           // handle success
@@ -52,7 +52,7 @@ function Notification_page({ history, location, match }) {
     } else if (type === "work") {
       axios({
         method: "get",
-        url: "http://18.117.173.151:8080/api/boards/" + id,
+        url: "http://52.14.229.32:8080/api/boards/" + id,
         headers: {
           Authorization: "Bearer " + cookies,
         },

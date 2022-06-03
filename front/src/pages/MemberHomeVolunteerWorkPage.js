@@ -6,14 +6,16 @@ import qs from 'qs';
 import UserTask from "./UserTask";
 
 function MemberHomeVolunteerWorkPage({history, location, match}){
-    //console.log(history);
-    // console.log(location.state.type);
-    // console.log(match.params);
+    //console.log(history.location.pathname.lengh)
+    //console.log(history.location.pathname.substring(30,history.location.pathname.lengh - 1));
+    //console.log(location.state.type);
+    //console.log(match.params.id);
+    
     axios.default.paramsSerializer = params => {
         return qs.stringify(params);
     }
-
-    const [id, setId] = useState(match.params.id);
+    const test = history.location.pathname;    
+    const [id, setId] = useState(test.slice(29));    
     const [data, setData] = useState({
         "created_date": null,
         "ended_date": null,
@@ -33,11 +35,9 @@ function MemberHomeVolunteerWorkPage({history, location, match}){
         console.log(works_contents)
     }
 
-    //React.useEffect(() => {console.log(works_contents)},[works_contents])
-
     const handleUpdate = () => {        
         axios.patch(
-            'http://18.117.173.151:8080/api/volunteerWorks/' + id, 
+            'http://52.14.229.32:8080/api/volunteerWorks/' + id, 
             {
                 contents: works_contents,
                 title: data.work_id
@@ -63,34 +63,58 @@ function MemberHomeVolunteerWorkPage({history, location, match}){
               }); 
     }
 
-    useEffect(() => {
+    const handleInspection = () => {
         axios({
-            method: 'get',
-            url: 'http://18.117.173.151:8080/api/volunteerWorks/'+ id,
+            method: 'post',
+            url: 'http://52.14.229.32:8080/api/inspections/'+ id,
             headers: {                
                 "Authorization": 'Bearer ' + cookies
             }            
           })
           .then(function (response) {
               // handle success
-              console.log(response.data);
+              console.log(response);
+                if(response.status === 200){
+                    alert("검수 요청을 보냈습니다.")
+                    window.location.href = '/Member_Home_Inspection'
+                }             
+            })
+            .catch(function (error) {
+              // handle error
+              console.log(error);
+            })    
+    }
+    React.useEffect(() => {
+        console.log(id);
+    },[id])
+
+    useEffect(() => {            
+        console.log(id)
+        
+        axios({
+            method: 'get',
+            url: 'http://52.14.229.32:8080/api/volunteerWorks/'+ id,
+            headers: {                
+                "Authorization": 'Bearer ' + cookies
+            }            
+          })
+          .then(function (response) {
+              // handle success
+              //console.log(response.data);
               setData(response.data);              
             })
             .catch(function (error) {
               // handle error
               console.log(error);
-            })
-            .then(function () {
-              // always executed
-            }); 
-    },[])
+            })             
+    },[]);
     
     return(
         <div className="min-h-screen flex item-center justify-between bg-gray-yellow py-12 px-4 sm:px-6 lg:px-8">            
             <div className="min-h-screen p-12 boder border-2 shadow-md rounded-none item-center justify-center bg-gray-50 max-w-max space-y-20">
                 <div>
                     <img className="mx-auto h-20 w-auto" src="/img/Logo.svg" alt="Logo"/>
-                    <Link to="MemberHomeMyPage">
+                    <Link to="/MemberHomeMyPage">
                         <div className="mt-14 shadow-md rounded-full bg-green-600">
                             <p className="text-center text-xl font-sebang-gothic text-white">
                                 마이페이지
@@ -99,10 +123,10 @@ function MemberHomeVolunteerWorkPage({history, location, match}){
                     </Link>                    
                 </div>                
                 <div className="flex flex-col space-y-4">
-                    <Link to="MemberHomeDashboard">
+                    <Link to="/MemberHomeDashboard">
                         <div className="flex flex-row space-x-8">
-                            <img className="w-10 h-10" src="/img/Asset 18.png" alt="dashboard" />
-                            <p className="pt-1 text-justify text-2xl font-sebang-gothic front-bold text-black hover:text-gray-600">
+                            <img className="w-10 h-10" src="/img/Asset 11.png" alt="dashboard" />
+                            <p className="pt-1 text-justify text-2xl font-sebang-gothic front-bold text-gray-400 hover:text-gray-600">
                                 대시보드
                             </p>
                         </div>                  
@@ -164,14 +188,13 @@ function MemberHomeVolunteerWorkPage({history, location, match}){
                         <div className="flex flex-row justify-between">
                             <h1 className="py-4 text-2xl font-sebang-gothic front-bold text-black">작업 진행 공간</h1>           
                         </div>
-                        <div className="w-full y-40 h-96 border-2 shadow-md rounded-xl item-center justify-center bg-gray-50 ">
-                            <p className="p-2 text-left text-sm font-sebang-gothic front-normal text-black"></p>
-                            <textarea id="content" name="content" rows="15" cols="90" value={works_contents} onChange={handleWorks} placeholder="내용을 입력하세요">                               
+                        <div className="w-full y-40 h-96 border-2 shadow-md rounded-xl item-center justify-center bg-gray-50 ">                            
+                            <textarea className="mt-5" id="content" name="content" rows="15" cols="90" value={works_contents} onChange={handleWorks} placeholder="내용을 입력하세요">                                                               
                             </textarea>
                         </div>
                         <div className="space-y-2 p-2 flex-row item-center justify-center">
                         <button type="button" onClick={handleUpdate} className="save relative w-30 flex-row justify-center py-2 px-4 border border-transparent text-sm font-noto-snas font-bold rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">저장</button>  
-                        <button type="submit" className="inspection relative w-30 flex-row justify-center py-2 px-4 ml-4 border border-transparent text-sm font-noto-snas font-bold rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">검수 요청</button>  
+                        <button type="button" onClick={handleInspection} className="inspection relative w-30 flex-row justify-center py-2 px-4 ml-4 border border-transparent text-sm font-noto-snas font-bold rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">검수 요청</button>  
                         </div>                      
                     </div>
                 </div>
