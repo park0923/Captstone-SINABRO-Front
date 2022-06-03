@@ -203,8 +203,8 @@ function MemberHomeDashboard() {
             </p>
           </div>
         </div>
-        <div className="flex flex-row space-x-12 justify-around">
-          <div className="flex flex-col mt-16">
+        <div className="flex flex-row w-full space-x-12 justify-around">
+          <div className="flex flex-col w-1/2 mt-16">
             <h1 className="text-2xl font-sebang-gothic front-bold text-black">
               일주일 진행 현황
             </h1>
@@ -214,7 +214,7 @@ function MemberHomeDashboard() {
               </div>
             </div>
           </div>
-          <div className="flex flex-col mt-16">
+          <div className="flex flex-col w-1/2 mt-16">
             <h1 className="text-2xl font-sebang-gothic front-bold text-black">
               마감 일자
             </h1>
