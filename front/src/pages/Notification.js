@@ -6,57 +6,57 @@ import axios from "axios";
 import NotificationPaginations from './NotificationPaginations';
 function Notification() {
     
-    const [loading, setLoading] = useState(null);
-    const [error, setError] = useState(null);
-    const ChangeDate = (date) => {
-        return moment(date).format('YYYY-MM-DD');
-    }
+    // const [loading, setLoading] = useState(null);
+    // const [error, setError] = useState(null);
+    // const ChangeDate = (date) => {
+    //     return moment(date).format('YYYY-MM-DD');
+    // }
 
-    const [data, setData] = useState({
-        boards:{
-          "content": [
-            {
-              "board_type": null,
-              "contents": null,
-              "created_date": null,
-              "idx": null,
-              "title": null,
-              "updated_date": null
-            }
-          ],
-          "links": {
-            "ref": null,
-            "href": null
-          },
-          "page": {
-            "number": null,
-            "size": null,
-            "totalElements": null,
-            "totalPages": null
-          }
-        }
-      }
-      );
+    // const [data, setData] = useState({
+    //     boards:{
+    //       "content": [
+    //         {
+    //           "board_type": null,
+    //           "contents": null,
+    //           "created_date": null,
+    //           "idx": null,
+    //           "title": null,
+    //           "updated_date": null
+    //         }
+    //       ],
+    //       "links": {
+    //         "ref": null,
+    //         "href": null
+    //       },
+    //       "page": {
+    //         "number": null,
+    //         "size": null,
+    //         "totalElements": null,
+    //         "totalPages": null
+    //       }
+    //     }
+    //   }
+    //   );
       
-      // React.useEffect(() => {
-      //   console.log("updated", data)
-      // }, [data])
+    //   // React.useEffect(() => {
+    //   //   console.log("updated", data)
+    //   // }, [data])
       
-      useEffect(() => {      
-          axios.get('http://18.117.173.151:8080/api/boards')
-          .then(function (response) {
-              // handle success
-              console.log(response);
-              setData(response.data);
-            })
-            .catch(function (error) {
-              // handle error
-              console.log(error);
-            })
-            .then(function () {
-              // always executed
-            });        
-      },[])
+    //   useEffect(() => {      
+    //       axios.get('http://18.117.173.151:8080/api/boards')
+    //       .then(function (response) {
+    //           // handle success
+    //           console.log(response);
+    //           setData(response.data);
+    //         })
+    //         .catch(function (error) {
+    //           // handle error
+    //           console.log(error);
+    //         })
+    //         .then(function () {
+    //           // always executed
+    //         });        
+    //   },[])
     
 
     return (

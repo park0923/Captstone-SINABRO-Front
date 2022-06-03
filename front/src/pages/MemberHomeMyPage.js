@@ -1,7 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import UserTask from "./UserTask";
 
 function MemberHomeMyPage() {
+  
+  const hadleClick = () => {
+      window.location.href = '/Member_Home_WorkHistory';
+  }
+  
   return (
     <div className="min-h-screen flex item-center justify-between bg-gray-yellow py-12 px-4 sm:px-6 lg:px-8">
       <div className="min-h-screen p-12 boder border-2 shadow-md rounded-none item-center justify-center bg-gray-50 w-1/5 space-y-20">
@@ -87,7 +93,7 @@ function MemberHomeMyPage() {
         </div>
       </div>
 
-      <div className="p-6 item-center justify-center w-full space-y-4">
+      <div className="flex flex-grow p-12 border border-2 item-center justify-center bg-transparent  mx-4 h-auto space-y-4">
         <div className="flex flex-col space-y-6">
           <div>
             <h1 className="text-2xl font-sebang-gothic front-bold text-black">
@@ -177,9 +183,15 @@ function MemberHomeMyPage() {
           <div className="p-8 boder border-2 shadow-md rounded-xl item-center justify-center min-w-max h-50 bg-gray-50 space-y-1">
             <div className="flex flex-row space-x-6">
               <div className="mx-8 flex flex-col space-y-2">
-                <h3 className="text-lg font-sebang-gothic front-bold text-black">
-                  작업 히스토리
-                </h3>
+                <div className="flex flex-row justify-between">
+                  <h3 className="text-lg font-sebang-gothic front-bold text-black">
+                    작업 히스토리
+                  </h3>
+                  <button className="border border-2 w-2/12 self-center text-center text-base font-sebang-gothic rounded-md text-white bg-green-600 hover:bg-green-700"
+                    onClick={hadleClick}>
+                    View all
+                  </button>
+                </div>
                 <div className="table w-full px-2 p-2 ">
                   <thead className="bg-gray-100 border-b-2  ">
                     <th className="p-1 text-xl text-gray-500 font-sebang-gothic tracking-wide text-left">
@@ -293,121 +305,8 @@ function MemberHomeMyPage() {
         </div>
       </div>
 
-      <div className="p-12 boder border-2 shadow-md rounded-none item-center justify-center bg-gray-50 w-1/5 max-h-max space-y-4">
-        <div className="flex flex-row space-x-4">
-          <img
-            className="w-10 h-10 boder boder-2 runded-md"
-            src="/img/Asset 17.png"
-            alt="user"
-          />
-          <div>
-            <p className="text-center text-xl font-sebang-gothic font-bold ">
-              봉사자 이름
-            </p>
-            <Link
-              to=""
-              className="text-center text-sm font-sebang-gothic text-gray-500 hover:text-gray-700"
-            >
-              로그아웃
-            </Link>
-          </div>
-        </div>
-        <div className=" space-y-4">
-          <p className="mt-14 text-left text-base font-sebang-gothic font-bold">
-            진&nbsp;행&nbsp;작&nbsp;업
-          </p>
-          <div className="flex flex-row justify-center space-x-4 ">
-            <img
-              className="w-10 h-10 boder boder-2 rounded-md "
-              src="/img/Asset 17.png "
-              alt="user"
-            />
-            <Link to="/MemberHomeEducation">
-              <div className="">
-                <p className="left-0 text-center text-base font-sebang-gothic font-bold">
-                  진행 중인 작업 1
-                </p>
-                <div className="mx-auto h-3 w-auto rounded-full border border-2 border-black bg-white-200">
-                  <div className="justify-start min-h-full w-12 rounded-full bg-green-600" />
-                  <p className="text-center text-sm font-sebang-gothic font-bold">
-                    20%
-                  </p>
-                </div>
-              </div>
-            </Link>
-          </div>
-          <div className="pt-4 flex flex-row justify-center space-x-4">
-            <img
-              className="w-10 h-10 boder boder-2 rounded-md"
-              src="/img/Asset 17.png"
-              alt="user"
-            />
-            <Link to="/MemberHomeEducation">
-              <div>
-                <p className="text-center text-base font-sebang-gothic font-bold">
-                  진행 중인 작업 2
-                </p>
-
-                <div className="mx-auto h-3 w-auto rounded-full border border-2 border-black bg-white-200">
-                  <div className="justify-start min-h-full w-20 rounded-full bg-red-600" />
-                  <p className="text-center text-sm font-sebang-gothic font-bold">
-                    60%
-                  </p>
-                </div>
-              </div>
-            </Link>
-          </div>
-        </div>
-        <div className="space-y-4">
-          <p className="mt-14 text-left text-base font-sebang-gothic font-bold">
-            대기중인 작업
-          </p>
-          <div className="flex flex-row justify-center space-x-4">
-            <img
-              className="w-10 h-10 boder boder-2 rounded-md"
-              src="/img/Asset 17.png"
-              alt="user"
-            />
-            <div>
-              <p className=" text-base font-sebang-gothic font-bold">
-                대기중인 작업 1
-              </p>
-              <p className="text-left text-sm font-sebang-gothic text-gray-400">
-                2022년 2월 21일 까지
-              </p>
-            </div>
-          </div>
-          <div className="pt-4 flex flex-row justify-center space-x-4">
-            <img
-              className="w-10 h-10 boder boder-2 rounded-md"
-              src="/img/Asset 17.png"
-              alt="user"
-            />
-            <div>
-              <p className=" text-base font-sebang-gothic font-bold">
-                대기중인 작업 2
-              </p>
-              <p className="text-left text-sm font-sebang-gothic text-gray-400">
-                2022년 2월 22일 까지
-              </p>
-            </div>
-          </div>
-          <div className="pt-4 flex flex-row justify-start space-x-4">
-            <img
-              className="w-10 h-10 boder boder-2 rounded-md"
-              src="/img/Asset 17.png"
-              alt="user"
-            />
-            <div>
-              <p className=" text-base font-sebang-gothic font-bold">
-                대기중인 작업 3
-              </p>
-              <p className="text-left text-sm font-sebang-gothic text-gray-400 ">
-                2022년 2월 23일 까지
-              </p>
-            </div>
-          </div>
-        </div>
+      <div className="p-12 boder border-2 shadow-md rounded-none item-center justify-center bg-gray-50 max-w-max max-h-max space-y-4">
+        <UserTask></UserTask>
       </div>
     </div>
   );
