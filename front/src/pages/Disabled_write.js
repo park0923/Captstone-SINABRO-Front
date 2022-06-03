@@ -46,7 +46,7 @@ const Disabled_write = () => {
   const handleSubmit = () =>{           
       const form = new FormData()
 
-      form.append("file", new Blob([JSON.stringify(file)], { type: "application/json" }));
+      form.append("file", new Blob([JSON.stringify(file)], { type: "application/json" }));      
       form.append("contentsRequest", new Blob([JSON.stringify({
         'title' : title,
         'contents' : contents,

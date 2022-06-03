@@ -1,90 +1,76 @@
 import React, { useEffect, useState } from "react";
 import { Link } from 'react-router-dom';
-import axios from "axios";
+import axios from 'axios';
+import qs from "qs";
 import cookie from 'react-cookies';
-import qs from 'qs';
 import UserTask from "./UserTask";
 
-function MemberHomeVolunteerWorkPage({history, location, match}){
+const MemberHomeWorkView = ({history, location, match}) => {
     //console.log(history);
     // console.log(location.state.type);
     // console.log(match.params);
     axios.default.paramsSerializer = params => {
         return qs.stringify(params);
-    }
-
-    const [id, setId] = useState(match.params.id);
-    const [data, setData] = useState({
+      }
+  
+      const [id, setId] = useState(match.params.id);    
+      const [type, setType] = useState(location.state.type);
+      const cookies = cookie.load("login_token");
+      const [data, setData] = useState([{
+        "contents": null,
         "created_date": null,
         "ended_date": null,
         "id": null,
+        "title": null,
         "updated_date": null,
         "user_id": null,
-        "volunteer_work_contents": null,
-        "work_contents": null,
-        "work_id": null,
-        "work_title": null
-    })
-    const [works_contents, setWorks_contents] = useState("");    
-    const cookies = cookie.load("login_token");    
+        "volunteer_time": null
+        }]      
+      );          
     
-    const handleWorks = (e) => {
-        setWorks_contents(e.target.value)
-        console.log(works_contents)
-    }
-
-    //React.useEffect(() => {console.log(works_contents)},[works_contents])
-
-    const handleUpdate = () => {        
-        axios.patch(
-            'http://18.117.173.151:8080/api/volunteerWorks/' + id, 
-            {
-                contents: works_contents,
-                title: data.work_id
-            }, 
-            {
-                headers: {                
-                    "Authorization": 'Bearer ' + cookies
-                }
-            }
-            ).then(function (response) {
-                // handle success
-
-                if(response.status === 200){
-                    alert("작업을 저장하였습니다.")
-                }
-              })
-              .catch(function (error) {
-                // handle error
-                console.log(error);
-              })
-              .then(function () {
-                // always executed
-              }); 
-    }
-
-    useEffect(() => {
+      useEffect(() => {
         axios({
             method: 'get',
-            url: 'http://18.117.173.151:8080/api/volunteerWorks/'+ id,
+            url: 'http://18.117.173.151:8080/api/works/' +id,            
             headers: {                
                 "Authorization": 'Bearer ' + cookies
             }            
           })
           .then(function (response) {
               // handle success
+              setData(response.data);
               console.log(response.data);
-              setData(response.data);              
+              console.log(data);
             })
             .catch(function (error) {
               // handle error
               console.log(error);
-            })
-            .then(function () {
-              // always executed
-            }); 
-    },[])
-    
+            })            
+      },[]);
+
+    const handleVolunteerSubmit = () => {        
+        axios({
+            method: 'post',
+            url: 'http://18.117.173.151:8080/api/volunteerWorks/' + id,
+            headers: {                
+                "Authorization": 'Bearer ' + cookies
+            }
+        })
+        .then(function (response) {
+            // handle success
+            if(response.status === 200){
+                setData(response.data);
+                console.log(response.data);
+                console.log(data);
+                window.location.href = '../Member_Home_WorkHistory'
+            }
+          })
+          .catch(function (error) {
+            // handle error
+            console.log(error);
+          })             
+    }
+
     return(
         <div className="min-h-screen flex item-center justify-between bg-gray-yellow py-12 px-4 sm:px-6 lg:px-8">            
             <div className="min-h-screen p-12 boder border-2 shadow-md rounded-none item-center justify-center bg-gray-50 max-w-max space-y-20">
@@ -96,24 +82,28 @@ function MemberHomeVolunteerWorkPage({history, location, match}){
                                 마이페이지
                             </p>    
                         </div>    
-                    </Link>                    
+                    </Link>                       
                 </div>                
                 <div className="flex flex-col space-y-4">
                     <Link to="MemberHomeDashboard">
                         <div className="flex flex-row space-x-8">
-                            <img className="w-10 h-10" src="/img/Asset 18.png" alt="dashboard" />
-                            <p className="pt-1 text-justify text-2xl font-sebang-gothic front-bold text-black hover:text-gray-600">
+                            <img className="w-10 h-10" src="/img/Asset 11.png" alt="dashboard" />
+                            <p className="pt-1 text-justify text-2xl font-sebang-gothic front-bold text-gray-400 hover:text-gray-600">
                                 대시보드
                             </p>
                         </div>                  
                     </Link>
                     <Link to="/Member_Home_Introduction">
                         <div className="flex flex-row space-x-8">
-                            <img className="w-10 h-10" src="/img/Asset 17.png" alt="introduce" />
+                            <img
+                            className="w-10 h-10"
+                            src="/img/Asset 17.png"
+                            alt="introduce"
+                            />
                             <p className="pt-1 text-justify text-2xl font-sebang-gothic front-bold text-gray-400 hover:text-gray-600">
-                                소&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;개
+                            소&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;개
                             </p>
-                        </div>  
+                        </div>
                     </Link>
                     <Link to="/MemberHomeEducation">
                         <div className="flex flex-row space-x-8">
@@ -150,39 +140,51 @@ function MemberHomeVolunteerWorkPage({history, location, match}){
                 </div>
             </div>          
           
-            <div className="p-10 item-center max-w-screen-lg space-y-4">     
-                <div className="flex flex-row ">
-                    <div className="p-6 boder border-2 shadow-md rounded-xl item-center justify-center w-full h-35 space-y-2 bg-gray-50 ">
-                        <h3 className="text-left text-lg font-sebang-gothic front-bold text-black">{data.work_title}</h3>
-                        <hr></hr>
-                        <p className="text-left text-sm font-sebang-gothic front-normal text-black">{data.work_contents}</p>    
-                    </div>
-                </div>
-                <div className="flex flex-row space-x-4 justify-between" >
+            <div className="flex flex-grow p-12 border border-2 item-center justify-start bg-gray-50  mx-4 h-auto space-y-4">
                     
-                    <div className="flex flex-col mt-10">
-                        <div className="flex flex-row justify-between">
-                            <h1 className="py-4 text-2xl font-sebang-gothic front-bold text-black">작업 진행 공간</h1>           
+                <div className="p-4 min-w-full flex flex-col space-y-8 rounded-lg">
+                    <div className="flex">
+                        <div className="text-sm font-sebang-gothic  text-gray-600">
+                            <a href='/'>SINABRO {'>'} &nbsp;</a>
                         </div>
-                        <div className="w-full y-40 h-96 border-2 shadow-md rounded-xl item-center justify-center bg-gray-50 ">
-                            <p className="p-2 text-left text-sm font-sebang-gothic front-normal text-black"></p>
-                            <textarea id="content" name="content" rows="15" cols="90" value={works_contents} onChange={handleWorks} placeholder="내용을 입력하세요">                               
-                            </textarea>
+                        <div className="text-sm font-sebang-gothic text-green-700">
+                            <p> 상세보기</p>     
                         </div>
-                        <div className="space-y-2 p-2 flex-row item-center justify-center">
-                        <button type="button" onClick={handleUpdate} className="save relative w-30 flex-row justify-center py-2 px-4 border border-transparent text-sm font-noto-snas font-bold rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">저장</button>  
-                        <button type="submit" className="inspection relative w-30 flex-row justify-center py-2 px-4 ml-4 border border-transparent text-sm font-noto-snas font-bold rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">검수 요청</button>  
-                        </div>                      
                     </div>
-                </div>
+                    <h1 className="text text-left text-2xl font font-sebang-gothic front-bold text-black">{data.title}</h1>
+                    <hr className="border border-gray-500 bg-gray-500"></hr>
+                    <p className="text-left text-sm font-sebang-gothic front-normal text-black">{data.contents}</p>
+
+                    <hr className="border border-gray-500 bg-gray-500"></hr>
+                    <div className="table w-full px-2 p-2 ">
+                        <tr className="bg-white">
+                        <td className="p-2 text-sm tracking-wider font-sebang-gothic ">다음글</td>
+                        <td className="p-2 text-sm tracking-wider font-sebang-gothic">시나브로 정기 점검 안내</td>
+                        <td className="p-2 text-sm tracking-wider font-sebang-gothic">2021.08.30</td>
+                        </tr>
+                        <tr className="bg-white">
+                        <td className="p-2 text-sm tracking-wider font-sebang-gothic ">이전글</td>
+                        <td className="p-2 text-sm tracking-wider font-sebang-gothic">봉사 작업 확인 서비스시 템 개선 작업</td>
+                        <td className="p-2 text-sm tracking-wider font-sebang-gothic">2021.08.02</td>
+                        </tr>
+                    </div>
+                    <div className="flex flex-row justify-center">
+                        <div className="border border-2 w-1/3 self-center text-center text-lg font-sebang-gothic font-bold rounded-lg text-white bg-green-600 hover:bg-green-700">
+                            <button onClick={() => history.goBack()}>돌아가기</button>
+                        </div>
+                        <div className="border border-2 w-1/3 self-center text-center text-lg font-sebang-gothic font-bold rounded-lg text-white bg-green-600 hover:bg-green-700">
+                            <button onClick={handleVolunteerSubmit}>수행하기</button>
+                        </div>
+                    </div>
+                </div> 
+                
             </div>  
 
             <div className="p-12 boder border-2 shadow-md rounded-none item-center justify-center bg-gray-50 max-w-max max-h-max space-y-4">
                 <UserTask></UserTask>
             </div>
-            
         </div>
     )
 }
 
-export default MemberHomeVolunteerWorkPage;
+export default MemberHomeWorkView

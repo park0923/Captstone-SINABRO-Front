@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const VolunteerPost = ({posts}) => {
+const WorkHistoryPost = ({posts}) => {
     return(
         <table class="table-fixed w-full">
           <thead className=" bg-white">
@@ -10,10 +10,7 @@ const VolunteerPost = ({posts}) => {
             </th>
             <th className="w-8/12 text-xl text-gray-500 font-sebang-gothic tracking-wide text-left">
               제목
-            </th>
-            <th className="w-2/12   text-xl text-gray-500 font-sebang-gothic tracking-wide text-center">
-              등 록 일
-            </th>      
+            </th>                
             <th className="w-2/12   text-xl text-gray-500 font-sebang-gothic tracking-wide text-center">
               마 감 일
             </th>    
@@ -36,16 +33,10 @@ const VolunteerPost = ({posts}) => {
             width="100%"
             style={{ color: "#A1A0A0", backgroundColor: "#A1A0A0", height: 3 }}
           />
-        </th>   
-        <th>
-          <hr
-            width="100%"
-            style={{ color: "#A1A0A0", backgroundColor: "#A1A0A0", height: 3 }}
-          />
-        </th>     
+        </th>               
       </thead>
       <tbody>
-        {posts.slice(0).map(({ idx, title, created_date, ended_date }, index) => (
+        {posts.slice(0).map(({ idx, title, ended_date }, index) => (
             <tr className="bg-white">
               <td
                 style={{ borderBottom: "1px solid #A1A0A0" }}
@@ -58,16 +49,10 @@ const VolunteerPost = ({posts}) => {
                 style={{ borderBottom: "1px solid #A1A0A0" }}
                 className="p-2 text-sm font-sebang-gothic"
               >
-                <Link to={{pathname: `/MemberHomeWorkView/${idx}`, state: {type: "work"}}} >
+                <Link to={{pathname: `/MemberHomeVolunteerWorkPage/${idx}`, state: {type: "work"}}} >
                   {title}
                 </Link> 
-              </td>  
-              <td
-                style={{ borderBottom: "1px solid #A1A0A0" }}
-                className="p-2 text-sm font-sebang-gothic text-center"
-              >
-                {created_date}
-              </td>      
+              </td>                    
               <td
                 style={{ borderBottom: "1px solid #A1A0A0" }}
                 className="p-2 text-sm font-sebang-gothic text-center"
@@ -75,11 +60,10 @@ const VolunteerPost = ({posts}) => {
                 {ended_date}
               </td>                                
             </tr>
-          ))}
-        
+          ))}        
       </tbody>
     </table>
-    );
+    )
 }
 
-export default VolunteerPost;
+export default WorkHistoryPost;
