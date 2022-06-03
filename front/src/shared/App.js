@@ -39,7 +39,7 @@ import MemberHomeNoticePage from "pages/MemberHomeNoticePage";    /*공지 상�
 import MemberHomeTrainingScreen from "pages/MemberHomeTrainingScreen";    /*교육*/
 import MemberHomeVolunteerWorkPage from "pages/MemberHomeVolunteerWorkPage"; /*봉사자 작업 페이지*/
 import MemberHomeWorkInformation from "pages/MemberHomeWorkInformation";  /**/
-
+import MemberNoticeWrite from "pages/MemberNoticeWrite";
 class App extends Component {
   render() {
     return (
@@ -79,10 +79,11 @@ class App extends Component {
         <Route path="/Disabled_MyPage" component={Disabled_MyPage} />
         <Route path="/Disabled_write" component={Disabled_write} />
         <Route path="/MemberHomeInspectionWorkPage" component={MemberHomeInspectionWorkPage}/> 
-        <Route path="/MemberHomeNoticePage" component={MemberHomeNoticePage}/>
+        <Route path="/MemberHomeNoticePage/:id" component={MemberHomeNoticePage}/>
         <Route path="/MemberHomeTrainingScreen" component={MemberHomeTrainingScreen}/>
         <Route path="/MemberHomeVolunteerWorkPage" component={MemberHomeVolunteerWorkPage}/>
         <Route path="/MemberHomeWorkInformation" component={MemberHomeWorkInformation}/>
+        <Route path="/MemberNoticeWrite" component={MemberNoticeWrite} />
       </div>
     );
   }

@@ -1,10 +1,45 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from 'react-router-dom';
-
+import axios from "axios";
+import cookie from 'react-cookies';
+import qs from 'qs';
 
 function MemberHomeVolunteerWorkPage(){
-    
-    
+    const cookies = cookie.load("login_token");
+    const[data, setData] = useState({contents: "test",
+    ended_date: "2022-06-02T06:04:00.458Z",
+    title: "test",
+    volunteer_time: 56});
+    const json = JSON.stringify()
+    const axiosConfig = {
+        headers:{
+            'Authorization': 'Bearer ' + cookies,
+            "Content-Type": 'multipart/form-data' 
+        }
+    }
+
+    useEffect(() => {      
+        axios({
+          method: 'post',
+          url: 'http://18.117.173.151:8080/api/works', 
+          data: qs.stringify(data),           
+          headers: {                
+              'Authorization': 'Bearer ' + cookies,
+              "Content-Type": 'multipart/form-data;boundary=---myboundary'
+          }            
+        })
+        .then(function (response) {
+            // handle success                       
+            console.log(response.data);            
+          })
+          .catch(function (error) {
+            // handle error
+            console.log(error);
+          })
+          .then(function () {
+            // always executed
+          });             
+  },[]);
     
     
     
@@ -40,7 +75,7 @@ function MemberHomeVolunteerWorkPage(){
                             </p>
                         </div>  
                     </Link>
-                    <Link to="/Home_Class_List">
+                    <Link to="/MemberHomeEducation">
                         <div className="flex flex-row space-x-8">
                             <img className="w-10 h-10" src="/img/Asset 15.png" alt="education" />
                             <p className="pt-1 text-justify text-2xl font-sebang-gothic front-bold text-gray-400 hover:text-gray-600">
