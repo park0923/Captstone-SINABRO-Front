@@ -4,7 +4,7 @@ import axios from 'axios';
 
 
 function MemberHomeTrainingScreen(){
-    axios.post('http://18.117.173.151:8080/api/boards', {
+    axios.post('http://52.14.229.32:8080/api/boards', {
         board_type: "education",
         contents: "content",
         title: "title"

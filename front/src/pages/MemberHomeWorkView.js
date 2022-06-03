@@ -14,7 +14,7 @@ const MemberHomeWorkView = ({history, location, match}) => {
       }
   
       const [id, setId] = useState(match.params.id);    
-      const [type, setType] = useState(location.state.type);
+      const [file, setFile] = useState();
       const cookies = cookie.load("login_token");
       const [data, setData] = useState([{
         "contents": null,
@@ -31,7 +31,7 @@ const MemberHomeWorkView = ({history, location, match}) => {
       useEffect(() => {
         axios({
             method: 'get',
-            url: 'http://18.117.173.151:8080/api/works/' +id,            
+            url: 'http://52.14.229.32:8080/api/works/' +id,            
             headers: {                
                 "Authorization": 'Bearer ' + cookies
             }            
@@ -39,19 +39,36 @@ const MemberHomeWorkView = ({history, location, match}) => {
           .then(function (response) {
               // handle success
               setData(response.data);
-              console.log(response.data);
-              console.log(data);
+            //   console.log(response.data);
+            //   console.log(data);
             })
             .catch(function (error) {
               // handle error
               console.log(error);
-            })            
+            })  
+        
+            axios({
+                method: 'get',
+                url: 'http://52.14.229.32:8080/api/works/download/' +id,            
+                headers: {                
+                    "Authorization": 'Bearer ' + cookies,
+                    'Content-Type': 'multipart/form-data'
+                }            
+              })
+              .then(function (response) {
+                  // handle success                  
+                  console.log(response.data);                  
+                })
+                .catch(function (error) {
+                  // handle error
+                  console.log(error);
+                })  
       },[]);
 
     const handleVolunteerSubmit = () => {        
         axios({
             method: 'post',
-            url: 'http://18.117.173.151:8080/api/volunteerWorks/' + id,
+            url: 'http://52.14.229.32:8080/api/volunteerWorks/' + id,
             headers: {                
                 "Authorization": 'Bearer ' + cookies
             }
@@ -62,6 +79,7 @@ const MemberHomeWorkView = ({history, location, match}) => {
                 setData(response.data);
                 console.log(response.data);
                 console.log(data);
+                alert("접수 되었습니다.");
                 window.location.href = '../Member_Home_WorkHistory'
             }
           })
@@ -76,7 +94,7 @@ const MemberHomeWorkView = ({history, location, match}) => {
             <div className="min-h-screen p-12 boder border-2 shadow-md rounded-none item-center justify-center bg-gray-50 max-w-max space-y-20">
                 <div>
                     <img className="mx-auto h-20 w-auto" src="/img/Logo.svg" alt="Logo"/>
-                    <Link to="MemberHomeMyPage">
+                    <Link to="/MemberHomeMyPage">
                         <div className="mt-14 shadow-md rounded-full bg-green-600">
                             <p className="text-center text-xl font-sebang-gothic text-white">
                                 마이페이지
@@ -85,7 +103,7 @@ const MemberHomeWorkView = ({history, location, match}) => {
                     </Link>                       
                 </div>                
                 <div className="flex flex-col space-y-4">
-                    <Link to="MemberHomeDashboard">
+                    <Link to="/MemberHomeDashboard">
                         <div className="flex flex-row space-x-8">
                             <img className="w-10 h-10" src="/img/Asset 11.png" alt="dashboard" />
                             <p className="pt-1 text-justify text-2xl font-sebang-gothic front-bold text-gray-400 hover:text-gray-600">
@@ -153,6 +171,7 @@ const MemberHomeWorkView = ({history, location, match}) => {
                     </div>
                     <h1 className="text text-left text-2xl font font-sebang-gothic front-bold text-black">{data.title}</h1>
                     <hr className="border border-gray-500 bg-gray-500"></hr>
+                    <a href="" className="text-left text-sm font-sebang-gothic front-normal text-black">{data.contents}</a>
                     <p className="text-left text-sm font-sebang-gothic front-normal text-black">{data.contents}</p>
 
                     <hr className="border border-gray-500 bg-gray-500"></hr>

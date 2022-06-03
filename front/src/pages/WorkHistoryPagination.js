@@ -31,23 +31,22 @@ const WorkHistoryPagination = () => {
       const [states, setstates] = useState("");
       const [searchdata, setsearchdata] = useState("");
       const [selectvalue, setselectvalue] = useState("");
-      React.useEffect(() => {
-        console.log("updated", data)
-      }, [data])
+      // React.useEffect(() => {
+      //   console.log("updated", data)
+      // }, [data])
 
       const cookies = cookie.load("login_token");
       useEffect(() => {      
         axios({
             method: 'get',
-            url: 'http://18.117.173.151:8080/api/volunteerWorks/',            
+            url: 'http://52.14.229.32:8080/api/volunteerWorks/',            
             headers: {                
                 "Authorization": 'Bearer ' + cookies
             }            
           })
           .then(function (response) {
               // handle success
-              setData(response.data);            
-              console.log(response.data);
+              setData(response.data);                          
             })
             .catch(function (error) {
               // handle error
@@ -62,7 +61,7 @@ const WorkHistoryPagination = () => {
         if(states === ""){          
           axios({
             method: 'get',
-            url: 'http://18.117.173.151:8080/api/volunteerWorks?page='+ number + '&size=10',            
+            url: 'http://52.14.229.32:8080/api/volunteerWorks?page='+ number + '&size=10',            
             headers: {                
                 "Authorization": 'Bearer ' + cookies
             }            
@@ -82,7 +81,7 @@ const WorkHistoryPagination = () => {
         else if(states === "title"){          
           axios({
             method: 'get',
-            url: 'http://18.117.173.151:8080/api/volunteerWorks?page='+ number +'&searchOption=title&keyword=' + searchdata,            
+            url: 'http://52.14.229.32:8080/api/volunteerWorks?page='+ number +'&searchOption=title&keyword=' + searchdata,            
             headers: {                
                 "Authorization": 'Bearer ' + cookies
             }            
@@ -102,7 +101,7 @@ const WorkHistoryPagination = () => {
         else if(states === "title_body"){          
           axios({
             method: 'get',
-            url: 'http://18.117.173.151:8080/api/volunteerWorks?page='+ number +'searchOption=title_contents&keyword='+ searchdata,            
+            url: 'http://52.14.229.32:8080/api/volunteerWorks?page='+ number +'searchOption=title_contents&keyword='+ searchdata,            
             headers: {                
                 "Authorization": 'Bearer ' + cookies
             }            
@@ -139,7 +138,7 @@ const WorkHistoryPagination = () => {
         if(selectvalue === "title"){          
           axios({
             method: 'get',
-            url: 'http://18.117.173.151:8080/api/volunteerWorks?searchOption=title&keyword=' + searchdata,            
+            url: 'http://52.14.229.32:8080/api/volunteerWorks?searchOption=title&keyword=' + searchdata,            
             headers: {                
                 "Authorization": 'Bearer ' + cookies
             }            
@@ -166,7 +165,7 @@ const WorkHistoryPagination = () => {
           
           axios({
             method: 'get',
-            url: 'http://18.117.173.151:8080/api/volunteerWorks?searchOption=title_contents&keyword='+ searchdata,            
+            url: 'http://52.14.229.32:8080/api/volunteerWorks?searchOption=title_contents&keyword='+ searchdata,            
             headers: {                
                 "Authorization": 'Bearer ' + cookies
             }            

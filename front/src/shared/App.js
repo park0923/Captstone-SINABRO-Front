@@ -110,30 +110,10 @@ class App extends Component {
         <Route path="/Disabled" component={Disabled} />
         <Route path="/Disabled_file" component={Disabled_file} />
         <Route path="/Disabled_MyPage" component={Disabled_MyPage} />
-        <Route path="/Disabled_write" component={Disabled_write} />
-        <Route
-          path="/MemberHomeInspectionWorkPage"
-          component={MemberHomeInspectionWorkPage}
-        />
-        <Route
-          path="/MemberHomeNoticePage/:id"
-          component={MemberHomeNoticePage}
-        />
-        <Route
-          path="/MemberHomeTrainingScreen"
-          component={MemberHomeTrainingScreen}
-        />
-        <Route
-          path="/MemberHomeVolunteerWorkPage"
-          component={MemberHomeVolunteerWorkPage}
-        />
-        <Route
-          path="/MemberHomeWorkInformation"
-          component={MemberHomeWorkInformation}
-        />
+        <Route path="/Disabled_write" component={Disabled_write} />     
         <Route path="/MemberNoticeWrite" component={MemberNoticeWrite} />
         <Route path="/Notification_page/:id" component={Notification_page} />
-        <Route path="/MemberHomeInspectionWorkPage" component={MemberHomeInspectionWorkPage}/> 
+        <Route path="/MemberHomeInspectionWorkPage/:id" component={MemberHomeInspectionWorkPage}/> 
         <Route path="/MemberHomeNoticePage/:id" component={MemberHomeNoticePage}/>
         <Route path="/MemberHomeTrainingScreen" component={MemberHomeTrainingScreen}/>
         <Route path="/MemberHomeVolunteerWorkPage/:id" component={MemberHomeVolunteerWorkPage}/>

@@ -6,21 +6,6 @@ import UserTask from './UserTask';
 import InspectionPaginations from './InspectionPaginations';
 
 function Member_Home_Inspection() {
-    const cookies = cookie.load("login_token");
-    useEffect(() => {        
-        console.log(cookies);        
-        axios({
-            method: 'get',
-            url: 'http://18.117.173.151:8080/api/works/',            
-            headers: {                
-                "Authorization": 'Bearer ' + cookies
-            }            
-          })
-            .then(function (response) {
-              console.log(response);
-            });
-
-    }, [])
 
     return(
         <div className="min-h-screen flex item-center justify-between bg-gray-yellow py-12 px-4 sm:px-6 lg:px-8">            

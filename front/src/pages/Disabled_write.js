@@ -43,7 +43,6 @@ const Disabled_write = () => {
     setFile(e.target.files);
   };
 
-=======
   const handleSubmit = () =>{           
       const form = new FormData()
 
@@ -60,7 +59,7 @@ const Disabled_write = () => {
       }
 
       axios.post(
-        'http://18.117.173.151:8080/api/works/', 
+        'http://52.14.229.32:8080/api/works/', 
         form,
         {
           headers: {                
@@ -70,7 +69,7 @@ const Disabled_write = () => {
         }                        
       )
       .then(function (response) {
-        // handle success
+        // handle successF
         console.log(response);
         if (response.status === 200) {
           alert("봉사요청게시글이 업로드 되었습니다.");

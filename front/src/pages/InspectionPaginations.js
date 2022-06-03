@@ -2,31 +2,31 @@ import axios from "axios";
 import React, { useEffect, useState } from 'react';
 import NoticePost from './NoticePost';
 import cookie from 'react-cookies';
+import InspectionPost from "./InspectionPost";
 
 const InspectionPaginations = () =>{
     const [data, setData] = useState({
-        boards:{
-          "content": [
-            {
-              "board_type": null,
-              "contents": null,
-              "created_date": null,
-              "idx": null,
-              "title": null,
-              "updated_date": null
-            }
-          ],
-          "links": {
-            "ref": null,
+      inspection_responses: {
+        "links": [
+          {
+            "rel": null,
             "href": null
-          },
-          "page": {
-            "number": null,
-            "size": null,
-            "totalElements": null,
-            "totalPages": null
           }
+        ],
+        "content": [
+          {
+            "idx": null,
+            "title": null,
+            "ended_date": null
+          }
+        ],
+        "page": {
+          "size": null,
+          "totalElements": null,
+          "totalPages": null,
+          "number": null
         }
+      }
       }
       );
   
@@ -41,7 +41,7 @@ const InspectionPaginations = () =>{
       useEffect(() => {      
         axios({
           method: 'get',
-          url: 'http://18.117.173.151:8080/api/boards',            
+          url: 'http://52.14.229.32:8080/api/inspections',            
           headers: {                
               "Authorization": 'Bearer ' + cookies
           }            
@@ -61,7 +61,7 @@ const InspectionPaginations = () =>{
     
       const handlePaging = (number) =>{     
         if(states === ""){
-          axios.get('http://18.117.173.151:8080/api/inspections?page='+ number + '&size=10')
+          axios.get('http://52.14.229.32:8080/api/inspections?page='+ number + '&size=10')
           .then(function (response) {
               // handle success            
               setData(response.data);
@@ -75,7 +75,7 @@ const InspectionPaginations = () =>{
             });   
         }
         else if(states === "title"){
-          axios.get('http://18.117.173.151:8080/api/inspections?page='+ number +'&searchOption=title&keyword=' + searchdata)
+          axios.get('http://52.14.229.32:8080/api/inspections?page='+ number +'&searchOption=title&keyword=' + searchdata)
           .then(function (response) {
               // handle success
               setData(response.data);            
@@ -89,7 +89,7 @@ const InspectionPaginations = () =>{
             });   
         }
         else if(states === "title_body"){
-          axios.get('http://18.117.173.151:8080/api/inspections?page='+ number +'searchOption=title_contents&keyword='+ searchdata)
+          axios.get('http://52.14.229.32:8080/api/inspections?page='+ number +'searchOption=title_contents&keyword='+ searchdata)
           .then(function (response) {
               // handle success
               setData(response.data);
@@ -102,16 +102,16 @@ const InspectionPaginations = () =>{
               // always executed
             }); 
         }
-          
       }
   
       const pageNumbers = [];
-      for (let i = 0; i < Math.ceil(data.boards.page.totalElements / data.boards.page.size); i++) {
+      for (let i = 0; i < Math.ceil(data.inspection_responses.page.totalElements / data.inspection_responses.page.size); i++) {
         pageNumbers.push(i);      
       }
       
       const handleChangeSearch = (e) => {
-        setsearchdata(e.target.value);      
+        setsearchdata(e.target.value);     
+        console.log(searchdata);
       }
   
       const handleChangeSelect = (e) => {
@@ -119,8 +119,14 @@ const InspectionPaginations = () =>{
       }
   
       const handleSubmit = (e) => {      
-        if(selectvalue === "title"){
-          axios.get('http://18.117.173.151:8080/api/inspections?searchOption=title&keyword=' + searchdata)
+        if(selectvalue === "title"){          
+          axios({
+            method: 'get',
+            url: 'http://52.14.229.32:8080/api/inspections?searchOption=title&keyword=' + searchdata,            
+            headers: {                
+                "Authorization": 'Bearer ' + cookies
+            }            
+          })
           .then(function (response) {
               // handle success            
               if(response.data === undefined){
@@ -140,7 +146,14 @@ const InspectionPaginations = () =>{
             });       
         }      
         else if(selectvalue === "title_body"){        
-          axios.get('http://18.117.173.151:8080/api/inspections?searchOption=title_contents&keyword='+ searchdata)
+          
+          axios({
+            method: 'get',
+            url: 'http://52.14.229.32:8080/api/inspections?searchOption=title_contents&keyword='+ searchdata,            
+            headers: {                
+                "Authorization": 'Bearer ' + cookies
+            }            
+          })
           .then(function (response) {
               // handle success            
               if(response.data === undefined){
@@ -197,7 +210,7 @@ const InspectionPaginations = () =>{
               </div>
           </div>
           <div>
-            <NoticePost posts={data.boards.content}></NoticePost>
+            <InspectionPost posts={data.inspection_responses.content}></InspectionPost>
           </div>
           <div>         
             <nav>
