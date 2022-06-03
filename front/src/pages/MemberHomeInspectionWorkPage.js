@@ -163,7 +163,8 @@ function MemberHomeInspectionWorkPage({history, location, match}){
                         </div>            
                         <h1 className="py-2 text-2xl font-sebang-gothic front-bold text-black">검수 내용</h1> 
                         <div className="w-full h-36 border-2 shadow-md rounded-xl item-center justify-center bg-gray-50 ">                            
-                            <textarea className="w-full h-full" id="content" name="content" value={inspection_contents} onChange={handleInspection}>                               
+                            <textarea className="w-full h-full" id="content" name="content" value={inspection_contents} onChange={handleInspection} placeholder="">
+                                <p>setststse</p>
                             </textarea>
                         </div>
                         
