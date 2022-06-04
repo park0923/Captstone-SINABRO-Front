@@ -26,7 +26,7 @@ const  MemberHomeEducation = () => {
     useEffect(() => {      
           axios({
             method: 'get',
-            url: 'http://52.14.229.32:8080/api/educations/home',            
+            url: 'http://18.116.2.111:8080/api/educations/home',            
             headers: {                
                 "Authorization": 'Bearer ' + cookies
             }            
@@ -34,10 +34,7 @@ const  MemberHomeEducation = () => {
           .then(function (response) {
               // handle success            
               setData(response.data);
-              console.log(response.data);
-              if(response.data.progress >= 100){
-                window.location.href = '/Home_Class_List'
-              }
+              console.log(response.data);              
             })
             .catch(function (error) {
               // handle error
@@ -156,7 +153,9 @@ const  MemberHomeEducation = () => {
                                     <ul className="space-y-2">
                                     <li className="flex flex-col text-xl font-sebang-gothic front-bold text-black">    
                                         <div className="flex flex-row justify-between">
-                                            {title}                                            
+                                            <Link to={{pathname: `/MemberHomeTrainingScreen/${id}`, state: {type: "notice"} }}>
+                                                {title}
+                                            </Link>                                           
                                             <div className="board boarder-2 rounded-xl item-center w-20 text-center font-medium bg-green-500">{status}</div>          
                                         </div>                 
                                         <hr className="h-1 bg-gray-300" />

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import axios from "axios";
 import cookie from 'react-cookies';
 import qs from 'qs';
@@ -7,14 +7,15 @@ import UserTask from "./UserTask";
 
 function MemberHomeVolunteerWorkPage({history, location, match}){
     //console.log(history.location.pathname.lengh)
-    //console.log(history.location.pathname.substring(30,history.location.pathname.lengh - 1));
+    console.log(history.location.pathname);    
     //console.log(location.state.type);
     //console.log(match.params.id);
     
     axios.default.paramsSerializer = params => {
         return qs.stringify(params);
     }
-    const test = history.location.pathname;    
+    const test = history.location.pathname;
+    console.log(test.slice(29))    
     const [id, setId] = useState(test.slice(29));    
     const [data, setData] = useState({
         "created_date": null,
@@ -37,7 +38,7 @@ function MemberHomeVolunteerWorkPage({history, location, match}){
 
     const handleUpdate = () => {        
         axios.patch(
-            'http://52.14.229.32:8080/api/volunteerWorks/' + id, 
+            'http://18.116.2.111:8080/api/volunteerWorks/' + id, 
             {
                 contents: works_contents,
                 title: data.work_id
@@ -66,7 +67,7 @@ function MemberHomeVolunteerWorkPage({history, location, match}){
     const handleInspection = () => {
         axios({
             method: 'post',
-            url: 'http://52.14.229.32:8080/api/inspections/'+ id,
+            url: 'http://18.116.2.111:8080/api/inspections/'+ id,
             headers: {                
                 "Authorization": 'Bearer ' + cookies
             }            
@@ -93,7 +94,7 @@ function MemberHomeVolunteerWorkPage({history, location, match}){
         
         axios({
             method: 'get',
-            url: 'http://52.14.229.32:8080/api/volunteerWorks/'+ id,
+            url: 'http://18.116.2.111:8080/api/volunteerWorks/'+ id,
             headers: {                
                 "Authorization": 'Bearer ' + cookies
             }            
@@ -190,6 +191,7 @@ function MemberHomeVolunteerWorkPage({history, location, match}){
                         </div>
                         <div className="w-full y-40 h-96 border-2 shadow-md rounded-xl item-center justify-center bg-gray-50 ">                            
                             <textarea className="mt-5" id="content" name="content" rows="15" cols="90" value={works_contents} onChange={handleWorks} placeholder="내용을 입력하세요">                                                               
+                            adadaadsad
                             </textarea>
                         </div>
                         <div className="space-y-2 p-2 flex-row item-center justify-center">

@@ -31,7 +31,7 @@ const MemberHomeWorkView = ({history, location, match}) => {
       useEffect(() => {
         axios({
             method: 'get',
-            url: 'http://52.14.229.32:8080/api/works/' +id,            
+            url: 'http://18.116.2.111:8080/api/works/' +id,            
             headers: {                
                 "Authorization": 'Bearer ' + cookies
             }            
@@ -49,7 +49,7 @@ const MemberHomeWorkView = ({history, location, match}) => {
         
             axios({
                 method: 'get',
-                url: 'http://52.14.229.32:8080/api/works/download/' +id,            
+                url: 'http://18.116.2.111:8080/api/works/download/' +id,            
                 headers: {                
                     "Authorization": 'Bearer ' + cookies,
                     'Content-Type': 'multipart/form-data'
@@ -68,7 +68,7 @@ const MemberHomeWorkView = ({history, location, match}) => {
     const handleVolunteerSubmit = () => {        
         axios({
             method: 'post',
-            url: 'http://52.14.229.32:8080/api/volunteerWorks/' + id,
+            url: 'http://18.116.2.111:8080/api/volunteerWorks/' + id,
             headers: {                
                 "Authorization": 'Bearer ' + cookies
             }

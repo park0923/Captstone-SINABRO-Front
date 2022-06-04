@@ -6,25 +6,28 @@ import WorkHistoryPost from "./WorkHistoryPost";
 
 const WorkHistoryPagination = () => {
     const [data, setData] = useState({
-        volunteers:{
-          "content": [
-            {                            
-              "idx": null,
-              "title": null,
-              "ended_date": null
-            }
-          ],
-          "links": {
-            "ref": null,
+      work: {
+        "links": [
+          {
+            "rel": null,
             "href": null
-          },
-          "page": {
-                "number": null,
-                "size": null,
-                "totalElements": null,
-                "totalPages": null
           }
+        ],
+        "content": [
+          {
+            "type": null,
+            "id": null,
+            "title": null,
+            "date": null
+          }          
+        ],
+        "page": {
+          "size": null,
+          "totalElements":null,
+          "totalPages": null,
+          "number": null
         }
+      }
       }
       );
   
@@ -39,14 +42,14 @@ const WorkHistoryPagination = () => {
       useEffect(() => {      
         axios({
             method: 'get',
-            url: 'http://52.14.229.32:8080/api/volunteerWorks/',            
+            url: 'http://18.116.2.111:8080/api/members/list',            
             headers: {                
                 "Authorization": 'Bearer ' + cookies
             }            
           })
           .then(function (response) {
               // handle success
-              setData(response.data);                          
+              setData(response.data);                                  
             })
             .catch(function (error) {
               // handle error
@@ -61,14 +64,14 @@ const WorkHistoryPagination = () => {
         if(states === ""){          
           axios({
             method: 'get',
-            url: 'http://52.14.229.32:8080/api/volunteerWorks?page='+ number + '&size=10',            
+            url: 'http://18.116.2.111:8080/api/members/list?page='+ number + '&size=10',            
             headers: {                
                 "Authorization": 'Bearer ' + cookies
             }            
           })
           .then(function (response) {
               // handle success            
-              setData(response.data);
+              setData(response.data);              
             })
             .catch(function (error) {
               // handle error
@@ -81,7 +84,7 @@ const WorkHistoryPagination = () => {
         else if(states === "title"){          
           axios({
             method: 'get',
-            url: 'http://52.14.229.32:8080/api/volunteerWorks?page='+ number +'&searchOption=title&keyword=' + searchdata,            
+            url: 'http://18.116.2.111:8080/api/members/list?page='+ number +'&searchOption=title&keyword=' + searchdata,            
             headers: {                
                 "Authorization": 'Bearer ' + cookies
             }            
@@ -101,7 +104,7 @@ const WorkHistoryPagination = () => {
         else if(states === "title_body"){          
           axios({
             method: 'get',
-            url: 'http://52.14.229.32:8080/api/volunteerWorks?page='+ number +'searchOption=title_contents&keyword='+ searchdata,            
+            url: 'http://18.116.2.111:8080/api/members/list?page='+ number +'searchOption=title_contents&keyword='+ searchdata,            
             headers: {                
                 "Authorization": 'Bearer ' + cookies
             }            
@@ -122,7 +125,7 @@ const WorkHistoryPagination = () => {
       }
   
       const pageNumbers = [];
-      for (let i = 0; i < Math.ceil(data.volunteers.page.totalElements / data.volunteers.page.size); i++) {
+      for (let i = 0; i < Math.ceil(data.work.page.totalElements / data.work.page.size); i++) {
         pageNumbers.push(i);      
       }
       
@@ -138,7 +141,7 @@ const WorkHistoryPagination = () => {
         if(selectvalue === "title"){          
           axios({
             method: 'get',
-            url: 'http://52.14.229.32:8080/api/volunteerWorks?searchOption=title&keyword=' + searchdata,            
+            url: 'http://18.116.2.111:8080/api/members/list?searchOption=title&keyword=' + searchdata,            
             headers: {                
                 "Authorization": 'Bearer ' + cookies
             }            
@@ -165,7 +168,7 @@ const WorkHistoryPagination = () => {
           
           axios({
             method: 'get',
-            url: 'http://52.14.229.32:8080/api/volunteerWorks?searchOption=title_contents&keyword='+ searchdata,            
+            url: 'http://18.116.2.111:8080/api/members/list?searchOption=title_contents&keyword='+ searchdata,            
             headers: {                
                 "Authorization": 'Bearer ' + cookies
             }            
@@ -227,7 +230,7 @@ const WorkHistoryPagination = () => {
                 </div>
             </div>
         <div>
-          <WorkHistoryPost posts={data.volunteers.content}></WorkHistoryPost>
+          <WorkHistoryPost posts={data.work.content}></WorkHistoryPost>
         </div>
         <div>         
           <nav>

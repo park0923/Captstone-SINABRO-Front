@@ -59,7 +59,7 @@ const Disabled_write = () => {
       }
 
       axios.post(
-        'http://52.14.229.32:8080/api/works/', 
+        'http://18.116.2.111:8080/api/works/', 
         form,
         {
           headers: {                

@@ -1,13 +1,42 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import { Link } from "react-router-dom";
+import cookie  from "react-cookies";
+import axios from "axios";
 import UserTask from "./UserTask";
 
 function MemberHomeMyPage() {
-  
+  const cookies = cookie.load("login_token");
+    const [user, setUser] = useState({        
+          "username": null,
+          "introduction": null,
+          "email": null,
+          "phone_number": null,
+          "address": null,
+          "volunteer_time": null,
+          "work_number": null,
+          "warn_number": null
+    })
   const hadleClick = () => {
       window.location.href = '/Member_Home_WorkHistory';
   }
-  
+  useEffect(() => {
+    axios({
+        method: 'get',
+        url: 'http://18.116.2.111:8080/api/members',            
+        headers: {                
+            "Authorization": 'Bearer ' + cookies
+        }            
+      })
+      .then(function (response) {
+          // handle success              
+          setUser(response.data)
+        })
+        .catch(function (error) {
+          // handle error
+          console.log(error);
+        })    
+},[]);  
+
   return (
     <div className="min-h-screen flex item-center justify-between bg-gray-yellow py-12 px-4 sm:px-6 lg:px-8">
       <div className="min-h-screen p-12 boder border-2 shadow-md rounded-none item-center justify-center bg-gray-50 w-1/5 space-y-20">
@@ -109,10 +138,10 @@ function MemberHomeMyPage() {
                   alt="user"
                 />
                 <p className="pt-1 text-center text-lg font-sebang-gothic font-bold text-black">
-                  봉사자 이름
+                  {user.username}
                 </p>
                 <p className="pt-1 text-center text-base font-sebang-gothic font- text-gray-500">
-                  간단한 자기소개글
+                  {user.introduction}
                 </p>
                 <div className="mt-14 shadow-md rounded-full justify-center bg-green-600">
                   <Link
@@ -130,7 +159,7 @@ function MemberHomeMyPage() {
                       이메일
                     </label>
                     <p className="text-sm font-sebang-gothic font- text-gray-500">
-                      volunteer@synabro.com
+                      {user.email}
                     </p>
                   </div>
                   <div className="flex flex-col space-y-4">
@@ -138,7 +167,7 @@ function MemberHomeMyPage() {
                       휴대폰 번호
                     </label>
                     <p className="text-sm font-sebang-gothic font- text-gray-500">
-                      010-1234-5678
+                      {user.phone_number}
                     </p>
                   </div>
                   <div className="flex flex-col space-y-4">
@@ -146,7 +175,7 @@ function MemberHomeMyPage() {
                       주소
                     </label>
                     <p className="text-sm font-sebang-gothic font- text-gray-500">
-                      부산광역시 부산진구 시나브로 12 봉사아파트 802호
+                      {user.address}
                     </p>
                   </div>
                 </div>
@@ -157,7 +186,7 @@ function MemberHomeMyPage() {
                       누적봉사 시간
                     </label>
                     <p className="text-center text-2xl font-sebang-gothic font-bold text-black">
-                      124
+                      {user.volunteer_time}
                     </p>
                   </div>
                   <div className="flex flex-col space-y-4">
@@ -165,7 +194,7 @@ function MemberHomeMyPage() {
                       누적 작업 개수
                     </label>
                     <p className="text-center text-2xl font-sebang-gothic font-bold text-black">
-                      18
+                      {user.work_number}
                     </p>
                   </div>
                   <div className="flex flex-col space-y-4">
@@ -173,7 +202,7 @@ function MemberHomeMyPage() {
                       누적 경고 횟수
                     </label>
                     <p className="text-center text-2xl font-sebang-gothic font-bold text-black">
-                      0
+                      {user.warn_number}
                     </p>
                   </div>
                 </div>

@@ -41,7 +41,7 @@ const InspectionPaginations = () =>{
       useEffect(() => {      
         axios({
           method: 'get',
-          url: 'http://52.14.229.32:8080/api/inspections',            
+          url: 'http://18.116.2.111:8080/api/inspections',            
           headers: {                
               "Authorization": 'Bearer ' + cookies
           }            
@@ -61,7 +61,7 @@ const InspectionPaginations = () =>{
     
       const handlePaging = (number) =>{     
         if(states === ""){
-          axios.get('http://52.14.229.32:8080/api/inspections?page='+ number + '&size=10')
+          axios.get('http://18.116.2.111:8080/api/inspections?page='+ number + '&size=10')
           .then(function (response) {
               // handle success            
               setData(response.data);
@@ -75,7 +75,7 @@ const InspectionPaginations = () =>{
             });   
         }
         else if(states === "title"){
-          axios.get('http://52.14.229.32:8080/api/inspections?page='+ number +'&searchOption=title&keyword=' + searchdata)
+          axios.get('http://18.116.2.111:8080/api/inspections?page='+ number +'&searchOption=title&keyword=' + searchdata)
           .then(function (response) {
               // handle success
               setData(response.data);            
@@ -89,7 +89,7 @@ const InspectionPaginations = () =>{
             });   
         }
         else if(states === "title_body"){
-          axios.get('http://52.14.229.32:8080/api/inspections?page='+ number +'searchOption=title_contents&keyword='+ searchdata)
+          axios.get('http://18.116.2.111:8080/api/inspections?page='+ number +'searchOption=title_contents&keyword='+ searchdata)
           .then(function (response) {
               // handle success
               setData(response.data);
@@ -122,7 +122,7 @@ const InspectionPaginations = () =>{
         if(selectvalue === "title"){          
           axios({
             method: 'get',
-            url: 'http://52.14.229.32:8080/api/inspections?searchOption=title&keyword=' + searchdata,            
+            url: 'http://18.116.2.111:8080/api/inspections?searchOption=title&keyword=' + searchdata,            
             headers: {                
                 "Authorization": 'Bearer ' + cookies
             }            
@@ -149,7 +149,7 @@ const InspectionPaginations = () =>{
           
           axios({
             method: 'get',
-            url: 'http://52.14.229.32:8080/api/inspections?searchOption=title_contents&keyword='+ searchdata,            
+            url: 'http://18.116.2.111:8080/api/inspections?searchOption=title_contents&keyword='+ searchdata,            
             headers: {                
                 "Authorization": 'Bearer ' + cookies
             }            
