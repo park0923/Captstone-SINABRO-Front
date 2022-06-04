@@ -45,6 +45,11 @@ import MemberNoticeWrite from "pages/MemberNoticeWrite";
 import Notification_page from "pages/Notification_page";
 import MemberHomeWorkView from "pages/MemberHomeWorkView";
 import WorkHistoryPost from "pages/WorkHistoryPost";
+import Disabled_main from "pages/Disabled_main";
+import Disabled_MyPage_edit from "pages/Disabled_MyPage_edit";
+import SignIn_disabled from "pages/SignIn_disabled";
+import SignUp_disabled from "pages/SignUp_disabled";
+import MemberHomeMyPage_edit from "pages/MemberHomeMyPage_edit";
 
 class App extends Component {
   render() {
@@ -121,6 +126,11 @@ class App extends Component {
         <Route path="/MemberNoticeWrite" component={MemberNoticeWrite} />
         <Route path="/MemberHomeWorkView/:id" component={MemberHomeWorkView} />
         <Route path="/WorkHistoryPost" component={WorkHistoryPost} />
+        <Route path="/Disabled_main" component={Disabled_main} />
+        <Route path="/Disabled_MyPage_edit" component={Disabled_MyPage_edit} />
+        <Route path="/SignIn_disabled" component={SignIn_disabled} />
+        <Route path="/SignUp_disabled" component={SignUp_disabled} />
+        <Route path="/MemberHomeMyPage_edit" component={MemberHomeMyPage_edit} />
       </div>
     );
   }

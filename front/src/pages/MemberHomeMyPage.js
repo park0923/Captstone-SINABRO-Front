@@ -145,7 +145,7 @@ function MemberHomeMyPage() {
                 </p>
                 <div className="mt-14 shadow-md rounded-full justify-center bg-green-600">
                   <Link
-                    to=""
+                    to="/MemberHomeMyPage_edit"
                     className="ml-8 text-center text-sm font-sebang-gothic text-white"
                   >
                     정보 수정

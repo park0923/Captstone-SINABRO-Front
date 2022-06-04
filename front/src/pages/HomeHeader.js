@@ -41,7 +41,7 @@ const HomeHeader = () => {
               회 원 가 입
             </Link>
             <Link
-              to="/Disabled"
+              to="/Disabled_main"
               className="ml-6 w-32 h-10 whitespace-nowrap inline-flex items-center justify-center border border-transparent rounded-full shadow-sm text-sm font-sebang-gothic font-small text-white bg-green-600 hover:bg-green-700"
             >
               시 각 보 조 페 이 지

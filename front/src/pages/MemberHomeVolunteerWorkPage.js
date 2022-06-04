@@ -102,7 +102,8 @@ function MemberHomeVolunteerWorkPage({history, location, match}){
           .then(function (response) {
               // handle success
               //console.log(response.data);
-              setData(response.data);              
+              setData(response.data);     
+              setWorks_contents(response.data.volunteer_work_contents);
             })
             .catch(function (error) {
               // handle error

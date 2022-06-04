@@ -232,7 +232,7 @@ function MemberHomeDashboard() {
             </h1>
             <div className="border-2 shadow-md rounded-xl min-w-full h-80 bg-gray-50 space-y-1">
               <div className="mt-4 mr-8 justify-start">
-                <MyChart />
+                {/* <MyChart /> */}
               </div>
             </div>
           </div>
