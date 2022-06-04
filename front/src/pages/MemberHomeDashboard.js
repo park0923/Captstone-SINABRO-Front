@@ -1,13 +1,35 @@
+import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Calendar from "./Calendar";
 import MyChart from "./MyChart";
 import UserTask from "./UserTask";
+import cookie from 'react-cookies';
 
 function MemberHomeDashboard() {
   const [value, setValue] = useState(60);
   const [max, setMax] = useState(100);
-
+  const cookies = cookie.load("login_token");
+  useEffect(() => {
+    axios({
+      method: 'get',
+      url: 'http://18.116.2.111:8080/api/members',            
+      headers: {                
+          "Authorization": 'Bearer ' + cookies
+      }            
+    })
+    .then(function (response) {
+        // handle success
+        // console.log(response);
+      })
+      .catch(function (error) {
+        // handle error
+        console.log(error);
+      })
+      .then(function () {
+        // always executed
+      });     
+  })
   return (
     <div className="min-h-screen flex item-center justify-between bg-gray-yellow py-12 px-4 sm:px-6 lg:px-8">
       <div className="min-h-screen p-12 boder border-2 shadow-md rounded-none item-center justify-center bg-gray-50 max-w-max space-y-20">

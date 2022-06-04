@@ -33,7 +33,7 @@ function MemberHomeInspectionWorkPage({history, location, match}){
     }
     const handleClick = () => {
         axios.patch(
-            'http://52.14.229.32:8080/api/inspections/' + id, 
+            'http://18.116.2.111:8080/api/inspections/' + id, 
             {
                 contents: inspection_contents,
                 ended_date : data.ended_date,
@@ -63,7 +63,7 @@ function MemberHomeInspectionWorkPage({history, location, match}){
     useEffect(() => {
         axios({
             method: 'get',
-            url: 'http://52.14.229.32:8080/api/inspections/'+ id,
+            url: 'http://18.116.2.111:8080/api/inspections/'+ id,
             headers: {                
                 "Authorization": 'Bearer ' + cookies
             }            
@@ -71,7 +71,8 @@ function MemberHomeInspectionWorkPage({history, location, match}){
           .then(function (response) {
               // handle success
               console.log(response.data); 
-              setData(response.data);                       
+              setData(response.data); 
+              setInspection_contents(response.data.inspection_contents);
             })
             .catch(function (error) {
               // handle error
@@ -163,8 +164,7 @@ function MemberHomeInspectionWorkPage({history, location, match}){
                         </div>            
                         <h1 className="py-2 text-2xl font-sebang-gothic front-bold text-black">검수 내용</h1> 
                         <div className="w-full h-36 border-2 shadow-md rounded-xl item-center justify-center bg-gray-50 ">                            
-                            <textarea className="w-full h-full" id="content" name="content" value={inspection_contents} onChange={handleInspection} placeholder="">
-                                <p>setststse</p>
+                            <textarea className="w-full h-full" id="content" name="content" value={inspection_contents} onChange={handleInspection} placeholder="">                                
                             </textarea>
                         </div>
                         

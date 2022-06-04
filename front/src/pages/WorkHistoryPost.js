@@ -10,7 +10,10 @@ const WorkHistoryPost = ({posts}) => {
             </th>
             <th className="w-8/12 text-xl text-gray-500 font-sebang-gothic tracking-wide text-left">
               제목
-            </th>                
+            </th>     
+            <th className="w-2/12   text-xl text-gray-500 font-sebang-gothic tracking-wide text-center">
+              분류
+            </th>           
             <th className="w-2/12   text-xl text-gray-500 font-sebang-gothic tracking-wide text-center">
               마 감 일
             </th>    
@@ -36,7 +39,7 @@ const WorkHistoryPost = ({posts}) => {
         </th>               
       </thead>
       <tbody>
-        {posts.slice(0).map(({ idx, title, ended_date }, index) => (
+        {posts.slice(0).map(({ id, title, type, date }, index) => (
             <tr className="bg-white">
               <td
                 style={{ borderBottom: "1px solid #A1A0A0" }}
@@ -49,15 +52,21 @@ const WorkHistoryPost = ({posts}) => {
                 style={{ borderBottom: "1px solid #A1A0A0" }}
                 className="p-2 text-sm font-sebang-gothic"
               >
-                <Link to={{pathname: `/MemberHomeVolunteerWorkPage/${idx}`, state: {type: "work"}}} >
+                <Link to={{pathname: `/MemberHomeWorkInformation/${id}`, state: {type: type}}} >
                   {title}
                 </Link> 
+              </td>  
+              <td
+                style={{ borderBottom: "1px solid #A1A0A0" }}
+                className="p-2 text-sm font-sebang-gothic text-center"
+              >
+                {type}
               </td>                    
               <td
                 style={{ borderBottom: "1px solid #A1A0A0" }}
                 className="p-2 text-sm font-sebang-gothic text-center"
               >
-                {ended_date}
+                {date}
               </td>                                
             </tr>
           ))}        

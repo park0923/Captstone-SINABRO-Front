@@ -115,9 +115,9 @@ class App extends Component {
         <Route path="/Notification_page/:id" component={Notification_page} />
         <Route path="/MemberHomeInspectionWorkPage/:id" component={MemberHomeInspectionWorkPage}/> 
         <Route path="/MemberHomeNoticePage/:id" component={MemberHomeNoticePage}/>
-        <Route path="/MemberHomeTrainingScreen" component={MemberHomeTrainingScreen}/>
+        <Route path="/MemberHomeTrainingScreen/:id" component={MemberHomeTrainingScreen}/>
         <Route path="/MemberHomeVolunteerWorkPage/:id" component={MemberHomeVolunteerWorkPage}/>
-        <Route path="/MemberHomeWorkInformation" component={MemberHomeWorkInformation}/>
+        <Route path="/MemberHomeWorkInformation/:id" component={MemberHomeWorkInformation}/>
         <Route path="/MemberNoticeWrite" component={MemberNoticeWrite} />
         <Route path="/MemberHomeWorkView/:id" component={MemberHomeWorkView} />
         <Route path="/WorkHistoryPost" component={WorkHistoryPost} />

@@ -1,27 +1,52 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import cookie from 'react-cookies';
+import UserTask from "./UserTask"
+import qs from 'qs';
 
+function MemberHomeTrainingScreen({history, location, match}){
+    axios.default.paramsSerializer = params => {
+        return qs.stringify(params);
+    }
 
-function MemberHomeTrainingScreen(){
-    axios.post('http://52.14.229.32:8080/api/boards', {
-        board_type: "education",
-        contents: "content",
-        title: "title"
+    const [data, setData] = useState({
+    "id": null,
+    "title": null,
+    "status": null,
+    "description": null,
+    "file": null
+   })
+   const cookies = cookie.load("login_token");
+   const [id, setId] = useState(match.params.id)
+
+   useEffect(() => {
+    axios({
+        method: 'get',
+        url: 'http://18.116.2.111:8080/api/educations/' + id,            
+        headers: {                
+            "Authorization": 'Bearer ' + cookies
+        }            
       })
       .then(function (response) {
-        console.log(response);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-    
+          // handle success            
+          setData(response.data);
+          console.log(response.data);          
+        })
+        .catch(function (error) {
+          // handle error
+          console.log(error);
+        })
+        .then(function () {
+          // always executed
+        });    
+   },[])
     return(
         <div className="min-h-screen flex item-center justify-between bg-gray-yellow py-12 px-4 sm:px-6 lg:px-8">            
             <div className="min-h-screen p-12 boder border-2 shadow-md rounded-none item-center justify-center bg-gray-50 max-w-max space-y-20">
                 <div>
                     <img className="mx-auto h-20 w-auto" src="/img/Logo.svg" alt="Logo"/>
-                    <Link to="MemberHomeMyPage">
+                    <Link to="/MemberHomeMyPage">
                         <div className="mt-14 shadow-md rounded-full bg-green-600">
                             <p className="text-center text-xl font-sebang-gothic text-white">
                                 마이페이지
@@ -30,7 +55,7 @@ function MemberHomeTrainingScreen(){
                     </Link>                    
                 </div>                
                 <div className="flex flex-col space-y-4">
-                    <Link to="MemberHomeDashboard">
+                    <Link to="/MemberHomeDashboard">
                         <div className="flex flex-row space-x-8">
                             <img className="w-10 h-10" src="/img/Asset 18.png" alt="dashboard" />
                             <p className="pt-1 text-justify text-2xl font-sebang-gothic front-bold text-black hover:text-gray-600">
@@ -85,18 +110,17 @@ function MemberHomeTrainingScreen(){
                 <div className="flex flex-row ">
                     <div className="p-6 boder border-2 shadow-md rounded-xl item-center justify-center w-full h-35 bg-gray-50 float-left ">
                         <span>
-                            <h3 className="text-left text-lg font-sebang-gothic front-bold text-black">제목글, 바닥글 적기</h3>
-                            <textarea id="title" name="title" rows="3" cols="50">
-                                
-                            </textarea>  
+                            <h3 className="text-left text-lg font-sebang-gothic front-bold text-black">{data.title}</h3>
+                            <hr/>
+                            <p className="mt-2 text-left text-sm font-sebang-gothic front-normal text-black">{data.description}</p>  
                         </span>
                         
                         <span>
                             <div className="space-xy-2 mt-2 float-right float-top">
-                                <h3 className="text-left text-lg font-sebang-gothic front-bold text-black">작업 참고 파일</h3>
+                                <h3 className="text-left text-lg font-sebang-gothic front-bold text-black">작업 참고 파일</h3>                                
                                 <div className='font font-sebang-gothic front-bold text-xl'>
-                                    <a href='filepath'download>
-                                    <button class="px-4 py-2 border border-black ">시간과 공간의 개념.srt</button>
+                                    <a href='{data.file}' download>
+                                    <button class="px-4 py-2 border border-black ">Download</button>
                                     </a>
                                 </div>
                             </div>  
@@ -125,79 +149,7 @@ function MemberHomeTrainingScreen(){
             </div>  
 
             <div className="p-12 boder border-2 shadow-md rounded-none item-center justify-center bg-gray-50 max-w-max max-h-max space-y-4">
-                <div className="flex flex-row space-x-4">
-                    <img className="w-10 h-10 boder boder-2 runded-md" src="/img/Asset 17.png" alt="user" />
-                    <div>
-                        <p className="text-center text-xl font-sebang-gothic font-bold ">
-                            봉사자 이름
-                        </p>                        
-                        <Link to="" className="text-center text-sm font-sebang-gothic text-gray-500 hover:text-gray-700">
-                            로그아웃
-                        </Link>
-                    </div>
-                </div>
-                <div className=' space-y-4'>
-                    <p className="mt-14 text-left text-base font-sebang-gothic font-bold">
-                        진&nbsp;행&nbsp;작&nbsp;업
-                    </p>
-                    <div className="flex flex-row justify-center space-x-4 ">
-                        <img className="w-10 h-10 boder boder-2 rounded-md " src="/img/Asset 17.png " alt="user" />
-                        <div className="">
-                            <p className="left-0 text-center text-base font-sebang-gothic font-bold">
-                                진행 중인 작업 1
-                            </p>
-                            <div className="mx-auto h-3 w-auto rounded-full border border-2 border-black bg-white-200">      
-                                <div className="justify-start min-h-full w-12 rounded-full bg-green-600" />
-                                <p className="text-center text-sm font-sebang-gothic font-bold">20%</p>
-                            </div>                                            
-                        </div> 
-                    </div>
-                    <div className="pt-4 flex flex-row justify-center space-x-4">
-                        <img className="w-10 h-10 boder boder-2 rounded-md" src="/img/Asset 17.png" alt="user" />
-                        <div>
-                            <p className="text-center text-base font-sebang-gothic font-bold">
-                                진행 중인 작업 2
-                            </p>
-                            
-                            <div className="mx-auto h-3 w-auto rounded-full border border-2 border-black bg-white-200">      
-                                <div className="justify-start min-h-full w-20 rounded-full bg-red-600" />
-                                <p className="text-center text-sm font-sebang-gothic font-bold">60%</p>
-                            </div>                                           
-                        </div>                        
-                    </div>
-                </div>
-                <div className='space-y-4'>
-                    <p className="mt-14 text-left text-base font-sebang-gothic font-bold">
-                        대기중인 작업
-                    </p>
-                    <div className="flex flex-row justify-center space-x-4">
-                        <img className="w-10 h-10 boder boder-2 rounded-md" src="/img/Asset 17.png" alt="user" />
-                        <div>
-                            <p className=" text-base font-sebang-gothic font-bold">
-                                대기중인 작업 1
-                            </p>
-                            <p className="text-left text-sm font-sebang-gothic text-gray-400">2022년 2월 21일 까지</p>                                         
-                        </div>                        
-                    </div>
-                    <div className="pt-4 flex flex-row justify-center space-x-4">
-                        <img className="w-10 h-10 boder boder-2 rounded-md" src="/img/Asset 17.png" alt="user" />
-                        <div>
-                            <p className=" text-base font-sebang-gothic font-bold">
-                                대기중인 작업 2
-                            </p>
-                            <p className="text-left text-sm font-sebang-gothic text-gray-400">2022년 2월 22일 까지</p>
-                        </div>                        
-                    </div>
-                    <div className="pt-4 flex flex-row justify-start space-x-4">
-                        <img className="w-10 h-10 boder boder-2 rounded-md" src="/img/Asset 17.png" alt="user" />
-                        <div>
-                            <p className=" text-base font-sebang-gothic font-bold">
-                                대기중인 작업 3
-                            </p>
-                            <p className="text-left text-sm font-sebang-gothic text-gray-400 ">2022년 2월 23일 까지</p>                                        
-                        </div>                        
-                    </div>
-                </div>
+                <UserTask></UserTask>
             </div>
             
         </div>
