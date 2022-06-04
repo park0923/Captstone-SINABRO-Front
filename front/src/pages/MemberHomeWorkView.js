@@ -57,7 +57,8 @@ const MemberHomeWorkView = ({history, location, match}) => {
               })
               .then(function (response) {
                   // handle success                  
-                  console.log(response.data);                  
+                  console.log(response.data);      
+                  setFile(response.data);
                 })
                 .catch(function (error) {
                   // handle error

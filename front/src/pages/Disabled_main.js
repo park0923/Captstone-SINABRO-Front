@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Disabled_Header from "./Disabled_Header";
 
-const Disabled = () => {
+const Disabled_main = () => {
   let [scale, setScale] = useState(1);
   let [textColor, setTextColor] = useState("black");
 
@@ -28,11 +28,24 @@ const Disabled = () => {
       case "green":
         colorCode = "#00ff00";
         break;
-      case "white":
-        colorCode = "#ffffff";
+      case "red":
+        colorCode = "#FF0000";
+        break;
+      case "yellow":
+        colorCode = "#FFFF00";
+        break;
+      case "blue":
+        colorCode = "#0000FF";
+        break;
+      case "grey":
+        colorCode = "##808080";
+        break;
+
+      case "pink":
+        colorCode = "#FF00FF";
         break;
     }
-
+ 
     document.body.style.color = colorCode;
 
     const fontColorTargets = document.getElementsByClassName("font-color");
@@ -101,8 +114,12 @@ const Disabled = () => {
                           <option value="black" selected>
                             검정색
                           </option>
-                          <option value="white">흰색</option>
                           <option value="green">녹색</option>
+                          <option value="red">빨간색</option>
+                          <option value="blue">파란색</option>
+                          <option value="yellow">노란색</option>
+                          <option value="pink">분홍색</option>
+                          <option value="gey">회색</option>
                         </select>
                         {/* &nbsp; 다크모드 &nbsp;
                       <button className="bg-blend-darken">배경색 변경</button>
@@ -127,34 +144,34 @@ const Disabled = () => {
               </div>
             </div>
           </div>
-          <span class="inline-grid grid-cols-2 gap-4 place-content-center">
+          <span class="inline-grid grid-cols-2 gap-4 place-content-center py-12">
             <div className="py-3">
-              <Link to="/Notification">
+              <Link to="Notification">
                 <button
-                  className={`ml-10 w-80 h-10 whitespace-nowrap inline-flex items-center justify-center border border-transparent rounded-full shadow-sm text-2xl font-sebang-gothic font-bold bg-green-400 hover:bg-gray-100`}
+                  className={`ml-10 w-80 h-16 whitespace-nowrap inline-flex items-center justify-center border border-transparent rounded-3xl shadow-sm text-2xl font-sebang-gothic font-bold bg-green-400 hover:bg-gray-100`}
                 >
                   <div className="font-color">공지 사항</div>
                 </button>
               </Link>
             </div>
             <div className="py-3">
-              <Link to="/Disabled_write">
-                <button className=" w-80 h-10 whitespace-nowrap inline-flex items-center justify-center border border-transparent rounded-full shadow-sm text-2xl font-sebang-gothic font-bold text-black bg-green-400 hover:bg-gray-100">
-                  <div className="font-color">봉사 요청서 작성</div>
+              <Link to="/Introduction">
+                <button className=" w-80 h-16 whitespace-nowrap inline-flex items-center justify-center border border-transparent rounded-3xl shadow-sm text-2xl font-sebang-gothic font-bold text-black bg-green-400 hover:bg-gray-100">
+                  <div className="font-color">시나브로 소개</div>
                 </button>
               </Link>
             </div>
             <div className="py-3">
-              <Link to="/Disabled_MyPage">
-                <button className=" ml-10 w-80 h-10 whitespace-nowrap inline-flex items-center justify-center border border-transparent rounded-full shadow-sm text-2xl font-sebang-gothic font-bold text-black bg-green-400 hover:bg-gray-100">
-                  <div className="font-color">나의 신청 목록</div>
+              <Link to="/SignIn_disabled">
+                <button className=" ml-10 w-80 h-16 whitespace-nowrap inline-flex items-center justify-center border border-transparent rounded-3xl shadow-sm text-2xl font-sebang-gothic font-bold text-black bg-green-400 hover:bg-gray-100">
+                  <div className="font-color">로 그 인</div>
                 </button>
               </Link>
             </div>
             <div className="py-3">
-              <Link to="/Disabled_main">
-                <button className=" mr-20 w-80 h-10 whitespace-nowrap inline-flex items-center justify-center border border-transparent rounded-full shadow-sm text-2xl font-sebang-gothic font-bold text-black bg-green-400 hover:bg-gray-100">
-                  <div className="font-color"> 로그아웃</div>
+              <Link to="/SignUp_disabled">
+                <button className=" mr-20 w-80 h-16 whitespace-nowrap inline-flex items-center justify-center border border-transparent rounded-3xl shadow-sm text-2xl font-sebang-gothic font-bold text-black bg-green-400 hover:bg-gray-100">
+                  <div className="font-color"> 회 원 가 입</div>
                 </button>
               </Link>
             </div>
@@ -165,4 +182,4 @@ const Disabled = () => {
   );
 };
 
-export default Disabled;
+export default Disabled_main;

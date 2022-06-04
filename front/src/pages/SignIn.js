@@ -21,17 +21,18 @@ function Signin() {
                 
                 window.location.href = '/MemberHomeDashboard'
             }
-            // else if(response.status !== 200) {    
-            //     alert(response.status)
-            //     console.log(response.status);
-            //     setInputEmail('');
-            //     setInputPwd('');            
-            //     if(response.status === 401) {
-            //         alert("Wrong ID or Password");
-            //     } else {
-            //         alert(response.status)
-            //     }
-            // }        
+            else if(response.status !== 200) {    
+                alert("Wrong ID or Password");
+                // alert(response.status)
+                // console.log(response.status);
+                // setInputEmail('');
+                // setInputPwd('');            
+                // if(response.status === 401) {
+                //     alert("Wrong ID or Password");
+                // } else {
+                //     alert(response.status)
+                // }
+            }        
             return response.status;
           })
           .catch(function (error) {
