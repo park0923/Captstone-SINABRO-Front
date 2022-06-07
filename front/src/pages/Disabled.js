@@ -158,6 +158,13 @@ const Disabled = () => {
                 </button>
               </Link>
             </div>
+            <div className="py-3 justify-center">
+              <Link to="/wordtesseract">
+                <button className="ml-10 w-80 h-10 whitespace-nowrap inline-flex items-center justify-center border border-transparent rounded-full shadow-sm text-2xl font-sebang-gothic font-bold text-black bg-green-400 hover:bg-gray-100">
+                  <div className="font-color"> 글자 추출하기</div>
+                </button>
+              </Link>
+            </div>
           </span>
         </h1>
       </div>

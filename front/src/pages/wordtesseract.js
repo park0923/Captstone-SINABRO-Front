@@ -1,4 +1,5 @@
 /* eslint-disable react-hooks/rules-of-hooks */
+
 import React, { useEffect, useState } from "react";
 import Tesseract, { createWorker } from 'tesseract.js';
 import Disabled_Header from "./Disabled_Header";
@@ -8,8 +9,6 @@ const wordtesseract = ({history}) => {
 
     const [imagePath, setImagePath] = useState("");
     const [texts, setTexts] = useState("");        
-    const [playInLoop, setPlayInLoop] = useState(false);
-    const [audio, setAudio] = useState(new Audio());
     const [voice, setVoice] = useState(new ArrayBuffer());
     const handleChange = (event) => {
         setImagePath(URL.createObjectURL(event.target.files[0]));
@@ -29,9 +28,10 @@ const wordtesseract = ({history}) => {
         })();   
     }
     
+
     const handleVoice = () => {
         const url = 'https://kakaoi-newtone-openapi.kakao.com/v1/synthesize';
-        const xmlData = '<speak>테스트해보기.</speak>';        
+        const xmlData = '<speak>' + texts + '</speak>';              
         axios.post(url, xmlData, {
                 headers: {
                     'Content-Type': 'application/xml',
@@ -40,10 +40,10 @@ const wordtesseract = ({history}) => {
                 responseType: 'arraybuffer'                
             }).then(function (response) {
                     // handle successF
-                    console.log(response.data);            
+                    console.log(response);            
                     setVoice(response.data);                    
-                    const context = new AudioContext();
-                    context.decodeAudioData(voice, buffer => {
+                    const context = new (window.AudioContext || window.webkitAudioContext)();
+                    context.decodeAudioData(response.data, buffer => {
                     const source = context.createBufferSource();
                     source.buffer = buffer;
                     source.connect(context.destination);
@@ -121,7 +121,7 @@ const wordtesseract = ({history}) => {
                             <button
                             type="button"
                             class="justify-center px-2 py-1 border border-black text-base"
-                            onClick={() => history.goback()}
+                            onClick={() => history.goBack()}
                             >
                                 돌아가기
                             </button>               
