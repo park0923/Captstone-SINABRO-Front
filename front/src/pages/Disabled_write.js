@@ -1,13 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import axios from "axios";
 import cookie from "react-cookies";
-import qs from "qs";
 import Disabled_Header from "./Disabled_Header";
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
 
 const Disabled_write = () => {
+
   const cookies = cookie.load("login_token");
   function getToday() {
     var date = new Date();
@@ -40,13 +37,17 @@ const Disabled_write = () => {
   };
 
   const handleInputFile = (e) => {
-    setFile(e.target.files);
+    setFile(e.target.files[0]);
+    console.log(e.target.files[0].name)
   };
-
-  const handleSubmit = () =>{           
+  
+  const handleSubmit = () =>{         
+      // console.log(new Blob([JSON.stringify(file)], { type: "application/json" }));
       const form = new FormData()
 
-      form.append("file", new Blob([JSON.stringify(file)], { type: "application/json" }));      
+      // form.append("file", new Blob([JSON.stringify(file)], { type: "image/png" }));
+      form.append("file", file);      
+      form.append("filename", new Blob([JSON.stringify(file.name)], { type: "application/json" }));            
       form.append("contentsRequest", new Blob([JSON.stringify({
         'title' : title,
         'contents' : contents,
@@ -55,7 +56,9 @@ const Disabled_write = () => {
       })], {type: "application/json"}));
 
       for (const [key, value] of form) {
-        console.log(key, value)
+        var i = 0;
+        console.log(key, value, i)
+        i++;
       }
 
       axios.post(

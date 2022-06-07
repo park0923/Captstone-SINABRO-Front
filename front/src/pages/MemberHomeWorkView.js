@@ -4,6 +4,7 @@ import axios from 'axios';
 import qs from "qs";
 import cookie from 'react-cookies';
 import UserTask from "./UserTask";
+import FileSaver from "file-saver";
 
 const MemberHomeWorkView = ({history, location, match}) => {
     //console.log(history);
@@ -27,20 +28,24 @@ const MemberHomeWorkView = ({history, location, match}) => {
         "volunteer_time": null
         }]      
       );          
-    
+        const [headers, setHeaders] = useState()
+        React.useEffect(() => {
+            console.log(headers);
+        },[headers])
+
       useEffect(() => {
         axios({
             method: 'get',
-            url: 'http://18.116.2.111:8080/api/works/' +id,            
+            url: 'http://18.116.2.111:8080/api/works/' +id,                                    
             headers: {                
-                "Authorization": 'Bearer ' + cookies
+                "Authorization": 'Bearer ' + cookies                
             }            
           })
           .then(function (response) {
               // handle success
               setData(response.data);
-            //   console.log(response.data);
-            //   console.log(data);
+              console.log(response);
+            //   console.log(data);            
             })
             .catch(function (error) {
               // handle error
@@ -49,16 +54,38 @@ const MemberHomeWorkView = ({history, location, match}) => {
         
             axios({
                 method: 'get',
-                url: 'http://18.116.2.111:8080/api/works/download/' +id,            
+                url: 'http://18.116.2.111:8080/api/works/download/' + id,  
+                responseType: "blob",                                       
                 headers: {                
                     "Authorization": 'Bearer ' + cookies,
-                    'Content-Type': 'multipart/form-data'
+                    'Content-Type': "text/plain",                    
+                    // 'Content-Disposition' : 'Access-Control-Expose-Headers',
+                    'Access-Control-Expose-Headers' : 'Content-Disposition',
+                    'Access-Control-Allow-Origin': '*'
                 }            
               })
-              .then(function (response) {
+              .then(function (response) {                    
                   // handle success                  
-                  console.log(response.data);      
-                  setFile(response.data);
+                    // console.log(response);      
+                    // console.log(response);
+                    // console.log(response.headers);
+                    //setHeaders(response.headers)
+                    //setHeaders(response.headers['Content-Disposition'])                    
+                    setFile(response.config.url);                                        
+                    
+                    // console.log(filename);
+                    // const name = response.headers["Content-Disposition"]
+                    // console.log(name)               
+                    
+                    // const url = window.URL.createObjectURL(new Blob([response.data]));
+                    // const url = response.config.url;
+                    // const link = document.createElement("a");
+                    // link.href = url;
+                    // link.setAttribute("download", "file");
+                    //link.style.cssText = "display:none";
+                    // document.body.appendChild(link);
+                    // link.click();
+                    // link.remove();
                 })
                 .catch(function (error) {
                   // handle error
@@ -172,22 +199,13 @@ const MemberHomeWorkView = ({history, location, match}) => {
                     </div>
                     <h1 className="text text-left text-2xl font font-sebang-gothic front-bold text-black">{data.title}</h1>
                     <hr className="border border-gray-500 bg-gray-500"></hr>
-                    <a href="" className="text-left text-sm font-sebang-gothic front-normal text-black">{data.contents}</a>
+                    <a href={file} download className="text-left text-sm font-sebang-gothic front-normal text-black">
+                        <button class="px-4 py-2 border border-black ">File Download</button>
+                    </a>
                     <p className="text-left text-sm font-sebang-gothic front-normal text-black">{data.contents}</p>
 
                     <hr className="border border-gray-500 bg-gray-500"></hr>
-                    <div className="table w-full px-2 p-2 ">
-                        <tr className="bg-white">
-                        <td className="p-2 text-sm tracking-wider font-sebang-gothic ">다음글</td>
-                        <td className="p-2 text-sm tracking-wider font-sebang-gothic">시나브로 정기 점검 안내</td>
-                        <td className="p-2 text-sm tracking-wider font-sebang-gothic">2021.08.30</td>
-                        </tr>
-                        <tr className="bg-white">
-                        <td className="p-2 text-sm tracking-wider font-sebang-gothic ">이전글</td>
-                        <td className="p-2 text-sm tracking-wider font-sebang-gothic">봉사 작업 확인 서비스시 템 개선 작업</td>
-                        <td className="p-2 text-sm tracking-wider font-sebang-gothic">2021.08.02</td>
-                        </tr>
-                    </div>
+                    
                     <div className="flex flex-row justify-center">
                         <div className="border border-2 w-1/3 self-center text-center text-lg font-sebang-gothic font-bold rounded-lg text-white bg-green-600 hover:bg-green-700">
                             <button onClick={() => history.goBack()}>돌아가기</button>

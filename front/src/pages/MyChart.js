@@ -4,60 +4,38 @@ import axios from "axios";
 import cookie from 'react-cookies';
 import qs from 'qs';
   
-function MyChart() {
+function MyChart({datas}) {    
     const [data, setData] = useState([
-        {
-            work: [
-              {
-                "volunteer_name": null
-              }
-            ]
-          },
-          {
-            week: [
-              {
-                "date": null,
-                "count": null
-              }         
-            ]
-          },
-          {
-            ended_date: [
-              {
-                "date": null,
-                "title": null
-              }
-            ]
-          }
-      ])
-      const cookies = cookie.load("login_token"); 
-      console.log(data[1]["일주일 작업 현황"][0].날짜)
-    useEffect(() => {
-        axios({
-            method: 'get',
-            url: 'http://18.116.2.111:8080/api/home',
-            headers: {                
-                "Authorization": 'Bearer ' + cookies
-            }            
-          })
-          .then(function (response) {
-              // handle success
-              console.log(response.data);
-              setData(response.data);                   
-            })
-            .catch(function (error) {
-              // handle error
-              console.log(error);
-            })    
-    },[])
+      {
+        date: null,
+        count: null        
+      }])     
+    const [dates, setDates] = useState([    
+      {
+        date: null              
+      }  
+    ])
+    const cookies = cookie.load("login_token"); 
+    React.useEffect(() => {
+      setData(datas);      
+      //console.log(data)
+    },[data, dates])
+    // datas.map(({date, count}, index) =>{      
+    //   dates[index].date = date.slice(5)
+    // })
+    // for(var i = 0; i <data.length; i++){
+    //   // dates.push(data[i].date.slice(5));      
+    //   console.log(data[i].date.slice(5))
+    // }
+    
     return(
-        <BarChart width={400} height={300} data={data}>
+        <BarChart width={1000} height={300} data={datas}>
             <CartesianGrid strokeDasharray="1" />
-            <XAxis dataKey={data[1]["일주일 작업 현황"]["날짜"]} />
+            <XAxis dataKey={"date"} />
             <YAxis />
             <Tooltip />
             <Legend />
-            <Bar dataKey="봉사 개수" fill="#059669" />            
+            <Bar dataKey={"count"} fill="#059669" />            
         </BarChart>
     )
     

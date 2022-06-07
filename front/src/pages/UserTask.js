@@ -39,14 +39,11 @@ const UserTask = () => {
           }
     })
     
-
     const handleLogout = () => {        
         cookie.remove("login_token");        
         window.location.href = '/'     
         
     }   
-
-
 
     useEffect(() => {
         axios({
@@ -104,7 +101,7 @@ const UserTask = () => {
                         <div className='space-y-4'>                            
                             <Link to={{pathname: `/MemberHomeVolunteerWorkPage/${idx}`}} >
                                 <div className="flex flex-row justify-center space-x-4">
-                                    <img className="w-10 h-10 boder boder-2 rounded-md" src="/img/Asset 17.png" alt="user" />
+                                    <img className="w-10 h-10 boder boder-2 rounded-md" src="/img/Asset 15.png" alt="user" />
                                     <div>
                                         <p className=" text-base font-sebang-gothic font-bold">
                                             {title}

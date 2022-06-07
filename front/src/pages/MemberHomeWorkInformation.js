@@ -40,12 +40,10 @@ function MemberHomeWorkInformation({history, location, match}) {
 
     }
 
-    const handleNext = (e) => {        
-        window.location.href = `/MemberHomeWorkInformation/` + data.before_work.id
+    const hadleClick = () => {
+        window.location.href = '/MemberHomeWorkInformation';
     }
-    const handlePre = () => {
-        window.location.href = `/MemberHomeWorkInformation/` + data.after_work.id
-    }
+
     React.useEffect(() => {
         console.log(text);
     },[text])
@@ -169,23 +167,12 @@ function MemberHomeWorkInformation({history, location, match}) {
                     <hr className="border border-gray-500 bg-gray-500"></hr>
                     <h1 className="py-4 text-2xl font-sebang-gothic front-bold text-black">작업 결과</h1>
                     <div>
-                        <a href='{data.file}' download>
+                        <a href={data.file} download>
                             <button class="px-4 py-2 border border-black ">Download</button>
                         </a>
                     </div>                        
                     <hr className="border border-gray-500 bg-gray-500"></hr>
-                    <div className="table w-full px-2 p-2 ">
-                        <tr className="bg-white">
-                        <td className="p-2 text-sm tracking-wider font-sebang-gothic ">다음글</td>                        
-                        <td onClick={handleNext} className="p-2 text-sm tracking-wider font-sebang-gothic">{data.after_work.title}</td>                        
-                        <td className="p-2 text-sm tracking-wider font-sebang-gothic">{data.after_work.date}</td>
-                        </tr>
-                        <tr className="bg-white">
-                        <td className="p-2 text-sm tracking-wider font-sebang-gothic ">이전글</td>                        
-                        <td onClick={handlePre} className="p-2 text-sm tracking-wider font-sebang-gothic">{data.before_work.title}</td>                        
-                        <td className="p-2 text-sm tracking-wider font-sebang-gothic">{data.before_work.date}</td>
-                        </tr>
-                    </div>
+                    <button onClick={() => history.goBack()} className="border border-2 w-2/12 self-center text-center text-base font-sebang-gothic rounded-md text-white bg-green-600 hover:bg-green-700">돌아가기</button>
                 </div> 
                 
             </div>  
