@@ -97,6 +97,7 @@ function MemberHomeVolunteerWorkPage({history, location, match}){
             url: 'http://18.116.2.111:8080/api/volunteerWorks/'+ id,
             headers: {                
                 "Authorization": 'Bearer ' + cookies
+                
             }            
           })
           .then(function (response) {
@@ -192,7 +193,6 @@ function MemberHomeVolunteerWorkPage({history, location, match}){
                         </div>
                         <div className="w-full y-40 h-96 border-2 shadow-md rounded-xl item-center justify-center bg-gray-50 ">                            
                             <textarea className="mt-5" id="content" name="content" rows="15" cols="90" value={works_contents} onChange={handleWorks} placeholder="내용을 입력하세요">                                                               
-                            adadaadsad
                             </textarea>
                         </div>
                         <div className="space-y-2 p-2 flex-row item-center justify-center">

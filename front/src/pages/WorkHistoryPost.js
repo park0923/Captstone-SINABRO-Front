@@ -36,7 +36,13 @@ const WorkHistoryPost = ({posts}) => {
             width="100%"
             style={{ color: "#A1A0A0", backgroundColor: "#A1A0A0", height: 3 }}
           />
-        </th>               
+        </th>         
+        <th>
+          <hr
+            width="100%"
+            style={{ color: "#A1A0A0", backgroundColor: "#A1A0A0", height: 3 }}
+          />
+        </th>        
       </thead>
       <tbody>
         {posts.slice(0).map(({ id, title, type, date }, index) => (

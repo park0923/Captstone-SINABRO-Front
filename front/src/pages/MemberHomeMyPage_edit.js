@@ -11,6 +11,7 @@ function MemberHomeMyPage_edit() {
   const [email, setEmail] = useState()
   const [phone, setPhone] = useState()
   const [address, setAddress] = useState()
+  const [name, setName] = useState()
 
     const [user, setUser] = useState({        
           "username": null,
@@ -43,11 +44,44 @@ function MemberHomeMyPage_edit() {
     setAddress(e.target.value);
   }
 
+  const hadleInputName = (e) => {
+    setName(e.target.value);
+  }
   const handleClick = () => {
     console.log(introduction)
     console.log(email)
     console.log(phone)
     console.log(address)
+    axios({
+      method: 'patch',
+      url: 'http://18.116.2.111:8080/api/members/update',
+      data : {
+        "address": address,
+        "introduction": introduction,
+        "phone_number": phone,
+        "username": name
+      },            
+      headers: {                
+          "Authorization": 'Bearer ' + cookies
+      }            
+    })
+    .then(function (response) {
+        // handle success   
+        console.log(response.data)           
+        if(response.status === 200){
+          alert("회원 정보가 수정되었습니다.")
+          setUser(response.data)
+          setName(response.data.username)
+          setIntroduction(response.data.introduction)
+          setEmail(response.data.email)
+          setPhone(response.data.phone_number)
+          setAddress(response.data.address)
+        }
+      })
+      .catch(function (error) {
+        // handle error
+        console.log(error);
+      })
   }
 
   useEffect(() => {
@@ -62,6 +96,7 @@ function MemberHomeMyPage_edit() {
           // handle success   
           console.log(response.data)           
           setUser(response.data)
+          setName(response.data.username)
           setIntroduction(response.data.introduction)
           setEmail(response.data.email)
           setPhone(response.data.phone_number)
@@ -168,36 +203,46 @@ function MemberHomeMyPage_edit() {
             </h1>
           </div>
           <div className="p-12  boder border-2 shadow-md rounded-xl item-center justify-center w-full h-50 bg-gray-50 space-y-1">
-            <div className="flex flex-row space-x-6">
+            <div className="flex flex-col space-x-2">
               <div className="my-8 flex flex-col space-y-2">
-                <img
-                  className="ml-14 w-20 h-20"
-                  src="/img/Asset 17.png"
-                  alt="user"
-                />
-                <p className="pt-1 text-center text-lg font-sebang-gothic font-bold text-black">
-                  봉사자 이름
-                </p>
-                <p className="pt-1 text-center text-base font-sebang-gothic font- text-gray-500">
-                  <div>
-                    <label
-                      htmlFor=""
-                      className="text-gray-900 font-sans text-sm font-semibold"
-                    ></label>
+                <dvi className="flex flex-row space-x-4">
+                  <img
+                    className="ml-14 w-20 h-20"
+                    src="/img/Asset 17.png"
+                    alt="user"
+                  />
+                  <div className="flex flex-col space-y-2">
+                    <label className="text-gray-900 font-sans text-lg font-sebang-gothic font-bold">
+                        이름
+                      </label>
                     <input
-                      type="text"
-                      required
-                      name=""
-                      value={introduction}
-                      onChange={hadleInputIntroduction}
-                      placeholder="간단한 자기소개글"
-                      className="my-1 appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded focus:outline-none focus:ring-green-500 focus:border-green-500 focus:z-10 sm:text-sm"
+                          type="text"
+                          required
+                          name=""
+                          value={name}
+                          onChange={hadleInputName}
+                          placeholder="이름"
+                          className="my-1 appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded focus:outline-none focus:ring-green-500 focus:border-green-500 focus:z-10 sm:text-sm"
                     />
-                  </div>
-                </p>
+                  </div>                  
+                </dvi>                
               </div>
-              <div className="flex flex-col space-y-6 py-16">
+              <div className="flex flex-col space-y-6 mt-2">
                 <div className="m-6 flex flex-row py-9 space-x-10">
+                  <div className="flex flex-col space-y-4">
+                      <label className="text-gray-900 font-sans text-lg font-sebang-gothic font-bold">
+                        자기소개글
+                      </label>
+                      <input
+                        type="text"
+                        required
+                        name=""
+                        value={introduction}
+                        onChange={hadleInputIntroduction}
+                        placeholder="간단한 자기소개글"
+                        className="my-1 appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded focus:outline-none focus:ring-green-500 focus:border-green-500 focus:z-10 sm:text-sm"
+                      />
+                  </div>
                   <div className="flex flex-col space-y-4">
                     <label className="text-gray-900 font-sans text-lg font-sebang-gothic font-bold">
                       이메일
@@ -211,8 +256,7 @@ function MemberHomeMyPage_edit() {
                         type="text"
                         required
                         name=""
-                        value={email}
-                        onChange={hadleInputEmail}
+                        value={email}                        
                         placeholder="이메일"
                         className="my-1 appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded focus:outline-none focus:ring-green-500 focus:border-green-500 focus:z-10 sm:text-sm"
                       />
@@ -263,11 +307,11 @@ function MemberHomeMyPage_edit() {
             </div>
             <div className="px-64 flex flex-row space-x-3">
               
-              <button onClick={handleClick} className=" w-40 h-10 whitespace-nowrap inline-flex items-center justify-center border border-transparent rounded-3xl shadow-sm text-2xl font-sebang-gothic font-bold text-black bg-green-400 hover:bg-gray-100">
+              <button onClick={handleClick} className=" w-40 h-10 whitespace-nowrap inline-flex items-center justify-center border border-transparent rounded-3xl shadow-sm text-2xl font-sebang-gothic font-bold text-white bg-green-600 hover:bg-green-700">
                 <div className="font-color">정보 수정</div>
               </button>            
               <Link to="/MemberHomeMyPage">
-                <button className=" w-40 h-10 whitespace-nowrap inline-flex items-center justify-center border border-transparent rounded-3xl shadow-sm text-2xl font-sebang-gothic font-bold text-black bg-green-400 hover:bg-gray-100">
+                <button className=" w-40 h-10 whitespace-nowrap inline-flex items-center justify-center border border-transparent rounded-3xl shadow-sm text-2xl font-sebang-gothic font-bold text-white bg-green-600 hover:bg-green-700">
                   <div className="font-color">취 소</div>
                 </button>
               </Link>

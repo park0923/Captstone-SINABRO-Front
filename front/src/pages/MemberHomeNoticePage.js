@@ -177,30 +177,7 @@ function MemberHomeNoticePage({ history, location, match }) {
           </p>
 
           <hr className="border border-gray-500 bg-gray-500"></hr>
-          <div className="table w-full px-2 p-2 ">
-            <tr className="bg-white">
-              <td className="p-2 text-sm tracking-wider font-sebang-gothic ">
-                다음글
-              </td>
-              <td className="p-2 text-sm tracking-wider font-sebang-gothic">
-                시나브로 정기 점검 안내
-              </td>
-              <td className="p-2 text-sm tracking-wider font-sebang-gothic">
-                2021.08.30
-              </td>
-            </tr>
-            <tr className="bg-white">
-              <td className="p-2 text-sm tracking-wider font-sebang-gothic ">
-                이전글
-              </td>
-              <td className="p-2 text-sm tracking-wider font-sebang-gothic">
-                봉사 작업 확인 서비스시 템 개선 작업
-              </td>
-              <td className="p-2 text-sm tracking-wider font-sebang-gothic">
-                2021.08.02
-              </td>
-            </tr>
-          </div>
+          
           <div className="border border-2 w-1/3 self-center text-center text-lg font-sebang-gothic font-bold rounded-lg text-white bg-green-600 hover:bg-green-700">
             <button onClick={() => history.goBack()}>돌아가기</button>
           </div>

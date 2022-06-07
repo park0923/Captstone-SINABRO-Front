@@ -50,8 +50,9 @@ import Disabled_MyPage_edit from "pages/Disabled_MyPage_edit";
 import SignIn_disabled from "pages/SignIn_disabled";
 import SignUp_disabled from "pages/SignUp_disabled";
 import MemberHomeMyPage_edit from "pages/MemberHomeMyPage_edit";
-
+import wordtesseract from "pages/wordtesseract";
 class App extends Component {
+  
   render() {
     return (
       <div className="APP">
@@ -131,6 +132,7 @@ class App extends Component {
         <Route path="/SignIn_disabled" component={SignIn_disabled} />
         <Route path="/SignUp_disabled" component={SignUp_disabled} />
         <Route path="/MemberHomeMyPage_edit" component={MemberHomeMyPage_edit} />
+        <Route path="/wordtesseract" component={wordtesseract} />
       </div>
     );
   }

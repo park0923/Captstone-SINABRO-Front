@@ -7,8 +7,11 @@ function Disabled_MyPage(){
         <div className="px-96">
             <div className="p-12 item-center justify-center max-w-screen-lg space-y-4">
                 <div className="flex flex-col space-y-6">
-                    <div>
-                        <h1 className="text-2xl font-sebang-gothic front-bold text-black">마이페이지</h1>                                 
+                    <div className="flex flex-row justify-between">
+                        <h1 className="text-2xl font-sebang-gothic front-bold text-black">마이페이지</h1>  
+                        <Link to="/Disabled">
+                        <h1 className="text-2xl font-sebang-gothic front-bold text-green-600">HOME</h1>  
+                        </Link>
                     </div>     
                     <div className="p-12  boder border-2 shadow-md rounded-xl item-center justify-center w-full h-50 bg-gray-50 space-y-1">
                         <div className="flex flex-row space-x-6">
