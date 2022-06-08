@@ -35,7 +35,7 @@ function MemberHomeNoticePage({ history, location, match }) {
     if (type === "notice") {
       axios({
         method: "get",
-        url: "http://18.116.2.111:8080/api/boards/" + id,
+        url: "http://localhost:8080/api/boards/" + id,
       })
         .then(function (response) {
           // handle success
@@ -52,7 +52,7 @@ function MemberHomeNoticePage({ history, location, match }) {
     } else if (type === "work") {
       axios({
         method: "get",
-        url: "http://18.116.2.111:8080/api/boards/" + id,
+        url: "http://localhost:8080/api/boards/" + id,
         headers: {
           Authorization: "Bearer " + cookies,
         },

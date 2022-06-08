@@ -25,7 +25,7 @@ const NonmemberPostView = ({history, location, match}) => {
         // console.log(data[0].title);
       }, [data])
       useEffect(() => {
-        axios.get('http://18.116.2.111:8080/api/boards/' + id,)
+        axios.get('http://localhost:8080/api/boards/' + id,)
           .then(function (response) {
               // handle success                                  
               // console.log(response.data);

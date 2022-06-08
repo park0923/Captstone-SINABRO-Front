@@ -26,7 +26,7 @@ const  MemberHomeEducation = () => {
     useEffect(() => {      
           axios({
             method: 'get',
-            url: 'http://18.116.2.111:8080/api/educations/home',            
+            url: 'http://localhost:8080/api/educations/home',            
             headers: {                
                 "Authorization": 'Bearer ' + cookies
             }            

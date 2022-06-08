@@ -33,7 +33,7 @@ function MemberHomeInspectionWorkPage({history, location, match}){
     }
     const handleClick = () => {
         axios.patch(
-            'http://18.116.2.111:8080/api/inspections/' + id, 
+            'http://localhost:8080/api/inspections/' + id, 
             {
                 contents: inspection_contents,
                 ended_date : data.ended_date,
@@ -63,7 +63,7 @@ function MemberHomeInspectionWorkPage({history, location, match}){
     useEffect(() => {
         axios({
             method: 'get',
-            url: 'http://18.116.2.111:8080/api/inspections/'+ id,
+            url: 'http://localhost:8080/api/inspections/'+ id,
             headers: {                
                 "Authorization": 'Bearer ' + cookies
             }            

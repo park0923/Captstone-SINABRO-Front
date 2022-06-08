@@ -48,7 +48,7 @@ const UserTask = () => {
     useEffect(() => {
         axios({
             method: 'get',
-            url: 'http://18.116.2.111:8080/api/members',            
+            url: 'http://localhost:8080/api/members',            
             headers: {                
                 "Authorization": 'Bearer ' + cookies
             }            
@@ -64,7 +64,7 @@ const UserTask = () => {
             
         axios({
             method: 'get',
-            url: 'http://18.116.2.111:8080/api/volunteerWorks',            
+            url: 'http://localhost:8080/api/volunteerWorks',            
             headers: {                
                 "Authorization": 'Bearer ' + cookies
             }            

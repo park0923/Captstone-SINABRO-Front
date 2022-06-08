@@ -21,7 +21,7 @@ function Disabled_MyPage(){
   useEffect(() => {
     axios({
         method: 'get',
-        url: 'http://18.116.2.111:8080/api/members',            
+        url: 'http://localhost:8080/api/members',            
         headers: {                
             "Authorization": 'Bearer ' + cookies
         }            

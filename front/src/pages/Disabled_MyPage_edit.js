@@ -52,7 +52,7 @@ function Disabled_MyPage_edit() {
     console.log(address)
     axios({
       method: 'patch',
-      url: 'http://18.116.2.111:8080/api/members/update',
+      url: 'http://localhost:8080/api/members/update',
       data : {
         "address": address,
         "introduction": introduction,
@@ -85,7 +85,7 @@ function Disabled_MyPage_edit() {
   useEffect(() => {
     axios({
         method: 'get',
-        url: 'http://18.116.2.111:8080/api/members',            
+        url: 'http://localhost:8080/api/members',            
         headers: {                
             "Authorization": 'Bearer ' + cookies
         }            

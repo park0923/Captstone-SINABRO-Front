@@ -4,7 +4,7 @@ import axios from "axios";
 
 async function signUpUser(credentials) {
   axios
-    .post("http://18.116.2.111:8080/api/members/beneficiary/signup", {
+    .post("http://localhost:8080/api/members/beneficiary/signup", {
       username: credentials.username,
       email: credentials.email,
       password: credentials.password,
