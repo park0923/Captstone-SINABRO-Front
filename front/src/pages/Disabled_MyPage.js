@@ -18,6 +18,38 @@ function Disabled_MyPage(){
   const hadleClick = () => {
       window.location.href = '/Member_Home_WorkHistory';
   }
+  const [myhistory, setMyhistory] = useState({  
+    work: {
+      links: [
+        {
+          "rel": null,
+          "href": null
+        }
+      ],
+      content: [
+        {
+          "type": null,
+          "id": null,
+          "work_title": null,
+          "date": null
+        }
+      ],
+      page: {
+        "size": null,
+        "totalElements": null,
+        "totalPages": null,
+        "number": null
+      }
+    },       
+      "username": null,
+      "introduction": null,
+      "email": null,
+      "phone_number": null,
+      "address": null,
+      "volunteer_time": null,
+      "work_number": null,
+      "warn_number": null
+})
   useEffect(() => {
     axios({
         method: 'get',
@@ -28,13 +60,32 @@ function Disabled_MyPage(){
       })
       .then(function (response) {
           // handle success              
-          setUser(response.data)
+          setUser(response.data)   
         })
         .catch(function (error) {
           // handle error
           console.log(error);
         })    
+
+        axios({
+          method: 'get',
+          url: 'http://34.64.94.158:8080/api/members?size=20',            
+          headers: {                
+              "Authorization": 'Bearer ' + cookies
+          }            
+        })
+        .then(function (response) {
+            // handle success              
+            setMyhistory(response.data)
+          })
+          .catch(function (error) {
+            // handle error
+            console.log(error);
+          })    
 },[]);  
+React.useEffect(()=>{
+  console.log(myhistory);
+},[myhistory]);
     return(
         <div className="min-h-screen flex item-center justify-between bg-gray-yellow py-12 px-48 sm:px-6 lg:px-8">            
         <div className="flex flex-grow p-12 border border-2 item-center justify-center bg-transparent  mx-4 h-auto space-y-4">
@@ -129,123 +180,61 @@ function Disabled_MyPage(){
           </div>
           <div className="p-8 boder border-2 shadow-md rounded-xl item-center justify-center min-w-max h-50 bg-gray-50 space-y-1">
             <div className="flex flex-row space-x-6">
-              <div className="mx-8 flex flex-col space-y-2">
-                <div className="flex flex-row justify-between">
+              <div className="mx-8 w-full flex flex-col space-y-2">
+                <div className="flex flex-row">
                   <h3 className="text-lg font-sebang-gothic front-bold text-black">
                     작업 히스토리
-                  </h3>
-                  <button className="border border-2 w-2/12 self-center text-center text-base font-sebang-gothic rounded-md text-white bg-green-600 hover:bg-green-700"
-                    onClick={hadleClick}>
-                    View all
-                  </button>
+                  </h3>                  
                 </div>
                 <div className="table w-full px-2 p-2 ">
-                  <thead className="bg-gray-100 border-b-2  ">
-                    <th className="p-1 text-xl text-gray-500 font-sebang-gothic tracking-wide text-left">
+                  <thead className="bg-gray-100 border-b-2 text-center ">
+                    <th className="p-1 text-xl text-gray-500 font-sebang-gothic tracking-wide text-center">
                       NO
                     </th>
                     <th className="p-2 text-xl text-gray-500 font-sebang-gothic tracking-wide text-left">
                       제목
                     </th>
-                    <th className="p-2 text-xl text-gray-500 font-sebang-gothic tracking-wide text-left">
-                      등 록 일
+                    <th className="p-2 text-xl text-gray-500 font-sebang-gothic tracking-wide text-center">
+                      분류
                     </th>
-                    <th className="p-2 text-xl text-gray-500 font-sebang-gothic tracking-wide text-left">
+                    <th className="p-2 text-xl text-gray-500 font-sebang-gothic tracking-wide text-center">
                       마 감 일
                     </th>
                   </thead>
-                  <tr className="bg-white">
-                    <tb className="p-2 text-sm font-sebang-gothic ">7</tb>
-                    <td className="p-2 text-sm font-sebang-gothic">
-                      [도서] 달러구트 꿈 백화점 전자화 요청
-                    </td>
-                    <td className="p-2 text-sm font-sebang-gothic">
-                      2022.01.05
-                    </td>
-                    <td className="p-2 text-sm font-sebang-gothic">
-                      2022.01.15
-                    </td>
-                  </tr>
-
-                  <tr className="bg-gray-100">
-                    <tb className="p-2 text-sm font-sebang-gothic ">6</tb>
-                    <td className="p-2 text-sm font-sebang-gothic">
-                      동영상 자막 작업 부탁드립니다.
-                    </td>
-                    <td className="p-2 text-sm font-sebang-gothic">
-                      2022.01.03
-                    </td>
-                    <td className="p-2 text-sm font-sebang-gothic">
-                      2022.01.04
-                    </td>
-                  </tr>
-                  <tr>
-                    <tb className="p-2 text-sm font-sebang-gothic">5</tb>
-                    <td className="p-2 text-sm font-sebang-gothic">
-                      사진에 찍힌 문서를 PDF 파일로 제작해주세요.
-                    </td>
-                    <td className="p-2 text-sm font-sebang-gothic">
-                      2021.11.11
-                    </td>
-                    <td className="p-2 text-sm font-sebang-gothic">
-                      2022.01.03
-                    </td>
-                  </tr>
-                  <tr className="bg-gray-100">
-                    <tb className="p-2 text-sm font-sebang-gothic">4</tb>
-                    <td className="p-2 text-sm font-sebang-gothic">
-                      사진에 찍힌 문서를 PDF 파일로 제작해주세요.
-                    </td>
-                    <td className="p-2 text-sm font-sebang-gothic">
-                      2022.01.01
-                    </td>
-                    <td className="p-2 text-sm font-sebang-gothic">
-                      2022.01.02
-                    </td>
-                  </tr>
-                </div>
-                <div className="flex px-80">
-                  <button className="h-8 w-8 p-1 hover:bg-gray-300 rounded ">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="h-6 w-6"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M11 19l-7-7 7-7m8 14l-7-7 7-7"
-                      />
-                    </svg>
-                  </button>
-                  <div className="flex">
-                    <button className="h-8 w-8 p-1 hover:bg-gray-300 rounded font-sebang-gothic">
-                      1
-                    </button>
-                    <button className="h-8 w-8 p-1 hover:bg-gray-300 rounded font-sebang-gothic">
-                      2
-                    </button>
-                  </div>
-                  <button className="h-8 w-8 p-1 hover:bg-gray-300 rounded">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      class="h-6 w-6"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M13 5l7 7-7 7M5 5l7 7-7 7"
-                      />
-                    </svg>
-                  </button>
-                </div>
+                  <tbody>
+                  {myhistory.work.content.slice(0).map(({ id, work_title, type, date }, index) => (
+                      <tr className="bg-white">
+                        <td
+                          style={{ borderBottom: "1px solid #A1A0A0" }}
+                          className="p-2 text-sm font-sebang-gothic text-center"
+                        >
+                          {index + 1}
+                        </td>
+                        
+                        <td
+                          style={{ borderBottom: "1px solid #A1A0A0" }}
+                          className="p-2 text-sm font-sebang-gothic"
+                        >
+                          <Link to={{pathname: `/MemberHomeWorkInformation/${id}`, state: {type: type}}} >
+                            {work_title}
+                          </Link> 
+                        </td>  
+                        <td
+                          style={{ borderBottom: "1px solid #A1A0A0" }}
+                          className="p-2 text-sm font-sebang-gothic text-center"
+                        >
+                          {type}
+                        </td>                    
+                        <td
+                          style={{ borderBottom: "1px solid #A1A0A0" }}
+                          className="p-2 text-sm font-sebang-gothic text-center"
+                        >
+                          {date}
+                        </td>                                
+                      </tr>
+                    ))}
+                  </tbody>                  
+                </div>                
               </div>
             </div>
           </div>

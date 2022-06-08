@@ -49,7 +49,8 @@ const WorkHistoryPagination = () => {
           })
           .then(function (response) {
               // handle success
-              setData(response.data);                                  
+              setData(response.data); 
+              console.log(response.data)                                 
             })
             .catch(function (error) {
               // handle error
@@ -112,6 +113,7 @@ const WorkHistoryPagination = () => {
           .then(function (response) {
               // handle success
               setData(response.data);
+              console.log(response.data)
             })
             .catch(function (error) {
               // handle error

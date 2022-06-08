@@ -45,7 +45,7 @@ const WorkHistoryPost = ({posts}) => {
         </th>        
       </thead>
       <tbody>
-        {posts.slice(0).map(({ id, title, type, date }, index) => (
+        {posts.slice(0).map(({ id, work_title, type, date }, index) => (
             <tr className="bg-white">
               <td
                 style={{ borderBottom: "1px solid #A1A0A0" }}
@@ -59,7 +59,7 @@ const WorkHistoryPost = ({posts}) => {
                 className="p-2 text-sm font-sebang-gothic"
               >
                 <Link to={{pathname: `/MemberHomeWorkInformation/${id}`, state: {type: type}}} >
-                  {title}
+                  {work_title}
                 </Link> 
               </td>  
               <td

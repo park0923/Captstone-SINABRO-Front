@@ -228,7 +228,7 @@ const VolunteerPaginations = () =>{
             </div>
         </div>
         <div>
-          <VolunteerPost posts={data.contents_responses.content}></VolunteerPost>
+          <VolunteerPost posts={data.contents_responses.content} page={data.contents_responses.page.totalElements}></VolunteerPost>
         </div>
         <div>         
           <nav>

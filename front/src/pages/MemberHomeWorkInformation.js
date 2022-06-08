@@ -14,12 +14,12 @@ function MemberHomeWorkInformation({history, location, match}) {
     const cookies = cookie.load("login_token");
     const [id, setId] = useState(match.params.id);
     const [data, setData] = useState({
-        "type": null,
-        "id": null,
-        "title": null,
         "date": null,
-        "content": null,
-        "file": null,
+        "id": null,
+        "result": null,
+        "type": null,
+        "work_content": null,
+        "work_title": null,
         "before_work": {
             "type": null,
             "id": null,
@@ -47,10 +47,11 @@ function MemberHomeWorkInformation({history, location, match}) {
     React.useEffect(() => {
         console.log(text);
     },[text])
+
     useEffect(() => {
         axios({
             method: 'get',
-            url: 'http://34.64.94.158:8080/api/members/list/' + id,            
+            url: 'http://34.64.94.158:8080/api/members/list/' + id + '?type='+location.state.type,            
             headers: {                
                 "Authorization": 'Bearer ' + cookies
             }            
@@ -154,24 +155,24 @@ function MemberHomeWorkInformation({history, location, match}) {
                             <a href='/Home_Class_List'> 진 행 작 업</a>     
                         </div>
                     </div>
-                    <h1 className="text text-left text-2xl font font-sebang-gothic front-bold text-black">{data.title}</h1>
+                    <h1 className="text text-left text-2xl font font-sebang-gothic front-bold text-black">{data.work_title}</h1>
                     <hr className="border border-gray-500 bg-gray-500"></hr>
                     <h1 className="py-4 text-2xl font-sebang-gothic front-bold text-black">작업 내용</h1>                                        
                     <p className="text-left text-sm font-sebang-gothic front-normal text-black">
-                        {text}
+                        {data.work_content}
                     </p>
                     
                     
                    
                     
                     <hr className="border border-gray-500 bg-gray-500"></hr>
-                    <h1 className="py-4 text-2xl font-sebang-gothic front-bold text-black">작업 결과</h1>
+                    {/* <h1 className="py-4 text-2xl font-sebang-gothic front-bold text-black">작업 결과</h1>
                     <div>
                         <a href={data.file} download>
                             <button class="px-4 py-2 border border-black ">Download</button>
                         </a>
                     </div>                        
-                    <hr className="border border-gray-500 bg-gray-500"></hr>
+                    <hr className="border border-gray-500 bg-gray-500"></hr> */}
                     <button onClick={() => history.goBack()} className="border border-2 w-2/12 self-center text-center text-base font-sebang-gothic rounded-md text-white bg-green-600 hover:bg-green-700">돌아가기</button>
                 </div> 
                 
