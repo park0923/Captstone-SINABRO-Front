@@ -134,7 +134,7 @@ const  MemberHomeEducation = () => {
                     <div className="flex flex-col mt-16 ml-8 w-1/2 h-auto justify-center">
                         <h1 className="text-2xl font-sebang-gothic front-bold text-black">교육 진행 현황</h1>
                         <div className="border-2 shadow-md rounded-xl justify-center bg-gray-50 space-y-1">
-                            <div className="self-center">
+                            <div className="self-center ml-48">
                                 <MyPieChart data={data.progress} />                                
                             </div>                           
                             <p className="mr-2 text-center text-lg font-sebang-gothic front-bold text-black text-green-500">
@@ -147,8 +147,8 @@ const  MemberHomeEducation = () => {
                     </div>
                     <div className="flex flex-col mt-16 w-1/2 h-auto">
                         <h1 className="text-2xl font-sebang-gothic front-bold text-black">교육 진행 예정 목록</h1>
-                        <div className="p-4 border-2 shadow-md rounded-xl item-center justify-center bg-gray-50 space-y-1">
-                            <div>
+                        <div className="p-4 border-2 shadow-md rounded-xl item-center justify-center bg-gray-50 h-80">
+                            <div className="space-y-4">
                                 {data.education.map(({id, status, title}) => (
                                     <ul className="space-y-2">
                                     <li className="flex flex-col text-xl font-sebang-gothic front-bold text-black">    

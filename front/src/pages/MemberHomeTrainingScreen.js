@@ -43,7 +43,7 @@ function MemberHomeTrainingScreen({history, location, match}){
    },[])
     return(
         <div className="min-h-screen flex item-center justify-between bg-gray-yellow py-12 px-4 sm:px-6 lg:px-8">            
-            <div className="min-h-screen p-12 boder border-2 shadow-md rounded-none item-center justify-center bg-gray-50 max-w-max space-y-20">
+            <div className="min-h-screen p-12 boder border-2 shadow-md rounded-none item-center justify-center bg-gray-50 w-1/6 space-y-20">
                 <div>
                     <img className="mx-auto h-20 w-auto" src="/img/Logo.svg" alt="Logo"/>
                     <Link to="/MemberHomeMyPage">
@@ -106,7 +106,7 @@ function MemberHomeTrainingScreen({history, location, match}){
                 </div>
             </div>          
           
-            <div className="p-10 item-center max-w-screen-lg space-y-4">    
+            <div className="p-10 item-center w-full space-y-4">    
                 <div className="flex flex-row ">
                     <div className="p-6 boder border-2 shadow-md rounded-xl item-center justify-center w-full h-35 bg-gray-50 float-left ">
                         <span>
@@ -128,27 +128,27 @@ function MemberHomeTrainingScreen({history, location, match}){
                         
                     </div>
                 </div>
-                <div className="flex flex-row space-x-2 justify-between" >
+                <div className="space-x-2 w-full" >
                     <div className="flex flex-col mt-10">
                         <div className="flex flex-row justify-between">
                             <h1 className="py-4 text-2xl font-sebang-gothic front-bold text-black">작업 진행 공간</h1>          
                         </div>
                         <div className="w-full y-40 h-96 border-2 shadow-md rounded-xl item-center justify-center bg-gray-50 ">
                             <p className="p-2 text-left text-sm font-sebang-gothic front-normal text-black"></p>
-                            <textarea id="content" name="content" rows="15" cols="90">
+                            <textarea id="content" name="content" rows="15" cols="175">
                                
                             </textarea>
                         </div>        
                     </div>
                 </div>
                 <center>
-                <button type="submit" className="save relative w-30 flex-row justify-center py-2 px-4 border border-transparent text-sm font-noto-snas font-bold rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">정답률 확인</button>  
+                <button type="submit" className="save relative w-30 flex-row justify-center py-2 px-4 border border-transparent text-sm font-noto-snas font-bold rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">저장</button>  
                 </center>
                 
                 
             </div>  
 
-            <div className="p-12 boder border-2 shadow-md rounded-none item-center justify-center bg-gray-50 max-w-max max-h-max space-y-4">
+            <div className="p-12 boder border-2 shadow-md rounded-none item-center justify-center bg-gray-50 w-1/6 space-y-4">
                 <UserTask></UserTask>
             </div>
             

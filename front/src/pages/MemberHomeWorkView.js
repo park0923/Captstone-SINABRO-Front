@@ -207,7 +207,7 @@ const MemberHomeWorkView = ({history, location, match}) => {
                     <hr className="border border-gray-500 bg-gray-500"></hr>
                     
                     <div className="flex flex-row justify-center">
-                        <div className="border border-2 w-1/3 self-center text-center text-lg font-sebang-gothic font-bold rounded-lg text-white bg-green-600 hover:bg-green-700">
+                        <div className="mr-20 border border-2 w-1/3 self-center text-center text-lg font-sebang-gothic font-bold rounded-lg text-white bg-green-600 hover:bg-green-700">
                             <button onClick={() => history.goBack()}>돌아가기</button>
                         </div>
                         <div className="border border-2 w-1/3 self-center text-center text-lg font-sebang-gothic font-bold rounded-lg text-white bg-green-600 hover:bg-green-700">

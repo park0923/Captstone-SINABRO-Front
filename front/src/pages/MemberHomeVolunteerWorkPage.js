@@ -114,7 +114,7 @@ function MemberHomeVolunteerWorkPage({history, location, match}){
     
     return(
         <div className="min-h-screen flex item-center justify-between bg-gray-yellow py-12 px-4 sm:px-6 lg:px-8">            
-            <div className="min-h-screen p-12 boder border-2 shadow-md rounded-none item-center justify-center bg-gray-50 max-w-max space-y-20">
+            <div className="min-h-screen p-12 boder border-2 shadow-md rounded-none item-center justify-center bg-gray-50 w-1/6 space-y-20">
                 <div>
                     <img className="mx-auto h-20 w-auto" src="/img/Logo.svg" alt="Logo"/>
                     <Link to="/MemberHomeMyPage">
@@ -177,7 +177,7 @@ function MemberHomeVolunteerWorkPage({history, location, match}){
                 </div>
             </div>          
           
-            <div className="p-10 item-center max-w-screen-lg space-y-4">     
+            <div className="p-10 item-center w-full space-y-4">     
                 <div className="flex flex-row ">
                     <div className="p-6 boder border-2 shadow-md rounded-xl item-center justify-center w-full h-35 space-y-2 bg-gray-50 ">
                         <h3 className="text-left text-lg font-sebang-gothic front-bold text-black">{data.work_title}</h3>
@@ -187,12 +187,12 @@ function MemberHomeVolunteerWorkPage({history, location, match}){
                 </div>
                 <div className="flex flex-row space-x-4 justify-between" >
                     
-                    <div className="flex flex-col mt-10">
+                    <div className="flex flex-col mt-10 w-full">
                         <div className="flex flex-row justify-between">
                             <h1 className="py-4 text-2xl font-sebang-gothic front-bold text-black">작업 진행 공간</h1>           
                         </div>
                         <div className="w-full y-40 h-96 border-2 shadow-md rounded-xl item-center justify-center bg-gray-50 ">                            
-                            <textarea className="mt-5" id="content" name="content" rows="15" cols="90" value={works_contents} onChange={handleWorks} placeholder="내용을 입력하세요">                                                               
+                            <textarea className="mt-5" id="content" name="content" rows="15" cols="175" value={works_contents} onChange={handleWorks} placeholder="내용을 입력하세요">                                                               
                             </textarea>
                         </div>
                         <div className="space-y-2 p-2 flex-row item-center justify-center">

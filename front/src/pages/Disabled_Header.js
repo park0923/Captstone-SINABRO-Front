@@ -9,7 +9,7 @@ const Disabled_Header = () => {
         <div className="">
           <Link to="/">
             <span className="sr-only">Workflow</span>
-            <img className="h-16 w-auto" src="/img/LogoGreen.svg" alt="Logo" />
+            <img className="h-16 w-auto mr-96" src="/img/LogoGreen.svg" alt="Logo" />
           </Link>
         </div>
 

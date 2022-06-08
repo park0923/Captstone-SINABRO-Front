@@ -89,7 +89,7 @@ function Member_Home_Introduction() {
 
       <div className="flex flex-grow p-12 border border-2 shadow-md rounded-none item-center justify-start bg-gray-50 w-40 mx-4 space-y-4">
         <div className="min-w-full flex flex-col space-y-8">
-          <div className="py-2 px-12 m-1">
+          <div className="py-2 px-12 ml-96">
             <span className="sr-only">Introduce Homepage</span>
             <div className="py-12">
               <img
