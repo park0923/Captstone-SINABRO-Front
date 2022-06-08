@@ -100,9 +100,9 @@ React.useEffect(()=>{
           </div>
           <div className="p-12  boder border-2 shadow-md rounded-xl item-center justify-center w-full h-50 bg-gray-50 space-y-1">
             <div className="flex flex-row space-x-6">
-              <div className="my-8 flex flex-col space-y-2">
+              <div className="my-8 flex flex-col space-y-2 w-1/6">
                 <img
-                  className="ml-8 w-20 h-20"
+                  className="ml-6 w-20 h-20"
                   src="/img/Asset 17.png"
                   alt="user"
                 />
@@ -112,7 +112,7 @@ React.useEffect(()=>{
                 <p className="pt-1 text-center text-base font-sebang-gothic font- text-gray-500">
                   {user.introduction}
                 </p>
-                <div className="ml-6 w-24 shadow-md rounded-full justify-center bg-green-600">
+                <div className="ml-4 w-24 shadow-md rounded-full justify-center bg-green-600">
                   <Link
                     to="/Disabled_MyPage_edit"
                     className="ml-4 text-center justify-center text-sm font-sebang-gothic text-white"
@@ -121,7 +121,7 @@ React.useEffect(()=>{
                   </Link>
                 </div>
               </div>
-              <div className="flex flex-col space-y-6 w-full">
+              <div className="flex flex-col space-y-6 w-11/12">
                 <div className="m-6 flex flex-row space-x-32 ml-14 text-center">
                   <div className="flex flex-col space-y-4">
                     <label className="text-gray-900 font-sans text-lg font-sebang-gothic font-bold">

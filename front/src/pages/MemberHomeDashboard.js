@@ -74,7 +74,7 @@ function MemberHomeDashboard() {
   
   return (
     <div className="min-h-screen flex item-center justify-between bg-gray-yellow py-12 px-4 sm:px-6 lg:px-8">
-      <div className="min-h-screen p-12 boder border-2 shadow-md rounded-none item-center justify-center bg-gray-50 max-w-max space-y-20">
+      <div className="min-h-screen p-12 boder border-2 shadow-md rounded-none item-center justify-center bg-gray-50 w-1/5 min-w-fit space-y-20">
         <div>
           <img className="mx-auto h-20 w-auto" src="/img/Logo.svg" alt="Logo" />
           <Link to="MemberHomeMyPage">
@@ -157,7 +157,7 @@ function MemberHomeDashboard() {
         </div>
       </div>
 
-      <div className="flex flex-grow flex-col p-12 border border-2 item-center justify-start bg-transparent mx-4 h-auto space-y-4">
+      <div className="flex flex-grow flex-col p-12 border border-2 item-center justify-start bg-transparent mx-4 h-auto space-y-4 w-4/6">
         <div className="flex flex-row justify-between">
           <h1 className="text-2xl font-sebang-gothic front-bold text-black">
             최근 진행 작업
@@ -172,9 +172,9 @@ function MemberHomeDashboard() {
         
         <div className="ml-8 flex flex-row space-x-4">
           {data.work && data.work.map(({volunteer_name}, index) => (            
-            <div className="p-4 boder border-2 shadow-lg rounded-xl item-center justify-center w-40 h-36 bg-gray-50 space-y-1">
+            <div className="p-4 boder border-2 shadow-lg rounded-xl item-center justify-center w-52 h-52 bg-gray-50 space-y-1">
             <img
-              className="mx-10 w-10 h-10 justify-center mt-4"
+              className="mx-10 w-10 h-10 justify-center ml-14"
               src="/img/Asset 15.png"
               alt="introduce"
             />  
@@ -190,15 +190,15 @@ function MemberHomeDashboard() {
         </div>
           
         
-        <div className="flex w-full space-x-12 justify-around">
-          <div className="flex flex-col w-full mt-16">
+        <div className="flex w-11/12 space-x-8 justify-around">
+          <div className="flex flex-col w-11/12 mt-16">
             <h1 className="text-2xl font-sebang-gothic front-bold text-black">
               일주일 진행 현황
             </h1>
             <div className="border-2 shadow-md rounded-xl w-full h-80 bg-gray-50 space-y-1">
               <div className="mt-4 mr-8 justify-start">
                 {/* <MyChart datas={data[1].week}/> */}
-                <BarChart width={1000} height={300} data={data.week}>
+                <BarChart width={700} height={300} data={data.week}>
                     <CartesianGrid strokeDasharray="1" />
                     <XAxis className="text-sm" dataKey={"date"} />
                     <YAxis />
@@ -220,7 +220,7 @@ function MemberHomeDashboard() {
         </div>
       </div>
       
-      <div className="p-12 boder border-2 shadow-md rounded-none item-center justify-center bg-gray-50 max-w-max max-h-max space-y-4">
+      <div className="p-12 boder border-2 shadow-md rounded-none item-center justify-center bg-gray-50 w-1/6 min-w-fit max-w-max max-h-max space-y-4">
         <UserTask></UserTask>
       </div>
     </div>
