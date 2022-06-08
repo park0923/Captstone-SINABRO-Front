@@ -106,7 +106,7 @@ function MemberHomeTrainingScreen({history, location, match}){
                 </div>
             </div>          
           
-            <div className="p-10 item-center w-full space-y-4">    
+            <div className="p-10 item-center w-4/6 space-y-4">    
                 <div className="flex flex-row ">
                     <div className="p-6 boder border-2 shadow-md rounded-xl item-center justify-center w-full h-35 bg-gray-50 float-left ">
                         <span>
@@ -135,7 +135,7 @@ function MemberHomeTrainingScreen({history, location, match}){
                         </div>
                         <div className="w-full y-40 h-96 border-2 shadow-md rounded-xl item-center justify-center bg-gray-50 ">
                             <p className="p-2 text-left text-sm font-sebang-gothic front-normal text-black"></p>
-                            <textarea id="content" name="content" rows="15" cols="175">
+                            <textarea id="content" name="content" rows="15" cols="130">
                                
                             </textarea>
                         </div>        
