@@ -38,7 +38,7 @@ function MemberHomeVolunteerWorkPage({history, location, match}){
 
     const handleUpdate = () => {        
         axios.patch(
-            'http://localhost:8080/api/volunteerWorks/' + id, 
+            'http://34.64.94.158:8080/api/volunteerWorks/' + id, 
             {
                 contents: works_contents,
                 title: data.work_id
@@ -67,7 +67,7 @@ function MemberHomeVolunteerWorkPage({history, location, match}){
     const handleInspection = () => {
         axios({
             method: 'post',
-            url: 'http://localhost:8080/api/inspections/'+ id,
+            url: 'http://34.64.94.158:8080/api/inspections/'+ id,
             headers: {                
                 "Authorization": 'Bearer ' + cookies
             }            
@@ -94,7 +94,7 @@ function MemberHomeVolunteerWorkPage({history, location, match}){
         
         axios({
             method: 'get',
-            url: 'http://localhost:8080/api/volunteerWorks/'+ id,
+            url: 'http://34.64.94.158:8080/api/volunteerWorks/'+ id,
             headers: {                
                 "Authorization": 'Bearer ' + cookies
                 

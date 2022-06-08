@@ -43,7 +43,7 @@ function Notification() {
     //   // }, [data])
       
     //   useEffect(() => {      
-    //       axios.get('http://localhost:8080/api/boards')
+    //       axios.get('http://34.64.94.158:8080/api/boards')
     //       .then(function (response) {
     //           // handle success
     //           console.log(response);
@@ -64,7 +64,7 @@ function Notification() {
 
 //   useEffect(() => {
 //     axios
-//       .get("http://localhost:8080/api/boards")
+//       .get("http://34.64.94.158:8080/api/boards")
 //       .then(function (response) {
 //         // handle success
 //         console.log(response);

@@ -53,7 +53,7 @@ function MemberHomeDashboard() {
   useEffect(() => {
     axios({
         method: 'get',
-        url: 'http://localhost:8080/api/home',
+        url: 'http://34.64.94.158:8080/api/home',
         headers: {                
             "Authorization": 'Bearer ' + cookies
         }            

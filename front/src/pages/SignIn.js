@@ -7,7 +7,7 @@ function Signin() {
     useEffect(() => {        
     },[])    
     const signInUser = ({email, password}) =>{
-        return axios.post('http://localhost:8080/api/members/signin', {
+        return axios.post('http://34.64.94.158:8080/api/members/signin', {
             email: email,
             password: password
         })

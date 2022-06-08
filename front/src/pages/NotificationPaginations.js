@@ -38,7 +38,7 @@ const NotificationPaginations = (props) => {
     // }, [data])
     
     useEffect(() => {      
-        axios.get('http://localhost:8080/api/boards')
+        axios.get('http://34.64.94.158:8080/api/boards')
         .then(function (response) {
             // handle success
             setData(response.data);            
@@ -54,7 +54,7 @@ const NotificationPaginations = (props) => {
     
     const handlePaging = (number) =>{     
       if(states === ""){
-        axios.get('http://localhost:8080/api/boards?page='+ number + '&size=10')
+        axios.get('http://34.64.94.158:8080/api/boards?page='+ number + '&size=10')
         .then(function (response) {
             // handle success            
             setData(response.data);
@@ -68,7 +68,7 @@ const NotificationPaginations = (props) => {
           });   
       }
       else if(states === "title"){
-        axios.get('http://localhost:8080/api/boards?page='+ number +'&searchOption=title&keyword=' + searchdata)
+        axios.get('http://34.64.94.158:8080/api/boards?page='+ number +'&searchOption=title&keyword=' + searchdata)
         .then(function (response) {
             // handle success
             setData(response.data);            
@@ -82,7 +82,7 @@ const NotificationPaginations = (props) => {
           });   
       }
       else if(states === "title_body"){
-        axios.get('http://localhost:8080/api/boards?page='+ number +'searchOption=title_contents&keyword='+ searchdata)
+        axios.get('http://34.64.94.158:8080/api/boards?page='+ number +'searchOption=title_contents&keyword='+ searchdata)
         .then(function (response) {
             // handle success
             setData(response.data);
@@ -113,7 +113,7 @@ const NotificationPaginations = (props) => {
 
     const handleSubmit = (e) => {      
       if(selectvalue === "title"){
-        axios.get('http://localhost:8080/api/boards?searchOption=title&keyword=' + searchdata)
+        axios.get('http://34.64.94.158:8080/api/boards?searchOption=title&keyword=' + searchdata)
         .then(function (response) {
             // handle success            
             if(response.data === undefined){
@@ -133,7 +133,7 @@ const NotificationPaginations = (props) => {
           });       
       }      
       else if(selectvalue === "title_body"){        
-        axios.get('http://localhost:8080/api/boards?searchOption=title_contents&keyword='+ searchdata)
+        axios.get('http://34.64.94.158:8080/api/boards?searchOption=title_contents&keyword='+ searchdata)
         .then(function (response) {
             // handle success            
             if(response.data === undefined){
