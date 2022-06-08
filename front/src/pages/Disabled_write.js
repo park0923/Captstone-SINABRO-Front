@@ -89,7 +89,7 @@ const Disabled_write = () => {
     <div className="relative bg-no-repeat bg-cover relative min-h-screen bg-home-spotted-pattern">
       <Disabled_Header />
       <div className="font-sebang-gothic flex px-96 my-14">
-        <div className="boder border-2 shadow-md rounded-xl item-center justify-center p-10 px-50  bg-gray-50 ml-40">
+        <div className="boder border-2 shadow-md rounded-xl item-center justify-center p-10 px-50  bg-gray-50">
           <div className="text-4xl">
             봉사 요청서 작성
             <div className="py-3 text-xl">

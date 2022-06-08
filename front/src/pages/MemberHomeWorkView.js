@@ -119,7 +119,7 @@ const MemberHomeWorkView = ({history, location, match}) => {
 
     return(
         <div className="min-h-screen flex item-center justify-between bg-gray-yellow py-12 px-4 sm:px-6 lg:px-8">            
-            <div className="min-h-screen p-12 boder border-2 shadow-md rounded-none item-center justify-center bg-gray-50 max-w-max space-y-20">
+            <div className="min-h-screen p-12 boder border-2 shadow-md rounded-none item-center justify-center bg-gray-50 w-1/6 max-w-max space-y-20">
                 <div>
                     <img className="mx-auto h-20 w-auto" src="/img/Logo.svg" alt="Logo"/>
                     <Link to="/MemberHomeMyPage">
@@ -186,7 +186,7 @@ const MemberHomeWorkView = ({history, location, match}) => {
                 </div>
             </div>          
           
-            <div className="flex flex-grow p-12 border border-2 item-center justify-start bg-gray-50  mx-4 h-auto space-y-4">
+            <div className="flex flex-grow p-12 border border-2 item-center justify-start bg-gray-50 w-4/6 mx-4 h-auto space-y-4">
                     
                 <div className="p-4 min-w-full flex flex-col space-y-8 rounded-lg">
                     <div className="flex">
