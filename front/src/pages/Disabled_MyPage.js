@@ -51,7 +51,7 @@ function Disabled_MyPage(){
             <div className="flex flex-row space-x-6">
               <div className="my-8 flex flex-col space-y-2">
                 <img
-                  className="ml-4 w-20 h-20"
+                  className="ml-8 w-20 h-20"
                   src="/img/Asset 17.png"
                   alt="user"
                 />
@@ -61,17 +61,17 @@ function Disabled_MyPage(){
                 <p className="pt-1 text-center text-base font-sebang-gothic font- text-gray-500">
                   {user.introduction}
                 </p>
-                <div className="mt-14 shadow-md rounded-full justify-center bg-green-600">
+                <div className="ml-6 w-24 shadow-md rounded-full justify-center bg-green-600">
                   <Link
                     to="/Disabled_MyPage_edit"
-                    className="ml-8 text-center justify-center text-sm font-sebang-gothic text-white"
+                    className="ml-4 text-center justify-center text-sm font-sebang-gothic text-white"
                   >
                     정보 수정
                   </Link>
                 </div>
               </div>
-              <div className="flex flex-col space-y-6">
-                <div className="m-6 flex flex-row space-x-6">
+              <div className="flex flex-col space-y-6 w-full">
+                <div className="m-6 flex flex-row space-x-32 ml-14 text-center">
                   <div className="flex flex-col space-y-4">
                     <label className="text-gray-900 font-sans text-lg font-sebang-gothic font-bold">
                       이메일

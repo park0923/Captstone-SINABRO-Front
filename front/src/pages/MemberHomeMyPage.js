@@ -39,7 +39,7 @@ function MemberHomeMyPage() {
 
   return (
     <div className="min-h-screen flex item-center justify-between bg-gray-yellow py-12 px-4 sm:px-6 lg:px-8">
-      <div className="min-h-screen p-12 boder border-2 shadow-md rounded-none item-center justify-center bg-gray-50 w-1/5 space-y-20">
+      <div className="min-h-screen p-12 boder border-2 shadow-md rounded-none item-center justify-center bg-gray-50  space-y-20">
         <div>
           <img className="mx-auto h-20 w-auto" src="/img/Logo.svg" alt="Logo" />
           <Link to="MemberHomeMyPage">
@@ -123,17 +123,17 @@ function MemberHomeMyPage() {
       </div>
 
       <div className="flex flex-grow p-12 border border-2 item-center justify-center bg-transparent  mx-4 h-auto space-y-4">
-        <div className="flex flex-col space-y-6">
+        <div className="flex flex-col space-y-6 w-full">
           <div>
             <h1 className="text-2xl font-sebang-gothic front-bold text-black">
               마이페이지
             </h1>
           </div>
           <div className="p-12  boder border-2 shadow-md rounded-xl item-center justify-center w-full h-50 bg-gray-50 space-y-1">
-            <div className="flex flex-row space-x-6">
+            <div className="flex flex-row space-x-6 w-full">
               <div className="my-8 flex flex-col space-y-2">
                 <img
-                  className="ml-4 w-20 h-20"
+                  className="ml-8 w-20 h-20"
                   src="/img/Asset 17.png"
                   alt="user"
                 />
@@ -143,17 +143,17 @@ function MemberHomeMyPage() {
                 <p className="pt-1 text-center text-base font-sebang-gothic font- text-gray-500">
                   {user.introduction}
                 </p>
-                <div className="mt-14 shadow-md rounded-full justify-center bg-green-600">
+                <div className="ml-6 w-24 shadow-md rounded-full justify-center bg-green-600">
                   <Link
                     to="/MemberHomeMyPage_edit"
-                    className="ml-8 text-center text-sm font-sebang-gothic text-white"
+                    className="ml-6 text-center text-sm font-sebang-gothic text-white"
                   >
                     정보 수정
                   </Link>
                 </div>
               </div>
-              <div className="flex flex-col space-y-6">
-                <div className="m-6 flex flex-row space-x-6">
+              <div className="flex flex-col space-y-6 w-full">
+                <div className="m-6 flex flex-row space-x-64 text-center ml-32">
                   <div className="flex flex-col space-y-4">
                     <label className="text-gray-900 font-sans text-lg font-sebang-gothic font-bold">
                       이메일
@@ -211,7 +211,7 @@ function MemberHomeMyPage() {
           </div>
           <div className="p-8 boder border-2 shadow-md rounded-xl item-center justify-center min-w-max h-50 bg-gray-50 space-y-1">
             <div className="flex flex-row space-x-6">
-              <div className="mx-8 flex flex-col space-y-2">
+              <div className="mx-8 flex flex-col space-y-2 w-full">
                 <div className="flex flex-row justify-between">
                   <h3 className="text-lg font-sebang-gothic front-bold text-black">
                     작업 히스토리
