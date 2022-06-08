@@ -177,7 +177,7 @@ function MemberHomeVolunteerWorkPage({history, location, match}){
                 </div>
             </div>          
           
-            <div className="p-10 item-center w-full space-y-4">     
+            <div className="p-10 item-center w-4/6 space-y-4">     
                 <div className="flex flex-row ">
                     <div className="p-6 boder border-2 shadow-md rounded-xl item-center justify-center w-full h-35 space-y-2 bg-gray-50 ">
                         <h3 className="text-left text-lg font-sebang-gothic front-bold text-black">{data.work_title}</h3>
@@ -192,7 +192,7 @@ function MemberHomeVolunteerWorkPage({history, location, match}){
                             <h1 className="py-4 text-2xl font-sebang-gothic front-bold text-black">작업 진행 공간</h1>           
                         </div>
                         <div className="w-full y-40 h-96 border-2 shadow-md rounded-xl item-center justify-center bg-gray-50 ">                            
-                            <textarea className="mt-5" id="content" name="content" rows="15" cols="175" value={works_contents} onChange={handleWorks} placeholder="내용을 입력하세요">                                                               
+                            <textarea className="mt-5" id="content" name="content" rows="15" cols="130" value={works_contents} onChange={handleWorks} placeholder="내용을 입력하세요">                                                               
                             </textarea>
                         </div>
                         <div className="space-y-2 p-2 flex-row item-center justify-center">
