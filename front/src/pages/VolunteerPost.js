@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const VolunteerPost = ({posts}) => {
+const VolunteerPost = ({posts, page}) => {
     return(
         <table class="table-fixed w-full">
           <thead className=" bg-white">
@@ -51,7 +51,7 @@ const VolunteerPost = ({posts}) => {
                 style={{ borderBottom: "1px solid #A1A0A0" }}
                 className="p-2 text-sm font-sebang-gothic"
               >
-                {index + 1}
+                {(index +1)}
               </td>
               
               <td
@@ -73,7 +73,7 @@ const VolunteerPost = ({posts}) => {
                 className="p-2 text-sm font-sebang-gothic text-center"
               >
                 {ended_date}
-              </td>                                
+              </td>                
             </tr>
           ))}
         
