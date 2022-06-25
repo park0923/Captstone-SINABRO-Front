@@ -38,9 +38,7 @@
     padding-right: 0.5rem/* 8px */;
     --tw-text-opacity: 1;
     color: rgba(249, 250, 251, var(--tw-text-opacity));
-    overflow: hidden;
-    white-space : nowrap; 
-    text-overflow: clip;
+        
 }
 .main .backimg2{
     position: relative;
@@ -56,7 +54,7 @@
     padding-right: 1.5rem/* 24px */;
 }
 .detail2 h1{
-    font-size: 2.25rem/* 36px */;
+    font-size: 2.0rem/* 36px */;
     line-height: 2.5rem/* 40px */;
     font-family: SebangGothic;
     font-weight: 700;
