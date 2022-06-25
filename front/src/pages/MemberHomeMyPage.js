@@ -207,7 +207,7 @@ React.useEffect(()=>{
             <div className="flex flex-row space-x-6">
               <div className="my-8 flex flex-col space-y-2">
                 <img
-                  className="ml-8 w-20 h-20"
+                  className="ml-12 w-20 h-20"
                   src="/img/Asset 17.png"
                   alt="user"
                 />
@@ -217,7 +217,7 @@ React.useEffect(()=>{
                 <p className="pt-1 text-center text-base font-sebang-gothic font- text-gray-500">
                   {user.introduction}
                 </p>
-                <div className="ml-6 w-24 shadow-md rounded-full justify-center bg-green-600">
+                <div className="ml-12 w-24 shadow-md rounded-full justify-center bg-green-600">
                   <Link
                     to="/MemberHomeMyPage_edit"
                     className="ml-6 text-center text-sm font-sebang-gothic text-white"
