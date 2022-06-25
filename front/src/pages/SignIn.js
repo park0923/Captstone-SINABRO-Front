@@ -80,7 +80,7 @@ function Signin() {
                     {/* User ID & Password Input Box*/}
                     <div className="rounded-md shadow-sm -space-y-px">
                         <div>
-                            <label htmlFor="email" className="text-gray-900 font-sans text-sm font-semibold">E-Maile</label>
+                            <label htmlFor="email" className="text-gray-900 font-sans text-sm font-semibold">E-Mail</label>
                             <input id="email" name="email" type="email" required className="my-1 appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded focus:outline-none focus:ring-green-500 focus:border-green-500 focus:z-10 sm:text-sm" placeholder="아이디" value={email} onChange={handleInputEmail}/>
                         </div>
                         <div>

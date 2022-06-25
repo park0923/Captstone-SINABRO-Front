@@ -83,7 +83,7 @@ function SignIn_disabled() {
                 htmlFor="email"
                 className="text-gray-900 font-sans text-sm font-semibold"
               >
-                E-Maile
+                E-Mail
               </label>
               <input
                 id="email"
