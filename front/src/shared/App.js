@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Route } from "react-router-dom";
-import Home from "pages/Home";
+// import Home from "pages/Home";
 import About from "pages/About";
 import SignIn from "pages/SignIn";
 import resetPassword from "pages/resetPassword";
@@ -51,6 +51,7 @@ import SignIn_disabled from "pages/SignIn_disabled";
 import SignUp_disabled from "pages/SignUp_disabled";
 import MemberHomeMyPage_edit from "pages/MemberHomeMyPage_edit";
 import wordtesseract from "pages/wordtesseract";
+import Home from "WebApp/Home";
 class App extends Component {
   
   render() {

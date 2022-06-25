@@ -134,11 +134,8 @@ const  MemberHomeEducation = () => {
                     <div className="flex flex-col mt-16 ml-8 w-1/2 h-auto justify-center">
                         <h1 className="text-2xl font-sebang-gothic front-bold text-black">교육 진행 현황</h1>
                         <div className="border-2 shadow-md rounded-xl justify-center bg-gray-50 space-y-1">
-<<<<<<< HEAD
-                            <div className="self-center ml-28">
-=======
                             <div className="self-center ml-20">
->>>>>>> 5866f0564facb67d0f25b15756fce6f00b504787
+
                                 <MyPieChart data={data.progress} />                                
                             </div>                           
                             <p className="mr-2 text-center text-lg font-sebang-gothic front-bold text-black text-green-500">
