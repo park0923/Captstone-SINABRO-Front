@@ -51,13 +51,16 @@ import SignIn_disabled from "pages/SignIn_disabled";
 import SignUp_disabled from "pages/SignUp_disabled";
 import MemberHomeMyPage_edit from "pages/MemberHomeMyPage_edit";
 import wordtesseract from "pages/wordtesseract";
-import Home from "WebApp/Home";
+import Home from "Web/Home";
+import TopBar from "Web/TopBar"
+import UserDashboard from "Web/UserDashboard";
+
 class App extends Component {
   
   render() {
     return (
-      <div className="APP">
-        <Route exact path="/" component={Home} />
+      <div className="APP">        
+        <Route exact path="/" component={Home} />        
         <Route path="/user/signin" component={SignIn} />
         <Route path="/user/signup" component={SignUp} />
         <Route path="/resetPassword" component={resetPassword} />
@@ -133,7 +136,9 @@ class App extends Component {
         <Route path="/SignIn_disabled" component={SignIn_disabled} />
         <Route path="/SignUp_disabled" component={SignUp_disabled} />
         <Route path="/MemberHomeMyPage_edit" component={MemberHomeMyPage_edit} />
-        <Route path="/wordtesseract" component={wordtesseract} />
+        <Route path="/wordtesseract" component={wordtesseract} />        
+        <Route path="/TopBar" component={TopBar} />
+        <Route path="/UserDashboard" component={UserDashboard} />
       </div>
     );
   }

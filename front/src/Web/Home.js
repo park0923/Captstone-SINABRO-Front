@@ -4,6 +4,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import './css/home.css';
+import TopBar from './TopBar';
 const Home = () => {
   const settings = {
     dots: true,
@@ -15,7 +16,7 @@ const Home = () => {
 
   return(
     <div className='main'>
-      <Header></Header>
+      <Header></Header>        
       <div className='backimg'>
         <div className="detail">
           <h1>

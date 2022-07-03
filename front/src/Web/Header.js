@@ -8,6 +8,7 @@ const Header = () => {
             <ul>
                 <li><Link to={'user/signin'} className='font-sebang-gothic font-bold'>Sign In</Link></li>
                 <li><Link to={'user/signup'} className='font-sebang-gothic font-bold'>Sign Up</Link></li>
+                <li><Link to={'/UserDashboard'} className='font-sebang-gothic font-bold'>TopBar</Link></li>
             </ul>
         </header>
     );
