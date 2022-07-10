@@ -54,6 +54,14 @@ import wordtesseract from "pages/wordtesseract";
 import Home from "Web/Home";
 import TopBar from "Web/TopBar"
 import UserDashboard from "Web/UserDashboard";
+import Education from "Web/Education";
+import WorkPostDetails from "Web/WorkPostDetails";
+import NoticePostDetails from "Web/NoticePostDetails";
+import Work from "Web/Work";
+import Notice from "Web/Notice";
+import Inspection from "Web/Inspection";
+import Certified from "Web/Certified";
+import WorkSpace from "Web/WorkSpace";
 
 class App extends Component {
   
@@ -139,6 +147,14 @@ class App extends Component {
         <Route path="/wordtesseract" component={wordtesseract} />        
         <Route path="/TopBar" component={TopBar} />
         <Route path="/UserDashboard" component={UserDashboard} />
+        <Route path="/Education" component={Education} />
+        <Route path="/WorkPostDetails" component={WorkPostDetails} />
+        <Route path="/NoticePostDetails" component={NoticePostDetails} />
+        <Route path="/Work" component={Work} />
+        <Route path="/Notice" component={Notice} />
+        <Route path="/Inspection" component={Inspection} />
+        <Route path="/Certified" component={Certified} />
+        <Route path="/WorkSpace" component={WorkSpace} />
       </div>
     );
   }

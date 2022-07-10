@@ -18,6 +18,8 @@ import SchoolIcon from '@mui/icons-material/School';
 import VolunteerActivismIcon from '@mui/icons-material/VolunteerActivism';
 import FactCheckIcon from '@mui/icons-material/FactCheck';
 import BookmarkAddedIcon from '@mui/icons-material/BookmarkAdded';
+import NotificationsIcon from '@mui/icons-material/Notifications';
+import { Link } from 'react-router-dom';
 
 const TopBar = () => {
     
@@ -41,18 +43,38 @@ const TopBar = () => {
             case 0:
                 return(<DashboardIcon fontSize="large"/>)                                
             case 1:
-                return(<SchoolIcon fontSize="large"/>)                
+                return(<NotificationsIcon fontSize="large"/>)    
             case 2:
-                return(<VolunteerActivismIcon fontSize="large"/>)                
+                return(<SchoolIcon fontSize="large"/>)                
             case 3:
-                return(<FactCheckIcon fontSize="large"/>)                      
+                return(<VolunteerActivismIcon fontSize="large"/>)                
             case 4:
+                return(<FactCheckIcon fontSize="large"/>)                      
+            case 5:
                 return(<BookmarkAddedIcon fontSize="large"/>)                            
             default:
                 return;
         }
       }
       
+      const link = (text) => {
+        switch (text) {
+            case '대시보드':
+                return('/UserDashBoard')                                
+            case '공지':
+                return('/Notice')
+            case '교육':
+                return('/Education')                
+            case '봉사':
+                return('/Work')                
+            case '검수':
+                return('/inspection')                      
+            case '인증':
+                return('/Certified')                            
+            default:
+                return;
+        }
+      }
       const list = (anchor) => (
         <Box
           sx={{ width: anchor === 'top' || anchor === 'bottom' ? 'auto' : 250 }}
@@ -70,15 +92,17 @@ const TopBar = () => {
             </List>
             <Divider />
             <List>
-                {['대시보드', '교육', '봉사', '검증', '인증'].map((text, index) => (
-                <ListItem key={text} disablePadding>
-                    <ListItemButton>
-                    <ListItemIcon>                                                
-                        {icons(index)}
-                    </ListItemIcon>
-                    <ListItemText primary={text} />
-                    </ListItemButton>
-                </ListItem>
+                {['대시보드', '공지', '교육', '봉사', '검수', '인증'].map((text, index) => (
+                <Link to={link(text)}>
+                    <ListItem key={text} disablePadding>
+                        <ListItemButton>
+                            <ListItemIcon>                                                
+                                {icons(index)}
+                            </ListItemIcon>                        
+                            <ListItemText primary={text} />                        
+                        </ListItemButton>                        
+                    </ListItem>
+                </Link>
                 ))}
             </List>
             <Divider />
