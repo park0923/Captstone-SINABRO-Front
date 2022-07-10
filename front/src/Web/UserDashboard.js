@@ -3,7 +3,6 @@ import TopBar from "./TopBar";
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
@@ -21,7 +20,7 @@ const UserDashboard = () => {
             <div style={{paddingTop: '9vh'}}>               
                 <Container maxWidth='xl' sx={{maxWidth: 'sm',}}>
                     <Box sx={{ bgcolor: '#F0F8FF', height: '200vh', justifyContent: 'center', alignItems: 'center', paddingTop: '20px', }}>
-                    <Card sx={{ width: '80%', height: '30vh',bgcolor: 'white', marginLeft: '10%', padding: '10px', mb: '5%',}}>
+                    <Card sx={{ width: '80%', height: 'auto',bgcolor: 'white', marginLeft: '10%', padding: '10px', mb: '5%', displat: "flex"}}>
                         <CardContent>
                             <div style={{justifyContent: 'space-between', alignItems: 'center', display: 'flex', flexDirection: 'row'}}>
                                 <Typography sx={{ fontSize: 20 }} color="text.secondary" gutterBottom>
@@ -45,7 +44,7 @@ const UserDashboard = () => {
                         </CardContent>
                         <Divider /> 
                     </Card>
-                    <Card sx={{ width: '80%', height: '30vh',bgcolor: 'white', marginLeft: '10%', padding: '10px', mb: '5%',}}>
+                    <Card sx={{ width: '80%', height: 'auto',bgcolor: 'white', marginLeft: '10%', padding: '10px', mb: '5%',}}>
                         <CardContent>
                             <div style={{justifyContent: 'space-between', alignItems: 'center', display: 'flex', flexDirection: 'row'}}>
                                 <Typography sx={{ fontSize: 20 }} color="text.secondary" gutterBottom>
@@ -69,7 +68,7 @@ const UserDashboard = () => {
                         </CardContent>
                         <Divider /> 
                     </Card>
-                    <Card sx={{ width: '80%', height: '30vh',bgcolor: 'white', marginLeft: '10%', padding: '10px', mb: '5%',}}>
+                    <Card sx={{ width: '80%', height: 'auto',bgcolor: 'white', marginLeft: '10%', padding: '10px', mb: '5%',}}>
                         <CardContent>
                             <div style={{justifyContent: 'space-between', alignItems: 'center', display: 'flex', flexDirection: 'row'}}>
                                 <Typography sx={{ fontSize: 20 }} color="text.secondary" gutterBottom>
@@ -93,7 +92,7 @@ const UserDashboard = () => {
                         </CardContent>
                         <Divider /> 
                     </Card>
-                    <Card sx={{ width: '80%', height: '30vh',bgcolor: 'white', marginLeft: '10%', padding: '10px', mb: '5%',}}>
+                    <Card sx={{ width: '80%', height: 'auto',bgcolor: 'white', marginLeft: '10%', padding: '10px', mb: '5%',}}>
                         <CardContent>
                             <div style={{justifyContent: 'space-between', alignItems: 'center', display: 'flex', flexDirection: 'row'}}>
                                 <Typography sx={{ fontSize: 20 }} color="text.secondary" gutterBottom>
@@ -117,7 +116,7 @@ const UserDashboard = () => {
                         </CardContent>
                         <Divider /> 
                     </Card>
-                    <Card sx={{ width: '80%', height: '30vh',bgcolor: 'white', marginLeft: '10%', padding: '10px', mb: '5%',}}>
+                    <Card sx={{ width: '80%', height: 'auto',bgcolor: 'white', marginLeft: '10%', padding: '10px', mb: '5%',}}>
                         <CardContent>
                             <div style={{justifyContent: 'space-between', alignItems: 'center', display: 'flex', flexDirection: 'row'}}>
                                 <Typography sx={{ fontSize: 20 }} color="text.secondary" gutterBottom>
