@@ -21,9 +21,9 @@ const UserDashboard = () => {
             <div style={{paddingTop: '9vh'}}>               
                 <Container maxWidth='xl' sx={{maxWidth: 'sm',}}>
                     <Box sx={{ bgcolor: '#F0F8FF', height: '200vh', justifyContent: 'center', alignItems: 'center', paddingTop: '20px', }}>
-                    <Card sx={{ width: '80%', height: '30vh',bgcolor: 'white', marginLeft: '10%', padding: '10px', mb: '5%',}}>
+                    <Card sx={{ width: '80%', height: 'auto',bgcolor: 'white', marginLeft: '10%', padding: '10px', mb: '5%',}}>
                         <CardContent>
-                            <div style={{justifyContent: 'space-between', alignItems: 'center', display: 'flex', flexDirection: 'row'}}>
+                            <div style={{justifyContent: 'space-between', alignItems: 'center', display: 'flex', flexDirection: 'row',  displat: "flex"}}>
                                 <Typography sx={{ fontSize: 20 }} color="text.secondary" gutterBottom>
                                     일반 봉사
                                 </Typography>
@@ -45,7 +45,7 @@ const UserDashboard = () => {
                         </CardContent>
                         <Divider /> 
                     </Card>
-                    <Card sx={{ width: '80%', height: '30vh',bgcolor: 'white', marginLeft: '10%', padding: '10px', mb: '5%',}}>
+                    <Card sx={{ width: '80%', height: 'auto',bgcolor: 'white', marginLeft: '10%', padding: '10px', mb: '5%',}}>
                         <CardContent>
                             <div style={{justifyContent: 'space-between', alignItems: 'center', display: 'flex', flexDirection: 'row'}}>
                                 <Typography sx={{ fontSize: 20 }} color="text.secondary" gutterBottom>
@@ -69,7 +69,7 @@ const UserDashboard = () => {
                         </CardContent>
                         <Divider /> 
                     </Card>
-                    <Card sx={{ width: '80%', height: '30vh',bgcolor: 'white', marginLeft: '10%', padding: '10px', mb: '5%',}}>
+                    <Card sx={{ width: '80%', height: 'auto',bgcolor: 'white', marginLeft: '10%', padding: '10px', mb: '5%',}}>
                         <CardContent>
                             <div style={{justifyContent: 'space-between', alignItems: 'center', display: 'flex', flexDirection: 'row'}}>
                                 <Typography sx={{ fontSize: 20 }} color="text.secondary" gutterBottom>
@@ -93,7 +93,7 @@ const UserDashboard = () => {
                         </CardContent>
                         <Divider /> 
                     </Card>
-                    <Card sx={{ width: '80%', height: '30vh',bgcolor: 'white', marginLeft: '10%', padding: '10px', mb: '5%',}}>
+                    <Card sx={{ width: '80%', height: 'auto',bgcolor: 'white', marginLeft: '10%', padding: '10px', mb: '5%',}}>
                         <CardContent>
                             <div style={{justifyContent: 'space-between', alignItems: 'center', display: 'flex', flexDirection: 'row'}}>
                                 <Typography sx={{ fontSize: 20 }} color="text.secondary" gutterBottom>
@@ -117,7 +117,7 @@ const UserDashboard = () => {
                         </CardContent>
                         <Divider /> 
                     </Card>
-                    <Card sx={{ width: '80%', height: '30vh',bgcolor: 'white', marginLeft: '10%', padding: '10px', mb: '5%',}}>
+                    <Card sx={{ width: '80%', height: 'auto',bgcolor: 'white', marginLeft: '10%', padding: '10px', mb: '5%',}}>
                         <CardContent>
                             <div style={{justifyContent: 'space-between', alignItems: 'center', display: 'flex', flexDirection: 'row'}}>
                                 <Typography sx={{ fontSize: 20 }} color="text.secondary" gutterBottom>
