@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -19,10 +19,42 @@ import VolunteerActivismIcon from '@mui/icons-material/VolunteerActivism';
 import FactCheckIcon from '@mui/icons-material/FactCheck';
 import BookmarkAddedIcon from '@mui/icons-material/BookmarkAdded';
 import NotificationsIcon from '@mui/icons-material/Notifications';
+import LogoutIcon from '@mui/icons-material/Logout';
 import { Link } from 'react-router-dom';
+import cookie  from "react-cookies";
+import axios from "axios";
 
 const TopBar = () => {
-    
+    const [data, setData] = useState(
+        {
+            "work": {
+                "links": [
+                  {
+                    "rel": null,
+                    "href": null,
+                  }
+                ],
+                "content": [
+
+                ],
+                "page": {
+                  "size": null,
+                  "totalElements": null,
+                  "totalPages": null,
+                  "number": null,
+                }
+              },
+              "username": null,
+              "introduction": null,
+              "email": null,
+              "phone_number": null,
+              "address": null,
+              "volunteer_time": null,
+              "work_number": null,
+              "warn_number": null
+        }
+    )
+    const cookies = cookie.load("login_token");
     const [state, setState] = React.useState({
         top: false,
         left: false,
@@ -30,6 +62,32 @@ const TopBar = () => {
         right: false,
       });
     
+    useEffect(() => {
+        axios({
+            method: 'get',
+            url: 'http://34.64.94.158:8080/api/members',            
+            headers: {                
+                "Authorization": 'Bearer ' + cookies
+            }            
+          })
+          .then(function (response) {
+              // handle success            
+              setData(response.data);
+            })
+            .catch(function (error) {
+              // handle error
+              console.log(error);
+            })
+            .then(function () {
+              // always executed
+            });       
+    }, [])
+    const handleLogout = () => {        
+        cookie.remove("login_token");        
+        window.location.href = '/'     
+        
+    }  
+
       const toggleDrawer = (anchor, open) => (event) => {
         if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
           return;
@@ -87,7 +145,7 @@ const TopBar = () => {
                     <ListItemIcon>
                         <PersonIcon fontSize="large" />
                     </ListItemIcon>                
-                    <ListItemText primary={'user'} />
+                    <ListItemText primary={data.username} />
                 </ListItemButton>
             </List>
             <Divider />
@@ -106,7 +164,14 @@ const TopBar = () => {
                 ))}
             </List>
             <Divider />
-           
+            <List>
+                <ListItemButton onClick={handleLogout}>    
+                    <ListItemIcon>
+                        <LogoutIcon fontSize="large" />
+                    </ListItemIcon>                
+                    <ListItemText primary={'Logout'} />
+                </ListItemButton>
+            </List>
         </Box>
       );
     

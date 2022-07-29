@@ -1,5 +1,5 @@
 import { Box } from "@mui/system";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import TopBar from "./TopBar";
 import Container from '@mui/material/Container';
 import Table from '@mui/material/Table';
@@ -13,20 +13,80 @@ import Typography from '@mui/material/Typography';
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
 import { Link } from "react-router-dom";
+import axios from "axios";
+import cookie from 'react-cookies';
 
 const Inspection = () => {
-    const createData = (name, calories, fat, carbs, protein) => {
-        return { name, calories, fat, carbs, protein };
-    }
+    const cookies = cookie.load("login_token");
+    const [data, setData] = useState(
+        {
+            "inspection_responses": {
+                "links": [
+                  {
+                    "rel": null,
+                    "href": null,
+                  }
+                ],
+                "content": [
+                  {
+                    "idx": null,
+                    "title": null,
+                    "ended_date": null,
+                  }
+                ],
+                "page": {
+                  "size": null,
+                  "totalElements": null,
+                  "totalPages": null,
+                  "number": null
+                }
+              }
+        }
+    )
+    
+    useEffect(() => {
+        axios({
+            method: 'get',
+            url: 'http://34.64.94.158:8080/api/inspections',     
+            headers: {                
+                "Authorization": 'Bearer ' + cookies
+            }                           
+          })
+          .then(function (response) {
+              // handle success
+              setData(response.data);                          
+            })
+            .catch(function (error) {
+              // handle error
+              console.log(error);
+            })
+            .then(function () {
+              // always executed
+            });
+    }, [])
 
-    const rows = [
-        createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-        createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-        createData('Eclair', 262, 16.0, 24, 6.0),
-        createData('Cupcake', 305, 3.7, 67, 4.3),
-        createData('Gingerbread', 356, 16.0, 49, 3.9),
-      ];
-
+    const handlePage = (value) => {
+        const pages = value - 1;
+        axios({
+            method: 'get',
+            url: 'http://34.64.94.158:8080/api/inspections?page=' + pages,     
+            headers: {                
+                "Authorization": 'Bearer ' + cookies
+            }                           
+          })
+          .then(function (response) {
+              // handle success
+              setData(response.data);                          
+            })
+            .catch(function (error) {
+              // handle error
+              console.log(error);
+            })
+            .then(function () {
+              // always executed
+            });
+        
+      }
     return(
         <div style={{backgroundColor: '#F0F8FF', height: 'auto'}}>            
             <TopBar />            
@@ -36,8 +96,8 @@ const Inspection = () => {
                     <Typography variant="h5" component="div" sx={{ flexGrow: 1 }}>
                         검수 요청 목록
                     </Typography>
-                    <TableContainer component={Paper}>
-                        <Table sx={{ minWidth: '80vh' }} aria-label="simple table">
+                    <TableContainer component={Paper} sx={{width: 'auto'}}>
+                        <Table sx={{ width: '100%' }} aria-label="simple table">
                             <TableHead>
                             <TableRow>
                                 <TableCell>번호</TableCell>
@@ -47,10 +107,10 @@ const Inspection = () => {
                             </TableRow>
                             </TableHead>
                             <TableBody>
-                            {rows.map((row, index) => (
+                            {data.inspection_responses.content.map(({idx,title, ended_date}, index) => (
                                 
                                 <TableRow
-                                key={row.name}
+                                key={idx}
                                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                                 >                                    
                                 
@@ -58,11 +118,10 @@ const Inspection = () => {
                                     {index + 1 }
                                 </TableCell>                                
                                 <TableCell align="left">
-                                <Link to={{pathname: `/WorkPostDetails`, }} color= 'black'>{row.name}</Link>
+                                <Link to={{pathname: `/InspectionPostDetails/${idx}`, }} color= 'black'>{title}</Link>
                                 </TableCell>
-                                
-                                <TableCell align="center">{row.fat}</TableCell>
-                                <TableCell align="center">{row.carbs}</TableCell>                                
+                                                                
+                                <TableCell align="center">{ended_date}</TableCell>                                
                                 
                                 </TableRow>                                
                             ))}
@@ -70,7 +129,7 @@ const Inspection = () => {
                         </Table>
                     </TableContainer>
                     <Stack spacing={3} sx={{justifyContent:'center', alignItems:'center', paddingTop: '20px', }}>                        
-                        <Pagination count={10} variant="outlined" shape="rounded" />
+                        <Pagination count={data.inspection_responses.page.totalPages} variant="outlined" shape="rounded" onChange={(e, value) => handlePage(value)}/>
                     </Stack>
                 </Box>
                 </Container>  
