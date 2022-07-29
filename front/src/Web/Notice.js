@@ -1,5 +1,5 @@
 import { Box } from "@mui/system";
-import React from "react";
+import React, {useState, useEffect} from "react";
 import TopBar from "./TopBar";
 import Container from '@mui/material/Container';
 import Table from '@mui/material/Table';
@@ -13,8 +13,51 @@ import Typography from '@mui/material/Typography';
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 const Notice = () => {
+    const [data, setData] = useState(
+        {
+            "boards": {
+                "links": [
+                  {
+                    "rel": null,
+                    "href": null
+                  }
+                ],
+                "content": [
+                    {
+                        "idx": null,
+                        "title": null,
+                        "created_date": null
+                    }
+                ],
+                "page": {
+                  "size": null,
+                  "totalElements": null,
+                  "totalPages": null,
+                  "number":null
+                }
+              }
+        }
+    )
+    useEffect(() => {
+        axios({
+            method: 'get',
+            url: 'http://34.64.94.158:8080/api/boards',                                   
+          })
+          .then(function (response) {
+              // handle success
+              setData(response.data);                          
+            })
+            .catch(function (error) {
+              // handle error
+              console.log(error);
+            })
+            .then(function () {
+              // always executed
+            });  
+    },[])
     const createData = (name, calories, fat, carbs, protein) => {
         return { name, calories, fat, carbs, protein };
     }
@@ -27,6 +70,24 @@ const Notice = () => {
         createData('Gingerbread', 356, 16.0, 49, 3.9),
       ];
 
+    const handlePage = (value) => {
+        const pages = value - 1;
+        axios({
+            method: 'get',
+            url: 'http://34.64.94.158:8080/api/boards?page=' + pages,                                   
+          })
+          .then(function (response) {
+              // handle success
+                setData(response.data);          
+            })
+            .catch(function (error) {
+              // handle error
+              console.log(error);
+            })
+            .then(function () {
+              // always executed
+            });          
+      }
     return(
         <div style={{backgroundColor: '#F0F8FF', height: 'auto'}}>            
             <TopBar />            
@@ -36,21 +97,20 @@ const Notice = () => {
                     <Typography variant="h5" component="div" sx={{ flexGrow: 1 }}>
                         공지사항
                     </Typography>
-                    <TableContainer component={Paper}>
-                        <Table sx={{ minWidth: '80vh' }} aria-label="simple table">
+                    <TableContainer component={Paper} sx={{width: 'auto'}}>
+                        <Table sx={{ width: '100%' }} aria-label="simple table">
                             <TableHead>
                             <TableRow>
                                 <TableCell>번호</TableCell>
-                                <TableCell align="left">제목</TableCell>
-                                <TableCell align="center">작성자</TableCell>
+                                <TableCell align="left">제목</TableCell>                                
                                 <TableCell align="center">작성일</TableCell>                                
                             </TableRow>
                             </TableHead>
                             <TableBody>
-                            {rows.map((row, index) => (
+                            {data.boards.content.map(({idx, title, created_date}, index) => (
                                 
                                 <TableRow
-                                key={row.name}
+                                key={idx}
                                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                                 >                                    
                                 
@@ -58,11 +118,10 @@ const Notice = () => {
                                     {index + 1 }
                                 </TableCell>                                
                                 <TableCell align="left">
-                                <Link to={{pathname: `/NoticePostDetails`, }} color= 'black'>{row.name}</Link>
-                                </TableCell>
+                                <Link to={{pathname: `/NoticePostDetails/${idx}`, }} color= 'black'>{title}</Link>
+                                </TableCell>                                
                                 
-                                <TableCell align="center">{row.fat}</TableCell>
-                                <TableCell align="center">{row.carbs}</TableCell>                                
+                                <TableCell align="center">{created_date}</TableCell>                                
                                 
                                 </TableRow>                                
                             ))}
@@ -70,7 +129,7 @@ const Notice = () => {
                         </Table>
                     </TableContainer>
                     <Stack spacing={3} sx={{justifyContent:'center', alignItems:'center', paddingTop: '20px', }}>                        
-                        <Pagination count={10} variant="outlined" shape="rounded" />
+                        <Pagination count={data.boards.page.totalPages} variant="outlined" shape="rounded" onChange={(e, value) => handlePage(value)}/>
                     </Stack>
                 </Box>
                 </Container>  

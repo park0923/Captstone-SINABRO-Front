@@ -27,6 +27,11 @@ const Education = () => {
         createData('Gingerbread', 356, 16.0, 49, 3.9),
       ];
 
+    const handlePage = (value) => {
+        const nowPageInt = value;
+        console.log(nowPageInt);
+        
+      }
     return(
         <div style={{backgroundColor: '#F0F8FF', height: 'auto'}}>            
             <TopBar />            
@@ -36,8 +41,8 @@ const Education = () => {
                     <Typography variant="h5" component="div" sx={{ flexGrow: 1 }}>
                         교육 목록
                     </Typography>
-                    <TableContainer component={Paper}>
-                        <Table sx={{ minWidth: '80vh' }} aria-label="simple table">
+                    <TableContainer component={Paper} sx={{width: 'auto'}}>
+                        <Table sx={{ width: '100%' }} aria-label="simple table">
                             <TableHead>
                             <TableRow>
                                 <TableCell>번호</TableCell>
@@ -70,7 +75,7 @@ const Education = () => {
                         </Table>
                     </TableContainer>
                     <Stack spacing={3} sx={{justifyContent:'center', alignItems:'center', paddingTop: '20px', }}>                        
-                        <Pagination count={10} variant="outlined" shape="rounded" />
+                        <Pagination count={10} variant="outlined" shape="rounded" onChange={(e, value) => handlePage(value)}/>
                     </Stack>
                 </Box>
                 </Container>  

@@ -1,53 +1,14 @@
-import React, {useState, useEffect} from "react";
+import React from "react";
 import TopBar from "./TopBar";
 import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
 import Button from '@mui/material/Button';
-import axios from "axios";
+import Alert from '@mui/material/Alert';
 
-const NoticePostDetails = ({history, location, match}) => {
-    const filedownload = (file) => {        
-        if(file === null || file === undefined){
-            return(<div />)
-        }
-        else{
-            return(
-                <a href={'#'} download>
-                    <Button variant="outlined">Download</Button>
-                </a>
-            )
-        }
-    }
-    const id = match.params.id;
-    const [data, setData] = useState(
-        {
-            "created_date": null,
-            "updated_date": null,
-            "idx": null,
-            "title": null,
-            "contents": null,
-            "board_type": null
-        }
-    )
-    useEffect(() => {        
-        axios({
-            method: 'get',
-            url: 'http://34.64.94.158:8080/api/boards/'+id,                                   
-          })
-          .then(function (response) {
-              // handle success
-              setData(response.data);                          
-            })
-            .catch(function (error) {
-              // handle error
-              console.log(error);
-            })
-            .then(function () {
-              // always executed
-            });  
-    },[])
+const ApplicantDetails = ({history, location, match}) => {
+    
     return(
         <div style={{backgroundColor: '#F0F8FF', height: '100vh'}}>
             <TopBar />
@@ -59,27 +20,31 @@ const NoticePostDetails = ({history, location, match}) => {
                             Synabro {'>'}
                         </Typography>
                         <Typography variant="h8" component="div" sx={{color: '#1E90FF'}}>
-                            상세보기 
+                            봉사 요청 상세 
                         </Typography>
                     </div>
                     <div style={{marginLeft: '20px'}}>
                         <Typography variant="h5" component="div" sx={{ flexGrow: 1 }}>
-                            {data.title}
+                            컨텐츠 제목
                         </Typography>
                         <Typography variant="h8" component="div" sx={{ flexGrow: 1 }}>
-                            {data.created_date}
+                            2022-07-01
                         </Typography>
                     </div>                    
                     <Divider />
                     <div style={{marginLeft: '20px', marginTop: '20px', marginBottom: '20px'}}>
-                        {filedownload()}
+                        <a href={'#'} download>
+                            <Button variant="outlined">Download</Button>
+                        </a>
                         <Typography variant="h8" component="div" sx={{ flexGrow: 1, marginTop: '20px' }}>
-                            {data.contents}
+                            봉사 내용
                         </Typography>
                     </div> 
                     <Divider />
                     <div style={{display: 'flex', flexDirection: 'row', marginTop: '20px', justifyContent: 'center', alignItems: 'center', }}>
-                        <div style={{ justifyContent: 'space-between', alignItems: 'center',marginBottom: '20px'}}>                            
+                        <div style={{ justifyContent: 'space-between', alignItems: 'center',marginBottom: '20px'}}>
+                            <Button variant="outlined" color="success" onClick={'#'}>수락하기</Button>
+                            <Button variant="outlined" color="error" onClick={'#'} sx={{marginLeft: '20px'}}>거절하기</Button>
                             <Button variant="outlined" onClick={() => history.goBack()} sx={{marginLeft: '20px'}}>돌아가기</Button>
                         </div>
                     </div>
@@ -90,4 +55,4 @@ const NoticePostDetails = ({history, location, match}) => {
     )
 }
 
-export default NoticePostDetails;
+export default ApplicantDetails;

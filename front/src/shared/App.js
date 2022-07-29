@@ -62,6 +62,13 @@ import Notice from "Web/Notice";
 import Inspection from "Web/Inspection";
 import Certified from "Web/Certified";
 import WorkSpace from "Web/WorkSpace";
+import InspectionSpace from "Web/InspectionSpace";
+import CertifiedDetails from "Web/CertifiedDetails";
+import ApplicantList from "Web/ApplicantList";
+import ApplicantDetails from "Web/ApplicantDetails";
+import ApplicantPostList from "Web/ApplicantPostList";
+import WritePost from "Web/WritePost";
+import InspectionPostDetails from "Web/InspectionPostDetails";
 
 class App extends Component {
   
@@ -148,13 +155,20 @@ class App extends Component {
         <Route path="/TopBar" component={TopBar} />
         <Route path="/UserDashboard" component={UserDashboard} />
         <Route path="/Education" component={Education} />
-        <Route path="/WorkPostDetails" component={WorkPostDetails} />
-        <Route path="/NoticePostDetails" component={NoticePostDetails} />
+        <Route path="/WorkPostDetails/:id" component={WorkPostDetails} />
+        <Route path="/NoticePostDetails/:id" component={NoticePostDetails} />
         <Route path="/Work" component={Work} />
         <Route path="/Notice" component={Notice} />
         <Route path="/Inspection" component={Inspection} />
+        <Route path="/InspectionPostDetails/:id" component={InspectionPostDetails} />
         <Route path="/Certified" component={Certified} />
         <Route path="/WorkSpace" component={WorkSpace} />
+        <Route path="/InspectionSpace" component={InspectionSpace} />
+        <Route path="/CertifiedDetails" component={CertifiedDetails} />
+        <Route path="/ApplicantList" component={ApplicantList} />
+        <Route path="/ApplicantDetails" component={ApplicantDetails} />
+        <Route path="/ApplicantPostList" component={ApplicantPostList} />
+        <Route path="/WritePost" component={WritePost} />
       </div>
     );
   }

@@ -13,9 +13,9 @@ import Typography from '@mui/material/Typography';
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
 import { Link } from "react-router-dom";
+import { Button } from "@mui/material";
 
-const Certified = () => {
-    
+const ApplicantPostList = () => {
     const createData = (name, calories, fat, carbs, protein) => {
         return { name, calories, fat, carbs, protein };
     }
@@ -33,17 +33,23 @@ const Certified = () => {
         console.log(nowPageInt);
         
       }
+    
     return(
         <div style={{backgroundColor: '#F0F8FF', height: 'auto'}}>            
             <TopBar />            
             <div style={{paddingTop: '9vh'}}>
             <Container maxWidth='xl' sx={{maxWidth: 'sm',}}>
-                <Box sx={{ bgcolor: '#F0F8FF', width: 'auto', height: '100vh', justifyContent: 'center', alignItems: 'center', paddingTop: '20px', }}>
-                    <Typography variant="h5" component="div" sx={{ flexGrow: 1 }}>
-                        봉사 인증
-                    </Typography>
-                    <TableContainer component={Paper} sx={{width: 'auto'}}>
-                        <Table sx={{ width: '100%' }} aria-label="simple table">
+                <Box sx={{ bgcolor: '#F0F8FF',width: 'auto', height: '100vh', justifyContent: 'center', alignItems: 'center', paddingTop: '20px', }}>
+                    <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between'}}>
+                        <Typography variant="h5" component="div" sx={{ flexGrow: 1 }}>
+                            봉사 신청글 목록
+                        </Typography>
+                        <Link to={'/WritePost'}>
+                            <Button variant="contained">글쓰기</Button>
+                        </Link>
+                    </div>                   
+                    <TableContainer component={Paper} sx={{width: 'auto', marginTop: '20px'}}>
+                        <Table sx={{ minWidth: '100%' }} aria-label="simple table">
                             <TableHead>
                             <TableRow>
                                 <TableCell>번호</TableCell>
@@ -64,7 +70,7 @@ const Certified = () => {
                                     {index + 1 }
                                 </TableCell>                                
                                 <TableCell align="left">
-                                <Link to={{pathname: `/CertifiedDetails`, }} color= 'black'>{row.name}</Link>
+                                <Link to={{pathname: `/ApplicantDetails`, }} color= 'black'>{row.name}</Link>
                                 </TableCell>
                                 
                                 <TableCell align="center">{row.fat}</TableCell>
@@ -75,7 +81,7 @@ const Certified = () => {
                             </TableBody>
                         </Table>
                     </TableContainer>
-                    <Stack spacing={3} sx={{justifyContent:'center', alignItems:'center', paddingTop: '20px', }}>                        
+                    <Stack spacing={3} sx={{justifyContent:'center', alignItems:'center', paddingTop: '20px', width: '100%'}}>                        
                         <Pagination count={10} variant="outlined" shape="rounded" onChange={(e, value) => handlePage(value)}/>
                     </Stack>
                 </Box>
@@ -85,4 +91,4 @@ const Certified = () => {
     )
 }
 
-export default Certified;
+export default ApplicantPostList;
