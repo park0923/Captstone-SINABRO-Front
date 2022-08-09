@@ -55,7 +55,7 @@ const WorkPostDetails = ({history, location, match}) => {
           .then(function (response) {
               // handle success
               setFile(response.data);                          
-            console.log(response.data);
+            console.log(response.data);            
             })
             .catch(function (error) {
               // handle error
@@ -80,7 +80,7 @@ const WorkPostDetails = ({history, location, match}) => {
     }
 
     const apply = () =>{                
-        window.location.href = '/WorkSpace'
+        
     }
     return(
         <div style={{backgroundColor: '#F0F8FF', height: '100vh'}}>

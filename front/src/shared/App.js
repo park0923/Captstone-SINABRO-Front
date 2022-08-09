@@ -69,6 +69,8 @@ import ApplicantDetails from "Web/ApplicantDetails";
 import ApplicantPostList from "Web/ApplicantPostList";
 import WritePost from "Web/WritePost";
 import InspectionPostDetails from "Web/InspectionPostDetails";
+import OffWork from "Web/OffWork";
+import OffWorkPostDetails from "Web/OffWorkPostDetails";
 
 class App extends Component {
   
@@ -166,9 +168,11 @@ class App extends Component {
         <Route path="/InspectionSpace" component={InspectionSpace} />
         <Route path="/CertifiedDetails" component={CertifiedDetails} />
         <Route path="/ApplicantList" component={ApplicantList} />
-        <Route path="/ApplicantDetails" component={ApplicantDetails} />
+        <Route path="/ApplicantDetails/:id" component={ApplicantDetails} />
         <Route path="/ApplicantPostList" component={ApplicantPostList} />
         <Route path="/WritePost" component={WritePost} />
+        <Route path="/OffWork" component={OffWork} />
+        <Route path="/OffWorkPostDetails/:id" component={OffWorkPostDetails} />
       </div>
     );
   }

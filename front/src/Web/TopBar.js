@@ -20,6 +20,7 @@ import FactCheckIcon from '@mui/icons-material/FactCheck';
 import BookmarkAddedIcon from '@mui/icons-material/BookmarkAdded';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import LogoutIcon from '@mui/icons-material/Logout';
+import DesktopWindowsIcon from '@mui/icons-material/DesktopWindows';
 import { Link } from 'react-router-dom';
 import cookie  from "react-cookies";
 import axios from "axios";
@@ -105,10 +106,12 @@ const TopBar = () => {
             case 2:
                 return(<SchoolIcon fontSize="large"/>)                
             case 3:
-                return(<VolunteerActivismIcon fontSize="large"/>)                
+                return(<DesktopWindowsIcon fontSize="large"/>)                
             case 4:
-                return(<FactCheckIcon fontSize="large"/>)                      
+                return(<VolunteerActivismIcon fontSize="large"/>)  
             case 5:
+                return(<FactCheckIcon fontSize="large"/>)                      
+            case 6:
                 return(<BookmarkAddedIcon fontSize="large"/>)                            
             default:
                 return;
@@ -123,8 +126,10 @@ const TopBar = () => {
                 return('/Notice')
             case '교육':
                 return('/Education')                
-            case '봉사':
-                return('/Work')                
+            case '온라인봉사':
+                return('/Work')   
+            case '오프라인봉사':
+                return('/OffWork')                
             case '검수':
                 return('/inspection')                      
             case '인증':
@@ -150,7 +155,7 @@ const TopBar = () => {
             </List>
             <Divider />
             <List>
-                {['대시보드', '공지', '교육', '봉사', '검수', '인증'].map((text, index) => (
+                {['대시보드', '공지', '교육', '온라인봉사', '오프라인봉사','검수', '인증'].map((text, index) => (
                 <Link to={link(text)}>
                     <ListItem key={text} disablePadding>
                         <ListItemButton>
