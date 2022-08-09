@@ -18,6 +18,8 @@ const WritePost = ({history, location, match}) => {
     const [sortation, setSortation] = useState('');
     const [startdate, setStartdate] = useState('');
     const [enddate, setEnddate] = useState('');
+    const [startperiod, setStartperiod] = useState('');
+    const [endperiod, setEndperiod] = useState('');
     const [body, setBody] = useState('');
     const [file, setFile] = useState('');
     const cookies = cookie.load("login_token");
@@ -42,6 +44,16 @@ const WritePost = ({history, location, match}) => {
         console.log(enddate);
     }
 
+    const handleStartperiod = (e) => {
+        setStartperiod(e.target.value);
+        console.log(startperiod);
+    }
+
+    const handleEndperiod = (e) => {
+        setEndperiod(e.target.value);
+        console.log(endperiod);
+    }
+
     const handleBody = (e) => {
         setBody(e.target.value);
         console.log(body);
@@ -53,62 +65,115 @@ const WritePost = ({history, location, match}) => {
     }
 
     const handleSubmit = () => {          
-        console.log(sortation);             
-        switch(sortation){
-            case '1':
-                console.log("공지");
-                break;
-            case '2':
-                console.log("교육");
-                break;
-            case '3':
-                console.log("일반");
-                break;
-            default:
-        }
+        console.log(sortation);      
         const form = new FormData()
 
         form.append("files", file);      
-        //form.append("filename", new Blob([JSON.stringify(file.name)], { type: "application/json" }));            
-        // form.append("contentsRequest", new Blob([JSON.stringify({
-        //     'title' : title,
-        //     'contents' : body,
-        //     'volunteer_time' : 0,
-        //     'ended_date' : enddate +"T12:34:56.000Z"
-        // })], {type: "application/json"}));
+        form.append("filename", new Blob([JSON.stringify(file.name)], { type: "application/json" }));
         form.append("contentsRequest", new Blob([JSON.stringify({
-            "contents": "string",
-  "endDate": "2022-07-28T05:03:45.652Z",
-  "endPeriod": "2022-07-28T05:03:45.652Z",
-  "startDate": "2022-07-28T05:03:45.652Z",
-  "startPeriod": "2022-07-28T05:03:45.652Z",
-  "title": "string"
+                        "contents": "내용",
+                        "ended_date": "2022-08-07T07:23:42.601Z",
+                        "title": "제목",
+                        "volunteer_time": 56                    
+                    })], {type: "application/json"}));
+    
+                    axios.post(
+                        'http://localhost:8080/api/boards', 
+                        form,
+                        {
+                            headers: {                
+                                'Authorization': 'Bearer ' + cookies,          
+                                'Content-Type': 'multipart/form-data' 
+                            }
+                        }               
+                      )
+                      .then(function (response) {
+                        // handle successF
+                        console.log(response);
+                        if (response.status === 200) {
+                          alert("게시글이 업로드 되었습니다.");              
+                        }
+                      })
+                      .catch(function (error) {
+                        // handle error
+                        console.log(error);
+                      });
+        // switch(sortation){
+        //     case '1':
+        //         console.log("공지");
+        //         form.append("contentsRequest", new Blob([JSON.stringify({
+        //             'title' : title,
+        //             'contents' : body,
+        //             'board_type' : 'education'                    
+        //         })], {type: "application/json"}));
 
-        })], {type: "application/json"}));
-        axios.post(
-            'http://34.64.94.158:8080/api/offVolunteer/', 
-            form,
-            {
-              headers: {                
-                'Authorization': 'Bearer ' + cookies,          
-                'Content-Type': 'multipart/form-data' 
-              }
-            }                        
-          )
-          .then(function (response) {
-            // handle successF
-            console.log(response);
-            if (response.status === 200) {
-              alert("봉사요청게시글이 업로드 되었습니다.");              
-            }
-          })
-          .catch(function (error) {
-            // handle error
-            console.log(error);
-          });
+        //         axios.post(
+        //             'http://34.64.94.158:8080/api/boards', 
+        //             form               
+        //           )
+        //           .then(function (response) {
+        //             // handle successF
+        //             console.log(response);
+        //             if (response.status === 200) {
+        //               alert("게시글이 업로드 되었습니다.");              
+        //             }
+        //           })
+        //           .catch(function (error) {
+        //             // handle error
+        //             console.log(error);
+        //           });
+        //         break;
+        //     case '2':
+        //         console.log("교육");
+        //         form.append("contentsRequest", new Blob([JSON.stringify({
+        //             'title' : title,
+        //             'contents' : body,                    
+        //             'enddate' : enddate +"T12:34:56.000Z",
+        //             'endPeriod' : endperiod +"T12:34:56.000Z",
+        //             'startDate' : startdate +"T12:34:56.000Z",
+        //             'startPeriod' : startperiod +"T12:34:56.000Z",
+        //         })], {type: "application/json"}));
+
+        //         axios.post(
+        //             'http://34.64.94.158:8080/api/offVolunteer', 
+        //             form,
+        //             {
+        //               headers: {                
+        //                 'Authorization': 'Bearer ' + cookies,          
+        //                 'Content-Type': 'multipart/form-data' 
+        //               }
+        //             }                        
+        //           )
+        //           .then(function (response) {
+        //             // handle successF
+        //             console.log(response);
+        //             if (response.status === 200) {
+        //               alert("봉사요청게시글이 업로드 되었습니다.");              
+        //             }
+        //           })
+        //           .catch(function (error) {
+        //             // handle error
+        //             console.log(error);
+        //           });
+        //         break;            
+        //     default:
+        //         break;
+        // }
+                   
+        
+//         form.append("contentsRequest", new Blob([JSON.stringify({
+//             "contents": "string",
+//   "endDate": "2022-07-28T05:03:45.652Z",
+//   "endPeriod": "2022-07-28T05:03:45.652Z",
+//   "startDate": "2022-07-28T05:03:45.652Z",
+//   "startPeriod": "2022-07-28T05:03:45.652Z",
+//   "title": "string"
+
+//         })], {type: "application/json"}));
+        
     }
     return(
-        <div style={{backgroundColor: '#F0F8FF', height: '110vh'}}>
+        <div style={{backgroundColor: '#F0F8FF', height: 'auto'}}>
             <TopBar />
             <div style={{paddingTop: '9vh'}}>
             <Container maxWidth='xl' sx={{maxWidth: 'sm',}}>
@@ -139,19 +204,27 @@ const WritePost = ({history, location, match}) => {
                                     name="row-radio-buttons-group"
                                 >
                                     <FormControlLabel name="values" value="1" control={<Radio />} label="공지" onClick={(e) => handleSortation(e)}/>
-                                    <FormControlLabel name="values" value="2" control={<Radio />} label="교육 봉사" onClick={(e) => handleSortation(e)}/>
-                                    <FormControlLabel name="values" value="3" control={<Radio />} label="일반 봉사" onClick={(e) => handleSortation(e)}/>                                    
+                                    <FormControlLabel name="values" value="2" control={<Radio />} label="교육 봉사" onClick={(e) => handleSortation(e)}/>                                                                        
                                 </RadioGroup>
                             </FormControl>
                         </div>                        
                         <Divider sx={{width: '98%', bgcolor: 'black', marginTop: '10px'}}/>
-                    </div>         
+                    </div>  
                     <div style={{marginLeft: '20px', marginBottom: '10px'}}>
                         <div style={{display: 'flex', flexDirection: 'row'}}>
-                            <label htmlFor="title" style={{fontSize: '25px'}}>기한 : </label>
+                            <label htmlFor="title" style={{fontSize: '25px'}}>모집 기한 : </label>
                             <input id="startdate" name="startdate" type="date" required style={{width: '30%',marginLeft: '20px',paddingLeft: '0.75rem', paddingRight: '0.75rem', paddingBottom: '0.5rem', paddingTop: '0.5rem', borderWidth: '1px', outline: '1px solid treansparent', outlineOffset: '1px'}} placeholder="제목" value={startdate} onChange={(e) => handleStartdate(e)}/>
                             <text style={{fontSize: '25px', marginLeft: '20px'}}>~</text>
                             <input id="enddate" name="enddate" type="date" required style={{width: '30%',marginLeft: '20px',paddingLeft: '0.75rem', paddingRight: '0.75rem', paddingBottom: '0.5rem', paddingTop: '0.5rem', borderWidth: '1px', outline: '1px solid treansparent', outlineOffset: '1px'}} placeholder="제목" value={enddate} onChange={(e) => handleEnddate(e)}/>
+                        </div>                       
+                        <Divider sx={{width: '98%', bgcolor: 'black', marginTop: '10px'}}/>
+                    </div>        
+                    <div style={{marginLeft: '20px', marginBottom: '10px'}}>
+                        <div style={{display: 'flex', flexDirection: 'row'}}>
+                            <label htmlFor="title" style={{fontSize: '25px'}}>활동 기한 : </label>
+                            <input id="startperiod" name="startperiod" type="date" required style={{width: '30%',marginLeft: '20px',paddingLeft: '0.75rem', paddingRight: '0.75rem', paddingBottom: '0.5rem', paddingTop: '0.5rem', borderWidth: '1px', outline: '1px solid treansparent', outlineOffset: '1px'}} placeholder="제목" value={startperiod} onChange={(e) => handleStartperiod(e)}/>
+                            <text style={{fontSize: '25px', marginLeft: '20px'}}>~</text>
+                            <input id="endperiod" name="endperiod" type="date" required style={{width: '30%',marginLeft: '20px',paddingLeft: '0.75rem', paddingRight: '0.75rem', paddingBottom: '0.5rem', paddingTop: '0.5rem', borderWidth: '1px', outline: '1px solid treansparent', outlineOffset: '1px'}} placeholder="제목" value={endperiod} onChange={(e) => handleEndperiod(e)}/>
                         </div>                       
                         <Divider sx={{width: '98%', bgcolor: 'black', marginTop: '10px'}}/>
                     </div> 

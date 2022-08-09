@@ -13,13 +13,16 @@ function Signin() {
         })
         .then(function (response) {
             console.log(response);
+            const str = response.headers.authorization.split(',')            
+            console.log(str[0].substring(7));            
+            console.log(str[1].substring(2, str[1].length - 1));
             if(response.status === 200){                
                 // console.log(response);                
                 
                 const accesToken = response.data.token;    
-                cookie.save("login_token",accesToken,{path:"/"});               
+                cookie.save("login_token",accesToken,{path:"/"});                               
                 
-                // window.location.href = '/UserDashboard'
+                window.location.href = '/UserDashboard'
             }
             else if(response.status !== 200) {    
                 alert("Wrong ID or Password");
