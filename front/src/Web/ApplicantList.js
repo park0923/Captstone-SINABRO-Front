@@ -1,5 +1,5 @@
 import { Box } from "@mui/system";
-import React from "react";
+import React, {useState, useEffect} from "react";
 import TopBar from "./TopBar";
 import Container from '@mui/material/Container';
 import Table from '@mui/material/Table';
@@ -14,26 +14,126 @@ import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
 import { Link } from "react-router-dom";
 import { Button } from "@mui/material";
+import axios from "axios";
+import cookie from 'react-cookies';
+
 
 const ApplicantList = () => {
-    const createData = (name, calories, fat, carbs, protein) => {
-        return { name, calories, fat, carbs, protein };
-    }
+    const cookies = cookie.load("login_token");
+    const [data, setData] = useState(
+        {
+            "volunteers": {
+                "content": [
+                  {
+                    "ended_date": "",
+                    "idx": "",
+                    "title": "",
+                  }
+                ],
+                "links": {
+                  "empty": "",
+                },
+                "page": {
+                  "number": "",
+                  "size": "",
+                  "totalElements": "",
+                  "totalPages": ""
+                }
+              }
+        }
+    )
 
-    const rows = [
-        createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-        createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-        createData('Eclair', 262, 16.0, 24, 6.0),
-        createData('Cupcake', 305, 3.7, 67, 4.3),
-        createData('Gingerbread', 356, 16.0, 49, 3.9),
-      ];
+    useEffect(() => {
+        axios({
+            method: 'get',
+            url: 'http://34.64.94.158:8080/api/approval/volunteerWorks',     
+            headers: {                
+                "Authorization": 'Bearer ' + cookies
+            }                           
+          })
+          .then(function (response) {
+              // handle success
+              setData(response.data);                          
+            })
+            .catch(function (error) {
+              // handle error
+              console.log(error);
+            })
+            .then(function () {
+              // always executed
+            });  
+    })
     
     const handlePage = (value) => {
-        const nowPageInt = value;
-        console.log(nowPageInt);
-        
-      }
+        const pages = value - 1;
+        axios({
+            method: 'get',
+            url: 'http://34.64.94.158:8080/api/approval/volunteerWorks?page=' + pages,     
+            headers: {                
+                "Authorization": 'Bearer ' + cookies
+            }                           
+          })
+          .then(function (response) {
+              // handle success
+              setData(response.data);                          
+            })
+            .catch(function (error) {
+              // handle error
+              console.log(error);
+            })
+            .then(function () {
+              // always executed
+            });
+    }
     
+    const handlePermit = () => {
+        axios({
+            method: 'patch',
+            url: 'http://34.64.94.158:8080/api/approval/volunteerWorks/permit/' + data.volunteers.content.idx,     
+            headers: {                
+                "Authorization": 'Bearer ' + cookies
+            }                           
+          })
+          .then(function (response) {
+              // handle success
+              if(response.data.code === 200){
+                alert(response.data.message);                
+            }                        
+            console.log(response.data);
+            })
+            .catch(function (error) {
+              // handle error
+              console.log(error);
+            })
+            .then(function () {
+              // always executed
+            });  
+    }
+
+    const handleRefuse = () => {
+        axios({
+            method: 'patch',
+            url: 'http://34.64.94.158:8080/api/approval/volunteerWorks/refuse/' + data.volunteers.content.idx,     
+            headers: {                
+                "Authorization": 'Bearer ' + cookies
+            }                           
+          })
+          .then(function (response) {
+              // handle success
+                if(response.data.code === 200){
+                    alert(response.data.message);
+                }
+            console.log(response.data);
+            })
+            .catch(function (error) {
+              // handle error
+              console.log(error);
+            })
+            .then(function () {
+              // always executed
+            });  
+    }
+
     return(
         <div style={{backgroundColor: '#F0F8FF', height: 'auto'}}>            
             <TopBar />            
@@ -57,10 +157,10 @@ const ApplicantList = () => {
                             </TableRow>
                             </TableHead>
                             <TableBody>
-                            {rows.map((row, index) => (
+                            {data.volunteers.content.map(({idx, title, ended_date}, index) => (
                                 
                                 <TableRow
-                                key={row.name}
+                                key={idx}
                                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                                 >                                    
                                 
@@ -68,15 +168,15 @@ const ApplicantList = () => {
                                     {index + 1 }
                                 </TableCell>                                
                                 <TableCell align="left">
-                                    {row.name}
+                                    {title}
                                 </TableCell>
                                 
-                                <TableCell align="center">{row.fat}</TableCell>
+                                <TableCell align="center">{ended_date}</TableCell>
                                 <TableCell align="right" sx={{width: '10vw'}}>
-                                    <Button variant="outlined" onClick={'#'}>수락하기</Button>                                    
+                                    <Button variant="outlined" onClick={handlePermit}>수락하기</Button>                                    
                                 </TableCell>                                
                                 <TableCell align="right" sx={{width: '10vw'}}>
-                                    <Button variant="outlined" color="error" onClick={"#"}>돌아가기</Button>    
+                                    <Button variant="outlined" color="error" onClick={handleRefuse}>거절하기</Button>    
                                 </TableCell>                                
                                 
                                 </TableRow>                                
@@ -85,7 +185,7 @@ const ApplicantList = () => {
                         </Table>
                     </TableContainer>
                     <Stack spacing={3} sx={{justifyContent:'center', alignItems:'center', paddingTop: '20px', width: '100%'}}>                        
-                        <Pagination count={10} variant="outlined" shape="rounded" onChange={(e, value) => handlePage(value)}/>
+                        <Pagination count={data.volunteers.page.totalPages} variant="outlined" shape="rounded" onChange={(e, value) => handlePage(value)}/>
                     </Stack>
                 </Box>
                 </Container>  

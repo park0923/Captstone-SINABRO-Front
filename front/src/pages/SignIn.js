@@ -14,15 +14,36 @@ function Signin() {
         .then(function (response) {
             console.log(response);
             const str = response.headers.authorization.split(',')            
-            console.log(str[0].substring(7));            
-            console.log(str[1].substring(2, str[1].length - 1));
+            // console.log(str[0].substring(7));            
+            // console.log(str[1].substring(2, str[1].length - 1));
+            // console.log(str[2].substring(1, str[2].length));
+
             if(response.status === 200){                
                 // console.log(response);                
                 
                 const accesToken = response.data.token;    
                 cookie.save("login_token",accesToken,{path:"/"});                               
-                
-                window.location.href = '/UserDashboard'
+                localStorage.setItem('authority', JSON.stringify(str[1].substring(2, str[1].length - 1)));
+                localStorage.setItem('uid', JSON.stringify(str[2].substring(1, str[2].length)));
+
+                const authority = JSON.parse(localStorage.getItem('authority'));
+                const uid = JSON.parse(localStorage.getItem('uid'));              
+
+                console.log(authority);
+                console.log(uid);
+                switch(authority){
+                    case 'ROLE_ADMIN':
+                        window.location.href = '/ApplicantPostList'
+                        break;
+                    case 'ROLE_BENEFICIARY':
+                        window.location.href = '/UserDashboard'
+                        break;
+                    case 'ROLE_USER':
+                        window.location.href = '/UserDashboard'
+                        break;
+                    default:                        
+                        break;                    
+                }                
             }
             else if(response.status !== 200) {    
                 alert("Wrong ID or Password");

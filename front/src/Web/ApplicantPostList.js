@@ -137,7 +137,7 @@ const ApplicantPostList = () => {
                         </Table>
                     </TableContainer>
                     <Stack spacing={3} sx={{justifyContent:'center', alignItems:'center', paddingTop: '20px', width: '100%'}}>                        
-                        <Pagination count={10} variant="outlined" shape="rounded" onChange={(e, value) => handlePage(value)}/>
+                        <Pagination count={data.contents_responses.page.totalPages} variant="outlined" shape="rounded" onChange={(e, value) => handlePage(value)}/>
                     </Stack>
                 </Box>
                 </Container>  

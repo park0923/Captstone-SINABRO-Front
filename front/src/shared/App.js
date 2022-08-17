@@ -71,7 +71,8 @@ import WritePost from "Web/WritePost";
 import InspectionPostDetails from "Web/InspectionPostDetails";
 import OffWork from "Web/OffWork";
 import OffWorkPostDetails from "Web/OffWorkPostDetails";
-
+import DisabledWritePost from "Web/DisabledWritePost";
+import CertifiedWrite from "Web/CertifiedWrite";
 class App extends Component {
   
   render() {
@@ -166,13 +167,15 @@ class App extends Component {
         <Route path="/Certified" component={Certified} />
         <Route path="/WorkSpace" component={WorkSpace} />
         <Route path="/InspectionSpace" component={InspectionSpace} />
-        <Route path="/CertifiedDetails" component={CertifiedDetails} />
+        <Route path="/CertifiedDetails/:id" component={CertifiedDetails} />
         <Route path="/ApplicantList" component={ApplicantList} />
         <Route path="/ApplicantDetails/:id" component={ApplicantDetails} />
         <Route path="/ApplicantPostList" component={ApplicantPostList} />
         <Route path="/WritePost" component={WritePost} />
         <Route path="/OffWork" component={OffWork} />
         <Route path="/OffWorkPostDetails/:id" component={OffWorkPostDetails} />
+        <Route path="/DisabledWritePost" component={DisabledWritePost} />
+        <Route path="/CertifiedWrite" component={CertifiedWrite} />
       </div>
     );
   }

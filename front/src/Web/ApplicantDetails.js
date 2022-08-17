@@ -17,6 +17,7 @@ const ApplicantDetails = ({history, location, match}) => {
         {
             "id": "",
             "user_id": "",
+            "docs_id": [],
             "title": "",
             "contents": "",
             "volunteer_time": "",
@@ -25,7 +26,7 @@ const ApplicantDetails = ({history, location, match}) => {
             "ended_date": ""
         }
     )
-    const [file, setFile] = useState(null);
+    const [file, setFile] = useState('');
 
     useEffect(() => {        
         axios({
@@ -37,7 +38,8 @@ const ApplicantDetails = ({history, location, match}) => {
           })
           .then(function (response) {
               // handle success
-              setData(response.data);                          
+              setData(response.data); 
+              setFile(response.data.docs_id);                         
             })
             .catch(function (error) {
               // handle error
@@ -47,19 +49,17 @@ const ApplicantDetails = ({history, location, match}) => {
               // always executed
             });
 
+    }, [])
+
+    const hadleFile = () => {
         axios({
             method: 'get',
-            url: 'http://34.64.94.158:8080/api/works/download/' + id,     
-            headers: {                
-                "Authorization": 'Bearer ' + cookies
-            }                           
+            url: 'http://34.64.94.158:8080/api/works/download/'+ file,                                   
           })
           .then(function (response) {
-              // handle success
-              setFile(response.data);                          
-            console.log(response);
-            const blob = new Blob([response.data]) 
-            
+                // handle success
+                console.log(response);
+                const blob = new Blob([response.data]) 
                 const fileUrl = window.URL.createObjectURL(blob);
             
                 const link = document.createElement('a');
@@ -67,13 +67,13 @@ const ApplicantDetails = ({history, location, match}) => {
                 link.style.display = 'none';
             
                 const injectFilename = () => { 
-                  const disposition = response.headers['content-disposition'];
+                const disposition = response.headers['content-disposition'];
             
-                  const fileName = decodeURI(
+                const fileName = decodeURI(
                     disposition
-                      .match(/filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/)[1]
-                      .replace(/['"]/g, '')
-                  );
+                    .match(/filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/)[1]
+                    .replace(/['"]/g, '')
+                );
                     return fileName;
                 };
                 link.download = injectFilename(response);
@@ -89,17 +89,17 @@ const ApplicantDetails = ({history, location, match}) => {
             .then(function () {
               // always executed
             });  
-    }, [])
+    }
 
-    const filedownload = (file) => {        
-        if(file === null || file === undefined){
-            return(<div />)
+    const handleButton = (file) => {        
+        if(file && file.length){
+            return(
+                <Button variant="outlined" onClick={hadleFile}>Download</Button>
+            )
         }
         else{
             return(
-                <a href={file} download>
-                    <Button variant="outlined">Download</Button>
-                </a>
+                <div />
             )
         }
     }
@@ -179,7 +179,7 @@ const ApplicantDetails = ({history, location, match}) => {
                     </div>                    
                     <Divider />
                     <div style={{marginLeft: '20px', marginTop: '20px', marginBottom: '20px'}}>
-                        {filedownload(file)}
+                        {handleButton(file)}
                         <Typography variant="h8" component="div" sx={{ flexGrow: 1, marginTop: '20px' }}>
                             기간 : {data.ended_date.substring(0, 10)} 까지
                         </Typography>
