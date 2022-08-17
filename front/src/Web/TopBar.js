@@ -21,6 +21,8 @@ import BookmarkAddedIcon from '@mui/icons-material/BookmarkAdded';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import LogoutIcon from '@mui/icons-material/Logout';
 import DesktopWindowsIcon from '@mui/icons-material/DesktopWindows';
+import PlaylistAddIcon from '@mui/icons-material/PlaylistAdd';
+import GroupAddIcon from '@mui/icons-material/GroupAdd';
 import { Link } from 'react-router-dom';
 import cookie  from "react-cookies";
 import axios from "axios";
@@ -56,6 +58,7 @@ const TopBar = () => {
         }
     )
     const cookies = cookie.load("login_token");
+    const [authority, setAuthority] = useState('');
     const [state, setState] = React.useState({
         top: false,
         left: false,
@@ -64,6 +67,7 @@ const TopBar = () => {
       });
     
     useEffect(() => {
+        setAuthority(JSON.parse(localStorage.getItem('authority')));   
         axios({
             method: 'get',
             url: 'http://34.64.94.158:8080/api/members',            
@@ -84,11 +88,55 @@ const TopBar = () => {
             });       
     }, [])
     const handleLogout = () => {        
-        cookie.remove("login_token");        
+        cookie.remove("login_token");      
+        localStorage.removeItem('authority');  
+        localStorage.removeItem('uid');  
         window.location.href = '/'     
         
     }  
 
+    const handleAuthority = () => {
+        if(authority === 'ROLE_ADMIN'){
+            return(
+                <div>
+                    <List>
+                        {['대시보드', '공지', '교육', '온라인봉사', '오프라인봉사','검수', '인증', '봉사 신청글 목록', '봉사 신청자 목록'].map((text, index) => (
+                        <Link to={link(text)}>
+                            <ListItem key={text} disablePadding>
+                                <ListItemButton>
+                                    <ListItemIcon>                                                
+                                        {icons(index)}
+                                    </ListItemIcon>                        
+                                    <ListItemText primary={text} />                        
+                                </ListItemButton>                        
+                            </ListItem>
+                        </Link>
+                        ))}
+                    </List>
+                </div>
+            )
+        }
+        else if(authority === 'ROLE_BENEFICIARY' || authority === 'ROLE_USER'){
+            return(
+                <div>
+                    <List>
+                        {['대시보드', '공지', '교육', '온라인봉사', '오프라인봉사','검수', '인증'].map((text, index) => (
+                        <Link to={link(text)}>
+                            <ListItem key={text} disablePadding>
+                                <ListItemButton>
+                                    <ListItemIcon>                                                
+                                        {icons(index)}
+                                    </ListItemIcon>                        
+                                    <ListItemText primary={text} />                        
+                                </ListItemButton>                        
+                            </ListItem>
+                        </Link>
+                        ))}
+                    </List>
+                </div>
+            )
+        }
+    }
       const toggleDrawer = (anchor, open) => (event) => {
         if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
           return;
@@ -113,6 +161,10 @@ const TopBar = () => {
                 return(<FactCheckIcon fontSize="large"/>)                      
             case 6:
                 return(<BookmarkAddedIcon fontSize="large"/>)                            
+            case 7:
+                return(<PlaylistAddIcon fontSize="large"/>)    
+            case 8:
+                return(<GroupAddIcon fontSize="large"/>)    
             default:
                 return;
         }
@@ -133,12 +185,16 @@ const TopBar = () => {
             case '검수':
                 return('/inspection')                      
             case '인증':
-                return('/Certified')                            
+                return('/Certified')      
+            case '봉사 신청글 목록':
+                return('/ApplicantPostList') 
+            case '봉사 신청자 목록':
+                return('/ApplicantList')                       
             default:
                 return;
         }
       }
-      const list = (anchor) => (
+      const list = (anchor) => (        
         <Box
           sx={{ width: anchor === 'top' || anchor === 'bottom' ? 'auto' : 250 }}
           role="presentation"
@@ -153,21 +209,8 @@ const TopBar = () => {
                     <ListItemText primary={data.username} />
                 </ListItemButton>
             </List>
-            <Divider />
-            <List>
-                {['대시보드', '공지', '교육', '온라인봉사', '오프라인봉사','검수', '인증'].map((text, index) => (
-                <Link to={link(text)}>
-                    <ListItem key={text} disablePadding>
-                        <ListItemButton>
-                            <ListItemIcon>                                                
-                                {icons(index)}
-                            </ListItemIcon>                        
-                            <ListItemText primary={text} />                        
-                        </ListItemButton>                        
-                    </ListItem>
-                </Link>
-                ))}
-            </List>
+            <Divider />            
+            {handleAuthority()}
             <Divider />
             <List>
                 <ListItemButton onClick={handleLogout}>    

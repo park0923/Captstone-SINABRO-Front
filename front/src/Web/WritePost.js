@@ -70,15 +70,14 @@ const WritePost = ({history, location, match}) => {
 
         form.append("files", file);      
         form.append("filename", new Blob([JSON.stringify(file.name)], { type: "application/json" }));
-        form.append("contentsRequest", new Blob([JSON.stringify({
+        form.append("boardRequest", new Blob([JSON.stringify({
                         "contents": "내용",
-                        "ended_date": "2022-08-07T07:23:42.601Z",
                         "title": "제목",
-                        "volunteer_time": 56                    
+                        "board_type": "notice",                                         
                     })], {type: "application/json"}));
     
                     axios.post(
-                        'http://localhost:8080/api/boards', 
+                        'http://34.64.94.158:8080/api/boards', 
                         form,
                         {
                             headers: {                
@@ -98,6 +97,36 @@ const WritePost = ({history, location, match}) => {
                         // handle error
                         console.log(error);
                       });
+
+        // form.append("contentsRequest", new Blob([JSON.stringify({
+        //     "contents": "내용",
+        //     "title": "제목",
+        //     "ended_date": "2022-08-09T07:59:17.712Z",  
+        //     "volunteer_time" : 56
+        // })], {type: "application/json"}));
+
+        // axios.post(
+        //     'http://34.64.94.158:8080/api/works', 
+        //     form,
+        //     {
+        //         headers: {                
+        //             'Authorization': 'Bearer ' + cookies,          
+        //             'Content-Type': 'multipart/form-data' 
+        //         }
+        //     }               
+        //   )
+        //   .then(function (response) {
+        //     // handle successF
+        //     console.log(response);
+        //     if (response.status === 200) {
+        //       alert("게시글이 업로드 되었습니다.");              
+        //     }
+        //   })
+        //   .catch(function (error) {
+        //     // handle error
+        //     console.log(error);
+        //   });
+
         // switch(sortation){
         //     case '1':
         //         console.log("공지");
