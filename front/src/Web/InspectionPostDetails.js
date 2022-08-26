@@ -92,7 +92,7 @@ const InspectionPostDetails = ({history, location, match}) => {
                     </div>                    
                     <Divider />
                     <div style={{marginLeft: '20px'}}>
-                        {/* <Card sx={{ width: '80%', height: 'auto',bgcolor: 'white', marginLeft: '10%', padding: '10px', mb: '5%', displat: "flex"}}>
+                        <Card sx={{ width: '80%', height: 'auto',bgcolor: 'white', marginLeft: '10%', padding: '10px', mb: '5%', displat: "flex"}}>
                             <CardContent>
                                 <div style={{justifyContent: 'space-between', alignItems: 'center', display: 'flex', flexDirection: 'row',  displat: "flex"}}>
                                     <Typography sx={{ fontSize: 20 }} color="text.secondary" gutterBottom>
@@ -115,7 +115,7 @@ const InspectionPostDetails = ({history, location, match}) => {
                                 </List>                            
                             </CardContent>
                             <Divider /> 
-                        </Card> */}
+                        </Card>
                     </div>
                     <div style={{marginLeft: '20px', marginTop: '20px', marginBottom: '20px'}}>
                         {filedownload()}

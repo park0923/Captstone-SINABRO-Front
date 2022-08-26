@@ -202,12 +202,14 @@ const TopBar = () => {
           onKeyDown={toggleDrawer(anchor, false)}
         >
             <List>
-                <ListItemButton>    
-                    <ListItemIcon>
-                        <PersonIcon fontSize="large" />
-                    </ListItemIcon>                
-                    <ListItemText primary={data.username} />
-                </ListItemButton>
+                <Link to='/MyPage'>
+                    <ListItemButton>    
+                        <ListItemIcon>
+                            <PersonIcon fontSize="large" />
+                        </ListItemIcon>                
+                        <ListItemText primary={data.username} />
+                    </ListItemButton>
+                </Link>
             </List>
             <Divider />            
             {handleAuthority()}

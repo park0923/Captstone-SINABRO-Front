@@ -73,6 +73,10 @@ import OffWork from "Web/OffWork";
 import OffWorkPostDetails from "Web/OffWorkPostDetails";
 import DisabledWritePost from "Web/DisabledWritePost";
 import CertifiedWrite from "Web/CertifiedWrite";
+import NoticePatch from "Web/NoticePatch";
+import WorkPatch from "Web/WorkPatch";
+import CertifiedPatch from "Web/CertifiedPatch";
+import MyPage from "Web/MyPage";
 class App extends Component {
   
   render() {
@@ -165,7 +169,7 @@ class App extends Component {
         <Route path="/Inspection" component={Inspection} />
         <Route path="/InspectionPostDetails/:id" component={InspectionPostDetails} />
         <Route path="/Certified" component={Certified} />
-        <Route path="/WorkSpace" component={WorkSpace} />
+        <Route path="/WorkSpace/:id" component={WorkSpace} />
         <Route path="/InspectionSpace" component={InspectionSpace} />
         <Route path="/CertifiedDetails/:id" component={CertifiedDetails} />
         <Route path="/ApplicantList" component={ApplicantList} />
@@ -176,6 +180,10 @@ class App extends Component {
         <Route path="/OffWorkPostDetails/:id" component={OffWorkPostDetails} />
         <Route path="/DisabledWritePost" component={DisabledWritePost} />
         <Route path="/CertifiedWrite" component={CertifiedWrite} />
+        <Route path="/NoticePatch/:id" component={NoticePatch} />
+        <Route path="/WorkPatch/:id" component={NoticePatch} />
+        <Route path="/CertifiedPatch/:id" component={NoticePatch} />
+        <Route path="/MyPage" component={MyPage} />
       </div>
     );
   }

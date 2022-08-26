@@ -7,8 +7,8 @@ import Divider from '@mui/material/Divider';
 import Button from '@mui/material/Button';
 import axios from "axios";
 import cookie from 'react-cookies';
-import { Link } from "react-router-dom";
-const CertifiedDetails = ({history, location, match}) => {
+
+const CertifiedPatch = ({history, location, match}) => {
     const id = match.params.id;
     const cookies = cookie.load("login_token");
     const [data, setData] = useState(
@@ -108,6 +108,39 @@ const CertifiedDetails = ({history, location, match}) => {
             )
         }
     }
+    const handleTitle = (e) => {
+        setTitle(e.target.value);
+    }
+
+    const handleContents = (e) => {
+        setContents(e.target.value);
+    }
+
+    const handlePatch = () => {
+        axios({
+            method: 'patch',
+            url: 'http://34.64.94.158:8080/api/certification/'+ id,
+            data: {                
+                "contents": contents,
+                "title": title
+            },
+            headers: {                
+                'Authorization': 'Bearer ' + cookies,          
+                'Content-Type': 'multipart/form-data' 
+            }                                   
+          })
+          .then(function (response) {
+              // handle success
+              console.log(response);                          
+            })
+            .catch(function (error) {
+              // handle error
+              console.log(error);
+            })
+            .then(function () {
+              // always executed
+            });  
+    }
 
     const handleDelete = () => {
         axios({
@@ -134,65 +167,6 @@ const CertifiedDetails = ({history, location, match}) => {
               // always executed
             });  
     }
-
-    const UserView = () => {
-        if(uid === data.user_id){
-            return(
-                <div>
-                    <div style={{marginLeft: '20px'}}>
-                        <Typography variant="h5" component="div" sx={{ flexGrow: 1 }}>
-                            {data.title}
-                        </Typography>
-                        <Typography variant="h8" component="div" sx={{ flexGrow: 1 }}>
-                            {data.created_date.substring(0, 10)}
-                        </Typography>
-                    </div>                    
-                    <Divider />
-                    <div style={{marginLeft: '20px', marginTop: '20px', marginBottom: '20px'}}>
-                        {handleButton(file)}                                               
-                        <Typography variant="h8" component="div" sx={{ flexGrow: 1, marginTop: '20px' }}>
-                            {data.contents}
-                        </Typography>
-                    </div> 
-                    <Divider />
-                    <div style={{display: 'flex', flexDirection: 'row', marginTop: '20px', justifyContent: 'center', alignItems: 'center', }}>
-                        <div style={{ justifyContent: 'space-between', alignItems: 'center',marginBottom: '20px'}}>
-                            <Link to={{pathname: `/CertifiedPatch/${data.id}`, }}><Button variant="outlined" sx={{marginLeft: '20px'}}>수정하기</Button></Link>
-                            <Button variant="outlined" onClick={handleDelete} sx={{marginLeft: '20px'}}>삭제하기</Button>
-                            <Button variant="outlined" onClick={() => history.goBack()} sx={{marginLeft: '20px'}}>돌아가기</Button>
-                        </div>
-                    </div>
-                </div>
-            )
-        }
-        else{
-            return(
-                <div>
-                    <div style={{marginLeft: '20px'}}>
-                        <Typography variant="h5" component="div" sx={{ flexGrow: 1 }}>
-                            {data.title}
-                        </Typography>
-                        <Typography variant="h8" component="div" sx={{ flexGrow: 1 }}>
-                            {data.created_date.substring(0, 10)}
-                        </Typography>
-                    </div>                    
-                    <Divider />
-                    <div style={{marginLeft: '20px', marginTop: '20px', marginBottom: '20px'}}>
-                        {handleButton(file)}                                               
-                        <Typography variant="h8" component="div" sx={{ flexGrow: 1, marginTop: '20px' }}>
-                            {data.contents}
-                        </Typography>
-                    </div> 
-                    <Divider />
-                    <div style={{display: 'flex', flexDirection: 'row', marginTop: '20px', justifyContent: 'center', alignItems: 'center', }}>
-                        <div style={{ justifyContent: 'space-between', alignItems: 'center',marginBottom: '20px'}}>                                                        
-                            <Button variant="outlined" onClick={() => history.goBack()} sx={{marginLeft: '20px'}}>돌아가기</Button>
-                        </div>
-                    </div>
-                </div>
-            )
-        }
-    }
     
     return(
         <div style={{backgroundColor: '#F0F8FF', height: '100vh'}}>
@@ -209,7 +183,29 @@ const CertifiedDetails = ({history, location, match}) => {
                         </Typography>
                     </div>
                     
-                    {UserView()}
+                    <div style={{marginLeft: '20px'}}>
+                        <Typography variant="h5" component="div" sx={{ flexGrow: 1 }}>
+                            <input id="title" name="title" type="text" required style={{width: '50%', paddingLeft: '0.75rem', paddingRight: '0.75rem', paddingBottom: '0.5rem', paddingTop: '0.5rem', borderWidth: '1px', outline: '1px solid treansparent', outlineOffset: '1px'}} value={title} onChange={(e) => handleTitle(e)}/>
+                        </Typography>
+                        <Typography variant="h8" component="div" sx={{ flexGrow: 1 }}>
+                            {data.created_date.substring(0, 10)}
+                        </Typography>
+                    </div>                    
+                    <Divider />
+                    <div style={{marginLeft: '20px', marginTop: '20px', marginBottom: '20px'}}>
+                        {handleButton(file)}                                               
+                        <Typography variant="h8" component="div" sx={{ flexGrow: 1, marginTop: '20px' }}>
+                            <textarea id="contents" name="contents" type="text" required style={{width: '50%', paddingLeft: '0.75rem', paddingRight: '0.75rem', paddingBottom: '0.5rem', paddingTop: '0.5rem', borderWidth: '1px', outline: '1px solid treansparent', outlineOffset: '1px'}} value={contents} onChange={(e) => handleContents(e)}/>
+                        </Typography>
+                    </div> 
+                    <Divider />
+                    <div style={{display: 'flex', flexDirection: 'row', marginTop: '20px', justifyContent: 'center', alignItems: 'center', }}>
+                        <div style={{ justifyContent: 'space-between', alignItems: 'center',marginBottom: '20px'}}>
+                            <Button variant="outlined" onClick={handlePatch} sx={{marginLeft: '20px'}}>수정하기</Button>
+                            <Button variant="outlined" onClick={handleDelete} sx={{marginLeft: '20px'}}>삭제하기</Button>
+                            <Button variant="outlined" onClick={() => window.location.href = '/Certified'} sx={{marginLeft: '20px'}}>돌아가기</Button>
+                        </div>
+                    </div>
                 </Box>
             </Container>
             </div>
@@ -217,4 +213,4 @@ const CertifiedDetails = ({history, location, match}) => {
     )
 }
 
-export default CertifiedDetails;
+export default CertifiedPatch;

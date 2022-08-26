@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import TopBar from "./TopBar";
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
@@ -21,8 +21,59 @@ import {
     Tooltip,
     Legend
   } from "recharts";
+import axios from "axios";
+import cookie from 'react-cookies';
+import { Link } from "react-router-dom";
 
 const UserDashboard = () => {
+    const cookies = cookie.load("login_token");
+    const [data, setData] = useState({
+        "week": [
+            {
+              "date": "",
+              "count": null
+            }
+          ],
+          "work": [
+            {
+              "volunteer_name": null
+            }
+          ],
+          "ended_date": []
+    })
+
+    const [userdata, setUserdata] = useState({
+        "work": {
+            "links": [
+              {
+                "rel": null,
+                "href": null
+              }
+            ],
+            "content": [
+              {
+                "type": null,
+                "id": null,
+                "work_title": null,
+                "date": ""
+              }
+            ],
+            "page": {
+              "size": null,
+              "totalElements": null,
+              "totalPages": null,
+              "number": null
+            }
+          },
+          "username": null,
+          "introduction": null,
+          "email": null,
+          "phone_number": null,
+          "address": null,
+          "volunteer_time": null,
+          "work_number": null,
+          "warn_number": null
+    })
     const chartdata = [
         {
           name: "Page A",
@@ -67,6 +118,47 @@ const UserDashboard = () => {
           amt: 2100
         }
       ];
+
+    useEffect(() => {
+        axios({
+            method: 'get',
+            url: 'http://34.64.94.158:8080/api/members',     
+            headers: {                
+                "Authorization": 'Bearer ' + cookies
+            }                           
+          })
+          .then(function (response) {
+              // handle success
+              console.log(response);
+              setUserdata(response.data);                          
+            })
+            .catch(function (error) {
+              // handle error
+              console.log(error);
+            })
+            .then(function () {
+              // always executed
+            });  
+        axios({
+            method: 'get',
+            url: 'http://34.64.94.158:8080/api/home',     
+            headers: {                
+                "Authorization": 'Bearer ' + cookies
+            }                           
+          })
+          .then(function (response) {
+              // handle success
+              console.log(response);
+              setData(response.data);                          
+            })
+            .catch(function (error) {
+              // handle error
+              console.log(error);
+            })
+            .then(function () {
+              // always executed
+            });      
+    }, [])
     return(
         <div style={{backgroundColor: '#F0F8FF', height: 'auto'}}>
             <TopBar></TopBar>
@@ -83,15 +175,20 @@ const UserDashboard = () => {
                             </div>    
                             <Divider />                        
                             <List>
-                                {['대시보드', '교육', '봉사'].map((text, index) => (
-                                <ListItem key={text} disablePadding>
+                                {userdata.work.content.map(({date, id, work_title, type}, index) => (
+                                <Link to={{pathname: `/WorkSpace/${id}`, }}>
+                                <ListItem key={index} disablePadding>                                    
                                     <ListItemButton>
                                         <ListItemIcon>                                                
                                             {index + 1}
-                                        </ListItemIcon>
-                                        <ListItemText primary={text} />
-                                    </ListItemButton>                                                                  
+                                        </ListItemIcon>                                        
+                                        <ListItemText primary={work_title} />
+                                        <ListItemIcon>                                                
+                                            {date.substring(0, 10)}
+                                        </ListItemIcon>                                        
+                                    </ListItemButton>                                    
                                 </ListItem>                                                                
+                                </Link>
                                 ))}
                             </List>                            
                         </CardContent>
