@@ -8,8 +8,7 @@ import Button from '@mui/material/Button';
 import Alert from '@mui/material/Alert';
 import axios from "axios";
 import cookie from 'react-cookies';
-import { Link } from "react-router-dom";
-const WorkPostDetails = ({history, location, match}) => {
+const WorkPatch = ({history, location, match}) => {
     const id = match.params.id;
     const cookies = cookie.load("login_token");
     const [data, setData] = useState(
@@ -184,103 +183,8 @@ const WorkPostDetails = ({history, location, match}) => {
             });  
     }
 
-    const UserView = () => {
-        if(uid === data.user_id){
-            return(
-                <div>
-                    <div style={{marginLeft: '20px'}}>
-                        <Typography variant="h5" component="div" sx={{ flexGrow: 1 }}>
-                            {data.title}
-                        </Typography>
-                        <Typography variant="h8" component="div" sx={{ flexGrow: 1 }}>
-                            {data.created_date.substring(0, 10)}
-                        </Typography>
-                    </div>                    
-                    <Divider />
-                    <div style={{marginLeft: '20px', marginTop: '20px', marginBottom: '20px'}}>
-                        {handleButton(file)}
-                        <Typography variant="h8" component="div" sx={{ flexGrow: 1, marginTop: '20px' }}>
-                            기간 : 
-                            {data.ended_date.substring(0, 10)}
-                            까지
-                        </Typography>
-                        <Typography variant="h8" component="div" sx={{ flexGrow: 1, marginTop: '20px' }}>
-                            봉사 시간 : {data.volunteer_time}
-                        </Typography>                        
-                        <Typography variant="h8" component="div" sx={{ flexGrow: 1, marginTop: '20px' }}>
-                            {data.contents}
-                        </Typography>
-                    </div> 
-                    <Divider />
-                    <div style={{display: 'flex', flexDirection: 'row', marginTop: '20px', justifyContent: 'center', alignItems: 'center', }}>
-                        <div style={{ justifyContent: 'space-between', alignItems: 'center',marginBottom: '20px'}}>
-                            <Link to={{pathname: `/WorkPatch/${data.id}`, }}><Button variant="outlined" onClick={handlePatch} sx={{marginLeft: '20px'}}>수정하기</Button></Link>
-                            <Button variant="outlined" onClick={handleDelete} sx={{marginLeft: '20px'}}>삭제하기</Button>
-                            <Button variant="outlined" onClick={() => history.goBack()} sx={{marginLeft: '20px'}}>돌아가기</Button>
-                        </div>
-                    </div>
-                </div>
-            )
-        }
-        else{
-            return(
-                <div>
-                    <div style={{marginLeft: '20px'}}>
-                        <Typography variant="h5" component="div" sx={{ flexGrow: 1 }}>
-                            {data.title}
-                        </Typography>
-                        <Typography variant="h8" component="div" sx={{ flexGrow: 1 }}>
-                            {data.created_date.substring(0, 10)}
-                        </Typography>
-                    </div>                    
-                    <Divider />
-                    <div style={{marginLeft: '20px', marginTop: '20px', marginBottom: '20px'}}>
-                        {handleButton(file)}
-                        <Typography variant="h8" component="div" sx={{ flexGrow: 1, marginTop: '20px' }}>
-                            기간 : 
-                            {data.ended_date.substring(0, 10)}
-                            까지
-                        </Typography>
-                        <Typography variant="h8" component="div" sx={{ flexGrow: 1, marginTop: '20px' }}>
-                            봉사 시간 : {data.volunteer_time}
-                        </Typography>                        
-                        <Typography variant="h8" component="div" sx={{ flexGrow: 1, marginTop: '20px' }}>
-                            {data.contents}
-                        </Typography>
-                    </div> 
-                    <Divider />
-                    <div style={{display: 'flex', flexDirection: 'row', marginTop: '20px', justifyContent: 'center', alignItems: 'center', }}>
-                        <div style={{ justifyContent: 'space-between', alignItems: 'center',marginBottom: '20px'}}>                            
-                            <Button variant="outlined" onClick={apply} sx={{marginLeft: '20px'}}>신청하기</Button>
-                            <Button variant="outlined" onClick={() => history.goBack()} sx={{marginLeft: '20px'}}>돌아가기</Button>
-                        </div>
-                    </div>
-                </div>
-            )
-        }
-    }
     const apply = () =>{                
-        axios({
-            method: 'post',
-            url: 'http://34.64.94.158:8080/api/volunteerWorks/'+ id,           
-            headers: {                
-                'Authorization': 'Bearer ' + cookies,                           
-            }                                   
-          })
-          .then(function (response) {
-              // handle success
-              console.log(response);
-              if(response.status === 200){
-                alert(response.statusText);
-              }
-            })
-            .catch(function (error) {
-              // handle error
-              console.log(error);
-            })
-            .then(function () {
-              // always executed
-            });  
+        
     }
     return(
         <div style={{backgroundColor: '#F0F8FF', height: '100vh'}}>
@@ -296,7 +200,39 @@ const WorkPostDetails = ({history, location, match}) => {
                             상세보기 
                         </Typography>
                     </div>
-                    {UserView()}
+                    <div>
+                    <div style={{marginLeft: '20px'}}>
+                        <Typography variant="h5" component="div" sx={{ flexGrow: 1 }}>
+                            <input id="title" name="title" type="text" required style={{width: '50%', paddingLeft: '0.75rem', paddingRight: '0.75rem', paddingBottom: '0.5rem', paddingTop: '0.5rem', borderWidth: '1px', outline: '1px solid treansparent', outlineOffset: '1px'}} value={title} onChange={(e) => handleTitle(e)}/>
+                        </Typography>
+                        <Typography variant="h8" component="div" sx={{ flexGrow: 1 }}>
+                            {data.created_date.substring(0, 10)}
+                        </Typography>
+                    </div>                    
+                    <Divider />
+                    <div style={{marginLeft: '20px', marginTop: '20px', marginBottom: '20px'}}>
+                        {handleButton(file)}
+                        <Typography variant="h8" component="div" sx={{ flexGrow: 1, marginTop: '20px' }}>
+                            기간 : 
+                            <input id="endeddate" name="endeddate" type="date" required style={{width: '50%', paddingLeft: '0.75rem', paddingRight: '0.75rem', paddingBottom: '0.5rem', paddingTop: '0.5rem', borderWidth: '1px', outline: '1px solid treansparent', outlineOffset: '1px'}} value={endeddate} onChange={(e) => handleEndeddate(e)}/>
+                            까지
+                        </Typography>
+                        <Typography variant="h8" component="div" sx={{ flexGrow: 1, marginTop: '20px' }}>
+                            봉사 시간 : <input id="volunteertime" name="volunteertime" type="text" required style={{width: '50%', paddingLeft: '0.75rem', paddingRight: '0.75rem', paddingBottom: '0.5rem', paddingTop: '0.5rem', borderWidth: '1px', outline: '1px solid treansparent', outlineOffset: '1px'}} value={volunteertime} onChange={(e) => handleVolunteertime(e)}/>
+                        </Typography>                        
+                        <Typography variant="h8" component="div" sx={{ flexGrow: 1, marginTop: '20px' }}>
+                            <textarea id="contents" name="contents" type="text" required style={{width: '50%', paddingLeft: '0.75rem', paddingRight: '0.75rem', paddingBottom: '0.5rem', paddingTop: '0.5rem', borderWidth: '1px', outline: '1px solid treansparent', outlineOffset: '1px'}} value={contents} onChange={(e) => handleContents(e)}/>
+                        </Typography>
+                    </div> 
+                    <Divider />
+                    <div style={{display: 'flex', flexDirection: 'row', marginTop: '20px', justifyContent: 'center', alignItems: 'center', }}>
+                        <div style={{ justifyContent: 'space-between', alignItems: 'center',marginBottom: '20px'}}>
+                            <Button variant="outlined" onClick={handlePatch} sx={{marginLeft: '20px'}}>수정하기</Button>
+                            <Button variant="outlined" onClick={handleDelete} sx={{marginLeft: '20px'}}>삭제하기</Button>
+                            <Button variant="outlined" onClick={() => window.location.href = '/Work'} sx={{marginLeft: '20px'}}>돌아가기</Button>
+                        </div>
+                    </div>
+                </div>
                 </Box>
             </Container>
             </div>
@@ -304,4 +240,4 @@ const WorkPostDetails = ({history, location, match}) => {
     )
 }
 
-export default WorkPostDetails;
+export default WorkPatch;

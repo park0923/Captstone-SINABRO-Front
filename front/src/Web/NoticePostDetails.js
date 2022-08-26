@@ -7,6 +7,7 @@ import Divider from '@mui/material/Divider';
 import Button from '@mui/material/Button';
 import axios from "axios";
 import cookie from 'react-cookies';
+import { Link } from "react-router-dom";
 
 const NoticePostDetails = ({history, location, match}) => {    
     const id = match.params.id;
@@ -28,6 +29,7 @@ const NoticePostDetails = ({history, location, match}) => {
     const [titles, setTitle] = useState('');
     const [contents, setContents] = useState('');
     const [file, setFile] = useState('');
+    const [files, setFiles] = useState('');
     useEffect(() => {     
         setAuthority(JSON.parse(localStorage.getItem('authority')));   
         axios({
@@ -60,7 +62,10 @@ const NoticePostDetails = ({history, location, match}) => {
     const handleContents = (e) => {
         setContents(e.target.value);
     }
-
+    const handleFiles = (e) => {
+        setFile(e.target.files[0]);
+        
+    }
     const hadleFile = () => {
         axios({
             method: 'get',
@@ -86,8 +91,9 @@ const NoticePostDetails = ({history, location, match}) => {
                 );
                     return fileName;
                 };
-                link.download = injectFilename(response);
-            
+                link.download = injectFilename(response);     
+                setFile(link.download);
+                console.log(link.download);        
                 document.body.appendChild(link);
                 link.click();
                 link.remove();
@@ -100,11 +106,16 @@ const NoticePostDetails = ({history, location, match}) => {
               // always executed
             });  
     }
-
+    const handleref = () =>{
+        return 'http://34.64.94.158:8080/api/boards/download/'+ file
+    }
     const handleButton = (file) => {        
         if(file && file.length){
             return(
-                <Button variant="outlined" onClick={hadleFile}>Download</Button>
+                <div>
+                <Button variant="outlined" onClick={hadleFile}>Download</Button>                
+                </div>
+                
             )
         }
         else{
@@ -114,33 +125,7 @@ const NoticePostDetails = ({history, location, match}) => {
         }
     }
     const handlePatch = () => {
-        console.log(data.board_type);
-        console.log(contents);
-        console.log(titles);
-        axios({
-            method: 'patch',
-            url: 'http://34.64.94.158:8080/api/boards/'+ id,
-            data: {
-                "board_type" : data.board_type,
-                "contents": contents,
-                "title": titles
-            },
-            headers: {                
-                'Authorization': 'Bearer ' + cookies,          
-                'Content-Type': 'multipart/form-data' 
-            }                                   
-          })
-          .then(function (response) {
-              // handle success
-              console.log(response);                          
-            })
-            .catch(function (error) {
-              // handle error
-              console.log(error);
-            })
-            .then(function () {
-              // always executed
-            });  
+         
     }
 
     const handleDelete = () => {
@@ -175,8 +160,8 @@ const NoticePostDetails = ({history, location, match}) => {
             return(                
                 <div>
                     <div style={{marginLeft: '20px'}}>
-                        <Typography variant="h5" component="div" sx={{ flexGrow: 1 }}>                            
-                            <input id="title" name="title" type="text" required style={{width: '50%', paddingLeft: '0.75rem', paddingRight: '0.75rem', paddingBottom: '0.5rem', paddingTop: '0.5rem', borderWidth: '1px', outline: '1px solid treansparent', outlineOffset: '1px'}} value={titles} onChange={(e) => handleTitle(e)}/>
+                        <Typography variant="h5" component="div" sx={{ flexGrow: 1 }}>
+                            {data.title}
                         </Typography>
                         <Typography variant="h8" component="div" sx={{ flexGrow: 1 }}>
                             {data.created_date}
@@ -185,14 +170,14 @@ const NoticePostDetails = ({history, location, match}) => {
                     <Divider />
                     <div style={{marginLeft: '20px', marginTop: '20px', marginBottom: '20px'}}>
                         {handleButton(file)}
-                        <Typography variant="h8" component="div" sx={{ flexGrow: 1, marginTop: '20px' }}>                            
-                            <textarea id="contents" name="contents" type="text" required style={{width: '50%', paddingLeft: '0.75rem', paddingRight: '0.75rem', paddingBottom: '0.5rem', paddingTop: '0.5rem', borderWidth: '1px', outline: '1px solid treansparent', outlineOffset: '1px'}} value={contents} onChange={(e) => handleContents(e)}/>
+                        <Typography variant="h8" component="div" sx={{ flexGrow: 1, marginTop: '20px' }}>
+                            {data.contents}
                         </Typography>
                     </div> 
                     <Divider />                    
                     <div style={{display: 'flex', flexDirection: 'row', marginTop: '20px', justifyContent: 'center', alignItems: 'center', }}>
                         <div style={{ justifyContent: 'space-between', alignItems: 'center',marginBottom: '20px'}}>                            
-                            <Button variant="outlined" onClick={handlePatch} sx={{marginLeft: '20px'}}>수정하기</Button>
+                            <Link to={{pathname: `/NoticePatch/${data.id}`, }}><Button variant="outlined" onClick={''} sx={{marginLeft: '20px'}}>수정하기</Button></Link>
                             <Button variant="outlined" onClick={handleDelete} sx={{marginLeft: '20px'}}>삭제하기</Button>
                             <Button variant="outlined" onClick={() => history.goBack()} sx={{marginLeft: '20px'}}>돌아가기</Button>
                         </div>

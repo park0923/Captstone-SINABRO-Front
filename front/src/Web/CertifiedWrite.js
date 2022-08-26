@@ -37,7 +37,7 @@ const CertifiedWrite = ({history, location, match}) => {
         form.append("filename", new Blob([JSON.stringify(file.name)], { type: "application/json" }));        
         form.append("contentsRequest", new Blob([JSON.stringify({
             "contents": body,
-            "title": title,            
+            "title": title,                        
         })], {type: "application/json"}));
 
         axios.post(
