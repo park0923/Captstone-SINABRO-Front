@@ -77,6 +77,7 @@ import NoticePatch from "Web/NoticePatch";
 import WorkPatch from "Web/WorkPatch";
 import CertifiedPatch from "Web/CertifiedPatch";
 import MyPage from "Web/MyPage";
+import MyDocument  from "Web/MyDocument ";
 class App extends Component {
   
   render() {
@@ -184,6 +185,7 @@ class App extends Component {
         <Route path="/WorkPatch/:id" component={NoticePatch} />
         <Route path="/CertifiedPatch/:id" component={NoticePatch} />
         <Route path="/MyPage" component={MyPage} />
+        <Route path="/MyDocument " component={MyDocument } />
       </div>
     );
   }

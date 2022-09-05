@@ -85,30 +85,31 @@ const WorkSpace = ({history, location, match}) => {
             });
     }, [])
 
-    const handleFile = (fileid) => {
-        axios({
-            method: 'get',
-            url: 'http://34.64.94.158:8080/api/works/download/'+ fileid,                                   
-          })
-          .then(function (response) {
-                // handle success
-                console.log(response);
-                // const disposition = response.headers['content-disposition'];
+    // const handleFile = (fileid) => {
+    //     axios({
+    //         method: 'get',
+    //         url: 'http://34.64.94.158:8080/api/works/download/'+ fileid,                                   
+    //       })
+    //       .then(function (response) {
+    //             // handle success
+    //             console.log(response);
+    //             // const disposition = response.headers['content-disposition'];
                 
-                // setFilename(decodeURI(
-                //     disposition
-                //     .match(/filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/)[1]
-                //     .replace(/['"]/g, '')
-                // ))
-            })
-            .catch(function (error) {
-              // handle error
-              console.log(error);
-            })
-            .then(function () {
-              // always executed
-            });  
-    }
+    //             // setFilename(decodeURI(
+    //             //     disposition
+    //             //     .match(/filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/)[1]
+    //             //     .replace(/['"]/g, '')
+    //             // ))
+    //         })
+    //         .catch(function (error) {
+    //           // handle error
+    //           console.log(error);
+    //         })
+    //         .then(function () {
+    //           // always executed
+    //         });  
+    // }
+    
     const apply = () =>{
         axios({
             method: 'post',
