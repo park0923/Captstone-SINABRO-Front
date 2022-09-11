@@ -13,7 +13,7 @@ import FormLabel from '@mui/material/FormLabel';
 import axios from "axios";
 import cookie from "react-cookies";
 
-const WritePost = ({history, location, match}) => {
+const WriteOff = ({history, location, match}) => {
     const [title, setTitle] = useState('');
     const [sortation, setSortation] = useState('');
     const [startdate, setStartdate] = useState('');
@@ -21,6 +21,7 @@ const WritePost = ({history, location, match}) => {
     const [startperiod, setStartperiod] = useState('');
     const [endperiod, setEndperiod] = useState('');
     const [body, setBody] = useState('');
+    const [tag, setTag] = useState('');
     const [file, setFile] = useState('');
     const cookies = cookie.load("login_token");
 
@@ -29,9 +30,9 @@ const WritePost = ({history, location, match}) => {
         console.log(title);
     }
 
-    const handleSortation = (e) => {
-        setSortation(e.target.value);        
-        console.log(sortation);
+    const handleTag = (e) => {
+        setTag(e.target.value);
+        console.log(tag);
     }
 
     const handleStartdate = (e) => {
@@ -70,101 +71,37 @@ const WritePost = ({history, location, match}) => {
 
         form.append("files", file);      
         form.append("filename", new Blob([JSON.stringify(file.name)], { type: "application/json" }));        
+        form.append("contentsRequest", new Blob([JSON.stringify({
+            "contents": body,
+            "end_date": enddate,
+            "end_period": endperiod,
+            "start_date": startdate,
+            "start_period": startperiod,
+            "tag_name": tag,
+            "title": title
+        })], {type: "application/json"}));
 
-        switch(sortation){
-            case '1':
-                console.log("공지");
-                form.append("boardRequest", new Blob([JSON.stringify({
-                        "contents": body,
-                        "title": title,
-                        "board_type": "notice",                                         
-                    })], {type: "application/json"}));
-
-                axios.post(
-                    'http://34.64.94.158:8080/api/boards', 
-                    form ,
-                    {
-                        headers: {                
-                            "Authorization": 'Bearer ' + cookies
-                        }
-                    }         
-                  )
-                  .then(function (response) {
-                    // handle successF
-                    console.log(response);
-                    if (response.status === 200) {
-                      alert("게시글이 업로드 되었습니다.");
-                      window.location.href = '/Notice'              
-                    }
-                  })
-                  .catch(function (error) {
-                    // handle error
-                    console.log(error);
-                  });
-                break;
-            case '2':
-                console.log("교육");
-                form.append("boardRequest", new Blob([JSON.stringify({
-                    "contents": body,
-                    "title": title,
-                    "board_type": "education",                                         
-                })], {type: "application/json"}));
-
-                axios.post(
-                    'http://34.64.94.158:8080/api/boards', 
-                    form,
-                    {
-                        headers: {                
-                            "Authorization": 'Bearer ' + cookies
-                        }
-                    }              
-                )
-                .then(function (response) {
-                    // handle successF
-                    console.log(response);
-                    if (response.status === 200) {
-                        alert("게시글이 업로드 되었습니다.");              
-                        window.location.href = '/Notice'
-                    }
-                })
-                .catch(function (error) {
-                    // handle error
-                    console.log(error);
-                });
-                break;        
-            case '3':
-                console.log("오프라인");
-                form.append("boardRequest", new Blob([JSON.stringify({
-                    "contents": body,
-                   "title": title,
-                    "board_type": "offVolunteer",                                         
-                })], {type: "application/json"}));
-    
-                axios.post(
-                    'http://34.64.94.158:8080/api/boards', 
-                    form,
-                    {
-                        headers: {                
-                            "Authorization": 'Bearer ' + cookies
-                        }
-                    }               
-                )
-                .then(function (response) {
-                    // handle successF
-                    console.log(response);
-                    if (response.status === 200) {
-                        alert("게시글이 업로드 되었습니다.");              
-                        window.location.href = '/Notice'
-                    }
-                })
-                .catch(function (error) {
-                    // handle error
-                    console.log(error);
-                });
-                break;      
-            default:
-                break;
-        }
+        axios.post(
+            'http://34.64.94.158:8080/api/offVolunteer', 
+            form ,
+            {
+                headers: {                
+                    "Authorization": 'Bearer ' + cookies
+                }
+            }         
+        )
+        .then(function (response) {
+            // handle successF
+            console.log(response);
+            if (response.status === 200) {
+            alert("게시글이 업로드 되었습니다.");
+            window.location.href = '/OffWork'              
+            }
+        })
+        .catch(function (error) {
+            // handle error
+            console.log(error);
+        });
         
     }
     return(
@@ -184,29 +121,19 @@ const WritePost = ({history, location, match}) => {
                     <form>
                     <div style={{marginLeft: '20px', marginBottom: '10px'}}>
                         <div style={{display: 'flex', flexDirection: 'row'}}>
+                            <label htmlFor="tag" style={{fontSize: '25px'}}>태그 : </label>
+                            <input id="tag" name="tag" type="text" required style={{width: '50%',marginLeft: '20px',paddingLeft: '0.75rem', paddingRight: '0.75rem', paddingBottom: '0.5rem', paddingTop: '0.5rem', borderWidth: '1px', outline: '1px solid treansparent', outlineOffset: '1px'}} placeholder="태그" value={tag} onChange={(e) => handleTag(e)}/>
+                        </div>                        
+                        <Divider sx={{width: '98%', bgcolor: 'black', marginTop: '10px'}}/>
+                    </div> 
+                    <div style={{marginLeft: '20px', marginBottom: '10px'}}>
+                        <div style={{display: 'flex', flexDirection: 'row'}}>
                             <label htmlFor="title" style={{fontSize: '25px'}}>제목 : </label>
                             <input id="title" name="title" type="text" required style={{width: '50%',marginLeft: '20px',paddingLeft: '0.75rem', paddingRight: '0.75rem', paddingBottom: '0.5rem', paddingTop: '0.5rem', borderWidth: '1px', outline: '1px solid treansparent', outlineOffset: '1px'}} placeholder="제목" value={title} onChange={(e) => handleTitle(e)}/>
                         </div>                        
                         <Divider sx={{width: '98%', bgcolor: 'black', marginTop: '10px'}}/>
-                    </div>   
+                    </div>                       
                     <div style={{marginLeft: '20px', marginBottom: '10px'}}>
-                        <div style={{display: 'flex', flexDirection: 'row'}}>
-                            <label htmlFor="title" style={{fontSize: '25px'}}>구분 : </label>                            
-                            <FormControl sx={{marginLeft: '20px', width: 'auto'}}>                                
-                                <RadioGroup
-                                    row
-                                    aria-labelledby="demo-row-radio-buttons-group-label"
-                                    name="row-radio-buttons-group"
-                                >
-                                    <FormControlLabel name="values" value="1" control={<Radio />} label="공지" onClick={(e) => handleSortation(e)}/>
-                                    <FormControlLabel name="values" value="2" control={<Radio />} label="교육" onClick={(e) => handleSortation(e)}/>
-                                    <FormControlLabel name="values" value="3" control={<Radio />} label="오프라인" onClick={(e) => handleSortation(e)}/>
-                                </RadioGroup>
-                            </FormControl>
-                        </div>                        
-                        <Divider sx={{width: '98%', bgcolor: 'black', marginTop: '10px'}}/>
-                    </div>  
-                    {/* <div style={{marginLeft: '20px', marginBottom: '10px'}}>
                         <div style={{display: 'flex', flexDirection: 'row'}}>
                             <label htmlFor="title" style={{fontSize: '25px'}}>모집 기한 : </label>
                             <input id="startdate" name="startdate" type="date" required style={{width: '30%',marginLeft: '20px',paddingLeft: '0.75rem', paddingRight: '0.75rem', paddingBottom: '0.5rem', paddingTop: '0.5rem', borderWidth: '1px', outline: '1px solid treansparent', outlineOffset: '1px'}} placeholder="제목" value={startdate} onChange={(e) => handleStartdate(e)}/>
@@ -223,7 +150,7 @@ const WritePost = ({history, location, match}) => {
                             <input id="endperiod" name="endperiod" type="date" required style={{width: '30%',marginLeft: '20px',paddingLeft: '0.75rem', paddingRight: '0.75rem', paddingBottom: '0.5rem', paddingTop: '0.5rem', borderWidth: '1px', outline: '1px solid treansparent', outlineOffset: '1px'}} placeholder="제목" value={endperiod} onChange={(e) => handleEndperiod(e)}/>
                         </div>                       
                         <Divider sx={{width: '98%', bgcolor: 'black', marginTop: '10px'}}/>
-                    </div>  */}
+                    </div> 
                     
                     <div style={{marginLeft: '20px', marginTop: '20px', marginBottom: '10px', justifyContent:'center'}}>                        
                         <textarea value={body} onChange={(e) => handleBody(e)} placeholder="여기에 내용을 입력하세요." style={{displat: 'block', width: '98%', height: '50vh', border: '1px solid', }}></textarea>
@@ -251,4 +178,4 @@ const WritePost = ({history, location, match}) => {
     )
 }
 
-export default WritePost;
+export default WriteOff;

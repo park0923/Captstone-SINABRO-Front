@@ -7,7 +7,7 @@ import Divider from '@mui/material/Divider';
 import Button from '@mui/material/Button';
 import axios from "axios";
 import cookie from 'react-cookies';
-
+import help from '../image/board2.jpg'
 const WorkSpace = ({history, location, match}) => {       
     const id = match.params.id;
     const cookies = cookie.load("login_token");
@@ -63,52 +63,27 @@ const WorkSpace = ({history, location, match}) => {
             .then(function () {
               // always executed
             });  
-        axios({
-            method: 'get',
-            url: 'http://34.64.94.158:8080/api/works/' + data.work_id,     
-            headers: {                
-                "Authorization": 'Bearer ' + cookies
-            }                           
-          })
-          .then(function (response) {
-              // handle success
-              setWorkdata(response.data);                   
-              setFile(response.data.docs_id);
-            //   handleFile(response.data.docs_id);              
-            })
-           .catch(function (error) {
-             // handle error
-              console.log(error);
-            })
-            .then(function () {
-              // always executed
-            });
+        // axios({
+        //     method: 'get',
+        //     url: 'http://34.64.94.158:8080/api/works/' + data.work_id,     
+        //     headers: {                
+        //         "Authorization": 'Bearer ' + cookies
+        //     }                           
+        //   })
+        //   .then(function (response) {
+        //       // handle success
+        //       setWorkdata(response.data);                   
+        //       setFile(response.data.docs_id);
+        //     //   handleFile(response.data.docs_id);              
+        //     })
+        //    .catch(function (error) {
+        //      // handle error
+        //       console.log(error);
+        //     })
+        //     .then(function () {
+        //       // always executed
+        //     });
     }, [])
-
-    // const handleFile = (fileid) => {
-    //     axios({
-    //         method: 'get',
-    //         url: 'http://34.64.94.158:8080/api/works/download/'+ fileid,                                   
-    //       })
-    //       .then(function (response) {
-    //             // handle success
-    //             console.log(response);
-    //             // const disposition = response.headers['content-disposition'];
-                
-    //             // setFilename(decodeURI(
-    //             //     disposition
-    //             //     .match(/filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/)[1]
-    //             //     .replace(/['"]/g, '')
-    //             // ))
-    //         })
-    //         .catch(function (error) {
-    //           // handle error
-    //           console.log(error);
-    //         })
-    //         .then(function () {
-    //           // always executed
-    //         });  
-    // }
     
     const apply = () =>{
         axios({
@@ -164,8 +139,23 @@ const WorkSpace = ({history, location, match}) => {
     return(
         <div style={{backgroundColor: '#F0F8FF', height: 'auto'}}>
             <TopBar />
-            <div style={{paddingTop: '9vh', paddingBottom: '20px'}}>
-            <Container maxWidth='xl' sx={{maxWidth: 'sm',}}>
+            <div>
+            <div  style={{position: 'relative'}}>
+            <img src={help} style={{width: '100%', height: '45vh'}} />
+            <div style={{position: 'absolute', top: '50%', left: '50%', fontSize: '60px', color: 'white', transform: `translateX(${-50}%) translateY(${-45}%)`}}>                
+              온라인 봉사
+            </div>                                      
+            </div>
+            <Divider />
+            <div style={{display: 'flex',marginTop: '20px', marginBottom: '20px', justifyContent: 'center', alignItems: 'center'}}>
+                <Typography variant="h4" sx={{ width: '20vw' }}>
+                  <div style={{textAlign: 'center'}}>
+                    작업 진행 공간
+                  </div>
+                </Typography>                
+            </div>
+            <Divider />
+            <Container maxWidth='xl' sx={{maxWidth: 'sm', marginTop: '20px'}}>
                 <Box sx={{ bgcolor: '#FFFFFF', height: 'auto', justifyContent: 'center', alignItems: 'center', paddingTop: '20px', }}>
                     <div style={{display: 'flex', flexDirection: 'row', marginBottom: '20px', marginLeft: '20px'}}>
                         <Typography variant="h8" component="div" sx={{color: '#708090'}}>
@@ -184,8 +174,7 @@ const WorkSpace = ({history, location, match}) => {
                         </Typography>
                     </div>                    
                     <Divider />
-                    <div style={{marginTop: '10px', marginBottom: '10px', display: 'flex', flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center', height: '80vh', }}>
-                        <iframe title="pdf area" style={{displat: 'block', width: '45%',height: '80%', border: '1px solid', }} src={`http://34.64.94.158:8080/api/work/download/${file}`}></iframe>
+                    <div style={{marginTop: '10px', marginBottom: '10px', display: 'flex', flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center', height: '80vh', }}>                        
                         <textarea type='text' className="autoTextarea" placeholder="여기에 내용을 입력하세요." value={contents} onChange={handleContents} style={{displat: 'block', width: '45%', height: '80%', border: '1px solid', }}></textarea>
                     </div> 
                     <Divider />

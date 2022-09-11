@@ -91,8 +91,7 @@ const TopBar = () => {
         cookie.remove("login_token");      
         localStorage.removeItem('authority');  
         localStorage.removeItem('uid');  
-        window.location.href = '/'     
-        
+        window.location.href = '/'             
     }  
 
     const handleAuthority = () => {
@@ -251,8 +250,7 @@ const TopBar = () => {
                                     </Drawer>
                                     </React.Fragment>
                                 ))}
-                            </IconButton>                           
-                                         
+                            </IconButton>                          
                     </Toolbar>
                 </AppBar>
             </Box>            

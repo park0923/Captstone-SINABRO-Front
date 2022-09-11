@@ -232,7 +232,7 @@ const NoticePatch = ({history, location, match}) => {
                 <Box sx={{ bgcolor: '#FFFFFF', height: 'auto', justifyContent: 'center', alignItems: 'center', paddingTop: '20px', }}>                    
                     <div>
                         <div style={{marginLeft: '20px'}}>
-                            <Typography variant="h5" component="div" sx={{ flexGrow: 1 }}>                            
+                            <Typography variant="h5" component="div" sx={{ flexGrow: 1  }}>                            
                                 <input id="title" name="title" type="text" required style={{width: '50%', paddingLeft: '0.75rem', paddingRight: '0.75rem', paddingBottom: '0.5rem', paddingTop: '0.5rem', borderWidth: '1px', outline: '1px solid treansparent', outlineOffset: '1px'}} value={titles} onChange={(e) => handleTitle(e)}/>
                             </Typography>
                             <Typography variant="h8" component="div" sx={{ flexGrow: 1 }}>

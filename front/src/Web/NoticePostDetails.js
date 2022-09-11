@@ -8,7 +8,7 @@ import Button from '@mui/material/Button';
 import axios from "axios";
 import cookie from 'react-cookies';
 import { Link } from "react-router-dom";
-
+import help from '../image/board2.jpg'
 const NoticePostDetails = ({history, location, match}) => {    
     const id = match.params.id;
     const [data, setData] = useState(
@@ -123,10 +123,7 @@ const NoticePostDetails = ({history, location, match}) => {
                 <div />
             )
         }
-    }
-    const handlePatch = () => {
-         
-    }
+    }    
 
     const handleDelete = () => {
         axios({
@@ -217,7 +214,22 @@ const NoticePostDetails = ({history, location, match}) => {
     return(
         <div style={{backgroundColor: '#F0F8FF', height: '100vh'}}>
             <TopBar />
-            <div style={{paddingTop: '9vh'}}>
+            <div>
+            <div  style={{position: 'relative'}}>
+            <img src={help} style={{width: '100%', height: '45vh'}} />
+            <div style={{position: 'absolute', top: '50%', left: '50%', fontSize: '60px', color: 'white', transform: `translateX(${-50}%) translateY(${-45}%)`}}>                
+              공지사항
+            </div>                                      
+            </div>
+            <Divider />
+            <div style={{display: 'flex',marginTop: '20px', marginBottom: '20px', justifyContent: 'center', alignItems: 'center'}}>
+                <Typography variant="h4" sx={{ width: '20vw' }}>
+                  <div style={{textAlign: 'center'}}>
+                    상세보기
+                  </div>
+                </Typography>                
+            </div>
+            <Divider />
             <Container maxWidth='xl' sx={{maxWidth: 'sm',}}>
                 <Box sx={{ bgcolor: '#FFFFFF', height: 'auto', justifyContent: 'center', alignItems: 'center', paddingTop: '20px', }}>                    
                     {handleAuthority()}
