@@ -15,6 +15,9 @@ import Stack from '@mui/material/Stack';
 import { Link } from "react-router-dom";
 import axios from "axios";
 import cookie from 'react-cookies';
+import Divider from '@mui/material/Divider';
+import help from '../image/board2.jpg'
+import Button from '@mui/material/Button';
 
 const OffWork = () => {
     const cookies = cookie.load("login_token");
@@ -43,8 +46,10 @@ const OffWork = () => {
               }
         }
     )
+    const [authority, setAuthority] = useState('');
 
     useEffect(() => {
+        setAuthority(JSON.parse(localStorage.getItem('authority')));
         axios({
             method: 'get',
             url: 'http://34.64.94.158:8080/api/offVolunteer',     
@@ -86,16 +91,47 @@ const OffWork = () => {
               // always executed
             });
     }
+
+    const handleButton = () => {
+      if(authority === 'ROLE_ADMIN'){
+        return(
+          <div>
+            <Link to={'/WriteOff'}>
+              <Button variant="contained">글쓰기</Button>
+            </Link>
+          </div>
+        )
+      }
+      else{
+        return(
+          <div />
+        )
+      }
+    }
+
     return(
         <div style={{backgroundColor: '#F0F8FF', height: 'auto'}}>            
             <TopBar />            
-            <div style={{paddingTop: '9vh'}}>
+            <div>
+            <div  style={{position: 'relative'}}>
+            <img src={help} style={{width: '100%', height: '45vh'}} />
+            <div style={{position: 'absolute', top: '50%', left: '50%', fontSize: '60px', color: 'white', transform: `translateX(${-50}%) translateY(${-45}%)`}}>                
+              오프라인 봉사
+            </div>                                      
+            </div>
+            <Divider />
+            <div style={{display: 'flex',marginTop: '20px', marginBottom: '20px', justifyContent: 'center', alignItems: 'center'}}>
+                <Typography variant="h4" sx={{ width: '20vw' }}>
+                  <div style={{textAlign: 'center'}}>
+                    봉사 목록
+                  </div>
+                </Typography>                
+            </div>
+            <Divider />
             <Container maxWidth='xl' sx={{maxWidth: 'sm',}}>
-                <Box sx={{ bgcolor: '#F0F8FF',width: 'auto', height: '100vh', justifyContent: 'center', alignItems: 'center', paddingTop: '20px', }}>
-                    <Typography variant="h5" component="div" sx={{ flexGrow: 1 }}>
-                        봉사 목록
-                    </Typography>
-                    <TableContainer component={Paper} sx={{width: 'auto'}}>
+                <Box sx={{ bgcolor: '#F0F8FF',width: 'auto', height: '100vh', justifyContent: 'center', alignItems: 'center', paddingTop: '20px', }}>                    
+                  {handleButton()}
+                    <TableContainer component={Paper} sx={{width: 'auto', marginTop: '20px'}}>
                         <Table sx={{ width: '100%' }} aria-label="simple table">
                             <TableHead>
                             <TableRow>

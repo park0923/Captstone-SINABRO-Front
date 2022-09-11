@@ -12,11 +12,14 @@ import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
-import PropTypes from 'prop-types';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
+import PropTypes from 'prop-types';
 import { Link } from "react-router-dom";
 import axios from "axios";
+import Divider from '@mui/material/Divider';
+import help from '../image/board2.jpg'
+import Button from '@mui/material/Button';
 
 const Notice = () => {
     const [data, setData] = useState(
@@ -44,7 +47,11 @@ const Notice = () => {
               }
         }
     )
+    const [type, setType] = useState('boards');
+    const [authority, setAuthority] = useState('');
+
     useEffect(() => {
+        setAuthority(JSON.parse(localStorage.getItem('authority')));
         axios({
             method: 'get',
             url: 'http://34.64.94.158:8080/api/boards/notice',                                   
@@ -66,7 +73,7 @@ const Notice = () => {
         const pages = value - 1;
         axios({
             method: 'get',
-            url: 'http://34.64.94.158:8080/api/boards?page=' + pages,                                   
+            url: 'http://34.64.94.158:8080/api/boards/'+type +'?page=' + pages,                                   
           })
           .then(function (response) {
               // handle success
@@ -81,28 +88,58 @@ const Notice = () => {
             });          
       }
     
+    const handleType = (type) => {
+      axios({
+        method: 'get',
+        url: 'http://34.64.94.158:8080/api/boards/' + type,                                   
+      })
+      .then(function (response) {
+          // handle success
+          setData(response.data);                          
+        })
+        .catch(function (error) {
+          // handle error
+          console.log(error);
+        })
+        .then(function () {
+          // always executed
+        });  
+    }
+    
       const [value, setValue] = React.useState(0);
 
       const handleChange = (event, newValue) => {
           setValue(newValue);
-      };
+          
+          switch(newValue){
+            case 0:
+              setType('notice');
+              handleType('notice');              
+              console.log('notice');
+              break;
+            case 1:
+              setType('education');
+              handleType('education');              
+              console.log('education');
+              break;
+            case 2:
+              setType('offVolunteer');
+              handleType('offVolunteer');
+              console.log('offVolunteer');
+              break;
+            default:
+              break;
+          }
+      };   
       function TabPanel(props) {
         const { children, value, index, ...other } = props;
-      
+        
         return (
-          <div
-            role="tabpanel"
-            hidden={value !== index}
-            id={`simple-tabpanel-${index}`}
-            aria-labelledby={`simple-tab-${index}`}
-            {...other}
-          >
-            {value === index && (
-              <Box sx={{ p: 3 }}>
-                <Typography>{children}</Typography>
-              </Box>
-            )}
-          </div>
+          <>
+          {/* {console.log(value)}
+          {setType(children)} */}
+          
+          </>
         );
       }
       
@@ -118,21 +155,57 @@ const Notice = () => {
           'aria-controls': `simple-tabpanel-${index}`,
         };
       }
+      const handleButton = () => {
+        if(authority === 'ROLE_ADMIN'){
+          return(
+            <div>
+              <Link to={'/WritePost'}>
+                <Button variant="contained">글쓰기</Button>
+              </Link>
+            </div>
+          )
+        }
+        else{
+          return(
+            <div />
+          )
+        }
+      }
     return(
         <div style={{backgroundColor: '#F0F8FF', height: 'auto'}}>            
             <TopBar />            
-            <div style={{paddingTop: '9vh'}}>
+            <div>
+            <div  style={{position: 'relative'}}>
+            <img src={help} style={{width: '100%', height: '45vh'}} />
+            <div style={{position: 'absolute', top: '50%', left: '50%', fontSize: '60px', color: 'white', transform: `translateX(${-50}%) translateY(${-45}%)`}}>                
+              공지사항
+            </div>                                      
+            </div>
+            <Divider />
+            <div style={{display: 'flex',marginTop: '20px', marginBottom: '20px', justifyContent: 'center', alignItems: 'center'}}>
+              <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
+                <Tab label="일반" {...a11yProps(0)} />
+                <Tab label="교육" {...a11yProps(1)} />
+                <Tab label="오프라인" {...a11yProps(2)} />
+              </Tabs>        
+              {/* <TabPanel value={value} index={0}>
+                notice
+              </TabPanel>
+              <TabPanel value={value} index={1}>
+                education
+              </TabPanel>
+              <TabPanel value={value} index={2}>
+                offVolunteer
+              </TabPanel> */}
+            </div>
+            <Divider />
             <Container maxWidth='xl' sx={{maxWidth: 'sm',}}>
                 <Box sx={{ bgcolor: '#F0F8FF', height: '100vh', justifyContent: 'center', alignItems: 'center', paddingTop: '20px', }}>
-                    <Typography variant="h5" component="div" sx={{ flexGrow: 1 }}>
+                    <Typography variant="h4" component="div" sx={{ display: 'flex',  justifyContent: 'center', alignItems: 'center', marginBottom: '20px', marginTop: '10px'}}>
                         공지사항
-                    </Typography>
-                    <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
-                      <Tab label="Item One" {...a11yProps(0)} />
-                      <Tab label="Item Two" {...a11yProps(1)} />
-                      <Tab label="Item Three" {...a11yProps(2)} />
-                    </Tabs>
-                    <TableContainer component={Paper} sx={{width: 'auto'}}>
+                    </Typography>                    
+                    {handleButton()}
+                    <TableContainer component={Paper} sx={{width: 'auto', marginTop: '20px'}}>
                         <Table sx={{ width: '100%' }} aria-label="simple table">
                             <TableHead>
                             <TableRow>

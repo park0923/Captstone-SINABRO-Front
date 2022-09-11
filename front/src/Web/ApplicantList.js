@@ -16,7 +16,8 @@ import { Link } from "react-router-dom";
 import { Button } from "@mui/material";
 import axios from "axios";
 import cookie from 'react-cookies';
-
+import Divider from '@mui/material/Divider';
+import help from '../image/board2.jpg'
 
 const ApplicantList = () => {
     const cookies = cookie.load("login_token");
@@ -137,14 +138,24 @@ const ApplicantList = () => {
     return(
         <div style={{backgroundColor: '#F0F8FF', height: 'auto'}}>            
             <TopBar />            
-            <div style={{paddingTop: '9vh'}}>
+            <div>
+            <div  style={{position: 'relative'}}>
+            <img src={help} style={{width: '100%', height: '45vh'}} />
+            <div style={{position: 'absolute', top: '50%', left: '50%', fontSize: '60px', color: 'white', transform: `translateX(${-50}%) translateY(${-45}%)`}}>                
+              온라인 봉사
+            </div>                                      
+            </div>
+            <Divider />
+            <div style={{display: 'flex',marginTop: '20px', marginBottom: '20px', justifyContent: 'center', alignItems: 'center'}}>
+                <Typography variant="h4" sx={{ width: '100vw' }}>
+                  <div style={{textAlign: 'center'}}>
+                  봉사 신청자 목록
+                  </div>
+                </Typography>                
+            </div>
+            <Divider />
             <Container maxWidth='xl' sx={{maxWidth: 'sm',}}>
-                <Box sx={{ bgcolor: '#F0F8FF',width: 'auto', height: '100vh', justifyContent: 'center', alignItems: 'center', paddingTop: '20px', }}>
-                    <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between'}}>
-                        <Typography variant="h5" component="div" sx={{ flexGrow: 1 }}>
-                            봉사 신청자 목록
-                        </Typography>                        
-                    </div>                   
+                <Box sx={{ bgcolor: '#F0F8FF',width: 'auto', height: '100vh', justifyContent: 'center', alignItems: 'center', paddingTop: '20px', }}>                                       
                     <TableContainer component={Paper} sx={{width: 'auto', marginTop: '20px'}}>
                         <Table sx={{width: '100%' }} aria-label="simple table">
                             <TableHead>
