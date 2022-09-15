@@ -18,7 +18,7 @@ import PropTypes from 'prop-types';
 import { Link } from "react-router-dom";
 import axios from "axios";
 import Divider from '@mui/material/Divider';
-import help from '../image/board2.jpg'
+import bp from '../image/board2.jpg'
 import Button from '@mui/material/Button';
 
 const Notice = () => {
@@ -54,7 +54,7 @@ const Notice = () => {
         setAuthority(JSON.parse(localStorage.getItem('authority')));
         axios({
             method: 'get',
-            url: 'http://34.64.94.158:8080/api/boards/notice',                                   
+            url: 'http://54.219.63.255:8080/api/boards/notice',                                   
           })
           .then(function (response) {
               // handle success
@@ -73,7 +73,7 @@ const Notice = () => {
         const pages = value - 1;
         axios({
             method: 'get',
-            url: 'http://34.64.94.158:8080/api/boards/'+type +'?page=' + pages,                                   
+            url: 'http://54.219.63.255:8080/api/boards/'+type +'?page=' + pages,                                   
           })
           .then(function (response) {
               // handle success
@@ -91,7 +91,7 @@ const Notice = () => {
     const handleType = (type) => {
       axios({
         method: 'get',
-        url: 'http://34.64.94.158:8080/api/boards/' + type,                                   
+        url: 'http://54.219.63.255:8080/api/boards/' + type,                                   
       })
       .then(function (response) {
           // handle success
@@ -176,7 +176,7 @@ const Notice = () => {
             <TopBar />            
             <div>
             <div  style={{position: 'relative'}}>
-            <img src={help} style={{width: '100%', height: '45vh'}} />
+            <img src={bp} style={{width: '100%', height: '45vh'}} />
             <div style={{position: 'absolute', top: '50%', left: '50%', fontSize: '60px', color: 'white', transform: `translateX(${-50}%) translateY(${-45}%)`}}>                
               공지사항
             </div>                                      

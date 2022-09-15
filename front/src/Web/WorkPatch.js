@@ -8,6 +8,7 @@ import Button from '@mui/material/Button';
 import Alert from '@mui/material/Alert';
 import axios from "axios";
 import cookie from 'react-cookies';
+import bp from '../image/computer.jpg'
 const WorkPatch = ({history, location, match}) => {
     const id = match.params.id;
     const cookies = cookie.load("login_token");
@@ -34,7 +35,7 @@ const WorkPatch = ({history, location, match}) => {
         setUid(JSON.parse(localStorage.getItem('uid')));
         axios({
             method: 'get',
-            url: 'http://34.64.94.158:8080/api/works/' + id,     
+            url: 'http://54.219.63.255:8080/api/works/' + id,     
             headers: {                
                 "Authorization": 'Bearer ' + cookies
             }                           
@@ -61,7 +62,7 @@ const WorkPatch = ({history, location, match}) => {
     const hadleFile = () => {
         axios({
             method: 'get',
-            url: 'http://34.64.94.158:8080/api/works/download/'+ file, 
+            url: 'http://54.219.63.255:8080/api/works/download/'+ file, 
             headers: {                
                 "Authorization": 'Bearer ' + cookies
             }                                    
@@ -132,7 +133,7 @@ const WorkPatch = ({history, location, match}) => {
     const handlePatch = () => {
         axios({
             method: 'patch',
-            url: 'http://34.64.94.158:8080/api/works/'+ id,
+            url: 'http://54.219.63.255:8080/api/works/'+ id,
             data: {
                 "ended_date" : endeddate + 'T09:30:31.157',
                 "volunteer_time" : volunteertime,
@@ -160,7 +161,7 @@ const WorkPatch = ({history, location, match}) => {
     const handleDelete = () => {
         axios({
             method: 'delete',
-            url: 'http://34.64.94.158:8080/api/works/'+ id,
+            url: 'http://54.219.63.255:8080/api/works/'+ id,
             headers: {                
                 'Authorization': 'Bearer ' + cookies,          
                 'Content-Type': 'multipart/form-data' 
@@ -188,13 +189,28 @@ const WorkPatch = ({history, location, match}) => {
     }
     return(
         <div style={{backgroundColor: '#F0F8FF', height: '100vh'}}>
-            <TopBar />
-            <div style={{paddingTop: '9vh'}}>
+            <TopBar />            
+            <div>
+            <div  style={{position: 'relative'}}>
+            <img src={bp} style={{width: '100%', height: '45vh'}} />
+            <div style={{position: 'absolute', top: '50%', left: '50%', fontSize: '60px', color: 'white', transform: `translateX(${-50}%) translateY(${-45}%)`}}>                
+              온라인 봉사
+            </div>                                      
+            </div>
+            <Divider />
+            <div style={{display: 'flex',marginTop: '20px', marginBottom: '20px', justifyContent: 'center', alignItems: 'center'}}>
+                <Typography variant="h4" sx={{ width: '20vw' }}>
+                  <div style={{textAlign: 'center'}}>
+                    글 수정
+                  </div>
+                </Typography>                
+            </div>
+            <Divider />
             <Container maxWidth='xl' sx={{maxWidth: 'sm',}}>
                 <Box sx={{ bgcolor: '#FFFFFF', height: 'auto', justifyContent: 'center', alignItems: 'center', paddingTop: '20px', }}>
                     <div style={{display: 'flex', flexDirection: 'row', marginBottom: '20px', marginLeft: '20px'}}>
                         <Typography variant="h8" component="div" sx={{color: '#708090'}}>
-                            Synabro {'>'}
+                            Sinabro {'>'}
                         </Typography>
                         <Typography variant="h8" component="div" sx={{color: '#1E90FF'}}>
                             상세보기 

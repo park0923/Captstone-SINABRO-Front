@@ -8,6 +8,7 @@ import Button from '@mui/material/Button';
 import axios from "axios";
 import cookie from 'react-cookies';
 import { Link } from "react-router-dom";
+import bp from '../image/book4.jpg'
 const CertifiedDetails = ({history, location, match}) => {
     const id = match.params.id;
     const cookies = cookie.load("login_token");
@@ -31,7 +32,7 @@ const CertifiedDetails = ({history, location, match}) => {
         setUid(JSON.parse(localStorage.getItem('uid')));
         axios({
             method: 'get',
-            url: 'http://34.64.94.158:8080/api/certification/' + id,     
+            url: 'http://54.219.63.255:8080/api/certification/' + id,     
             headers: {                
                 "Authorization": 'Bearer ' + cookies
             }                           
@@ -56,7 +57,7 @@ const CertifiedDetails = ({history, location, match}) => {
     const hadleFile = () => {
         axios({
             method: 'get',
-            url: 'http://34.64.94.158:8080/api/certification/download/'+ file, 
+            url: 'http://54.219.63.255:8080/api/certification/download/'+ file, 
             headers: {                
                 "Authorization": 'Bearer ' + cookies
             }                                    
@@ -112,7 +113,7 @@ const CertifiedDetails = ({history, location, match}) => {
     const handleDelete = () => {
         axios({
             method: 'delete',
-            url: 'http://34.64.94.158:8080/api/certification/'+ id,
+            url: 'http://54.219.63.255:8080/api/certification/'+ id,
             headers: {                
                 'Authorization': 'Bearer ' + cookies,          
                 'Content-Type': 'multipart/form-data' 
@@ -196,13 +197,28 @@ const CertifiedDetails = ({history, location, match}) => {
     
     return(
         <div style={{backgroundColor: '#F0F8FF', height: '100vh'}}>
-            <TopBar />
-            <div style={{paddingTop: '9vh'}}>
+            <TopBar />            
+            <div>
+            <div  style={{position: 'relative'}}>
+            <img src={bp} style={{width: '100%', height: '45vh'}} />
+            <div style={{position: 'absolute', top: '50%', left: '50%', fontSize: '60px', color: 'white', transform: `translateX(${-50}%) translateY(${-45}%)`}}>                
+              봉사 인증
+            </div>                                      
+            </div>
+            <Divider />
+            <div style={{display: 'flex',marginTop: '20px', marginBottom: '20px', justifyContent: 'center', alignItems: 'center'}}>
+                <Typography variant="h4" sx={{ width: '20vw' }}>
+                  <div style={{textAlign: 'center'}}>
+                  봉사 인증 상세
+                  </div>
+                </Typography>                
+            </div>
+            <Divider />
             <Container maxWidth='xl' sx={{maxWidth: 'sm',}}>
                 <Box sx={{ bgcolor: '#FFFFFF', height: 'auto', justifyContent: 'center', alignItems: 'center', paddingTop: '20px', }}>
                     <div style={{display: 'flex', flexDirection: 'row', marginBottom: '20px', marginLeft: '20px'}}>
                         <Typography variant="h8" component="div" sx={{color: '#708090'}}>
-                            Synabro {'>'}
+                            Sinabro {'>'}
                         </Typography>
                         <Typography variant="h8" component="div" sx={{color: '#1E90FF'}}>
                             봉사 인증 

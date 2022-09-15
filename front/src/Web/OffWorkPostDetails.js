@@ -9,7 +9,7 @@ import Modal from '@mui/material/Modal';
 import TextField from '@mui/material/TextField';
 import axios from "axios";
 import cookie from 'react-cookies';
-import help from '../image/board2.jpg'
+import bp from '../image/passion.jpg'
 
 const OffWorkPostDetails = ({history, location, match}) => {
     const id = match.params.id;
@@ -31,7 +31,7 @@ const OffWorkPostDetails = ({history, location, match}) => {
     useEffect(() => {
         axios({
             method: 'get',
-            url: 'http://34.64.94.158:8080/api/offVolunteer/' + id,     
+            url: 'http://54.219.63.255:8080/api/offVolunteer/' + id,     
             headers: {                
                 "Authorization": 'Bearer ' + cookies
             }                           
@@ -50,7 +50,7 @@ const OffWorkPostDetails = ({history, location, match}) => {
 
         // axios({
         //     method: 'get',
-        //     url: 'http://34.64.94.158:8080/api/offVolunteer/download/' + id,     
+        //     url: 'http://54.219.63.255:8080/api/offVolunteer/download/' + id,     
         //     headers: {                
         //         "Authorization": 'Bearer ' + cookies
         //     }                           
@@ -88,6 +88,7 @@ const OffWorkPostDetails = ({history, location, match}) => {
     const [password, setPassword] = useState('');
     const [phone, setPhone] = useState('');
     const [teamgroup, setTeamgroup] = useState('');
+    const [address, setAddress] = useState('');
     const style = {
         position: 'absolute',
         top: '50%',
@@ -120,28 +121,63 @@ const OffWorkPostDetails = ({history, location, match}) => {
         console.log(teamgroup);
     }
 
-    const apply = () =>{                
-        axios.post(
-            'http://34.64.94.158:8080/api/offVolunteerApplication/' + id, 
-            {
+    const handleAddress = (e) => {
+        setAddress(e.target.value);
+        console.log(address);
+    }
+
+    const apply = () =>{ 
+        const form = new FormData();        
+        if(cookies === null || cookies === undefined){
+            form.append("applyOption", 'beneficiary');
+            form.append("beneficiaryRequest", new Blob([JSON.stringify({
+                "address": address,
                 "name": name,
                 "password": password,
                 "phone": phone,
-                "teamGroup": teamgroup
-            },                           
-          )
-          .then(function (response) {
-            // handle successF
-            console.log(response);
-            if (response.status === 200) {
-              alert("신청 되었습니다.");    
-              window.location.href = '/OffWork'
-            }
-          })
-          .catch(function (error) {
-            // handle error
-            console.log(error);
-          });
+                "team_group": teamgroup,
+            })], {type: "application/json"}));
+            axios.post(                 
+                'http://54.219.63.255:8080/api/offVolunteerApplication/' + id,
+                form                
+                )
+              .then(function (response) {
+                // handle successF
+                console.log(response);
+                if (response.status === 200) {
+                  alert("신청 되었습니다.");    
+                  window.location.href = '/OffWork'
+                }
+              })
+              .catch(function (error) {
+                // handle error
+                console.log(error);
+              });
+        }
+        else{
+            form.append("applyOption", 'user');
+            axios.post(                 
+                'http://54.219.63.255:8080/api/offVolunteerApplication/' + id,
+                form,
+                {
+                    headers:{
+                        "Authorization": 'Bearer ' + cookies
+                    }
+                }
+                )
+              .then(function (response) {
+                // handle successF
+                console.log(response);
+                if (response.status === 200) {
+                  alert("신청 되었습니다.");    
+                  window.location.href = '/OffWork'
+                }
+              })
+              .catch(function (error) {
+                // handle error
+                console.log(error);
+              });
+        }       
     }
 
     const ChildModal = () => {
@@ -154,60 +190,12 @@ const OffWorkPostDetails = ({history, location, match}) => {
             </React.Fragment>
           );
     }
-    return(
-        <div style={{backgroundColor: '#F0F8FF', height: '150vh'}}>
-            <TopBar />
-            <div>
-            <div  style={{position: 'relative'}}>
-            <img src={help} style={{width: '100%', height: '45vh'}} />
-            <div style={{position: 'absolute', top: '50%', left: '50%', fontSize: '60px', color: 'white', transform: `translateX(${-50}%) translateY(${-45}%)`}}>                
-              오프라인 봉사
-            </div>                                      
-            </div>
-            <Divider />
-            <div style={{display: 'flex',marginTop: '20px', marginBottom: '20px', justifyContent: 'center', alignItems: 'center'}}>
-                <Typography variant="h4" sx={{ width: '20vw' }}>
-                  <div style={{textAlign: 'center'}}>
-                    상세보기
-                  </div>
-                </Typography>                
-            </div>
-            <Divider />
-            <Container maxWidth='xl' sx={{maxWidth: 'sm',}}>
-                <Box sx={{ bgcolor: '#FFFFFF', height: 'auto', justifyContent: 'center', alignItems: 'center', paddingTop: '20px', }}>
-                    <div style={{display: 'flex', flexDirection: 'row', marginBottom: '20px', marginLeft: '20px'}}>
-                        <Typography variant="h8" component="div" sx={{color: '#708090'}}>
-                            Synabro {'>'}
-                        </Typography>
-                        <Typography variant="h8" component="div" sx={{color: '#1E90FF'}}>
-                            상세보기 
-                        </Typography>
-                    </div>
-                    <div style={{marginLeft: '20px'}}>
-                        <Typography variant="h5" component="div" sx={{ flexGrow: 1 }}>
-                            {data.title}
-                        </Typography>
-                        <Typography variant="h8" component="div" sx={{ flexGrow: 1 }}>
-                            {data.created_date.substring(0, 10)}
-                        </Typography>
-                    </div>                    
-                    <Divider />
-                    <div style={{marginLeft: '20px', marginTop: '20px', marginBottom: '20px'}}>
-                        {filedownload(file)}
-                        <Typography variant="h8" component="div" sx={{ flexGrow: 1, marginTop: '20px' }}>
-                            모집 기간 : {data.start_date.substring(0, 10)} ~ {data.end_date} 까지
-                        </Typography>
-                        <Typography variant="h8" component="div" sx={{ flexGrow: 1, marginTop: '20px' }}>
-                            활동 기간 : {data.start_period.substring(0, 10)} ~ {data.end_period.substring(0, 10)} 까지
-                        </Typography>                        
-                        <Typography variant="h8" component="div" sx={{ flexGrow: 1, marginTop: '20px' }}>
-                            {data.contents}
-                        </Typography>
-                    </div> 
-                    <Divider />
-                    <div style={{display: 'flex', flexDirection: 'row', marginTop: '20px', justifyContent: 'center', alignItems: 'center', }}>
-                        <div style={{ justifyContent: 'space-between', alignItems: 'center',marginBottom: '20px'}}>
-                            <Button variant="outlined" onClick={handleOpen}>신청하기</Button>
+
+    const handleButton = () => {
+        if(cookies === null || cookies === undefined){
+            return(
+                <div>
+                    <Button variant="outlined" onClick={handleOpen}>신청하기</Button>
                             <Modal
                                 open={open}
                                 onClose={handleClose}
@@ -226,11 +214,78 @@ const OffWorkPostDetails = ({history, location, match}) => {
                                     <TextField id="standard-basic2" label="password" variant="standard" type="password" autoComplete="current-password" sx={{width: 'auto', marginBottom: '10px'}} value={password} onChange={(e) => handlePassword(e)}/>
                                     <TextField id="standard-basic3" label="phone" variant="standard" sx={{width: 'auto', marginBottom: '10px'}} value={phone} onChange={(e) => handlePhone(e)}/>
                                     <TextField id="standard-basic4" label="teamGroup" variant="standard" sx={{width: 'auto'}} value={teamgroup} onChange={(e) => handleTeamgroup(e)}/>
+                                    <TextField id="standard-basic4" label="address" variant="standard" sx={{width: 'auto'}} value={address} onChange={(e) => handleAddress(e)}/>
                                     <ChildModal />
                                 </div>                                
                                 </Box>                                
                             </Modal>
-                            <Button variant="outlined" onClick={() => history.goBack()} sx={{marginLeft: '20px'}}>돌아가기</Button>
+                    <Button variant="outlined" onClick={() => history.goBack()} sx={{marginLeft: '20px'}}>돌아가기</Button>
+                </div>
+            );
+        }
+        else{
+            return(
+                <div>
+                    <Button variant="outlined" onClick={apply}>신청하기</Button>
+                    <Button variant="outlined" onClick={() => history.goBack()} sx={{marginLeft: '20px'}}>돌아가기</Button>
+                </div>
+            );
+        }       
+    }
+    return(
+        <div style={{backgroundColor: '#F0F8FF', height: '150vh'}}>
+            <TopBar />
+            <div>
+            <div  style={{position: 'relative'}}>
+            <img src={bp} style={{width: '100%', height: '45vh'}} />
+            <div style={{position: 'absolute', top: '50%', left: '50%', fontSize: '60px', color: 'white', transform: `translateX(${-50}%) translateY(${-45}%)`}}>                
+              오프라인 봉사
+            </div>                                      
+            </div>
+            <Divider />
+            <div style={{display: 'flex',marginTop: '20px', marginBottom: '20px', justifyContent: 'center', alignItems: 'center'}}>
+                <Typography variant="h4" sx={{ width: '20vw' }}>
+                  <div style={{textAlign: 'center'}}>
+                    상세보기
+                  </div>
+                </Typography>                
+            </div>
+            <Divider />
+            <Container maxWidth='xl' sx={{maxWidth: 'sm',}}>
+                <Box sx={{ bgcolor: '#FFFFFF', height: 'auto', justifyContent: 'center', alignItems: 'center', paddingTop: '20px', }}>
+                    <div style={{display: 'flex', flexDirection: 'row', marginBottom: '20px', marginLeft: '20px'}}>
+                        <Typography variant="h8" component="div" sx={{color: '#708090'}}>
+                            Sinabro {'>'}
+                        </Typography>
+                        <Typography variant="h8" component="div" sx={{color: '#1E90FF'}}>
+                            상세보기 
+                        </Typography>
+                    </div>
+                    <div style={{marginLeft: '20px'}}>
+                        <Typography variant="h5" component="div" sx={{ flexGrow: 1 }}>
+                            {data.title}
+                        </Typography>
+                        <Typography variant="h8" component="div" sx={{ flexGrow: 1 }}>
+                            {data.created_date.substring(0, 10)}
+                        </Typography>
+                    </div>                    
+                    <Divider />
+                    <div style={{marginLeft: '20px', marginTop: '20px', marginBottom: '20px'}}>
+                        {filedownload(file)}
+                        <Typography variant="h8" component="div" sx={{ flexGrow: 1, marginTop: '20px' }}>
+                            모집 기간 : {data.start_date.substring(0, 10)} ~ {data.end_date.substring(0,10)} 까지
+                        </Typography>
+                        <Typography variant="h8" component="div" sx={{ flexGrow: 1, marginTop: '20px' }}>
+                            활동 기간 : {data.start_period.substring(0, 10)} ~ {data.end_period.substring(0, 10)} 까지
+                        </Typography>                        
+                        <Typography variant="h8" component="div" sx={{ flexGrow: 1, marginTop: '20px' }}>
+                            {data.contents}
+                        </Typography>
+                    </div> 
+                    <Divider />
+                    <div style={{display: 'flex', flexDirection: 'row', marginTop: '20px', justifyContent: 'center', alignItems: 'center', }}>
+                        <div style={{ justifyContent: 'space-between', alignItems: 'center',marginBottom: '20px'}}>
+                            {handleButton()}
                         </div>
                     </div>
                 </Box>

@@ -4,7 +4,7 @@ import axios from "axios";
 
 async function signUpUser(credentials) {
   axios
-    .post("http://34.64.94.158:8080/api/members/beneficiary/signup", {
+    .post("http://54.219.63.255:8080/api/members/beneficiary/signup", {
       username: credentials.username,
       email: credentials.email,
       password: credentials.password,

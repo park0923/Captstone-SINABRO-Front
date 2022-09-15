@@ -26,6 +26,7 @@ import GroupAddIcon from '@mui/icons-material/GroupAdd';
 import { Link } from 'react-router-dom';
 import cookie  from "react-cookies";
 import axios from "axios";
+import { Button } from '@mui/material';
 
 const TopBar = () => {
     const [data, setData] = useState(
@@ -70,7 +71,7 @@ const TopBar = () => {
         setAuthority(JSON.parse(localStorage.getItem('authority')));   
         axios({
             method: 'get',
-            url: 'http://34.64.94.158:8080/api/members',            
+            url: 'http://54.219.63.255:8080/api/members',            
             headers: {                
                 "Authorization": 'Bearer ' + cookies
             }            
@@ -99,7 +100,7 @@ const TopBar = () => {
             return(
                 <div>
                     <List>
-                        {['대시보드', '공지', '교육', '온라인봉사', '오프라인봉사','검수', '인증', '봉사 신청글 목록', '봉사 신청자 목록'].map((text, index) => (
+                        {['공지', '온라인봉사', '오프라인봉사','검수', '인증', '봉사 신청글 목록', '봉사 신청자 목록'].map((text, index) => (
                         <Link to={link(text)}>
                             <ListItem key={text} disablePadding>
                                 <ListItemButton>
@@ -119,7 +120,7 @@ const TopBar = () => {
             return(
                 <div>
                     <List>
-                        {['대시보드', '공지', '교육', '온라인봉사', '오프라인봉사','검수', '인증'].map((text, index) => (
+                        {['공지', '온라인봉사', '오프라인봉사','검수', '인증'].map((text, index) => (
                         <Link to={link(text)}>
                             <ListItem key={text} disablePadding>
                                 <ListItemButton>
@@ -145,24 +146,20 @@ const TopBar = () => {
       };
       
       const icons = (index) => {
-        switch (index) {
+        switch (index) {                                            
             case 0:
-                return(<DashboardIcon fontSize="large"/>)                                
+                return(<NotificationsIcon fontSize="large"/>)                  
             case 1:
-                return(<NotificationsIcon fontSize="large"/>)    
-            case 2:
-                return(<SchoolIcon fontSize="large"/>)                
-            case 3:
                 return(<DesktopWindowsIcon fontSize="large"/>)                
-            case 4:
+            case 2:
                 return(<VolunteerActivismIcon fontSize="large"/>)  
-            case 5:
+            case 3:
                 return(<FactCheckIcon fontSize="large"/>)                      
-            case 6:
+            case 4:
                 return(<BookmarkAddedIcon fontSize="large"/>)                            
-            case 7:
+            case 5:
                 return(<PlaylistAddIcon fontSize="large"/>)    
-            case 8:
+            case 6:
                 return(<GroupAddIcon fontSize="large"/>)    
             default:
                 return;
@@ -170,13 +167,9 @@ const TopBar = () => {
       }
       
       const link = (text) => {
-        switch (text) {
-            case '대시보드':
-                return('/UserDashBoard')                                
+        switch (text) {                                            
             case '공지':
-                return('/Notice')
-            case '교육':
-                return('/Education')                
+                return('/Notice')                            
             case '온라인봉사':
                 return('/Work')   
             case '오프라인봉사':
@@ -228,9 +221,9 @@ const TopBar = () => {
         <div>
             <Box>
                 <AppBar sx={{ position:"fixed",top: 0, left: 0, right: 0, justifyContent: 'center', alignItems: 'center', height: '8vh'}}>
-                    <Toolbar sx={{width:'100%', }}>                
+                    <Toolbar sx={{width:'100%', }}>
                             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                                Synabro
+                                Sinabro
                             </Typography>
                             <IconButton
                                 size="medium"

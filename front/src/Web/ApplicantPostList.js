@@ -17,7 +17,7 @@ import { Button } from "@mui/material";
 import axios from "axios";
 import cookie from 'react-cookies';
 import Divider from '@mui/material/Divider';
-import help from '../image/board2.jpg'
+import bp from '../image/bright.jpg'
 
 const ApplicantPostList = () => {
     const cookies = cookie.load("login_token");
@@ -51,7 +51,7 @@ const ApplicantPostList = () => {
     useEffect(() => {
         axios({
             method: 'get',
-            url: 'http://34.64.94.158:8080/api/approval/work',     
+            url: 'http://54.219.63.255:8080/api/approval/work',     
             headers: {                
                 "Authorization": 'Bearer ' + cookies
             }                           
@@ -73,7 +73,7 @@ const ApplicantPostList = () => {
         const pages = value - 1;
         axios({
             method: 'get',
-            url: 'http://34.64.94.158:8080/api/approval/work?page=' + pages,     
+            url: 'http://54.219.63.255:8080/api/approval/work?page=' + pages,     
             headers: {                
                 "Authorization": 'Bearer ' + cookies
             }                           
@@ -96,7 +96,7 @@ const ApplicantPostList = () => {
             <TopBar />            
             <div>
             <div  style={{position: 'relative'}}>
-            <img src={help} style={{width: '100%', height: '45vh'}} />
+            <img src={bp} style={{width: '100%', height: '45vh'}} />
             <div style={{position: 'absolute', top: '50%', left: '50%', fontSize: '60px', color: 'white', transform: `translateX(${-50}%) translateY(${-45}%)`}}>                
               온라인 봉사
             </div>                                      
@@ -105,7 +105,7 @@ const ApplicantPostList = () => {
             <div style={{display: 'flex',marginTop: '20px', marginBottom: '20px', justifyContent: 'center', alignItems: 'center'}}>
                 <Typography variant="h4" sx={{ width: '100vw' }}>
                   <div style={{textAlign: 'center'}}>
-                    봉사 신청글 목록
+                    봉사 요청글 목록
                   </div>
                 </Typography>                
             </div>

@@ -53,7 +53,7 @@ function Disabled_MyPage(){
   useEffect(() => {
     axios({
         method: 'get',
-        url: 'http://34.64.94.158:8080/api/members',            
+        url: 'http://54.219.63.255:8080/api/members',            
         headers: {                
             "Authorization": 'Bearer ' + cookies
         }            
@@ -69,7 +69,7 @@ function Disabled_MyPage(){
 
         axios({
           method: 'get',
-          url: 'http://34.64.94.158:8080/api/members?size=20',            
+          url: 'http://54.219.63.255:8080/api/members?size=20',            
           headers: {                
               "Authorization": 'Bearer ' + cookies
           }            

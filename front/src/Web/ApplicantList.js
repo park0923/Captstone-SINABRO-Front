@@ -17,7 +17,7 @@ import { Button } from "@mui/material";
 import axios from "axios";
 import cookie from 'react-cookies';
 import Divider from '@mui/material/Divider';
-import help from '../image/board2.jpg'
+import bp from '../image/bright.jpg'
 
 const ApplicantList = () => {
     const cookies = cookie.load("login_token");
@@ -47,14 +47,15 @@ const ApplicantList = () => {
     useEffect(() => {
         axios({
             method: 'get',
-            url: 'http://34.64.94.158:8080/api/approval/volunteerWorks',     
+            url: 'http://54.219.63.255:8080/api/approval/volunteerWorks',     
             headers: {                
                 "Authorization": 'Bearer ' + cookies
             }                           
           })
           .then(function (response) {
               // handle success
-              setData(response.data);                          
+              setData(response.data);    
+              console.log(response.data)                                    
             })
             .catch(function (error) {
               // handle error
@@ -63,20 +64,20 @@ const ApplicantList = () => {
             .then(function () {
               // always executed
             });  
-    })
+    },[])
     
     const handlePage = (value) => {
         const pages = value - 1;
         axios({
             method: 'get',
-            url: 'http://34.64.94.158:8080/api/approval/volunteerWorks?page=' + pages,     
+            url: 'http://54.219.63.255:8080/api/approval/volunteerWorks?page=' + pages,     
             headers: {                
                 "Authorization": 'Bearer ' + cookies
             }                           
           })
           .then(function (response) {
               // handle success
-              setData(response.data);                          
+              setData(response.data);              
             })
             .catch(function (error) {
               // handle error
@@ -87,10 +88,12 @@ const ApplicantList = () => {
             });
     }
     
-    const handlePermit = () => {
+    const handlePermit = (idx) => {        
+        const id = idx;
+        console.log(id);
         axios({
             method: 'patch',
-            url: 'http://34.64.94.158:8080/api/approval/volunteerWorks/permit/' + data.volunteers.content.idx,     
+            url: 'http://54.219.63.255:8080/api/approval/volunteerWorks/permit/' + id,     
             headers: {                
                 "Authorization": 'Bearer ' + cookies
             }                           
@@ -98,7 +101,8 @@ const ApplicantList = () => {
           .then(function (response) {
               // handle success
               if(response.data.code === 200){
-                alert(response.data.message);                
+                alert(response.data.message);
+                window.location.href = '/ApplicantList'
             }                        
             console.log(response.data);
             })
@@ -111,10 +115,12 @@ const ApplicantList = () => {
             });  
     }
 
-    const handleRefuse = () => {
+    const handleRefuse = (idx) => {
+        const id = idx;
+        console.log(id);
         axios({
             method: 'patch',
-            url: 'http://34.64.94.158:8080/api/approval/volunteerWorks/refuse/' + data.volunteers.content.idx,     
+            url: 'http://54.219.63.255:8080/api/approval/volunteerWorks/refuse/' + idx,     
             headers: {                
                 "Authorization": 'Bearer ' + cookies
             }                           
@@ -123,6 +129,7 @@ const ApplicantList = () => {
               // handle success
                 if(response.data.code === 200){
                     alert(response.data.message);
+                    window.location.href = '/ApplicantList'
                 }
             console.log(response.data);
             })
@@ -140,7 +147,7 @@ const ApplicantList = () => {
             <TopBar />            
             <div>
             <div  style={{position: 'relative'}}>
-            <img src={help} style={{width: '100%', height: '45vh'}} />
+            <img src={bp} style={{width: '100%', height: '45vh'}} />
             <div style={{position: 'absolute', top: '50%', left: '50%', fontSize: '60px', color: 'white', transform: `translateX(${-50}%) translateY(${-45}%)`}}>                
               온라인 봉사
             </div>                                      
@@ -168,8 +175,7 @@ const ApplicantList = () => {
                             </TableRow>
                             </TableHead>
                             <TableBody>
-                            {data.volunteers.content.map(({idx, title, ended_date}, index) => (
-                                
+                            {data.volunteers.content.map(({idx, title, ended_date}, index) => (                                
                                 <TableRow
                                 key={idx}
                                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
@@ -184,10 +190,10 @@ const ApplicantList = () => {
                                 
                                 <TableCell align="center">{ended_date}</TableCell>
                                 <TableCell align="right" sx={{width: '10vw'}}>
-                                    <Button variant="outlined" onClick={handlePermit}>수락하기</Button>                                    
+                                    <Button variant="outlined" onClick={() => handlePermit(idx)}>수락하기</Button>                                    
                                 </TableCell>                                
                                 <TableCell align="right" sx={{width: '10vw'}}>
-                                    <Button variant="outlined" color="error" onClick={handleRefuse}>거절하기</Button>    
+                                    <Button variant="outlined" color="error" onClick={() => handleRefuse(idx)}>거절하기</Button>    
                                 </TableCell>                                
                                 
                                 </TableRow>                                
