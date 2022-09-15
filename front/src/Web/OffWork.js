@@ -16,7 +16,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import cookie from 'react-cookies';
 import Divider from '@mui/material/Divider';
-import help from '../image/board2.jpg'
+import bp from '../image/passion.jpg'
 import Button from '@mui/material/Button';
 
 const OffWork = () => {
@@ -52,10 +52,11 @@ const OffWork = () => {
         setAuthority(JSON.parse(localStorage.getItem('authority')));
         axios({
             method: 'get',
-            url: 'http://34.64.94.158:8080/api/offVolunteer',     
+            url: 'http://54.219.63.255:8080/api/offVolunteer',     
             headers: {                
-                "Authorization": 'Bearer ' + cookies
-            }                           
+              "Authorization": 'Bearer ' + cookies
+            } 
+                                      
           })
           .then(function (response) {
               // handle success
@@ -74,7 +75,7 @@ const OffWork = () => {
         const pages = value - 1;
         axios({
             method: 'get',
-            url: 'http://34.64.94.158:8080/api/offVolunteer?page=' + pages,     
+            url: 'http://54.219.63.255:8080/api/offVolunteer?page=' + pages,     
             headers: {                
                 "Authorization": 'Bearer ' + cookies
             }                           
@@ -114,7 +115,7 @@ const OffWork = () => {
             <TopBar />            
             <div>
             <div  style={{position: 'relative'}}>
-            <img src={help} style={{width: '100%', height: '45vh'}} />
+            <img src={bp} style={{width: '100%', height: '45vh'}} />
             <div style={{position: 'absolute', top: '50%', left: '50%', fontSize: '60px', color: 'white', transform: `translateX(${-50}%) translateY(${-45}%)`}}>                
               오프라인 봉사
             </div>                                      

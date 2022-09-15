@@ -8,7 +8,7 @@ import Button from '@mui/material/Button';
 import axios from "axios";
 import cookie from 'react-cookies';
 import { Link } from "react-router-dom";
-import help from '../image/board2.jpg'
+import bp from '../image/board2.jpg'
 const NoticePostDetails = ({history, location, match}) => {    
     const id = match.params.id;
     const [data, setData] = useState(
@@ -20,8 +20,8 @@ const NoticePostDetails = ({history, location, match}) => {
             "title": null,
             "contents": null,
             "board_type": null,
-            "created_date": null,
-            "updated_date": null
+            "created_date": "",
+            "updated_date": ""
         }
     );
     const cookies = cookie.load("login_token");
@@ -34,7 +34,7 @@ const NoticePostDetails = ({history, location, match}) => {
         setAuthority(JSON.parse(localStorage.getItem('authority')));   
         axios({
             method: 'get',
-            url: 'http://34.64.94.158:8080/api/boards/notice/'+id,                                   
+            url: 'http://54.219.63.255:8080/api/boards/notice/'+id,                                   
           })
           .then(function (response) {
               // handle success
@@ -69,7 +69,7 @@ const NoticePostDetails = ({history, location, match}) => {
     const hadleFile = () => {
         axios({
             method: 'get',
-            url: 'http://34.64.94.158:8080/api/boards/download/'+ file,                                   
+            url: 'http://54.219.63.255:8080/api/boards/download/'+ file,                                   
           })
           .then(function (response) {
                 // handle success
@@ -107,7 +107,7 @@ const NoticePostDetails = ({history, location, match}) => {
             });  
     }
     const handleref = () =>{
-        return 'http://34.64.94.158:8080/api/boards/download/'+ file
+        return 'http://54.219.63.255:8080/api/boards/download/'+ file
     }
     const handleButton = (file) => {        
         if(file && file.length){
@@ -128,7 +128,7 @@ const NoticePostDetails = ({history, location, match}) => {
     const handleDelete = () => {
         axios({
             method: 'delete',
-            url: 'http://34.64.94.158:8080/api/boards/'+ id,
+            url: 'http://54.219.63.255:8080/api/boards/'+ id,
             headers: {                
                 'Authorization': 'Bearer ' + cookies,          
                 'Content-Type': 'multipart/form-data' 
@@ -161,7 +161,7 @@ const NoticePostDetails = ({history, location, match}) => {
                             {data.title}
                         </Typography>
                         <Typography variant="h8" component="div" sx={{ flexGrow: 1 }}>
-                            {data.created_date}
+                            {data.created_date.substring(0,10)}
                         </Typography>
                     </div>                    
                     <Divider />
@@ -190,7 +190,7 @@ const NoticePostDetails = ({history, location, match}) => {
                             {data.title}
                         </Typography>
                         <Typography variant="h8" component="div" sx={{ flexGrow: 1 }}>
-                            {data.created_date}
+                            {data.created_date.substring(0,10)}
                         </Typography>
                     </div>                    
                     <Divider />
@@ -216,7 +216,7 @@ const NoticePostDetails = ({history, location, match}) => {
             <TopBar />
             <div>
             <div  style={{position: 'relative'}}>
-            <img src={help} style={{width: '100%', height: '45vh'}} />
+            <img src={bp} style={{width: '100%', height: '45vh'}} />
             <div style={{position: 'absolute', top: '50%', left: '50%', fontSize: '60px', color: 'white', transform: `translateX(${-50}%) translateY(${-45}%)`}}>                
               공지사항
             </div>                                      

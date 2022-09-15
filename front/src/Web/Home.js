@@ -4,7 +4,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import './css/home.css';
-import TopBar from './TopBar';
+
 const Home = () => {
   const settings = {
     dots: true,
@@ -34,70 +34,7 @@ const Home = () => {
             봉사할 수 있는 다양한 기회를 제공받을 수 있습니다.
           </p>
         </div>
-      </div>
-      <div className='backimg2'>
-        <div className='detail2'>      
-          <h1>이달의 봉사 활동</h1>    
-          <Slider className='slider' {...settings}>
-            <div className='box'>
-              <div className='card'>
-                <h1>봉사 제목 1</h1>
-                <p>
-                  봉사 내용
-                </p>
-              </div>            
-            </div>
-            <div className='box'>
-              <div className='card'>
-                <h1>봉사 제목 2</h1>
-                <p>
-                  봉사 내용
-                </p>
-              </div>            
-            </div>
-            <div className='box'>
-              <div className='card'>
-                <h1>봉사 제목 3</h1>
-                <p>
-                  봉사 내용
-                </p>
-              </div>            
-            </div>
-            <div className='box'>
-              <div className='card'>
-                <h1>봉사 제목 4</h1>
-                <p>
-                  봉사 내용
-                </p>
-              </div>            
-            </div>
-            <div className='box'>
-              <div className='card'>
-                <h1>봉사 제목 5</h1>
-                <p>
-                  봉사 내용
-                </p>
-              </div>            
-            </div>
-            <div className='box'>
-              <div className='card'>
-                <h1>봉사 제목 6</h1>
-                <p>
-                  봉사 내용
-                </p>
-              </div>            
-            </div>
-            <div className='box'>
-              <div className='card'>
-                <h1>봉사 제목 7</h1>
-                <p>
-                  봉사 내용
-                </p>
-              </div>            
-            </div>
-          </Slider>
-        </div>
-      </div>
+      </div>      
     </div>    
     );
 }

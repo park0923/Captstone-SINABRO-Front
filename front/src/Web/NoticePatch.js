@@ -8,7 +8,7 @@ import Button from '@mui/material/Button';
 import axios from "axios";
 import cookie from 'react-cookies';
 import CreateList from "./CreateList";
-  
+import bp from '../image/board2.jpg'
 const NoticePatch = ({history, location, match}) => {    
     const id = match.params.id;
     const [data, setData] = useState(
@@ -45,7 +45,7 @@ const NoticePatch = ({history, location, match}) => {
         setAuthority(JSON.parse(localStorage.getItem('authority')));   
         axios({
             method: 'get',
-            url: 'http://34.64.94.158:8080/api/boards/notice/'+id,                                   
+            url: 'http://54.219.63.255:8080/api/boards/notice/'+id,                                   
           })
           .then(function (response) {
               // handle success
@@ -80,7 +80,7 @@ const NoticePatch = ({history, location, match}) => {
     const hadleFile = (fileid) => {
         axios({
             method: 'get',
-            url: 'http://34.64.94.158:8080/api/boards/download/'+ fileid,                                   
+            url: 'http://54.219.63.255:8080/api/boards/download/'+ fileid,                                   
           })
           .then(function (response) {
                 // handle success
@@ -106,7 +106,7 @@ const NoticePatch = ({history, location, match}) => {
         if(file && file.length){
             return(
                 <div>
-                    <a id='files' href={`http://34.64.94.158:8080/api/boards/download/${file}`}>{filename}</a>
+                    <a id='files' href={`http://54.219.63.255:8080/api/boards/download/${file}`}>{filename}</a>
                     <Button id='del' variant="outlined" color="error" onClick={OnDelete} sx={{marginLeft: '20px'}}>삭제</Button>
                 </div>                
             )
@@ -174,7 +174,7 @@ const NoticePatch = ({history, location, match}) => {
         console.log(titles);
         axios({
             method: 'patch',
-            url: 'http://34.64.94.158:8080/api/boards/'+ id,
+            url: 'http://54.219.63.255:8080/api/boards/'+ id,
             data: {
                 "board_type" : data.board_type,
                 "contents": contents,
@@ -186,8 +186,11 @@ const NoticePatch = ({history, location, match}) => {
             }                                   
           })
           .then(function (response) {
-              // handle success
-              console.log(response);                          
+              // handle success              
+              if(response.status === 200){
+                alert('게시글을 수정하였습니다.')
+                window.location.href = '/Notice'
+              }                       
             })
             .catch(function (error) {
               // handle error
@@ -201,7 +204,7 @@ const NoticePatch = ({history, location, match}) => {
     const handleDelete = () => {
         axios({
             method: 'delete',
-            url: 'http://34.64.94.158:8080/api/boards/'+ id,
+            url: 'http://54.219.63.255:8080/api/boards/'+ id,
             headers: {                
                 'Authorization': 'Bearer ' + cookies,          
                 'Content-Type': 'multipart/form-data' 
@@ -226,8 +229,23 @@ const NoticePatch = ({history, location, match}) => {
 
     return(
         <div style={{backgroundColor: '#F0F8FF', height: '100vh'}}>
-            <TopBar />
-            <div style={{paddingTop: '9vh'}}>
+            <TopBar />            
+            <div>
+            <div  style={{position: 'relative'}}>
+            <img src={bp} style={{width: '100%', height: '45vh'}} />
+            <div style={{position: 'absolute', top: '50%', left: '50%', fontSize: '60px', color: 'white', transform: `translateX(${-50}%) translateY(${-45}%)`}}>                
+              공지사항
+            </div>                                      
+            </div>
+            <Divider />
+            <div style={{display: 'flex',marginTop: '20px', marginBottom: '20px', justifyContent: 'center', alignItems: 'center'}}>
+                <Typography variant="h4" sx={{ width: '20vw' }}>
+                  <div style={{textAlign: 'center'}}>
+                  글 수정
+                  </div>
+                </Typography>                
+            </div>
+            <Divider />
             <Container maxWidth='xl' sx={{maxWidth: 'sm',}}>
                 <Box sx={{ bgcolor: '#FFFFFF', height: 'auto', justifyContent: 'center', alignItems: 'center', paddingTop: '20px', }}>                    
                     <div>

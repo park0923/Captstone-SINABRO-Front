@@ -37,7 +37,7 @@ const None_NotificationPaginations = (props) => {
 
   useEffect(() => {
     axios
-      .get("http://34.64.94.158:8080/api/boards")
+      .get("http://54.219.63.255:8080/api/boards")
       .then(function (response) {
         // handle success
         setData(response.data);
@@ -55,7 +55,7 @@ const None_NotificationPaginations = (props) => {
     if (states === "") {
       axios
         .get(
-          "http://34.64.94.158:8080/api/boards?page=" + number + "&size=10"
+          "http://54.219.63.255:8080/api/boards?page=" + number + "&size=10"
         )
         .then(function (response) {
           // handle success
@@ -71,7 +71,7 @@ const None_NotificationPaginations = (props) => {
     } else if (states === "title") {
       axios
         .get(
-          "http://34.64.94.158:8080/api/boards?page=" +
+          "http://54.219.63.255:8080/api/boards?page=" +
             number +
             "&searchOption=title&keyword=" +
             searchdata
@@ -90,7 +90,7 @@ const None_NotificationPaginations = (props) => {
     } else if (states === "title_body") {
       axios
         .get(
-          "http://34.64.94.158:8080/api/boards?page=" +
+          "http://54.219.63.255:8080/api/boards?page=" +
             number +
             "searchOption=title_contents&keyword=" +
             searchdata
@@ -130,7 +130,7 @@ const None_NotificationPaginations = (props) => {
     if (selectvalue === "title") {
       axios
         .get(
-          "http://34.64.94.158:8080/api/boards?searchOption=title&keyword=" +
+          "http://54.219.63.255:8080/api/boards?searchOption=title&keyword=" +
             searchdata
         )
         .then(function (response) {
@@ -152,7 +152,7 @@ const None_NotificationPaginations = (props) => {
     } else if (selectvalue === "title_body") {
       axios
         .get(
-          "http://34.64.94.158:8080/api/boards?searchOption=title_contents&keyword=" +
+          "http://54.219.63.255:8080/api/boards?searchOption=title_contents&keyword=" +
             searchdata
         )
         .then(function (response) {

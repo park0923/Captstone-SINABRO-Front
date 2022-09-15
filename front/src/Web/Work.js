@@ -17,7 +17,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import cookie from 'react-cookies';
 import Divider from '@mui/material/Divider';
-import help from '../image/board2.jpg'
+import bp from '../image/computer.jpg'
 
 const Work = () => {
     const cookies = cookie.load("login_token");
@@ -53,7 +53,7 @@ const Work = () => {
         setAuthority(JSON.parse(localStorage.getItem('authority')));   
         axios({
             method: 'get',
-            url: 'http://34.64.94.158:8080/api/works',     
+            url: 'http://54.219.63.255:8080/api/works',     
             headers: {                
                 "Authorization": 'Bearer ' + cookies
             }                           
@@ -75,7 +75,7 @@ const Work = () => {
         const pages = value - 1;
         axios({
             method: 'get',
-            url: 'http://34.64.94.158:8080/api/works?page=' + pages,     
+            url: 'http://54.219.63.255:8080/api/works?page=' + pages,     
             headers: {                
                 "Authorization": 'Bearer ' + cookies
             }                           
@@ -114,7 +114,7 @@ const Work = () => {
             <TopBar />            
             <div>
             <div  style={{position: 'relative'}}>
-            <img src={help} style={{width: '100%', height: '45vh'}} />
+            <img src={bp} style={{width: '100%', height: '45vh'}} />
             <div style={{position: 'absolute', top: '50%', left: '50%', fontSize: '60px', color: 'white', transform: `translateX(${-50}%) translateY(${-45}%)`}}>                
               온라인 봉사
             </div>                                      

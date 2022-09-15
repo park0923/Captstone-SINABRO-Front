@@ -78,6 +78,10 @@ import WorkPatch from "Web/WorkPatch";
 import CertifiedPatch from "Web/CertifiedPatch";
 import MyPage from "Web/MyPage";
 import WriteOff from "Web/WriteOff";
+import MyWork from "Web/MyWork";
+import MyLineChart from "Web/MyLineChart";
+import MyInfo from "Web/MyInfo";
+import MyInfoPatch from "Web/MyInfoPatch";
 class App extends Component {
   
   render() {
@@ -186,6 +190,10 @@ class App extends Component {
         <Route path="/CertifiedPatch/:id" component={NoticePatch} />
         <Route path="/MyPage" component={MyPage} />        
         <Route path="/WriteOff" component={WriteOff} />   
+        <Route path="/MyWork" component={MyWork} />
+        <Route path="/MyLineChart" component={MyLineChart} />
+        <Route path="/MyInfo" component={MyInfo} />
+        <Route path="/MyInfoPatch" component={MyInfoPatch} />
       </div>
     );
   }

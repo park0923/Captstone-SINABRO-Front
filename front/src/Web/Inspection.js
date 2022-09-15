@@ -16,7 +16,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import cookie from 'react-cookies';
 import Divider from '@mui/material/Divider';
-import help from '../image/board2.jpg'
+import bp from '../image/book3.jpg'
 
 const Inspection = () => {
     const cookies = cookie.load("login_token");
@@ -49,7 +49,7 @@ const Inspection = () => {
     useEffect(() => {
         axios({
             method: 'get',
-            url: 'http://34.64.94.158:8080/api/inspections',     
+            url: 'http://54.219.63.255:8080/api/inspections',     
             headers: {                
                 "Authorization": 'Bearer ' + cookies
             }                           
@@ -71,7 +71,7 @@ const Inspection = () => {
         const pages = value - 1;
         axios({
             method: 'get',
-            url: 'http://34.64.94.158:8080/api/inspections?page=' + pages,     
+            url: 'http://54.219.63.255:8080/api/inspections?page=' + pages,     
             headers: {                
                 "Authorization": 'Bearer ' + cookies
             }                           
@@ -94,7 +94,7 @@ const Inspection = () => {
             <TopBar />            
             <div>
             <div  style={{position: 'relative'}}>
-            <img src={help} style={{width: '100%', height: '45vh'}} />
+            <img src={bp} style={{width: '100%', height: '45vh'}} />
             <div style={{position: 'absolute', top: '50%', left: '50%', fontSize: '60px', color: 'white', transform: `translateX(${-50}%) translateY(${-45}%)`}}>                
               봉사 검수
             </div>                                      

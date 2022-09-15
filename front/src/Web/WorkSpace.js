@@ -7,7 +7,7 @@ import Divider from '@mui/material/Divider';
 import Button from '@mui/material/Button';
 import axios from "axios";
 import cookie from 'react-cookies';
-import help from '../image/board2.jpg'
+import bp from '../image/computer.jpg'
 const WorkSpace = ({history, location, match}) => {       
     const id = match.params.id;
     const cookies = cookie.load("login_token");
@@ -45,7 +45,7 @@ const WorkSpace = ({history, location, match}) => {
     useEffect(() => {
         axios({
             method: 'get',
-            url: 'http://34.64.94.158:8080/api/volunteerWorks/' + id,     
+            url: 'http://54.219.63.255:8080/api/volunteerWorks/' + id,     
             headers: {                
                 "Authorization": 'Bearer ' + cookies
             }                           
@@ -65,7 +65,7 @@ const WorkSpace = ({history, location, match}) => {
             });  
         // axios({
         //     method: 'get',
-        //     url: 'http://34.64.94.158:8080/api/works/' + data.work_id,     
+        //     url: 'http://54.219.63.255:8080/api/works/' + data.work_id,     
         //     headers: {                
         //         "Authorization": 'Bearer ' + cookies
         //     }                           
@@ -88,7 +88,7 @@ const WorkSpace = ({history, location, match}) => {
     const apply = () =>{
         axios({
             method: 'post',
-            url: 'http://34.64.94.158:8080/api/inspections/'+ id,            
+            url: 'http://54.219.63.255:8080/api/inspections/'+ id,            
             headers: {                
                 "Authorization": 'Bearer ' + cookies
             }                                   
@@ -113,7 +113,7 @@ const WorkSpace = ({history, location, match}) => {
     const handleSubmit = () => {
         axios({
             method: 'patch',
-            url: 'http://34.64.94.158:8080/api/volunteerWorks/'+ id,
+            url: 'http://54.219.63.255:8080/api/volunteerWorks/'+ id,
             data: {
                 contents: contents
             },
@@ -141,7 +141,7 @@ const WorkSpace = ({history, location, match}) => {
             <TopBar />
             <div>
             <div  style={{position: 'relative'}}>
-            <img src={help} style={{width: '100%', height: '45vh'}} />
+            <img src={bp} style={{width: '100%', height: '45vh'}} />
             <div style={{position: 'absolute', top: '50%', left: '50%', fontSize: '60px', color: 'white', transform: `translateX(${-50}%) translateY(${-45}%)`}}>                
               온라인 봉사
             </div>                                      
@@ -159,7 +159,7 @@ const WorkSpace = ({history, location, match}) => {
                 <Box sx={{ bgcolor: '#FFFFFF', height: 'auto', justifyContent: 'center', alignItems: 'center', paddingTop: '20px', }}>
                     <div style={{display: 'flex', flexDirection: 'row', marginBottom: '20px', marginLeft: '20px'}}>
                         <Typography variant="h8" component="div" sx={{color: '#708090'}}>
-                            Synabro {'>'}
+                            Sinabro {'>'}
                         </Typography>
                         <Typography variant="h8" component="div" sx={{color: '#1E90FF'}}>
                             작업 진행 공간

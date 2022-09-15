@@ -5,7 +5,7 @@ import { Radio } from "@mui/material";
 
 // async function signUpUser(credentials) {
 //   axios
-//     .post("http://34.64.94.158:8080/api/members/signup", {
+//     .post("http://54.219.63.255:8080/api/members/signup", {
 //       username: credentials.username,
 //       email: credentials.email,
 //       password: credentials.password,
@@ -71,7 +71,7 @@ function SignUp() {
 
   const onSubmit = () => {    
     if(authority === "1"){
-      axios.post('http://34.64.94.158:8080/api/members/signup', {
+      axios.post('http://54.219.63.255:8080/api/members/signup', {
             username: name,
             password: password,
             email: email,
@@ -91,7 +91,7 @@ function SignUp() {
       
     }
     else if(authority === "2"){
-      axios.post('http://34.64.94.158:8080/api/members/beneficiary/signup', {
+      axios.post('http://54.219.63.255:8080/api/members/beneficiary/signup', {
             username: name,
             password: password,
             email: email,
@@ -162,7 +162,7 @@ function SignUp() {
       setPasswordConfirm(passwordConfirmCurrent)
 
       if (password === passwordConfirmCurrent) {
-        setPasswordConfirmMessage('비밀번호를 똑같이 입력했습니다.')
+        setPasswordConfirmMessage('비밀번호가 일치합니다.')
         setIsPasswordConfirm(true)
       } else {
         setPasswordConfirmMessage('비밀번호가 틀렸습니다. 다시 확인해주세요.')
@@ -219,7 +219,7 @@ function SignUp() {
                     htmlFor="authority"
                     className="text-gray-900 font-sans text-base font-semibold"
                   >
-                    수해자
+                    수혜자
                   </label>
                   <input
                     type="radio"
@@ -229,7 +229,7 @@ function SignUp() {
                     onClick={(e) => onChangeAuthority(e)}                    
                   />
                 </div>                
-                {<span className={`message ${isauthority ? 'success' : 'error'}`}>{authorityMessage}</span>}
+                
               </div>
               {/* User name Input Box */}
               <div>
@@ -316,7 +316,7 @@ function SignUp() {
             {/* Submit Button */}
             <div>
               <button
-                type="submit"                
+                type="button"                
                 onClick={onSubmit}
                 className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-noto-snas font-bold rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
                 disabled={!(isName && isEmail && isPassword && isPasswordConfirm && isauthority)}

@@ -7,7 +7,7 @@ import Divider from '@mui/material/Divider';
 import Button from '@mui/material/Button';
 import axios from "axios";
 import cookie from 'react-cookies';
-import help from '../image/board2.jpg'
+import bp from '../image/book3.jpg'
 
 const InspectionSpace = ({history, location, match}) => {
     const cookies = cookie.load("login_token");    
@@ -33,7 +33,7 @@ const InspectionSpace = ({history, location, match}) => {
     useEffect(() => {        
         axios({
             method: 'get',
-            url: 'http://34.64.94.158:8080/api/inspections/'+id,     
+            url: 'http://54.219.63.255:8080/api/inspections/'+id,     
             headers: {                
                 "Authorization": 'Bearer ' + cookies
             }                               
@@ -57,7 +57,7 @@ const InspectionSpace = ({history, location, match}) => {
 
     const handleSumit = () => {
         axios.patch(
-            'http://34.64.94.158:8080/api/inspections/' + id, 
+            'http://54.219.63.255:8080/api/inspections/' + id, 
             {
                 contents: contents,                
                 volunteer_time: data.volunteer_time
@@ -88,7 +88,7 @@ const InspectionSpace = ({history, location, match}) => {
             <TopBar />
             <div>
             <div  style={{position: 'relative'}}>
-            <img src={help} style={{width: '100%', height: '45vh'}} />
+            <img src={bp} style={{width: '100%', height: '45vh'}} />
             <div style={{position: 'absolute', top: '50%', left: '50%', fontSize: '60px', color: 'white', transform: `translateX(${-50}%) translateY(${-45}%)`}}>                
               검수
             </div>                                      
@@ -106,7 +106,7 @@ const InspectionSpace = ({history, location, match}) => {
                 <Box sx={{ bgcolor: '#FFFFFF', height: 'auto', justifyContent: 'center', alignItems: 'center', paddingTop: '20px', }}>
                     <div style={{display: 'flex', flexDirection: 'row', marginBottom: '20px', marginLeft: '20px'}}>
                         <Typography variant="h8" component="div" sx={{color: '#708090'}}>
-                            Synabro {'>'}
+                            Sinabro {'>'}
                         </Typography>
                         <Typography variant="h8" component="div" sx={{color: '#1E90FF'}}>
                             검수 진행 공간

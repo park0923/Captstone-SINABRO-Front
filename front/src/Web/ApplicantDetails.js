@@ -8,6 +8,7 @@ import Button from '@mui/material/Button';
 import Alert from '@mui/material/Alert';
 import axios from "axios";
 import cookie from 'react-cookies';
+import bp from '../image/bright.jpg'
 
 const ApplicantDetails = ({history, location, match}) => {
     const id = match.params.id;
@@ -31,7 +32,7 @@ const ApplicantDetails = ({history, location, match}) => {
     useEffect(() => {        
         axios({
             method: 'get',
-            url: 'http://34.64.94.158:8080/api/works/' + id,     
+            url: 'http://54.219.63.255:8080/api/works/' + id,     
             headers: {                
                 "Authorization": 'Bearer ' + cookies
             }                           
@@ -54,7 +55,7 @@ const ApplicantDetails = ({history, location, match}) => {
     const hadleFile = () => {
         axios({
             method: 'get',
-            url: 'http://34.64.94.158:8080/api/works/download/'+ file,                                   
+            url: 'http://54.219.63.255:8080/api/works/download/'+ file,                                   
           })
           .then(function (response) {
                 // handle success
@@ -107,7 +108,7 @@ const ApplicantDetails = ({history, location, match}) => {
     const handlePermit = () => {
         axios({
             method: 'patch',
-            url: 'http://34.64.94.158:8080/api/approval/work/permit/' + id,     
+            url: 'http://54.219.63.255:8080/api/approval/work/permit/' + id,     
             headers: {                
                 "Authorization": 'Bearer ' + cookies
             }                           
@@ -133,7 +134,7 @@ const ApplicantDetails = ({history, location, match}) => {
     const handleRefuse = () => {
         axios({
             method: 'patch',
-            url: 'http://34.64.94.158:8080/api/approval/work/refuse/' + id,     
+            url: 'http://54.219.63.255:8080/api/approval/work/refuse/' + id,     
             headers: {                
                 "Authorization": 'Bearer ' + cookies
             }                           
@@ -157,13 +158,28 @@ const ApplicantDetails = ({history, location, match}) => {
     }
     return(
         <div style={{backgroundColor: '#F0F8FF', height: '100vh'}}>
-            <TopBar />
-            <div style={{paddingTop: '9vh'}}>
+            <TopBar />            
+            <div>
+            <div  style={{position: 'relative'}}>
+            <img src={bp} style={{width: '100%', height: '45vh'}} />
+            <div style={{position: 'absolute', top: '50%', left: '50%', fontSize: '60px', color: 'white', transform: `translateX(${-50}%) translateY(${-45}%)`}}>                
+              온라인 봉사
+            </div>                                      
+            </div>
+            <Divider />
+            <div style={{display: 'flex',marginTop: '20px', marginBottom: '20px', justifyContent: 'center', alignItems: 'center'}}>
+                <Typography variant="h4" sx={{ width: '100vw' }}>
+                  <div style={{textAlign: 'center'}}>
+                    봉사 요청글 상세
+                  </div>
+                </Typography>                
+            </div>
+            <Divider />
             <Container maxWidth='xl' sx={{maxWidth: 'sm',}}>
                 <Box sx={{ bgcolor: '#FFFFFF', height: 'auto', justifyContent: 'center', alignItems: 'center', paddingTop: '20px', }}>
                     <div style={{display: 'flex', flexDirection: 'row', marginBottom: '20px', marginLeft: '20px'}}>
                         <Typography variant="h8" component="div" sx={{color: '#708090'}}>
-                            Synabro {'>'}
+                            Sinabro {'>'}
                         </Typography>
                         <Typography variant="h8" component="div" sx={{color: '#1E90FF'}}>
                             봉사 요청 상세 

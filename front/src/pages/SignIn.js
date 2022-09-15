@@ -7,7 +7,7 @@ function Signin() {
     useEffect(() => {        
     },[])    
     const signInUser = ({email, password}) =>{
-        return axios.post('http://34.64.94.158:8080/api/members/signin', {
+        return axios.post('http://54.219.63.255:8080/api/members/signin', {
             email: email,
             password: password
         })
@@ -36,10 +36,10 @@ function Signin() {
                         window.location.href = '/ApplicantPostList'
                         break;
                     case 'ROLE_BENEFICIARY':
-                        window.location.href = '/UserDashboard'
+                        window.location.href = '/Notice'
                         break;
                     case 'ROLE_USER':
-                        window.location.href = '/UserDashboard'
+                        window.location.href = '/Notice'
                         break;
                     default:                        
                         break;                    
