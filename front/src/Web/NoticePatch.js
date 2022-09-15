@@ -45,7 +45,7 @@ const NoticePatch = ({history, location, match}) => {
         setAuthority(JSON.parse(localStorage.getItem('authority')));   
         axios({
             method: 'get',
-            url: 'http://54.153.86.50:8080/api/boards/notice/'+id,                                   
+            url: 'http://13.57.232.44:8080/api/boards/notice/'+id,                                   
           })
           .then(function (response) {
               // handle success
@@ -80,7 +80,7 @@ const NoticePatch = ({history, location, match}) => {
     const hadleFile = (fileid) => {
         axios({
             method: 'get',
-            url: 'http://54.153.86.50:8080/api/boards/download/'+ fileid,                                   
+            url: 'http://13.57.232.44:8080/api/boards/download/'+ fileid,                                   
           })
           .then(function (response) {
                 // handle success
@@ -106,7 +106,7 @@ const NoticePatch = ({history, location, match}) => {
         if(file && file.length){
             return(
                 <div>
-                    <a id='files' href={`http://54.153.86.50:8080/api/boards/download/${file}`}>{filename}</a>
+                    <a id='files' href={`http://13.57.232.44:8080/api/boards/download/${file}`}>{filename}</a>
                     <Button id='del' variant="outlined" color="error" onClick={OnDelete} sx={{marginLeft: '20px'}}>삭제</Button>
                 </div>                
             )
@@ -174,7 +174,7 @@ const NoticePatch = ({history, location, match}) => {
         console.log(titles);
         axios({
             method: 'patch',
-            url: 'http://54.153.86.50:8080/api/boards/'+ id,
+            url: 'http://13.57.232.44:8080/api/boards/'+ id,
             data: {
                 "board_type" : data.board_type,
                 "contents": contents,
@@ -204,7 +204,7 @@ const NoticePatch = ({history, location, match}) => {
     const handleDelete = () => {
         axios({
             method: 'delete',
-            url: 'http://54.153.86.50:8080/api/boards/'+ id,
+            url: 'http://13.57.232.44:8080/api/boards/'+ id,
             headers: {                
                 'Authorization': 'Bearer ' + cookies,          
                 'Content-Type': 'multipart/form-data' 

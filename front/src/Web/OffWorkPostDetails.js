@@ -31,7 +31,7 @@ const OffWorkPostDetails = ({history, location, match}) => {
     useEffect(() => {
         axios({
             method: 'get',
-            url: 'http://54.153.86.50:8080/api/offVolunteer/' + id,     
+            url: 'http://13.57.232.44:8080/api/offVolunteer/' + id,     
             headers: {                
                 "Authorization": 'Bearer ' + cookies
             }                           
@@ -50,7 +50,7 @@ const OffWorkPostDetails = ({history, location, match}) => {
 
         // axios({
         //     method: 'get',
-        //     url: 'http://54.153.86.50:8080/api/offVolunteer/download/' + id,     
+        //     url: 'http://13.57.232.44:8080/api/offVolunteer/download/' + id,     
         //     headers: {                
         //         "Authorization": 'Bearer ' + cookies
         //     }                           
@@ -138,7 +138,7 @@ const OffWorkPostDetails = ({history, location, match}) => {
                 "team_group": teamgroup,
             })], {type: "application/json"}));
             axios.post(                 
-                'http://54.153.86.50:8080/api/offVolunteerApplication/' + id,
+                'http://13.57.232.44:8080/api/offVolunteerApplication/' + id,
                 form                
                 )
               .then(function (response) {
@@ -157,7 +157,7 @@ const OffWorkPostDetails = ({history, location, match}) => {
         else{
             form.append("applyOption", 'user');
             axios.post(                 
-                'http://54.153.86.50:8080/api/offVolunteerApplication/' + id,
+                'http://13.57.232.44:8080/api/offVolunteerApplication/' + id,
                 form,
                 {
                     headers:{

@@ -45,7 +45,7 @@ const WorkSpace = ({history, location, match}) => {
     useEffect(() => {
         axios({
             method: 'get',
-            url: 'http://54.153.86.50:8080/api/volunteerWorks/' + id,     
+            url: 'http://13.57.232.44:8080/api/volunteerWorks/' + id,     
             headers: {                
                 "Authorization": 'Bearer ' + cookies
             }                           
@@ -65,7 +65,7 @@ const WorkSpace = ({history, location, match}) => {
             });  
         // axios({
         //     method: 'get',
-        //     url: 'http://54.153.86.50:8080/api/works/' + data.work_id,     
+        //     url: 'http://13.57.232.44:8080/api/works/' + data.work_id,     
         //     headers: {                
         //         "Authorization": 'Bearer ' + cookies
         //     }                           
@@ -88,7 +88,7 @@ const WorkSpace = ({history, location, match}) => {
     const apply = () =>{
         axios({
             method: 'post',
-            url: 'http://54.153.86.50:8080/api/inspections/'+ id,            
+            url: 'http://13.57.232.44:8080/api/inspections/'+ id,            
             headers: {                
                 "Authorization": 'Bearer ' + cookies
             }                                   
@@ -113,7 +113,7 @@ const WorkSpace = ({history, location, match}) => {
     const handleSubmit = () => {
         axios({
             method: 'patch',
-            url: 'http://54.153.86.50:8080/api/volunteerWorks/'+ id,
+            url: 'http://13.57.232.44:8080/api/volunteerWorks/'+ id,
             data: {
                 contents: contents
             },

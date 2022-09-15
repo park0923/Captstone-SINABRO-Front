@@ -66,7 +66,7 @@ const MyPage = () => {
         setAuthority(JSON.parse(localStorage.getItem('authority')));
         axios({
             method: 'get',
-            url: 'http://54.153.86.50:8080/api/members', 
+            url: 'http://13.57.232.44:8080/api/members', 
             headers: {                
               "Authorization": 'Bearer ' + cookies
             }                                  

@@ -33,7 +33,7 @@ const InspectionSpace = ({history, location, match}) => {
     useEffect(() => {        
         axios({
             method: 'get',
-            url: 'http://54.153.86.50:8080/api/inspections/'+id,     
+            url: 'http://13.57.232.44:8080/api/inspections/'+id,     
             headers: {                
                 "Authorization": 'Bearer ' + cookies
             }                               
@@ -57,7 +57,7 @@ const InspectionSpace = ({history, location, match}) => {
 
     const handleSumit = () => {
         axios.patch(
-            'http://54.153.86.50:8080/api/inspections/' + id, 
+            'http://13.57.232.44:8080/api/inspections/' + id, 
             {
                 contents: contents,                
                 volunteer_time: data.volunteer_time
