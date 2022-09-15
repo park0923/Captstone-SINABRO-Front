@@ -54,7 +54,7 @@ const Notice = () => {
         setAuthority(JSON.parse(localStorage.getItem('authority')));
         axios({
             method: 'get',
-            url: 'http://54.219.63.255:8080/api/boards/notice',                                   
+            url: 'http://54.153.86.50:8080/api/boards/notice',                                   
           })
           .then(function (response) {
               // handle success
@@ -73,7 +73,7 @@ const Notice = () => {
         const pages = value - 1;
         axios({
             method: 'get',
-            url: 'http://54.219.63.255:8080/api/boards/'+type +'?page=' + pages,                                   
+            url: 'http://54.153.86.50:8080/api/boards/'+type +'?page=' + pages,                                   
           })
           .then(function (response) {
               // handle success
@@ -91,7 +91,7 @@ const Notice = () => {
     const handleType = (type) => {
       axios({
         method: 'get',
-        url: 'http://54.219.63.255:8080/api/boards/' + type,                                   
+        url: 'http://54.153.86.50:8080/api/boards/' + type,                                   
       })
       .then(function (response) {
           // handle success

@@ -59,7 +59,7 @@ const MyInfoPatch = ({history}) => {
     useEffect(() => {        
         axios({
             method: 'get',
-            url: 'http://54.219.63.255:8080/api/members',   
+            url: 'http://54.153.86.50:8080/api/members',   
             headers: {                
                 "Authorization": 'Bearer ' + cookies
             }                                
@@ -97,7 +97,7 @@ const MyInfoPatch = ({history}) => {
     const handlePatch = () => {
         axios({
             method: 'patch',
-            url: 'http://54.219.63.255:8080/api/members/update',
+            url: 'http://54.153.86.50:8080/api/members/update',
             data: {
                 address: address,
                 introduction: introduction,

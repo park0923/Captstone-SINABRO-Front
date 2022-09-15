@@ -50,7 +50,7 @@ const Certified = () => {
         setAuthority(JSON.parse(localStorage.getItem('authority')));   
         axios({
             method: 'get',
-            url: 'http://54.219.63.255:8080/api/certification',     
+            url: 'http://54.153.86.50:8080/api/certification',     
             headers: {                
                 "Authorization": 'Bearer ' + cookies
             }                           
@@ -72,7 +72,7 @@ const Certified = () => {
         const pages = value - 1;
         axios({
             method: 'get',
-            url: 'http://54.219.63.255:8080/api/certification?page=' + pages,     
+            url: 'http://54.153.86.50:8080/api/certification?page=' + pages,     
             headers: {                
                 "Authorization": 'Bearer ' + cookies
             }                           

@@ -175,7 +175,7 @@ class App extends Component {
         <Route path="/InspectionPostDetails/:id" component={InspectionPostDetails} />
         <Route path="/Certified" component={Certified} />
         <Route path="/WorkSpace/:id" component={WorkSpace} />
-        <Route path="/InspectionSpace" component={InspectionSpace} />
+        <Route path="/InspectionSpace/:id" component={InspectionSpace} />
         <Route path="/CertifiedDetails/:id" component={CertifiedDetails} />
         <Route path="/ApplicantList" component={ApplicantList} />
         <Route path="/ApplicantDetails/:id" component={ApplicantDetails} />

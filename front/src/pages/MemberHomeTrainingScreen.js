@@ -23,7 +23,7 @@ function MemberHomeTrainingScreen({history, location, match}){
    useEffect(() => {
     axios({
         method: 'get',
-        url: 'http://54.219.63.255:8080/api/educations/' + id,            
+        url: 'http://54.153.86.50:8080/api/educations/' + id,            
         headers: {                
             "Authorization": 'Bearer ' + cookies
         }            

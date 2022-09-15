@@ -82,7 +82,7 @@ const WriteOff = ({history, location, match}) => {
         })], {type: "application/json"}));
 
         axios.post(
-            'http://54.219.63.255:8080/api/offVolunteer', 
+            'http://54.153.86.50:8080/api/offVolunteer', 
             form ,
             {
                 headers: {                

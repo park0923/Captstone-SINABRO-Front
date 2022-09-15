@@ -10,6 +10,7 @@ import CardContent from '@mui/material/CardContent';
 import axios from "axios";
 import cookie from 'react-cookies';
 import bp from '../image/book3.jpg'
+import { Link } from "react-router-dom";
 const InspectionPostDetails = ({history, location, match}) => {
     const cookies = cookie.load("login_token");    
     const id = match.params.id;
@@ -33,7 +34,7 @@ const InspectionPostDetails = ({history, location, match}) => {
     useEffect(() => {        
         axios({
             method: 'get',
-            url: 'http://54.219.63.255:8080/api/inspections/'+id,     
+            url: 'http://54.153.86.50:8080/api/inspections/'+id,     
             headers: {                
                 "Authorization": 'Bearer ' + cookies
             }                               
@@ -51,7 +52,7 @@ const InspectionPostDetails = ({history, location, match}) => {
             });  
             axios({
                 method: 'get',
-                url: 'http://54.219.63.255:8080/api/works/' + id,     
+                url: 'http://54.153.86.50:8080/api/works/' + id,     
                 headers: {                
                     "Authorization": 'Bearer ' + cookies
                 }                           
@@ -72,7 +73,7 @@ const InspectionPostDetails = ({history, location, match}) => {
     const hadleFile = () => {
         axios({
             method: 'get',
-            url: 'http://54.219.63.255:8080/api/works/download/'+ file, 
+            url: 'http://54.153.86.50:8080/api/works/download/'+ file, 
             headers: {                
                 "Authorization": 'Bearer ' + cookies
             }                                    
@@ -125,9 +126,11 @@ const InspectionPostDetails = ({history, location, match}) => {
         }
     }
 
-    const handleSumit = () => {
-        alert('요청되었습니다.');
-        window.location.href = '/InspectionSpace'        
+    const handleSumit = (id) => {
+        const idx = id
+        console.log(idx);
+        alert("요청되었습니다.");
+        window.location.href = `/InspectionSpace/${idx}`                   
     }
     return(
         <div style={{backgroundColor: '#F0F8FF', height: '150vh'}}>
@@ -208,7 +211,7 @@ const InspectionPostDetails = ({history, location, match}) => {
                     <Divider />
                     <div style={{display: 'flex', flexDirection: 'row', marginTop: '20px', justifyContent: 'center', alignItems: 'center', }}>
                         <div style={{ justifyContent: 'space-between', alignItems: 'center',marginBottom: '20px'}}>                            
-                            <Button variant="outlined" onClick={handleSumit} sx={{marginLeft: '20px'}}>검수하기</Button>
+                            <Button variant="outlined" onClick={() => handleSumit(data.idx)} sx={{marginLeft: '20px'}}>검수하기</Button>
                             <Button variant="outlined" onClick={() => history.goBack()} sx={{marginLeft: '20px'}}>돌아가기</Button>
                         </div>
                     </div>

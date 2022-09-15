@@ -71,7 +71,7 @@ const TopBar = () => {
         setAuthority(JSON.parse(localStorage.getItem('authority')));   
         axios({
             method: 'get',
-            url: 'http://54.219.63.255:8080/api/members',            
+            url: 'http://54.153.86.50:8080/api/members',            
             headers: {                
                 "Authorization": 'Bearer ' + cookies
             }            

@@ -43,7 +43,7 @@ function Notification() {
     //   // }, [data])
       
     //   useEffect(() => {      
-    //       axios.get('http://54.219.63.255:8080/api/boards')
+    //       axios.get('http://54.153.86.50:8080/api/boards')
     //       .then(function (response) {
     //           // handle success
     //           console.log(response);
@@ -64,7 +64,7 @@ function Notification() {
 
 //   useEffect(() => {
 //     axios
-//       .get("http://54.219.63.255:8080/api/boards")
+//       .get("http://54.153.86.50:8080/api/boards")
 //       .then(function (response) {
 //         // handle success
 //         console.log(response);

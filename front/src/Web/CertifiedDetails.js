@@ -32,7 +32,7 @@ const CertifiedDetails = ({history, location, match}) => {
         setUid(JSON.parse(localStorage.getItem('uid')));
         axios({
             method: 'get',
-            url: 'http://54.219.63.255:8080/api/certification/' + id,     
+            url: 'http://54.153.86.50:8080/api/certification/' + id,     
             headers: {                
                 "Authorization": 'Bearer ' + cookies
             }                           
@@ -57,7 +57,7 @@ const CertifiedDetails = ({history, location, match}) => {
     const hadleFile = () => {
         axios({
             method: 'get',
-            url: 'http://54.219.63.255:8080/api/certification/download/'+ file, 
+            url: 'http://54.153.86.50:8080/api/certification/download/'+ file, 
             headers: {                
                 "Authorization": 'Bearer ' + cookies
             }                                    
@@ -113,7 +113,7 @@ const CertifiedDetails = ({history, location, match}) => {
     const handleDelete = () => {
         axios({
             method: 'delete',
-            url: 'http://54.219.63.255:8080/api/certification/'+ id,
+            url: 'http://54.153.86.50:8080/api/certification/'+ id,
             headers: {                
                 'Authorization': 'Bearer ' + cookies,          
                 'Content-Type': 'multipart/form-data' 

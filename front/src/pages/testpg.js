@@ -29,7 +29,7 @@ function testpg() {
     // }
 
     // useEffect(() => {
-    //     fetch('http://54.219.63.255:8080/volunteers')
+    //     fetch('http://54.153.86.50:8080/volunteers')
     //     .then(response => {
     //         if(response.ok) {
     //             return response.json();

@@ -33,7 +33,7 @@ const MyLineChart = () => {
     useEffect(() => {
       axios({
         method: 'get',
-        url: 'http://54.219.63.255:8080/api/home',
+        url: 'http://54.153.86.50:8080/api/home',
         headers: {                
           "Authorization": 'Bearer ' + cookies
         }                                   
