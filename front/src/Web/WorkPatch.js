@@ -35,7 +35,7 @@ const WorkPatch = ({history, location, match}) => {
         setUid(JSON.parse(localStorage.getItem('uid')));
         axios({
             method: 'get',
-            url: 'http://13.57.232.44:8080/api/works/' + id,     
+            url: 'http://54.151.102.33:8080/api/works/' + id,     
             headers: {                
                 "Authorization": 'Bearer ' + cookies
             }                           
@@ -62,7 +62,7 @@ const WorkPatch = ({history, location, match}) => {
     const hadleFile = () => {
         axios({
             method: 'get',
-            url: 'http://13.57.232.44:8080/api/works/download/'+ file, 
+            url: 'http://54.151.102.33:8080/api/works/download/'+ file, 
             headers: {                
                 "Authorization": 'Bearer ' + cookies
             }                                    
@@ -133,7 +133,7 @@ const WorkPatch = ({history, location, match}) => {
     const handlePatch = () => {
         axios({
             method: 'patch',
-            url: 'http://13.57.232.44:8080/api/works/'+ id,
+            url: 'http://54.151.102.33:8080/api/works/'+ id,
             data: {
                 "ended_date" : endeddate + 'T09:30:31.157',
                 "volunteer_time" : volunteertime,
@@ -161,7 +161,7 @@ const WorkPatch = ({history, location, match}) => {
     const handleDelete = () => {
         axios({
             method: 'delete',
-            url: 'http://13.57.232.44:8080/api/works/'+ id,
+            url: 'http://54.151.102.33:8080/api/works/'+ id,
             headers: {                
                 'Authorization': 'Bearer ' + cookies,          
                 'Content-Type': 'multipart/form-data' 

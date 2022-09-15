@@ -77,7 +77,7 @@ function MemberHomeMyPage() {
   useEffect(() => {
     axios({
         method: 'get',
-        url: 'http://13.57.232.44:8080/api/members',            
+        url: 'http://54.151.102.33:8080/api/members',            
         headers: {                
             "Authorization": 'Bearer ' + cookies
         }            
@@ -93,7 +93,7 @@ function MemberHomeMyPage() {
 
         axios({
           method: 'get',
-          url: 'http://13.57.232.44:8080/api/members?size=5',            
+          url: 'http://54.151.102.33:8080/api/members?size=5',            
           headers: {                
               "Authorization": 'Bearer ' + cookies
           }            

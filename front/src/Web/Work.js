@@ -53,7 +53,7 @@ const Work = () => {
         setAuthority(JSON.parse(localStorage.getItem('authority')));   
         axios({
             method: 'get',
-            url: 'http://13.57.232.44:8080/api/works',     
+            url: 'http://54.151.102.33:8080/api/works',     
             headers: {                
                 "Authorization": 'Bearer ' + cookies
             }                           
@@ -75,7 +75,7 @@ const Work = () => {
         const pages = value - 1;
         axios({
             method: 'get',
-            url: 'http://13.57.232.44:8080/api/works?page=' + pages,     
+            url: 'http://54.151.102.33:8080/api/works?page=' + pages,     
             headers: {                
                 "Authorization": 'Bearer ' + cookies
             }                           

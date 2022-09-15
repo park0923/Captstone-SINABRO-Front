@@ -36,7 +36,7 @@ const PostView = ({history, location, match}) =>{
       if(type === "notice"){
         axios({
           method: 'get',
-          url: 'http://13.57.232.44:8080/api/boards/' +id      
+          url: 'http://54.151.102.33:8080/api/boards/' +id      
         })
         .then(function (response) {
             // handle success                                  
@@ -54,7 +54,7 @@ const PostView = ({history, location, match}) =>{
       else if(type === "work"){
         axios({
           method: 'get',
-          url: 'http://13.57.232.44:8080/api/works/' +id,            
+          url: 'http://54.151.102.33:8080/api/works/' +id,            
           headers: {                
               "Authorization": 'Bearer ' + cookies
           }            

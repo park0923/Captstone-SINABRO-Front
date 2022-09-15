@@ -34,7 +34,7 @@ const InspectionPostDetails = ({history, location, match}) => {
     useEffect(() => {        
         axios({
             method: 'get',
-            url: 'http://13.57.232.44:8080/api/inspections/'+id,     
+            url: 'http://54.151.102.33:8080/api/inspections/'+id,     
             headers: {                
                 "Authorization": 'Bearer ' + cookies
             }                               
@@ -52,7 +52,7 @@ const InspectionPostDetails = ({history, location, match}) => {
             });  
             axios({
                 method: 'get',
-                url: 'http://13.57.232.44:8080/api/works/' + id,     
+                url: 'http://54.151.102.33:8080/api/works/' + id,     
                 headers: {                
                     "Authorization": 'Bearer ' + cookies
                 }                           
@@ -73,7 +73,7 @@ const InspectionPostDetails = ({history, location, match}) => {
     const hadleFile = () => {
         axios({
             method: 'get',
-            url: 'http://13.57.232.44:8080/api/works/download/'+ file, 
+            url: 'http://54.151.102.33:8080/api/works/download/'+ file, 
             headers: {                
                 "Authorization": 'Bearer ' + cookies
             }                                    

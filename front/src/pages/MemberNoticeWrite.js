@@ -20,7 +20,7 @@ const MemberNoticeWrite = () => {
         e.preventDefault()
         console.log(title);
         console.log(contents);        
-        axios.post('http://13.57.232.44:8080/api/boards', {
+        axios.post('http://54.151.102.33:8080/api/boards', {
             board_type : "notice",
             contents: contents,
             title: title            
