@@ -32,7 +32,7 @@ const ApplicantDetails = ({history, location, match}) => {
     useEffect(() => {        
         axios({
             method: 'get',
-            url: 'http://52.79.155.65:8080/api/works/' + id,     
+            url: 'http://34.64.61.63:8080/api/works/' + id,     
             headers: {                
                 "Authorization": 'Bearer ' + cookies
             }                           
@@ -55,7 +55,7 @@ const ApplicantDetails = ({history, location, match}) => {
     const hadleFile = () => {
         axios({
             method: 'get',
-            url: 'http://52.79.155.65:8080/api/works/download/'+ file,                                   
+            url: 'http://34.64.61.63:8080/api/works/download/'+ file,                                   
           })
           .then(function (response) {
                 // handle success
@@ -108,7 +108,7 @@ const ApplicantDetails = ({history, location, match}) => {
     const handlePermit = () => {
         axios({
             method: 'patch',
-            url: 'http://52.79.155.65:8080/api/approval/work/permit/' + id,     
+            url: 'http://34.64.61.63:8080/api/approval/work/permit/' + id,     
             headers: {                
                 "Authorization": 'Bearer ' + cookies
             }                           
@@ -134,7 +134,7 @@ const ApplicantDetails = ({history, location, match}) => {
     const handleRefuse = () => {
         axios({
             method: 'patch',
-            url: 'http://52.79.155.65:8080/api/approval/work/refuse/' + id,     
+            url: 'http://34.64.61.63:8080/api/approval/work/refuse/' + id,     
             headers: {                
                 "Authorization": 'Bearer ' + cookies
             }                           

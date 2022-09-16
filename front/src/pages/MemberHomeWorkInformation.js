@@ -51,7 +51,7 @@ function MemberHomeWorkInformation({history, location, match}) {
     useEffect(() => {
         axios({
             method: 'get',
-            url: 'http://52.79.155.65:8080/api/members/list/' + id + '?type='+location.state.type,            
+            url: 'http://34.64.61.63:8080/api/members/list/' + id + '?type='+location.state.type,            
             headers: {                
                 "Authorization": 'Bearer ' + cookies
             }            

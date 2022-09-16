@@ -47,7 +47,7 @@ const ApplicantList = () => {
     useEffect(() => {
         axios({
             method: 'get',
-            url: 'http://52.79.155.65:8080/api/approval/volunteerWorks',     
+            url: 'http://34.64.61.63:8080/api/approval/volunteerWorks',     
             headers: {                
                 "Authorization": 'Bearer ' + cookies
             }                           
@@ -70,7 +70,7 @@ const ApplicantList = () => {
         const pages = value - 1;
         axios({
             method: 'get',
-            url: 'http://52.79.155.65:8080/api/approval/volunteerWorks?page=' + pages,     
+            url: 'http://34.64.61.63:8080/api/approval/volunteerWorks?page=' + pages,     
             headers: {                
                 "Authorization": 'Bearer ' + cookies
             }                           
@@ -93,7 +93,7 @@ const ApplicantList = () => {
         console.log(id);
         axios({
             method: 'patch',
-            url: 'http://52.79.155.65:8080/api/approval/volunteerWorks/permit/' + id,     
+            url: 'http://34.64.61.63:8080/api/approval/volunteerWorks/permit/' + id,     
             headers: {                
                 "Authorization": 'Bearer ' + cookies
             }                           
@@ -120,7 +120,7 @@ const ApplicantList = () => {
         console.log(id);
         axios({
             method: 'patch',
-            url: 'http://52.79.155.65:8080/api/approval/volunteerWorks/refuse/' + idx,     
+            url: 'http://34.64.61.63:8080/api/approval/volunteerWorks/refuse/' + idx,     
             headers: {                
                 "Authorization": 'Bearer ' + cookies
             }                           

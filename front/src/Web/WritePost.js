@@ -80,7 +80,7 @@ const WritePost = ({history, location, match}) => {
                     })], {type: "application/json"}));
 
                 axios.post(
-                    'http://52.79.155.65:8080/api/boards', 
+                    'http://34.64.61.63:8080/api/boards', 
                     form ,
                     {
                         headers: {                
@@ -110,7 +110,7 @@ const WritePost = ({history, location, match}) => {
                 })], {type: "application/json"}));
 
                 axios.post(
-                    'http://52.79.155.65:8080/api/boards', 
+                    'http://34.64.61.63:8080/api/boards', 
                     form,
                     {
                         headers: {                
@@ -140,7 +140,7 @@ const WritePost = ({history, location, match}) => {
                 })], {type: "application/json"}));
     
                 axios.post(
-                    'http://52.79.155.65:8080/api/boards', 
+                    'http://34.64.61.63:8080/api/boards', 
                     form,
                     {
                         headers: {                

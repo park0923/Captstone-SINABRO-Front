@@ -54,7 +54,7 @@ function MemberHomeMyPage_edit() {
     console.log(address)
     axios({
       method: 'patch',
-      url: 'http://52.79.155.65:8080/api/members/update',
+      url: 'http://34.64.61.63:8080/api/members/update',
       data : {
         "address": address,
         "introduction": introduction,
@@ -87,7 +87,7 @@ function MemberHomeMyPage_edit() {
   useEffect(() => {
     axios({
         method: 'get',
-        url: 'http://52.79.155.65:8080/api/members',            
+        url: 'http://34.64.61.63:8080/api/members',            
         headers: {                
             "Authorization": 'Bearer ' + cookies
         }            

@@ -34,7 +34,7 @@ const NoticePostDetails = ({history, location, match}) => {
         setAuthority(JSON.parse(localStorage.getItem('authority')));   
         axios({
             method: 'get',
-            url: 'http://52.79.155.65:8080/api/boards/notice/'+id,                                   
+            url: 'http://34.64.61.63:8080/api/boards/notice/'+id,                                   
           })
           .then(function (response) {
               // handle success
@@ -69,7 +69,7 @@ const NoticePostDetails = ({history, location, match}) => {
     const hadleFile = () => {
         axios({
             method: 'get',
-            url: 'http://52.79.155.65:8080/api/boards/download/'+ file,                                   
+            url: 'http://34.64.61.63:8080/api/boards/download/'+ file,                                   
           })
           .then(function (response) {
                 // handle success
@@ -107,7 +107,7 @@ const NoticePostDetails = ({history, location, match}) => {
             });  
     }
     const handleref = () =>{
-        return 'http://52.79.155.65:8080/api/boards/download/'+ file
+        return 'http://34.64.61.63:8080/api/boards/download/'+ file
     }
     const handleButton = (file) => {        
         if(file && file.length){
@@ -128,7 +128,7 @@ const NoticePostDetails = ({history, location, match}) => {
     const handleDelete = () => {
         axios({
             method: 'delete',
-            url: 'http://52.79.155.65:8080/api/boards/'+ id,
+            url: 'http://34.64.61.63:8080/api/boards/'+ id,
             headers: {                
                 'Authorization': 'Bearer ' + cookies,          
                 'Content-Type': 'multipart/form-data' 

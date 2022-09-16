@@ -42,7 +42,7 @@ const WorkHistoryPagination = () => {
       useEffect(() => {      
         axios({
             method: 'get',
-            url: 'http://52.79.155.65:8080/api/members/list',            
+            url: 'http://34.64.61.63:8080/api/members/list',            
             headers: {                
                 "Authorization": 'Bearer ' + cookies
             }            
@@ -65,7 +65,7 @@ const WorkHistoryPagination = () => {
         if(states === ""){          
           axios({
             method: 'get',
-            url: 'http://52.79.155.65:8080/api/members/list?page='+ number + '&size=10',            
+            url: 'http://34.64.61.63:8080/api/members/list?page='+ number + '&size=10',            
             headers: {                
                 "Authorization": 'Bearer ' + cookies
             }            
@@ -85,7 +85,7 @@ const WorkHistoryPagination = () => {
         else if(states === "title"){          
           axios({
             method: 'get',
-            url: 'http://52.79.155.65:8080/api/members/list?page='+ number +'&searchOption=title&keyword=' + searchdata,            
+            url: 'http://34.64.61.63:8080/api/members/list?page='+ number +'&searchOption=title&keyword=' + searchdata,            
             headers: {                
                 "Authorization": 'Bearer ' + cookies
             }            
@@ -105,7 +105,7 @@ const WorkHistoryPagination = () => {
         else if(states === "title_body"){          
           axios({
             method: 'get',
-            url: 'http://52.79.155.65:8080/api/members/list?page='+ number +'searchOption=title_contents&keyword='+ searchdata,            
+            url: 'http://34.64.61.63:8080/api/members/list?page='+ number +'searchOption=title_contents&keyword='+ searchdata,            
             headers: {                
                 "Authorization": 'Bearer ' + cookies
             }            
@@ -143,7 +143,7 @@ const WorkHistoryPagination = () => {
         if(selectvalue === "title"){          
           axios({
             method: 'get',
-            url: 'http://52.79.155.65:8080/api/members/list?searchOption=title&keyword=' + searchdata,            
+            url: 'http://34.64.61.63:8080/api/members/list?searchOption=title&keyword=' + searchdata,            
             headers: {                
                 "Authorization": 'Bearer ' + cookies
             }            
@@ -170,7 +170,7 @@ const WorkHistoryPagination = () => {
           
           axios({
             method: 'get',
-            url: 'http://52.79.155.65:8080/api/members/list?searchOption=title_contents&keyword='+ searchdata,            
+            url: 'http://34.64.61.63:8080/api/members/list?searchOption=title_contents&keyword='+ searchdata,            
             headers: {                
                 "Authorization": 'Bearer ' + cookies
             }            

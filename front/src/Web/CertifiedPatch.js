@@ -31,7 +31,7 @@ const CertifiedPatch = ({history, location, match}) => {
         setUid(JSON.parse(localStorage.getItem('uid')));
         axios({
             method: 'get',
-            url: 'http://52.79.155.65:8080/api/certification/' + id,     
+            url: 'http://34.64.61.63:8080/api/certification/' + id,     
             headers: {                
                 "Authorization": 'Bearer ' + cookies
             }                           
@@ -56,7 +56,7 @@ const CertifiedPatch = ({history, location, match}) => {
     const hadleFile = () => {
         axios({
             method: 'get',
-            url: 'http://52.79.155.65:8080/api/certification/download/'+ file, 
+            url: 'http://34.64.61.63:8080/api/certification/download/'+ file, 
             headers: {                
                 "Authorization": 'Bearer ' + cookies
             }                                    
@@ -119,7 +119,7 @@ const CertifiedPatch = ({history, location, match}) => {
     const handlePatch = () => {
         axios({
             method: 'patch',
-            url: 'http://52.79.155.65:8080/api/certification/'+ id,
+            url: 'http://34.64.61.63:8080/api/certification/'+ id,
             data: {                
                 "contents": contents,
                 "title": title
@@ -145,7 +145,7 @@ const CertifiedPatch = ({history, location, match}) => {
     const handleDelete = () => {
         axios({
             method: 'delete',
-            url: 'http://52.79.155.65:8080/api/certification/'+ id,
+            url: 'http://34.64.61.63:8080/api/certification/'+ id,
             headers: {                
                 'Authorization': 'Bearer ' + cookies,          
                 'Content-Type': 'multipart/form-data' 

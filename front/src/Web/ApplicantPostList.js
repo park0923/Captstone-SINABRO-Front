@@ -51,7 +51,7 @@ const ApplicantPostList = () => {
     useEffect(() => {
         axios({
             method: 'get',
-            url: 'http://52.79.155.65:8080/api/approval/work',     
+            url: 'http://34.64.61.63:8080/api/approval/work',     
             headers: {                
                 "Authorization": 'Bearer ' + cookies
             }                           
@@ -73,7 +73,7 @@ const ApplicantPostList = () => {
         const pages = value - 1;
         axios({
             method: 'get',
-            url: 'http://52.79.155.65:8080/api/approval/work?page=' + pages,     
+            url: 'http://34.64.61.63:8080/api/approval/work?page=' + pages,     
             headers: {                
                 "Authorization": 'Bearer ' + cookies
             }                           

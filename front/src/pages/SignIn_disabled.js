@@ -7,7 +7,7 @@ function SignIn_disabled() {
   useEffect(() => {}, []);
   const signInUser = ({ email, password }) => {
     return axios
-      .post("http://52.79.155.65:8080/api/members/signin", {
+      .post("http://34.64.61.63:8080/api/members/signin", {
         email: email,
         password: password,
       })
