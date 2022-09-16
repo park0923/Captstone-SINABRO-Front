@@ -5,7 +5,7 @@ import { Radio } from "@mui/material";
 
 // async function signUpUser(credentials) {
 //   axios
-//     .post("http://54.151.102.33:8080/api/members/signup", {
+//     .post("http://52.79.155.65:8080/api/members/signup", {
 //       username: credentials.username,
 //       email: credentials.email,
 //       password: credentials.password,
@@ -71,7 +71,7 @@ function SignUp() {
 
   const onSubmit = () => {    
     if(authority === "1"){
-      axios.post('http://54.151.102.33:8080/api/members/signup', {
+      axios.post('http://52.79.155.65:8080/api/members/signup', {
             username: name,
             password: password,
             email: email,
@@ -91,7 +91,7 @@ function SignUp() {
       
     }
     else if(authority === "2"){
-      axios.post('http://54.151.102.33:8080/api/members/beneficiary/signup', {
+      axios.post('http://52.79.155.65:8080/api/members/beneficiary/signup', {
             username: name,
             password: password,
             email: email,

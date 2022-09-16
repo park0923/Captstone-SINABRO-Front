@@ -49,7 +49,7 @@ const Inspection = () => {
     useEffect(() => {
         axios({
             method: 'get',
-            url: 'http://54.151.102.33:8080/api/inspections',     
+            url: 'http://52.79.155.65:8080/api/inspections',     
             headers: {                
                 "Authorization": 'Bearer ' + cookies
             }                           
@@ -71,7 +71,7 @@ const Inspection = () => {
         const pages = value - 1;
         axios({
             method: 'get',
-            url: 'http://54.151.102.33:8080/api/inspections?page=' + pages,     
+            url: 'http://52.79.155.65:8080/api/inspections?page=' + pages,     
             headers: {                
                 "Authorization": 'Bearer ' + cookies
             }                           

@@ -39,7 +39,7 @@ const VolunteerPaginations = () =>{
       useEffect(() => {      
         axios({
             method: 'get',
-            url: 'http://54.151.102.33:8080/api/works/',            
+            url: 'http://52.79.155.65:8080/api/works/',            
             headers: {                
                 "Authorization": 'Bearer ' + cookies
             }            
@@ -62,7 +62,7 @@ const VolunteerPaginations = () =>{
         if(states === ""){          
           axios({
             method: 'get',
-            url: 'http://54.151.102.33:8080/api/works?page='+ number + '&size=10',            
+            url: 'http://52.79.155.65:8080/api/works?page='+ number + '&size=10',            
             headers: {                
                 "Authorization": 'Bearer ' + cookies
             }            
@@ -82,7 +82,7 @@ const VolunteerPaginations = () =>{
         else if(states === "title"){          
           axios({
             method: 'get',
-            url: 'http://54.151.102.33:8080/api/works?page='+ number +'&searchOption=title&keyword=' + searchdata,            
+            url: 'http://52.79.155.65:8080/api/works?page='+ number +'&searchOption=title&keyword=' + searchdata,            
             headers: {                
                 "Authorization": 'Bearer ' + cookies
             }            
@@ -102,7 +102,7 @@ const VolunteerPaginations = () =>{
         else if(states === "title_body"){          
           axios({
             method: 'get',
-            url: 'http://54.151.102.33:8080/api/works?page='+ number +'searchOption=title_contents&keyword='+ searchdata,            
+            url: 'http://52.79.155.65:8080/api/works?page='+ number +'searchOption=title_contents&keyword='+ searchdata,            
             headers: {                
                 "Authorization": 'Bearer ' + cookies
             }            
@@ -139,7 +139,7 @@ const VolunteerPaginations = () =>{
         if(selectvalue === "title"){          
           axios({
             method: 'get',
-            url: 'http://54.151.102.33:8080/api/works?searchOption=title&keyword=' + searchdata,            
+            url: 'http://52.79.155.65:8080/api/works?searchOption=title&keyword=' + searchdata,            
             headers: {                
                 "Authorization": 'Bearer ' + cookies
             }            
@@ -166,7 +166,7 @@ const VolunteerPaginations = () =>{
           
           axios({
             method: 'get',
-            url: 'http://54.151.102.33:8080/api/works?searchOption=title_contents&keyword='+ searchdata,            
+            url: 'http://52.79.155.65:8080/api/works?searchOption=title_contents&keyword='+ searchdata,            
             headers: {                
                 "Authorization": 'Bearer ' + cookies
             }            

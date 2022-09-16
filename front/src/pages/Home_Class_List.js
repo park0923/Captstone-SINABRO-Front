@@ -13,7 +13,7 @@ function Home_Class_List() {
         console.log(cookies);        
         axios({
             method: 'get',
-            url: 'http://54.151.102.33:8080/api/works/',            
+            url: 'http://52.79.155.65:8080/api/works/',            
             headers: {                
                 "Authorization": 'Bearer ' + cookies
             }            

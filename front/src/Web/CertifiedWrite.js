@@ -47,7 +47,7 @@ const CertifiedWrite = ({history, location, match}) => {
         })], {type: "application/json"}));
 
         axios.post(
-            'http://54.151.102.33:8080/api/certification', 
+            'http://52.79.155.65:8080/api/certification', 
             form,
             {
                 headers: {                
